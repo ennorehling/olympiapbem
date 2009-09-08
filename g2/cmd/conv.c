@@ -33,165 +33,148 @@ static char *letters2 = "abcdfghjkmnpqrstvwxz";
 
 
 int
-letter_val(char c, char *let)
-{
-	char *p;
+letter_val(char c, char *let) {
+  char *p;
 
-	for (p = let; *p; p++)
-		if (*p == c)
-			return p-let;
+  for (p = let; *p; p++)
+    if (*p == c)
+      return p - let;
 
-	return 0;	/* error */
+  return 0;                     /* error */
 }
 
 
 char *
-int_to_code(int l)
-{
-	static char buf[LEN];
-	int n, a, b, c;
+int_to_code(int l) {
+  static char buf[LEN];
+  int n, a, b, c;
 
-	if (l < 10000)
-	{
-		sprintf(buf, "%d", l);
-	}
-	else if (l < 50000)		/* CCNN */
-	{
-		l -= 10000;
+  if (l < 10000) {
+    sprintf(buf, "%d", l);
+  }
+  else if (l < 50000) {         /* CCNN */
+    l -= 10000;
 
-		n = l % 100;
-		l /= 100;
+    n = l % 100;
+    l /= 100;
 
-		a = l % 20;
-		b = l / 20;
+    a = l % 20;
+    b = l / 20;
 
-		sprintf(buf, "%c%c%02d", letters2[b], letters2[a], n);
-	}
-	else if (l < 56760)		/* CCN */
-	{
-		l -= 50000;
+    sprintf(buf, "%c%c%02d", letters2[b], letters2[a], n);
+  }
+  else if (l < 56760) {         /* CCN */
+    l -= 50000;
 
-		n = l % 10;
-		l /= 10;
+    n = l % 10;
+    l /= 10;
 
-		a = l % 26;
-		b = l / 26;
+    a = l % 26;
+    b = l / 26;
 
-		sprintf(buf, "%c%c%d", letters[b], letters[a], n);
-	}
-	else if (l < 58760)		/* CNN */
-	{
-		l -= 56760;
+    sprintf(buf, "%c%c%d", letters[b], letters[a], n);
+  }
+  else if (l < 58760) {         /* CNN */
+    l -= 56760;
 
-		n = l % 10;
-		l /= 10;
+    n = l % 10;
+    l /= 10;
 
-		a = l % 10;
-		b = l / 10;
+    a = l % 10;
+    b = l / 10;
 
-		sprintf(buf, "%c%d%d", letters2[b], a, n);
-	}
-	else if (l < 59000)
-	{
-		sprintf(buf, "%d", l);
-	}
-	else if (l < 79000)
-	{
-		l -= 59000;
+    sprintf(buf, "%c%d%d", letters2[b], a, n);
+  }
+  else if (l < 59000) {
+    sprintf(buf, "%d", l);
+  }
+  else if (l < 79000) {
+    l -= 59000;
 
-		a = l / 1000;
-		n = l % 1000;
+    a = l / 1000;
+    n = l % 1000;
 
-		sprintf(buf, "%c%03d", letters2[a], n);
-	}
-	else
-	{
-		sprintf(buf, "%d", l);
-	}
+    sprintf(buf, "%c%03d", letters2[a], n);
+  }
+  else {
+    sprintf(buf, "%d", l);
+  }
 
-	return buf;
+  return buf;
 }
 
 
 int
-code_to_int(char *s)
-{
-	char a, b, c, d;
+code_to_int(char *s) {
+  char a, b, c, d;
 
-	if (isdigit(*s))
-		return atoi(s);
+  if (isdigit(*s))
+    return atoi(s);
 
-	if (!isalpha(*s))
-		return 0;
+  if (!isalpha(*s))
+    return 0;
 
-	switch (strlen(s))
-	{
-	case 3:
-		if (isalpha(*(s+1)) && isdigit(*(s+2)))		/* CCN */
-		{
-			a = tolower(*s) - 'a';
-			b = tolower(*(s+1)) - 'a';
-			c = *(s+2) - '0';
+  switch (strlen(s)) {
+  case 3:
+    if (isalpha(*(s + 1)) && isdigit(*(s + 2))) {       /* CCN */
+      a = tolower(*s) - 'a';
+      b = tolower(*(s + 1)) - 'a';
+      c = *(s + 2) - '0';
 
-			return a * 260 + b * 10 + c + 50000;
-		}
+      return a * 260 + b * 10 + c + 50000;
+    }
 
-		if (isdigit(*(s+1)) && isdigit(*(s+2)))		/* CNN */
-		{
-			a = letter_val(tolower(*s), letters2);
-			b = *(s+1) - '0';
-			c = *(s+2) - '0';
+    if (isdigit(*(s + 1)) && isdigit(*(s + 2))) {       /* CNN */
+      a = letter_val(tolower(*s), letters2);
+      b = *(s + 1) - '0';
+      c = *(s + 2) - '0';
 
-			return a * 100 + b * 10 + c + 56760;
-		}
+      return a * 100 + b * 10 + c + 56760;
+    }
 
-		return 0;
+    return 0;
 
-	case 4:							/* CCNN */
-		if (isalpha(*(s+1)) && isdigit(*(s+2)) && isdigit(*(s+3)))
-		{
-			a = letter_val(tolower(*s), letters2);
-			b = letter_val(tolower(*(s+1)), letters2);
-			c = *(s+2) - '0';
-			d = *(s+3) - '0';
+  case 4:                      /* CCNN */
+    if (isalpha(*(s + 1)) && isdigit(*(s + 2)) && isdigit(*(s + 3))) {
+      a = letter_val(tolower(*s), letters2);
+      b = letter_val(tolower(*(s + 1)), letters2);
+      c = *(s + 2) - '0';
+      d = *(s + 3) - '0';
 
 
-			return a * 2000 + b * 100 + c * 10 + d + 10000;
-		}
+      return a * 2000 + b * 100 + c * 10 + d + 10000;
+    }
 
-		if (isdigit(*(s+1)) && isdigit(*(s+2)) && isdigit(*(s+3)))
-		{
-			a = letter_val(tolower(*s), letters2);
-			b = *(s+1) - '0';
-			c = *(s+2) - '0';
-			d = *(s+3) - '0';
+    if (isdigit(*(s + 1)) && isdigit(*(s + 2)) && isdigit(*(s + 3))) {
+      a = letter_val(tolower(*s), letters2);
+      b = *(s + 1) - '0';
+      c = *(s + 2) - '0';
+      d = *(s + 3) - '0';
 
 
-			return a * 1000 + b * 100 + c * 10 + d + 59000;
-		}
-		return 0;
+      return a * 1000 + b * 100 + c * 10 + d + 59000;
+    }
+    return 0;
 
-	default:
-		return 0;
-	}
+  default:
+    return 0;
+  }
 }
 
 
 main(argc, argv)
-int argc;
-char **argv;
+     int argc;
+     char **argv;
 {
 
-	if (argc > 1 && isalpha(argv[1][0]))
-		printf("%d\n", code_to_int(argv[1]));
-	else if (argc > 1 && isdigit(argv[1][0]))
-		printf("%s\n", int_to_code(atoi(argv[1])));
-	else
-	{
-		fprintf(stderr, "usage: %s code|entity-number\n", argv[0]);
-		exit(1);
-	}
+  if (argc > 1 && isalpha(argv[1][0]))
+    printf("%d\n", code_to_int(argv[1]));
+  else if (argc > 1 && isdigit(argv[1][0]))
+    printf("%s\n", int_to_code(atoi(argv[1])));
+  else {
+    fprintf(stderr, "usage: %s code|entity-number\n", argv[0]);
+    exit(1);
+  }
 
-	exit(0);
+  exit(0);
 }
-

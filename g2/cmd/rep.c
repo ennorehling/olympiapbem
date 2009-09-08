@@ -17,62 +17,58 @@ int html;
 int show_html = 1;
 
 main(argc, argv)
-int argc;
-char **argv;
+     int argc;
+     char **argv;
 {
-	FILE *fp;
-	int errflag = 0;
-	int c;
-	extern int optind;
+  FILE *fp;
+  int errflag = 0;
+  int c;
+  extern int optind;
 
-	while ((c = getopt(argc, argv, "h")) != EOF)
-	{
-		switch (c)
-		{
-		case 'h':
-			show_html = 2;
-			break;
+  while ((c = getopt(argc, argv, "h")) != EOF) {
+    switch (c) {
+    case 'h':
+      show_html = 2;
+      break;
 
-		default:
-			errflag++;
-		}
-	}
+    default:
+      errflag++;
+    }
+  }
 
-	if (optind != argc - 1)
-	{
-		fprintf(stderr, "usage: %s [-h] report-file\n", argv[0]);
-		exit(1);
-	}
+  if (optind != argc - 1) {
+    fprintf(stderr, "usage: %s [-h] report-file\n", argv[0]);
+    exit(1);
+  }
 
-	fp = fopen(argv[optind], "r");
-	if (fp == NULL)
-	{
-		fprintf(stderr, "can't read %s: ", argv[optind]);
-		perror("");
-		exit(1);
-	}
+  fp = fopen(argv[optind], "r");
+  if (fp == NULL) {
+    fprintf(stderr, "can't read %s: ", argv[optind]);
+    perror("");
+    exit(1);
+  }
 
-	init_spaces();
-	parse_includes(fp);
-	fclose(fp);
+  init_spaces();
+  parse_includes(fp);
+  fclose(fp);
 
-	exit(0);
+  exit(0);
 }
 
 
 output(s)
-char *s;
+     char *s;
 {
-	char *p;
+  char *p;
 
-	for (p = s; *p; p++)
-		if (*p == '~')
-			*p = ' ';
+  for (p = s; *p; p++)
+    if (*p == '~')
+      *p = ' ';
 
-	if (day >= 0)
-		printf("%2d: %s%s\n", day, unit, s);
-	else
-		printf("%s%s\n", unit, s);
+  if (day >= 0)
+    printf("%2d: %s%s\n", day, unit, s);
+  else
+    printf("%s%s\n", unit, s);
 }
 
 
@@ -88,24 +84,22 @@ static int spaces_len;
 static int wrap_output;
 
 
-init_spaces()
-{
-	int i;
-	extern char *malloc();
+init_spaces() {
+  int i;
+  extern char *malloc();
 
-	spaces_len = 150;
-	spaces = malloc(spaces_len+1);
+  spaces_len = 150;
+  spaces = malloc(spaces_len + 1);
 
-	if (spaces == NULL)
-	{
-		fprintf(stderr, "out of memory\n");
-		exit(1);
-	}
+  if (spaces == NULL) {
+    fprintf(stderr, "out of memory\n");
+    exit(1);
+  }
 
-	for (i = 0; i <	spaces_len; i++)
-		spaces[i] = ' ';
+  for (i = 0; i < spaces_len; i++)
+    spaces[i] = ' ';
 
-	spaces[spaces_len] = '\0';
+  spaces[spaces_len] = '\0';
 }
 
 
@@ -118,115 +112,109 @@ init_spaces()
 
 
 void
-wrap_start()
-{
+wrap_start() {
 
-	strcpy(cur, &spaces[spaces_len - indent]);
-	wrap_output = FALSE;
+  strcpy(cur, &spaces[spaces_len - indent]);
+  wrap_output = FALSE;
 }
 
 
-wrap_done_sup()
-{
+wrap_done_sup() {
 
-	output(cur);
-	strcpy(cur, &spaces[spaces_len - indent]);
-	wrap_output = TRUE;
+  output(cur);
+  strcpy(cur, &spaces[spaces_len - indent]);
+  wrap_output = TRUE;
 }
 
 
-cur_has_something()
-{
-	char *p;
+cur_has_something() {
+  char *p;
 
-	for (p = cur; *p && iswhite(*p); p++)
-		;
+  for (p = cur; *p && iswhite(*p); p++);
 
-	if (*p)
-		return TRUE;
-	return FALSE;
+  if (*p)
+    return TRUE;
+  return FALSE;
 }
 
 
-wrap_done()
-{
+wrap_done() {
 
-	if (cur_has_something() || !wrap_output)
-		wrap_done_sup();
+  if (cur_has_something() || !wrap_output)
+    wrap_done_sup();
 }
 
 
 char *
 word_split(s, pos)
-char *s;
-int pos;
+     char *s;
+     int pos;
 {
-	int len;
+  int len;
 
-	len = strlen(s);
-	if (pos	>= strlen(s))
-		return(&s[len]);
+  len = strlen(s);
+  if (pos >= strlen(s))
+    return (&s[len]);
 
-	while (pos > 0 && s[pos] != ' ')
-		pos--;
+  while (pos > 0 && s[pos] != ' ')
+    pos--;
 
-	if (pos	<= 0)
-		return(NULL);
+  if (pos <= 0)
+    return (NULL);
 
-	s[pos] = '\0';
+  s[pos] = '\0';
 
-	return(&s[pos +	1]);
+  return (&s[pos + 1]);
 }
 
 
 wrap_append(s, t)
-char *s;
-char *t;
+     char *s;
+     char *t;
 {
-	int slen;
+  int slen;
 
-	if (strcmp(t, "\"") != 0) {
-		slen = strlen(s);
+  if (strcmp(t, "\"") != 0) {
+    slen = strlen(s);
 
-		if (slen > 0 &&	s[slen - 1] != ' ' && s[slen - 1] != '"') {
-			strcat(s, " ");
-			slen++;
-		}
+    if (slen > 0 && s[slen - 1] != ' ' && s[slen - 1] != '"') {
+      strcat(s, " ");
+      slen++;
+    }
 
-		if (slen > 1 &&
-			(s[slen	- 2] ==	'.'
-				|| s[slen - 2] == ':'
-				|| s[slen - 2] == '?'
-				|| s[slen - 2] == '!') )
-			strcat(s, " ");
-	}
+    if (slen > 1 &&
+        (s[slen - 2] == '.'
+         || s[slen - 2] == ':' || s[slen - 2] == '?' || s[slen - 2] == '!'))
+      strcat(s, " ");
+  }
 
-	strcat(s, t);
+  strcat(s, t);
 }
 
 
 wrap(s)
-char *s;
+     char *s;
 {
-	char *t;
-	int len;
+  char *t;
+  int len;
 
-	len = strlen(cur);
+  len = strlen(cur);
 
-	if (strlen(s) +	len < wrap_pos)
-		wrap_append(cur, s);
-	else {
-		t = word_split(s, wrap_pos - len);
-		if (t == NULL && cur_has_something()) {
-			wrap_done_sup();
-			wrap(s);
-		} else {
-			wrap_append(cur, s);
-			wrap_done_sup();
-			if (t)
-				wrap(t);
-		}
-	}
+  if (strlen(s) + len < wrap_pos)
+    wrap_append(cur, s);
+  else {
+    t = word_split(s, wrap_pos - len);
+    if (t == NULL && cur_has_something()) {
+      wrap_done_sup();
+      wrap(s);
+    }
+    else {
+      wrap_append(cur, s);
+      wrap_done_sup();
+      if (t)
+        wrap(t);
+    }
+  }
 }
 
 
@@ -248,85 +236,83 @@ char *s;
 
 char *
 strip_stuff(s)
-char *s;
+     char *s;
 {
-	char *p;
+  char *p;
 
 /*
  *  Pull off box number
  */
 
-	while (*s && *s != ':')
-		s++;
-	if (*s == ':')
-		s++;
+  while (*s && *s != ':')
+    s++;
+  if (*s == ':')
+    s++;
 
 /*
  *  Pull off html style tag
  */
 
-	html = atoi(s);
+  html = atoi(s);
 
-	while (*s && *s != ':')
-		s++;
-	if (*s == ':')
-		s++;
+  while (*s && *s != ':')
+    s++;
+  if (*s == ':')
+    s++;
 
 /*
  *  Pull off unit string
  */
 
-	for (p = unit; *s && *s != ':'; s++)
-		*p++ = *s;
+  for (p = unit; *s && *s != ':'; s++)
+    *p++ = *s;
 
-	if (p > unit)
-	{
-		*p++ = ':';
-		*p++ = ' ';
-	}
-	*p = '\0';
+  if (p > unit) {
+    *p++ = ':';
+    *p++ = ' ';
+  }
+  *p = '\0';
 
-	if (*s == ':')
-		s++;
+  if (*s == ':')
+    s++;
 
 /*
  *  Now get indentation:  %d or %d/%d
  */
 
-	indent = atoi(s);
+  indent = atoi(s);
 
-	while (*s && *s != ':' && *s != '/')
-		s++;
+  while (*s && *s != ':' && *s != '/')
+    s++;
 
-	if (*s == '/')
-	{
-		s++;
-		second_indent = atoi(s);
-		while (*s && *s != ':')
-			s++;
-	}
-	else
-		second_indent = 0;
+  if (*s == '/') {
+    s++;
+    second_indent = atoi(s);
+    while (*s && *s != ':')
+      s++;
+  }
+  else
+    second_indent = 0;
 
-	if (*s == ':')
-		s++;
+  if (*s == ':')
+    s++;
 
 /*
  *  Now get day, if any
  */
 
-	if (*s == ':')
-		day = -1;
-	else
-		day = atoi(s);
+  if (*s == ':')
+    day = -1;
+  else
+    day = atoi(s);
 
-	while (*s && *s != ':')
-		s++;
+  while (*s && *s != ':')
+    s++;
 
-	if (*s == ':')
-		s++;
+  if (*s == ':')
+    s++;
 
-	return s;
+  return s;
 }
 
 
@@ -340,118 +326,110 @@ char *s;
 
 char *
 dehtml(s)
-char *s;
+     char *s;
 {
-	static char buf[LEN];
-	char *bufp;
-	char *p;
-	int state = 0;
+  static char buf[LEN];
+  char *bufp;
+  char *p;
+  int state = 0;
 
-	bufp = buf;
-	p = s;
+  bufp = buf;
+  p = s;
 
-	while (*p)
-	{
-		if (*p == '{')
-		{
-			state = LEFT;
-			p++;
-		}
+  while (*p) {
+    if (*p == '{') {
+      state = LEFT;
+      p++;
+    }
 
-		if (state == LEFT && *p == '|')
-		{
-			state = RIGHT;
-			p++;
-		}
+    if (state == LEFT && *p == '|') {
+      state = RIGHT;
+      p++;
+    }
 
-		if (state && *p == '}')
-		{
-			state = 0;
-			p++;
-		}
+    if (state && *p == '}') {
+      state = 0;
+      p++;
+    }
 
-		if (state == 0 ||
-		   (state == LEFT && show_html == 2) ||
-		   (state == RIGHT && show_html == 1))
-			*bufp++ = *p;
-		p++;
-	}
+    if (state == 0 ||
+        (state == LEFT && show_html == 2) ||
+        (state == RIGHT && show_html == 1))
+      *bufp++ = *p;
+    p++;
+  }
 
-	*bufp = '\0';
+  *bufp = '\0';
 
-	return buf;
+  return buf;
 }
 
 out_line(s)
-char *s;
+     char *s;
 {
-	char *p;
+  char *p;
 
-	if (html != 0 && html != show_html)
-		return;
+  if (html != 0 && html != show_html)
+    return;
 
-	s = dehtml(s);
+  s = dehtml(s);
 
-	for (p = s; *p && *p != '\n'; p++)
-			;
-	*p = '\0';
+  for (p = s; *p && *p != '\n'; p++);
+  *p = '\0';
 
-	if (html)
-		wrap_pos = LEN;
-	else if (day >= 0)
-		wrap_pos = 72 - strlen(unit);	/* left margin has 2d: on it */
-	else
-		wrap_pos = 76 - strlen(unit);
+  if (html)
+    wrap_pos = LEN;
+  else if (day >= 0)
+    wrap_pos = 72 - strlen(unit);       /* left margin has 2d: on it */
+  else
+    wrap_pos = 76 - strlen(unit);
 
-	wrap_start();
-	indent += second_indent;
-	wrap(s);
-	wrap_done();
-	indent -= second_indent;
+  wrap_start();
+  indent += second_indent;
+  wrap(s);
+  wrap_done();
+  indent -= second_indent;
 }
 
 
 out_line_include(fp, s)
-FILE *fp;
-char *s;
+     FILE *fp;
+     char *s;
 {
 
-	if (strncmp(s, "#include ", 9) == 0)
-		print_by_num(fp, atoi(&s[9]));
-	else
-		out_line(s);
+  if (strncmp(s, "#include ", 9) == 0)
+    print_by_num(fp, atoi(&s[9]));
+  else
+    out_line(s);
 }
 
 
 print_by_num(fp, num)
-FILE *fp;
-int num;
+     FILE *fp;
+     int num;
 {
-	char buf[LEN];
-	long l;
+  char buf[LEN];
+  long l;
 
-	l = ftell(fp);
-	rewind(fp);
+  l = ftell(fp);
+  rewind(fp);
 
-	while (fgets(buf, LEN, fp) != NULL)
-	{
-		if (atoi(buf) == num)
-			out_line(strip_stuff(buf));
-	}
+  while (fgets(buf, LEN, fp) != NULL) {
+    if (atoi(buf) == num)
+      out_line(strip_stuff(buf));
+  }
 
-	fseek(fp, l, 0);
+  fseek(fp, l, 0);
 }
 
 
 parse_includes(fp)
-FILE *fp;
+     FILE *fp;
 {
-	char buf[LEN];
+  char buf[LEN];
 
-        while (fgets(buf, LEN, fp) != NULL)
-	{
-		if (atoi(buf) == 1)
-			out_line_include(fp, strip_stuff(buf));
-	}
+  while (fgets(buf, LEN, fp) != NULL) {
+    if (atoi(buf) == 1)
+      out_line_include(fp, strip_stuff(buf));
+  }
 }
-
