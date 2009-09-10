@@ -259,7 +259,7 @@ artifact_tbl[] =
       0,  0,		/* Range for param2 */
       0,  0		/* Range for charges */
     },
-#endif 
+#endif
     {
       ART_FLYING,	/* What this is... */
       COMMON,		/* COMMON, UNUSUAL, or RARE */

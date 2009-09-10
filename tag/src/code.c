@@ -1,6 +1,7 @@
 
 
 #include <stdio.h>
+#include <string.h>
 #include "z.h"
 #include "oly.h"
 

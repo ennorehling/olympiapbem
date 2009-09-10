@@ -1008,7 +1008,7 @@ struct entity_char {
 
 #if 0
         struct effect **effects;        /* ilist of effects on char */
-#endif 0
+#endif
 
 	int moving;			/* daystamp of beginning of movement */
 	int unit_lord;			/* who is our owner? */
@@ -1055,7 +1055,7 @@ struct char_magic {
 	sparse visions;			/* visions revealed */
 #if 0
 	int pledge;			/* lands are pledged to another */
-#endif 
+#endif
 	int token;			/* we are controlled by this art */
 
 	int project_cast;		/* project next cast */
@@ -1126,7 +1126,7 @@ struct entity_loc {
 					/* also "tracks" for npc ferries */
 #if 0
         struct effect **effects;        /* ilist of effects on location */
-#endif 0
+#endif
         struct entity_mine *mine_info;  /* If there's a mine. */
   /*
    *  Loction control -- need two so that we can only change
@@ -1203,7 +1203,7 @@ struct entity_subloc {
         uchar moat;                     /* Has a moat? */
 #if 0
 	short shaft_depth;		/* depth of mine shaft */
-#endif 0
+#endif
 
 	struct entity_build **builds;   /* Ongoing builds here. */
 
@@ -1212,7 +1212,7 @@ struct entity_subloc {
 #if 0
 	int capacity;			/* capacity of ship */
 	schar galley_ram;		/* galley is fitted with a ram */
-#endif 0
+#endif
 
 	ilist near_cities;		/* cities rumored to be nearby */
 	schar safe;			/* safe haven */
@@ -1222,16 +1222,16 @@ struct entity_subloc {
 #if 0
 	schar link_when;		/* month link is open, -1 = never */
 	schar link_open;		/* link is open now */
-#endif 0
+#endif
 	ilist link_to;			/* where we are linked to */
 	ilist link_from;		/* where we are linked from */
 #if 0
 	ilist bound_storms;		/* storms bound to this ship */
-#endif 0
+#endif
         int guild;                      /* what skill, if a sub_guild */
 #if 0
         struct effect **effects;        /* ilist of effects on sub-location */
-#endif 0
+#endif
 	short tax_market;		/* Market tax rate. */
         short tax_market2;              /* Temporary until end of month */
   /* Location control -- either here or loc */
@@ -1677,7 +1677,7 @@ extern int sub_head[];			/* head of x_next_sub chain */
 #define reflect_blast(n)	(rp_magic(n) ? rp_magic(n)->aura_reflect : 0)
 #if 0
 #define char_pledge(n)		(rp_magic(n) ? rp_magic(n)->pledge : 0)
-#endif 
+#endif
 #define char_auraculum(n)	(rp_magic(n) ? rp_magic(n)->auraculum : 0)
 #define char_abil_shroud(n)	(rp_magic(n) ? rp_magic(n)->ability_shroud : 0)
 #define board_fee(n)		(rp_magic(n) ? rp_magic(n)->fee : 0)
@@ -1748,7 +1748,7 @@ extern int sub_head[];			/* head of x_next_sub chain */
 
 #if 0
 #define	mine_depth(n)	  (rp_subloc(n) ? rp_subloc(n)->shaft_depth / 3 : 0)
-#endif 0
+#endif
      
 #define entrance_size(n)  (rp_subloc(n) ? rp_subloc(n)->entrance_size : 0)    
 #define	release_swear(n)  (rp_magic(n) ? rp_magic(n)->swear_on_release : 0)

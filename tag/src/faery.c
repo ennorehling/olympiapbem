@@ -536,7 +536,7 @@ v_use_faery_stone(struct command *c)
   
   return TRUE;
 }
-#endif 0
+#endif
 
 /*
  *  Thu Oct  8 18:10:22 1998 -- Scott Turner
@@ -628,7 +628,7 @@ create_elven_hunt()
 	queue(new, "wait time 0");
 #if 0
 	init_load_sup(new);   /* make ready to execute commands immediately */
-#endif 
+#endif
 	queue(new2, "behind 9");  /* Become archers. */
 #if 0
 	init_load_sup(new2);   /* make ready to execute commands immediately */

@@ -359,7 +359,7 @@ liner_desc_ship(int n)
 #if 0
   if (fee = board_fee(n))
     strcat(buf, ", %s per 100 wt. to board", gold_s(fee));
-#endif 0
+#endif
 
   return sout("%s", buf);
 }
@@ -651,7 +651,7 @@ liner_desc_char(int n)
 	strcat(buf, priest_s(n));
 #if 0
 	strcat(buf, wield_s(n));
-#endif 
+#endif
 
 	if (show_combat_flag)
 	{

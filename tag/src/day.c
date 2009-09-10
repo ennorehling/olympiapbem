@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <string.h>
 #include "z.h"
 #include "oly.h"
 
@@ -468,7 +469,7 @@ heal_char_sup(int who)
 	 *
 	 */
 	chance += skill_exp(who, sk_improved_recovery);
-#endif HERO	
+#endif
 
 	if (char_sick(who) && rnd(1,100) <= chance)
 	{
@@ -2149,7 +2150,7 @@ dead_body_rot()
       kill_char(i, MATES, S_nothing);
     };
   } next_lost_soul
-#endif 0
+#endif
 
   loop_dead_body(i) {
     owner = item_unique(i);
@@ -2594,7 +2595,7 @@ post_production()
 
 #if 0
 	compute_civ_levels();
-#endif 
+#endif
 	location_production();
 	/*
 	 *  Thu Dec  2 05:26:58 1999 -- Scott Turner
@@ -3402,7 +3403,7 @@ daily_events()
 	static int wday_index = 0;
 #if 0
 	static int faery_day = 0;
-#endif 
+#endif
 
 #ifdef NEW_TRADE
 	/*
@@ -3410,7 +3411,7 @@ daily_events()
 	 *
 	 */
 	match_all_trades();
-#endif 
+#endif
 
 	if (curse_erode_day == 0)
 		curse_erode_day = rnd(1, MONTH_DAYS);
@@ -3460,7 +3461,7 @@ daily_events()
 #if 0
 	if (sysclock.day == faery_day)
 		auto_faery();
-#endif 
+#endif
 
 	update_all_effects();
 }

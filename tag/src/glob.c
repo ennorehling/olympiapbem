@@ -61,7 +61,7 @@ int v_incite(struct command *), v_forget(struct command *), v_garrison(struct co
 int v_fly(struct command *), d_fly(struct command *), v_sneak(struct command *), d_sneak(struct command *);;
 #if 0
 int v_exhume(struct command *), d_exhume(struct command *);
-#endif 0
+#endif
 int v_admit(struct command *), v_hostile(struct command *), v_defend(struct command *), v_neutral(struct command *), v_att_clear(struct command *);
 int v_hide(struct command *), d_hide(struct command *), v_contact(struct command *), v_seek(struct command *), d_seek(struct command *);
 int v_opium(struct command *), v_get(struct command *), v_breed(struct command *), d_breed(struct command *), v_decree(struct command *), v_ungarrison(struct command *);
@@ -70,7 +70,7 @@ int v_fee(struct command *), v_ferry(struct command *), v_split(struct command *
 int v_board(struct command *), v_unload(struct command *);
 #if 0
 int v_bind_storm(struct command *), d_bind_storm(struct command *);
-#endif 0
+#endif
 int v_credit(struct command *), v_xyzzy(struct command *), v_plugh(struct command *);
 int v_fullname(struct command *), v_times(struct command *);
 int v_accept(struct command *);
@@ -164,7 +164,7 @@ num_args_req max_args arg_types[] cmd_checker
  0, 0, {0, 0, 0, 0, 0}, NULL},
 {"c",  "board",     v_board,      NULL,       NULL,       0,  0,  2,
  0, 0, {0, 0, 0, 0, 0}, NULL},
-#endif 0
+#endif
 {"c",  "border",    v_border,     NULL,       NULL,       0,  0,  0,
  2, 2, {0, 0, 0, 0, 0}, NULL, NULL},
 {"c",  "breed",     v_breed,      d_breed,    NULL,       7,  0,  3,
@@ -206,7 +206,7 @@ num_args_req max_args arg_types[] cmd_checker
 #if 0
 {"c",  "exhume",    v_exhume,     d_exhume,   NULL,       7,  0,  , 3,
  0, 0, {0, 0, 0, 0, 0}, NULL},
-#endif, NULL 0
+#endif
 {"c",  "explore",   v_explore,    d_explore,  NULL,       7,  0,  3,
  0, 0, {0, 0, 0, 0, 0}, NULL, NULL},
 {"c",  "fee",       v_fee,        NULL,       NULL,       0,  0,  1,

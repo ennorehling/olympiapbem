@@ -355,7 +355,7 @@ char **argv;
 #if 0
 		/* This was only to translate to the new system. */
 		artifact_fixer();
-#endif		
+#endif
 		show_day = FALSE;
 
 		determine_output_order();

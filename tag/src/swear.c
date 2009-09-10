@@ -512,7 +512,7 @@ d_bribe(struct command *c)
 	 *
 	 */
 	if (refugee(target)) bribe_thresh = 249;
-#endif	
+#endif
 
 	if (get_effect(target, ef_guard_loyalty, 0, 0)) {
 	  outcome = REPORT;

@@ -478,7 +478,7 @@ d_exhume(struct command *c)
 
 	return TRUE;
 }
-#endif 
+#endif
 
 void
 auto_undead(int who)

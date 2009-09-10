@@ -506,7 +506,7 @@ add_char_damage(int who, int amount, int inherit)
 		 rnd(1,100) > p->health &&
 #ifdef HERO
 		 rnd(1,100) > min((2*skill_exp(who, sk_avoid_illness)), 80) &&
-#endif HERO		 
+#endif
 		 !has_artifact(who, ART_SICKNESS, 0, 0, 0)) 
 	{
 		p->sick = TRUE;
@@ -1689,7 +1689,7 @@ add_item(int who, int item, int qty)
 
 #ifndef NEW_TRADE
 			investigate_possible_trade(who, item, old);
-#endif NEW_TRADE
+#endif
 			return;
 		}
 
@@ -1701,7 +1701,7 @@ add_item(int who, int item, int qty)
 
 #ifndef NEW_TRADE
 	investigate_possible_trade(who, item, 0);
-#endif NEW_TRADE
+#endif
 }
 
 
@@ -1779,7 +1779,7 @@ move_item(int from, int to, int item, int qty)
 #if 0
 			if (subkind(item) == sub_npc_token)
 				move_token(item, from, to);
-#endif 0
+#endif
 		}
 
 		return TRUE;
@@ -1878,10 +1878,10 @@ find_nearest_land(int where)
       }
 
     if (try_two == 99)
-      log(LOG_CODE, "find_nearest_land: Plan B");
+      log_write(LOG_CODE, "find_nearest_land: Plan B");
   }
 
-  log(LOG_CODE, "find_nearest_land: Plan C");
+  log_write(LOG_CODE, "find_nearest_land: Plan C");
 
   {
     ilist l = NULL;
@@ -2440,5 +2440,5 @@ void lock_tag()
     fprintf(stderr,"TAG already running in this directory!\n");
     exit(-1);
   };
-#endif  
+#endif
 };

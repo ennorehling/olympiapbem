@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <libc/unistd.h>
 #include <time.h>
 #include "z.h"

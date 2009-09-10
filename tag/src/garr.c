@@ -110,7 +110,7 @@ pledged_beneath(int a, int b)
 
 	return FALSE;
 }
-#endif 
+#endif
 
 #if 0
 int
@@ -376,7 +376,7 @@ v_pledge(struct command *c)
 
 	return TRUE;
 }
-#endif 
+#endif
 
 static int
 nprovs_to_rank(int n)

@@ -260,7 +260,7 @@ convert_to_body(int pl, int who)
   int where = province(who);
 #if 0  
   int grave = nearby_grave(where);
-#endif 
+#endif
   struct entity_item *p;
 
   /*
@@ -288,7 +288,7 @@ convert_to_body(int pl, int who)
     convert_to_soul(pl, who);
     return;
   };
-#endif 
+#endif
 
   /*
    *  Save the old "lord"

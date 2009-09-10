@@ -583,7 +583,7 @@ boxlist_scan(char *s, int box_num, ilist *l)
 			/* temp fix */
 			else if (convert_skill(n) != n)
 			  ilist_append(l, convert_skill(n));
-#endif 
+#endif
 			else
 				fprintf(stderr, "boxlist_scan(%d): bad box "
 					"reference: %d\n", box_num, n);
@@ -820,7 +820,7 @@ known_scan(char *s, sparse *kn, int box_num)
 			/* temp fix */
 			else if (convert_skill(n) != n)
 				set_bit(kn, convert_skill(n));  
-#endif 
+#endif
 			else
 				fprintf(stderr, "known_scan(%d): bad box "
 					"reference: %d\n", box_num, n);
@@ -1471,7 +1471,7 @@ print_char(FILE *fp, struct entity_char *p)
 
 #if 0
 	effect_list_print(fp, " el\t", p->effects);
-#endif 0
+#endif
 
 	if (p->prisoner)
 		fprintf(fp, " pr %d\n", p->prisoner);
@@ -1605,7 +1605,7 @@ scan_char(struct entity_char *p, int box_num)
 		case 'el':
 			effect_list_scan(t, &p->effects);
 			break;
-#endif 0
+#endif
 
 		case 'dt':
 			olytime_scan(t, &p->death_time);
@@ -1723,7 +1723,7 @@ print_loc(FILE *fp, struct entity_loc *p)
 	box_print(fp, " ng ", p->near_grave);
 #if 0
 	effect_list_print(fp, " el\t", p->effects);
-#endif 0
+#endif
 }
 
 
@@ -1769,7 +1769,7 @@ scan_loc(struct entity_loc *p, int box_num)
 		case 'el':
 			effect_list_scan(t, &p->effects);
 			break;
-#endif 0
+#endif
 
 		case 'mi':
 		  mine_info_scan(t, &p->mine_info, box_num);
@@ -1935,7 +1935,7 @@ print_subloc(FILE *fp, struct entity_subloc *p)
 	build_list_print(fp, " bl\t", p->builds);
 #if 0
 	effect_list_print(fp, " el\t", p->effects);
-#endif 0
+#endif
 
 	if (p->entrance_size) 
 		fprintf(fp, " es %d\n", p->entrance_size);
@@ -2027,7 +2027,7 @@ scan_subloc(struct entity_subloc *p, int box_num)
 	case 'el':
 	  effect_list_scan(t, &p->effects);
 	  break;
-#endif 0
+#endif
 
 	case 'fw':	p->control.weight = atoi(t);	break;
 	case 'fm':	p->control.men = atoi(t);		break;
@@ -2216,7 +2216,7 @@ print_item_magic(FILE *fp, struct item_magic *p)
 
 #if 0
 	box_print(fp, " rc ", p->region_created);
-#endif 
+#endif
 	if (valid_box(p->project_cast))
 	    box_print(fp, " pc ", p->project_cast);
 	box_print(fp, " ct ", p->creator);

@@ -86,7 +86,7 @@ int v_forge_art_x(struct command *), d_forge_art_x(struct command *), v_trance(s
 int v_teleport_item(struct command *), d_teleport_item(struct command *), v_tap_health(struct command *), d_tap_health(struct command *);
 #if 0
 int v_bind_storm(struct command *), d_bind_storm(struct command *);
-#endif 0
+#endif
 int v_use_train_riding(struct command *), v_use_train_war(struct command *);
 int v_assassinate(struct command *), d_assassinate(struct command *);
 int v_find_food(struct command *), d_find_food(struct command *);
@@ -370,7 +370,7 @@ allow  skill             start             finish            intr    time poll
 {"c", sk_tap_health,     v_tap_health,     d_tap_health,     NULL,     7, 0},
 #if 0
 {"c", sk_bind_storm,     v_bind_storm,     d_bind_storm,     NULL,     7, 0},
-#endif 0
+#endif
 {"c", sk_control_battle, v_prac_control,   NULL,	     NULL,     3, 0},
 {"c", sk_protect_noble,  v_prac_protect,   NULL,	     NULL,     3, 0},
 {"c", sk_attack_tactics, v_attack_tactics, NULL,	     NULL,     7, 0},
@@ -1409,7 +1409,7 @@ v_use_item(struct command *c)
 	case use_palantir:
 		ret = v_use_palantir(c);
 		break;
-#endif 0
+#endif
 
 	case use_proj_cast:
 		ret = v_use_proj_cast(c);
@@ -1427,7 +1427,7 @@ v_use_item(struct command *c)
 	case use_faery_stone:
 		ret = v_use_faery_stone(c);
 		break;
-#endif 0
+#endif
 
 	case use_orb:
 		ret = v_use_orb(c);
@@ -1452,7 +1452,7 @@ v_use_item(struct command *c)
 	case use_skeleton_kill:
 		ret = v_suffuse_ring(c, item_skeleton);
 		break;
-#endif 0
+#endif
 
 	case use_weightlessness_potion:
 		ret = v_use_weightlessness(c);
@@ -1462,7 +1462,7 @@ v_use_item(struct command *c)
 	case use_ancient_aura:
 		ret = v_use_ancient_aura(c);
 		break;
-#endif 0
+#endif
 
 	case use_nothing:
 	  wout(c->who,"Nothing happens.");
@@ -1538,7 +1538,7 @@ d_use_item(struct command *c)
 #if 0
 	case use_palantir:		return d_use_palantir(c);
 	case use_ancient_aura:		return d_use_ancient_aura(c);
-#endif 0
+#endif
 
 	default:
 		fprintf(stderr, "bad use key: %d\n", n);
@@ -2341,7 +2341,7 @@ may_study(int who, int sk)
 
 	return 0;
 }
-#endif 0
+#endif
 
 static int
 begin_study(struct command *c, int sk)
@@ -2457,7 +2457,7 @@ correct_study_item(struct command *c)
   c->a = p->may_study[0];
   return c->a;
 }
-#endif 0
+#endif
 
 /*
  *  Thu Apr  9 08:48:40 1998 -- Scott Turner
@@ -2491,7 +2491,7 @@ check_study(struct command *c, int requires_instruction)
    */
   c->c = 0;
   if (kind(sk) == T_item) sk = correct_study_item(c);
-#endif 0
+#endif
 
   if (kind(sk) != T_skill) {
     wout(c->who, "%s is not a valid skill.", c->parse[1]);
@@ -2736,7 +2736,7 @@ v_study(struct command *c)
    */
   c->c = 0;
   if (kind(sk) == T_item) sk = correct_study_item(c);
-#endif 0
+#endif
 
   if (numargs(c) < 1) {
     wout(c->who, "Must specify a skill to study.");
@@ -3485,7 +3485,7 @@ d_research(struct command *c)
     
     return TRUE;
 
-#endif 
+#endif
 
 void check_skill_times()
 {

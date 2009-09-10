@@ -283,7 +283,7 @@ make_teach_book(int who, int rare, int category, int subkind)
 	nat = j;
 	break;
       };
-#endif 
+#endif
     /*
      *  If it is an uncontrolled capital...
      *
@@ -586,7 +586,7 @@ new_artifact(int who)
 
 	return new;
 }
-#endif 0
+#endif
 
 static int
 new_monster(int where)

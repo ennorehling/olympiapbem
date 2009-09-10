@@ -754,7 +754,7 @@ int high;
 
 	return random() % (high - low + 1) + low;
 }
-#endif	/* ifdef SYSV */
+#endif
 
 
 void

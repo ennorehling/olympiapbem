@@ -230,7 +230,7 @@ parse_exit_dir(struct command *c, int where, char *zero_arg)
     if (zero_arg)
       wout(c->who, "Unknown direction or destination '%s'.",
 	   c->parse[1]);
-#endif 
+#endif
     return NULL;
   }
 
@@ -275,7 +275,7 @@ parse_exit_dir(struct command *c, int where, char *zero_arg)
   if (zero_arg)
     wout(c->who, "No visible %s route from %s.",
 	 full_dir_s[dir], box_name(where));
-#endif 0
+#endif
   
   return NULL;
 }
@@ -514,7 +514,7 @@ save_v_array(struct command *c, struct exit_view *v)
 	c->v.distance = v->distance;
 	c->v.orig = v->orig;
 	c->v.orig_hidden = v->orig_hidden;
-#endif 
+#endif
  	c->b = v->direction;
  	c->c = v->destination;
  	c->d = v->road;
@@ -541,7 +541,7 @@ restore_v_array(struct command *c, struct exit_view *v)
 	v->distance = c->v.distance;
 	v->orig = c->v.orig;
 	v->orig_hidden = c->v.orig_hidden;
-#endif 
+#endif
 
  	v->direction	= c->b;
  	v->destination	= c->c;
@@ -634,7 +634,7 @@ land_check(struct command *c, struct exit_view *v, int show)
     }
     return FALSE;
   }
-#endif 0
+#endif
 
   return TRUE;
 }
@@ -1321,7 +1321,7 @@ check_peaceful_move(struct command *c, struct exit_view *v)
 	 box_name(ruler),box_name(v->destination));
     return FALSE;
   };
-#endif 
+#endif
 
   /*
    *  Mon Mar 17 11:56:23 1997 -- Scott Turner
@@ -1473,7 +1473,7 @@ v_move(struct command *c)
 	if (prepend) prepend_order(player(c->who), c->who, c->line);
 	return TRUE;
 }
-#endif 0
+#endif
 
 
 void
@@ -1564,7 +1564,7 @@ move_stack(int who, int where)
 	    !in_faery(where) &&
 	    !in_clouds(where))
 		wilderness_attack_check(who, where);
-#endif 
+#endif
 }
 
 /*
@@ -1691,7 +1691,7 @@ check_arrival_effects(int who, int where, int flying)
 	  wout(VECT, traps[i].flying);
 	  continue;
 	};
-#endif HERO
+#endif
 
 	/*
 	 *  Otherwise you get attacked.  Note that the ship
@@ -1767,7 +1767,7 @@ d_move(struct command *c)
 
 	return TRUE;
 }
-#endif 0
+#endif
 
 void
 init_ocean_chars()
@@ -2733,7 +2733,7 @@ d_sail(struct command *c)
 	mark_loc_stack_known(ship, v->destination);
 #if 0	
 	move_bound_storms(ship, v->destination);
-#endif 0
+#endif
 	if (ferry_horn(ship))		/* clear ferry horn signal */
 		p_magic(ship)->ferry_flag = 0;
 
@@ -2886,7 +2886,7 @@ int attack_okay(struct command *c, int target)
       wout(c->who, "%s is not here.",box_name(target));
       return FALSE;
   };
-#endif 0
+#endif
     
   if (char_really_hidden(target) && !contacted(target, c->who)) {
     wout(c->who, "%s is not here.",box_name(target));

@@ -425,7 +425,7 @@ orders_template_sup(int who, int num, int pl)
 	    list_skills(who, num, "# ");
 	    list_partial_skills(who, num, "# ");
 	    show_char_inventory(who, num, "# ");
-#endif 
+#endif
 
 	    if (c && (c->state == RUN || c->state == LOAD))
 	    {

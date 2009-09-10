@@ -348,7 +348,7 @@ summer_uldim_open_now()
 
 	return FALSE;
 }
-#endif 
+#endif
 
 
 static void
@@ -453,7 +453,7 @@ add_province_exit(int who, int where, int dest, int dir, struct exit_view ***l)
 		if (!summer_uldim_open_now())
 			v->impassable = TRUE;
 	}
-#endif 
+#endif
 
 	v->orig = where;
 	v->destination = dest;

@@ -340,7 +340,7 @@ check_skills()
          *
          */
 	check_skill_times();
-#endif 
+#endif
 
 	loop_skill(sk)
 	{
