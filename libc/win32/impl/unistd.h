@@ -55,8 +55,12 @@ typedef int pid_t;
 #define read(fd, buf, size) _read(fd, buf, size)
 #define write(fd, buf, size) _write(fd, buf, size)
 #define unlink(path) _unlink(path)
+#define umask(mask) _umask(mask)
 #define chmod(path, mode) _chmod(path, mode)
 #define isatty(fd) _isatty(fd)
+
+#define strcasecmp(a, b) _stricmp(a, b)
+#define strncasecmp(a, b, c) _strnicmp(a, b, c)
 #ifdef __cplusplus
 }
 #endif

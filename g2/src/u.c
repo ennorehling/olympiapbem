@@ -135,7 +135,7 @@ new_char(int sk, int ni, int where, int health, int pl,
 
 
 int
-loc_depth(n) {
+loc_depth(int n) {
 
   switch (subkind(n)) {
   case sub_region:

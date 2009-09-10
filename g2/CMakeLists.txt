@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 2.4)
 project (g2)
 
 include_directories (../libc/include)
-
 if (WIN32)
   add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_CRT_SECURE_NO_DEPRECATE)
   include_directories (../libc/win32)
@@ -14,6 +13,7 @@ else (WIN32)
   include_directories(../libc/default)
   add_subdirectory (../libc/default libc)
 endif (WIN32)
+include_directories (../libc/default)
 
 set (SERVER_SRCS
  src/add.c src/adv.c src/alchem.c src/art.c src/basic.c src/beast.c src/build.c src/buy.c
@@ -23,6 +23,11 @@ set (SERVER_SRCS
  src/quest.c src/relig.c src/report.c src/rnd.c
  src/savage.c src/scry.c src/seed.c src/sout.c src/stack.c src/stealth.c src/storm.c src/summary.c src/swear.c
  src/tunnel.c src/u.c src/use.c src/z.c
+)
+
+set (SERVER_HDRS
+ src/code.h src/dir.h src/display.h src/etc.h src/garr.h src/loc.h src/loop.h src/oly.h src/order.h
+ src/sout.h src/stack.h src/swear.h src/use.h src/u.h src/z.h
 )
 
 add_executable (olympia ${SERVER_SRCS} ${SERVER_HDRS})

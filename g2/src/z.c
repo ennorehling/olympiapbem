@@ -151,7 +151,7 @@ char *
 getlin(FILE * fp) {
   static char *buf = NULL;
   static unsigned int size = 0;
-  int len;
+  unsigned int len;
   int c;
 
   len = 0;
@@ -263,7 +263,7 @@ char *
 readlin() {
   static char *buf = NULL;
   static unsigned int size = 0;
-  int len;
+  unsigned int len;
   int c;
 
   len = 0;
