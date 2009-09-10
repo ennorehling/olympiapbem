@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <libc/unistd.h>
 #include "z.h"
 #include "oly.h"
 

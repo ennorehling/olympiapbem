@@ -1,5 +1,7 @@
 
 #include <stdio.h>
+#include <string.h>
+#include <libc/unistd.h>
 #include "z.h"
 #include "oly.h"
 
@@ -582,7 +584,6 @@ restore_stack_actions(int who)
 void
 clear_guard_flag(int who)
 {
-	int pl;
 	int i;
 
 	if (kind(who) == T_char)
@@ -599,7 +600,6 @@ clear_guard_flag(int who)
 static int
 land_check(struct command *c, struct exit_view *v, int show)
 {
-  int owner;		/* owner of loc we're moving into, if any */
 
   if (v->water) {
       if (show)

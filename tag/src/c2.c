@@ -1,6 +1,7 @@
 
 #include <stdio.h>
 #include <time.h>
+#include <libc/unistd.h>
 #include "z.h"
 #include "oly.h"
 

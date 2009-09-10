@@ -52,7 +52,6 @@ int
 d_keep_undead(struct command *c)
 {
 	int target = c->a;
-	int loy;
 
 	if (!keep_undead_check(c, TRUE))
 		return FALSE;
@@ -96,7 +95,6 @@ d_undead_lord(struct command *c)
 	int where = subloc(c->who);
 	int aura = c->a;
 	int undead;
-	int ret;
 	int rating;
 
 	if (!may_cookie_npc(c->who, where, item_undead_cookie))
@@ -665,7 +663,6 @@ int
 d_create_flesh_golem(struct command *c)
 {
   int body = c->a;
-  int new;
   extern int dead_body_np;
 
   if (!charge_aura(c->who, skill_piety(c->use_skill))) return FALSE;
