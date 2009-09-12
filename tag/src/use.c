@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "z.h"
 #include "oly.h"
@@ -1636,6 +1637,7 @@ exp_s(int level)
   default:
     assert(FALSE);
   }
+  return 0;
 }
 
 
@@ -1733,7 +1735,6 @@ int
 v_forget(struct command *c)
 {
   int skill = c->a;
-  int i;
 
   if (kind(skill) != T_skill) {
     wout(c->who, "%s is not a skill.", box_code(skill));
@@ -2143,7 +2144,7 @@ being_taught(int who, int sk, int *item, int *teach_bonus)
   int school = skill_school(sk);
   int where = subloc(who);
   struct entity_subloc *p = rp_subloc(where);
-  int teacher, loc, i;
+  int teacher, i;
   struct command *c, *c2;
   int taught_specific = 0, taught_generic = 0;
   int v_teach(struct command *), v_study(struct command *);
@@ -2502,7 +2503,6 @@ static int
 check_study(struct command *c, int requires_instruction)
 {
   struct skill_ent *p;
-  struct entity_skill *q;
   int sk = c->a;
   int parent, category = 0, teachable = 0, unteachable = 0, bt = 0;
   int guild = 0;
