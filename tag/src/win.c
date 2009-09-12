@@ -12,8 +12,7 @@
  */
 #define MIN_TURNS 12
 static int
-check_nation_win()
-{
+check_nation_win() {
   int k, i, flag, ruler, j, total;
 
   /*
@@ -21,12 +20,13 @@ check_nation_win()
    *
    */
   calculate_nation_nps();
-  
+
   /*
    *  Minimum # of turns.
    *
    */
-  if (sysclock.turn < MIN_TURNS) return FALSE;
+  if (sysclock.turn < MIN_TURNS)
+    return FALSE;
 
   loop_nation(k) {
 
@@ -36,39 +36,47 @@ check_nation_win()
      *  Ignore neutral nations.
      *
      */
-    if (p_nation(k)->neutral) continue;
+    if (p_nation(k)->neutral)
+      continue;
 
     flag = 0;
     loop_city(i) {
       ruler = player_controls_loc(i);
       if (ruler && nation(ruler) && nation(ruler) != k) {
-	flag = 1;
-	break;
+        flag = 1;
+        break;
       };
-    } next_city;
-    if (flag) continue;
-    
+    }
+    next_city;
+    if (flag)
+      continue;
+
     loop_castle(i) {
       ruler = player_controls_loc(i);
       if (ruler && nation(ruler) && nation(ruler) != k) {
-	flag = 1;
-	break;
+        flag = 1;
+        break;
       };
-    } next_castle;
-    if (flag) continue;
+    }
+    next_castle;
+    if (flag)
+      continue;
 
     total = 0;
     loop_nation(j) {
-      if (p_nation(j)->neutral) continue;
-      if (k != j) total += rp_nation(j)->nps;
-    } next_nation;
+      if (p_nation(j)->neutral)
+        continue;
+      if (k != j)
+        total += rp_nation(j)->nps;
+    }
+    next_nation;
 
     /*
      *  You haven't met the win conditions this turn, so
      *  we should zero you out.
      *
      */
-    if (total*2 >= rp_nation(k)->nps) {
+    if (total * 2 >= rp_nation(k)->nps) {
       rp_nation(k)->win = 0;
       continue;
     };
@@ -94,8 +102,9 @@ check_nation_win()
        */
       return TRUE;
     };
-  } next_nation;
-  
+  }
+  next_nation;
+
   return FALSE;
 };
 
@@ -107,8 +116,7 @@ check_nation_win()
  *
  */
 void
-check_win_conditions()
-{
+check_win_conditions() {
   /*
    *  Nation win
    *
@@ -118,6 +126,6 @@ check_win_conditions()
      *  Do something here.
      *
      */
-    fprintf(stderr,"Nation win!\n");
+    fprintf(stderr, "Nation win!\n");
   };
 };

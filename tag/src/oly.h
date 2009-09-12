@@ -1,14 +1,14 @@
 #include "oly3.h"
 
-typedef		unsigned char	uchar;
-typedef		signed char	schar;
+typedef unsigned char uchar;
+typedef signed char schar;
 
 
 #define		MAX_BOXES	102400
 #define		MONTH_DAYS	30
 #define		NUM_MONTHS	8
 
-#define		T_deleted	0	/* forget on save */
+#define		T_deleted	0       /* forget on save */
 #define		T_player	1
 #define		T_char		2
 #define		T_loc		3
@@ -20,10 +20,10 @@ typedef		signed char	schar;
 #define		T_ship		9
 #define		T_post		10
 #define		T_storm		11
-#define		T_unform	12	/* unformed noble */
+#define		T_unform	12      /* unformed noble */
 #define		T_lore		13
 #define		T_nation	14
-#define		T_MAX		15	/* one past highest T_xxx define */
+#define		T_MAX		15      /* one past highest T_xxx define */
 
 #define		sub_ocean		1
 #define		sub_forest		2
@@ -31,19 +31,19 @@ typedef		signed char	schar;
 #define		sub_mountain		4
 #define		sub_desert		5
 #define		sub_swamp		6
-#define		sub_under		7	/* underground */
-#define		sub_faery_hill		8	/* gateway to Faery */
-#define		sub_island		9	/* island subloc */
-#define		sub_stone_cir		10	/* ring of stones */
+#define		sub_under		7       /* underground */
+#define		sub_faery_hill		8       /* gateway to Faery */
+#define		sub_island		9       /* island subloc */
+#define		sub_stone_cir		10      /* ring of stones */
 #define		sub_mallorn_grove	11
 #define		sub_bog			12
 #define		sub_cave		13
 #define		sub_city		14
-#define		sub_lair		15	/* dragon lair */
+#define		sub_lair		15      /* dragon lair */
 #define		sub_graveyard		16
 #define		sub_ruins		17
 #define		sub_battlefield		18
-#define		sub_ench_forest		19	/* enchanted forest */
+#define		sub_ench_forest		19      /* enchanted forest */
 #define		sub_rocky_hill		20
 #define		sub_tree_circle		21
 #define		sub_pits		22
@@ -66,31 +66,31 @@ typedef		signed char	schar;
 #define		sub_castle_notdone	39
 #define		sub_mine		40
 #define		sub_mine_notdone	41
-#define		sub_scroll		42	/* item is a scroll */
-#define		sub_magic		43	/* this skill is magical */
+#define		sub_scroll		42      /* item is a scroll */
+#define		sub_magic		43      /* this skill is magical */
 #define		sub_palantir		44
 #define		sub_auraculum		45
 #define		sub_tower		46
 #define		sub_tower_notdone	47
-#define		sub_pl_system		48	/* system player */
-#define		sub_pl_regular		49	/* regular player */
-#define		sub_region		50	/* region wrapper loc */
-#define		sub_pl_savage		51	/* Savage King */
+#define		sub_pl_system		48      /* system player */
+#define		sub_pl_regular		49      /* regular player */
+#define		sub_region		50      /* region wrapper loc */
+#define		sub_pl_savage		51      /* Savage King */
 #define		sub_pl_npc		52
 #define		sub_mine_collapsed	53
-#define		sub_ni			54	/* ni=noble_item */
-#define		sub_demon_lord		55	/* undead lord */
-#define		sub_dead_body		56	/* dead noble's body */
+#define		sub_ni			54      /* ni=noble_item */
+#define		sub_demon_lord		55      /* undead lord */
+#define		sub_dead_body		56      /* dead noble's body */
 #define		sub_fog			57
 #define		sub_wind		58
 #define		sub_rain		59
 #define		sub_hades_pit		60
 #define		sub_artifact		61
 #define		sub_pl_silent		62
-#define		sub_npc_token		63	/* npc group control art */
-#define		sub_garrison		64	/* npc group control art */
-#define		sub_cloud		65	/* cloud terrain type */
-#define		sub_raft		66	/* raft made out of flotsam */
+#define		sub_npc_token		63      /* npc group control art */
+#define		sub_garrison		64      /* npc group control art */
+#define		sub_cloud		65      /* cloud terrain type */
+#define		sub_raft		66      /* raft made out of flotsam */
 #define		sub_raft_notdone	67
 #define		sub_suffuse_ring	68
 #define         sub_religion            69
@@ -113,7 +113,7 @@ typedef		signed char	schar;
 #define         sub_animal_part         86
 #define         sub_magic_artifact      87
 
-#define		SUB_MAX			88	/* one past highest sub_ */
+#define		SUB_MAX			88      /* one past highest sub_ */
 
 #define		item_gold		1
 
@@ -197,8 +197,8 @@ typedef		signed char	schar;
 #define		item_wool		91
 #define		item_jewel		92
 #define		item_opium		93
-#define		item_basket		94	/* woven basket */
-#define		item_pot		95	/* clay pot */
+#define		item_basket		94      /* woven basket */
+#define		item_pot		95      /* clay pot */
 #define		item_tax_cookie		96
 #define		item_fish_oil		97
 #define		item_drum		98
@@ -248,11 +248,11 @@ typedef		signed char	schar;
 #define		item_fog_cookie		274
 #define		item_wind_cookie	275
 #define		item_rain_cookie	276
-#define		item_mage_menial	277	/* mage menial labor cookie */
-#define		item_spider		278	/* giant spider */
-#define		item_rat		279	/* horde of rats */
+#define		item_mage_menial	277     /* mage menial labor cookie */
+#define		item_spider		278     /* giant spider */
+#define		item_rat		279     /* horde of rats */
 #define		item_lion		280
-#define		item_bird		281	/* giant bird */
+#define		item_bird		281     /* giant bird */
 #define		item_lizard		282
 #define		item_bandit		283
 #define		item_chimera		284
@@ -354,28 +354,28 @@ typedef		signed char	schar;
 #define		lore_pen_crown			9013
 
 #define		sk_meditate		2801
-#define		sk_forge_aura		3130	/* forge auraculum */
-#define		sk_mage_menial		2802	/* menial labor for mages */
+#define		sk_forge_aura		3130    /* forge auraculum */
+#define		sk_mage_menial		2802    /* menial labor for mages */
 #define		sk_appear_common	2803
 #define		sk_view_aura		2804
-#define		sk_quick_cast		2830	/* speed next cast */
+#define		sk_quick_cast		2830    /* speed next cast */
 #define 	sk_fortify_castle	1491
-#define		sk_detect_artifacts	3101	
-#define		sk_reveal_artifacts	3102	
+#define		sk_detect_artifacts	3101
+#define		sk_reveal_artifacts	3102
 #define		sk_mutate_artifact	3131
 #define		sk_conceal_artifacts	3132
 #define		sk_teleport		3030
-#define		sk_obscure_artifact	3133	
+#define		sk_obscure_artifact	3133
 #define 	sk_strengthen_castle	1492
 #define		sk_detect_gates		3001
 #define		sk_jump_gate		3002
 #define		sk_seal_gate		3031
 #define		sk_unseal_gate		3032
 #define		sk_notify_unseal	3033
-#define		sk_rem_seal		3034	/* forcefully unseal gate */
+#define		sk_rem_seal		3034    /* forcefully unseal gate */
 #define		sk_reveal_key		3035
 #define		sk_notify_jump		3036
-#define		sk_reveal_mage		2831	/* reveal abilities of mage */
+#define		sk_reveal_mage		2831    /* reveal abilities of mage */
 #define		sk_fierce_wind		2030
 #define		sk_transcend_death	3238
 #define		sk_tap_health		2832
@@ -396,8 +396,8 @@ typedef		signed char	schar;
 #define 	sk_conceal_nation	1291
 #define		sk_scry_region		2901
 #define		sk_shroud_region	2930
-#define		sk_dispel_region	2931	/* dispel region shroud */
-#define		sk_remove_obscurity	3137	
+#define		sk_dispel_region	2931    /* dispel region shroud */
+#define		sk_remove_obscurity	3137
 #define		sk_spot_hidden		1901
 #define		sk_protect_noble	1990
 #define		sk_write_basic		2833
@@ -412,7 +412,7 @@ typedef		signed char	schar;
 #define		sk_prot_blast_3		2237
 #define		sk_prot_blast_4		2338
 #define		sk_prot_blast_5		2437
-#define		sk_bar_loc		2933	/* create location barrier */
+#define		sk_bar_loc		2933    /* create location barrier */
 #define		sk_unbar_loc		2934
 #define		sk_prot_blast_6		2536
 #define		sk_prot_blast_7		2637
@@ -421,19 +421,19 @@ typedef		signed char	schar;
 #define		sk_prot_blast_8		2735
 #define		sk_locate_char		2935
 #define		sk_deep_identify	3104
-#define		sk_shroud_abil		2834	/* ability shroud */
-#define		sk_detect_abil		2835	/* detect ability scry */
-#define		sk_detect_scry		2936	/* detect region scry */
-#define		sk_proj_cast		2937	/* project next cast */
-#define		sk_dispel_abil		2836	/* dispel ability shroud */
-#define		sk_adv_med		2837	/* advanced meditation */
-#define		sk_hinder_med		2838	/* hinder meditation */
+#define		sk_shroud_abil		2834    /* ability shroud */
+#define		sk_detect_abil		2835    /* detect ability scry */
+#define		sk_detect_scry		2936    /* detect region scry */
+#define		sk_proj_cast		2937    /* project next cast */
+#define		sk_dispel_abil		2836    /* dispel ability shroud */
+#define		sk_adv_med		2837    /* advanced meditation */
+#define		sk_hinder_med		2838    /* hinder meditation */
 #define		sk_forge_palantir	3139
-#define		sk_save_proj		2938	/* save projected cast */
-#define		sk_save_quick		2839	/* save speeded cast */
-#define		sk_summon_ghost		3201	/* summon ghost warriors */
-#define		sk_raise_corpses	3202	/* summon undead corpses */
-#define		sk_undead_lord		3231	/* summon undead unit */
+#define		sk_save_proj		2938    /* save projected cast */
+#define		sk_save_quick		2839    /* save speeded cast */
+#define		sk_summon_ghost		3201    /* summon ghost warriors */
+#define		sk_raise_corpses	3202    /* summon undead corpses */
+#define		sk_undead_lord		3231    /* summon undead unit */
 #define		sk_renew_undead		3232
 #define		sk_banish_undead	3233
 #define		sk_eat_dead		3234
@@ -530,15 +530,15 @@ typedef		signed char	schar;
 #define		sk_bird_spy		2231
 #define		sk_fight_to_death	1102
 #define		sk_capture_beasts	2232
-#define		sk_use_beasts		1195	/* use beasts in battle */
+#define		sk_use_beasts		1195    /* use beasts in battle */
 #define		sk_breed_beasts		2233
 #define		sk_petty_thief		1201
 #define		sk_deep_sea		1094
 #define		sk_bribe_noble		1301
 #define		sk_catch_horse		1930
-#define		sk_spy_inv		1202	/* determine char inventory */
-#define		sk_spy_skills		1203	/* determine char skill */
-#define		sk_spy_lord		1204	/* determine char's lord */
+#define		sk_spy_inv		1202    /* determine char inventory */
+#define		sk_spy_skills		1203    /* determine char skill */
+#define		sk_spy_lord		1204    /* determine char's lord */
 #define		sk_find_rich		1230
 #define		sk_torture		1231
 #define		sk_train_wild		1931
@@ -547,15 +547,15 @@ typedef		signed char	schar;
 #define		sk_raise_mob		1302
 #define		sk_rally_mob		1303
 #define		sk_incite_mob		1331
-#define		sk_make_ram		1601	/* make battering ram */
+#define		sk_make_ram		1601    /* make battering ram */
 #define		sk_make_catapult	1194
 #define		sk_make_siege		1401
-#define		sk_extract_venom	1530	/* from ratspider */
-#define		sk_brew_slave		1531	/* potion of slavery */
+#define		sk_extract_venom	1530    /* from ratspider */
+#define		sk_brew_slave		1531    /* potion of slavery */
 #define		sk_brew_heal		1501
 #define		sk_brew_death		1502
-#define		sk_brew_weightlessness	1590	/* potion of weightlessness */
-#define		sk_add_ram		1095	/* add ram to galley */
+#define		sk_brew_weightlessness	1590    /* potion of weightlessness */
+#define		sk_add_ram		1095    /* add ram to galley */
 #define		sk_cloak_trade		1232
 #define		sk_mine_iron		1701
 #define		sk_mine_gold		1702
@@ -652,7 +652,7 @@ typedef		signed char	schar;
 #define 	sk_hinder_med_b		3532
 #define 	sk_scry_b		3533
 
-#define		PROG_bandit		1	/* wilderness spice */
+#define		PROG_bandit		1       /* wilderness spice */
 #define		PROG_subloc_monster	2
 #define		PROG_npc_token		3
 #define		PROG_balrog		4
@@ -666,17 +666,17 @@ typedef		signed char	schar;
 #define		use_heal_potion		2
 #define		use_slave_potion	3
 #define		use_palantir		4
-#define		use_proj_cast		5	/* stored projected cast */
-#define		use_quick_cast		6	/* stored cast speedup */
-#define		use_drum		7	/* beat savage's drum */
-#define		use_faery_stone		8	/* Faery gate opener */
-#define		use_orb			9	/* crystal orb */
+#define		use_proj_cast		5       /* stored projected cast */
+#define		use_quick_cast		6       /* stored cast speedup */
+#define		use_drum		7       /* beat savage's drum */
+#define		use_faery_stone		8       /* Faery gate opener */
+#define		use_orb			9       /* crystal orb */
 #define		use_barbarian_kill	10
 #define		use_savage_kill		11
 #define		use_corpse_kill		12
 #define		use_orc_kill		13
 #define		use_skeleton_kill	14
-#define		use_ancient_aura	15	/* bta's auraculum */
+#define		use_ancient_aura	15      /* bta's auraculum */
 #define		use_weightlessness_potion	16
 #define		use_fiery_potion	17      /* Fiery Death */
 #define		use_nothing		18      /* Something that does nothing */
@@ -690,12 +690,12 @@ typedef		signed char	schar;
 #define		DIR_DOWN	6
 #define		DIR_IN		7
 #define		DIR_OUT		8
-#define		MAX_DIR		9	/* one past highest direction */
+#define		MAX_DIR		9       /* one past highest direction */
 
-#define		LOC_region	1	/* top most continent/island group */
-#define		LOC_province	2	/* main location area */
-#define		LOC_subloc	3	/* inner sublocation */
-#define		LOC_build	4	/* building, structure, etc. */
+#define		LOC_region	1       /* top most continent/island group */
+#define		LOC_province	2       /* main location area */
+#define		LOC_subloc	3       /* inner sublocation */
+#define		LOC_build	4       /* building, structure, etc. */
 
 #define		LOY_UNCHANGED	(-1)
 #define		LOY_unsworn	0
@@ -705,11 +705,11 @@ typedef		signed char	schar;
 #define		LOY_npc		4
 #define		LOY_summon	5
 
-#define		exp_novice	1	/* apprentice */
+#define		exp_novice	1       /* apprentice */
 #define		exp_journeyman	2
 #define		exp_teacher	3
 #define		exp_master	4
-#define		exp_grand	5	/* grand master */
+#define		exp_grand	5       /* grand master */
 
 #define 	S_body		1       /* kill to a dead body */
 #define		S_soul		2       /* kill to a lost soul */
@@ -718,9 +718,9 @@ typedef		signed char	schar;
 typedef ilist sparse;
 
 typedef struct {
-	short day;			/* day of month */
-	short turn;			/* turn number */
-	int days_since_epoch;		/* days since game begin */
+  short day;                    /* day of month */
+  short turn;                   /* turn number */
+  int days_since_epoch;         /* days since game begin */
 } olytime;
 
 #define	oly_month(a)	(((a).turn-1) % NUM_MONTHS)
@@ -728,107 +728,107 @@ typedef struct {
 
 
 struct loc_info {
-	int where;
-	ilist here_list;
+  int where;
+  ilist here_list;
 };
 
 struct box {
-	schar kind;
-	schar skind;
-	char *name;
+  schar kind;
+  schar skind;
+  char *name;
 
-	struct loc_info		x_loc_info;
-	struct entity_player	*x_player;
-	struct entity_char	*x_char;
-	struct entity_loc	*x_loc;
-	struct entity_subloc	*x_subloc;
-	struct entity_item	*x_item;
-	struct entity_skill	*x_skill;
-	struct entity_nation	*x_nation;
-	struct entity_gate	*x_gate;
-	struct entity_misc	*x_misc;
-	struct att_ent		*x_disp;
+  struct loc_info x_loc_info;
+  struct entity_player *x_player;
+  struct entity_char *x_char;
+  struct entity_loc *x_loc;
+  struct entity_subloc *x_subloc;
+  struct entity_item *x_item;
+  struct entity_skill *x_skill;
+  struct entity_nation *x_nation;
+  struct entity_gate *x_gate;
+  struct entity_misc *x_misc;
+  struct att_ent *x_disp;
 
-	struct command		*cmd;
-	struct item_ent		**items;	/* ilist of items held */
-	struct trade		**trades;	/* pending buys/sells */
-        struct effect 		**effects;      /* ilist of effects */
+  struct command *cmd;
+  struct item_ent **items;      /* ilist of items held */
+  struct trade **trades;        /* pending buys/sells */
+  struct effect **effects;      /* ilist of effects */
 
-	int temp;			/* scratch space */
-	int output_order;		/* for report ordering -- not saved */
+  int temp;                     /* scratch space */
+  int output_order;             /* for report ordering -- not saved */
 
-	int x_next_kind;		/* link to next entity of same type */
-	int x_next_sub;			/* link to next of same subkind */
+  int x_next_kind;              /* link to next entity of same type */
+  int x_next_sub;               /* link to next of same subkind */
 };
 
 struct entity_player {
   char *full_name;
   char *email;
-  char *vis_email;		/* address to put in player list */
+  char *vis_email;              /* address to put in player list */
   char *password;
-  int first_turn;			/* which turn was their first? */
-  int last_order_turn;		/* last turn orders were submitted */
-  struct order_list **orders;	/* ilist of orders for units in */
-				/* this faction */
-  sparse known;			/* visited, lore seen, encountered */
+  int first_turn;               /* which turn was their first? */
+  int last_order_turn;          /* last turn orders were submitted */
+  struct order_list **orders;   /* ilist of orders for units in */
+  /* this faction */
+  sparse known;                 /* visited, lore seen, encountered */
 
-  ilist units;			/* what units are in our faction? */
-  struct admit **admits;		/* admit permissions list */
-  ilist unformed;			/* nobles as yet unformed */
+  ilist units;                  /* what units are in our faction? */
+  struct admit **admits;        /* admit permissions list */
+  ilist unformed;               /* nobles as yet unformed */
 
-  int split_lines;		/* split mail at this many lines */
-  int split_bytes;		/* split mail at this many bytes */
+  int split_lines;              /* split mail at this many lines */
+  int split_bytes;              /* split mail at this many bytes */
 
-  short nation;                   /* Player's nation */
-  short magic;		        /* MUs or Priests? */
-  short noble_points;		/* how many NP's the player has */
-  short jump_start;               /* Jump start points */
+  short nation;                 /* Player's nation */
+  short magic;                  /* MUs or Priests? */
+  short noble_points;           /* how many NP's the player has */
+  short jump_start;             /* Jump start points */
 
-  schar format;			/* turn report formatting control */
+  schar format;                 /* turn report formatting control */
   char *rules_path;             /* external path for HTML */
   char *db_path;                /* external path for HTML */
-  schar notab;			/* player can't tolerate tabs */
-  schar first_tower;		/* has player built first tower yet? */
-  schar sent_orders;		/* sent in orders this turn? */
-  schar dont_remind;		/* don't send a reminder */
-  schar compuserve;		/* get Times from CIS */
+  schar notab;                  /* player can't tolerate tabs */
+  schar first_tower;            /* has player built first tower yet? */
+  schar sent_orders;            /* sent in orders this turn? */
+  schar dont_remind;            /* don't send a reminder */
+  schar compuserve;             /* get Times from CIS */
   schar nationlist;             /* Receive the nation mailing list? */
-  schar broken_mailer;		/* quote begin lines */
+  schar broken_mailer;          /* quote begin lines */
 
 /* not saved: */
 
   schar times_paid;             /* Times paid this month? */
-  schar swear_this_turn;		/* have we used SWEAR this turn? */
-  short cmd_count;		/* count of cmds started this turn */
-  short np_gained;		/* np's added this turn -- not saved */
-  short np_spent;			/* np's lost this turn -- not saved */
-  ilist deliver_lore;		/* show these to player -- not saved */
-  sparse weather_seen;		/* locs we've viewed the weather */
-  sparse output;			/* units with output -- not saved */
-  sparse locs;			/* locs we touched -- not saved */
+  schar swear_this_turn;        /* have we used SWEAR this turn? */
+  short cmd_count;              /* count of cmds started this turn */
+  short np_gained;              /* np's added this turn -- not saved */
+  short np_spent;               /* np's lost this turn -- not saved */
+  ilist deliver_lore;           /* show these to player -- not saved */
+  sparse weather_seen;          /* locs we've viewed the weather */
+  sparse output;                /* units with output -- not saved */
+  sparse locs;                  /* locs we touched -- not saved */
 };
 
 struct order_list {
-	int unit;			/* unit orders are for */
-	char **l;			/* ilist of orders for unit */
+  int unit;                     /* unit orders are for */
+  char **l;                     /* ilist of orders for unit */
 };
 
 struct accept_ent {
-	int item;			/* 0 = any item */
-	int from_who;			/* 0 = anyone, else char or player */
-	int qty;			/* 0 = any qty */
+  int item;                     /* 0 = any item */
+  int from_who;                 /* 0 = anyone, else char or player */
+  int qty;                      /* 0 = any qty */
 };
 
-#define		ATT_NONE	0	/* no attitude -- default */
-#define		NEUTRAL		1	/* explicitly neutral */
-#define		HOSTILE		2	/* attack on sight */
-#define		DEFEND		3	/* defend if attacked */
+#define		ATT_NONE	0       /* no attitude -- default */
+#define		NEUTRAL		1       /* explicitly neutral */
+#define		HOSTILE		2       /* attack on sight */
+#define		DEFEND		3       /* defend if attacked */
 #define 	MONSTER_ATT    -1       /* phony id for "all monsters" */
 
 struct att_ent {
-	ilist neutral;
-	ilist hostile;
-	ilist defend;
+  ilist neutral;
+  ilist hostile;
+  ilist defend;
 };
 
 /*
@@ -839,14 +839,14 @@ struct att_ent {
  *
  */
 struct trap_struct {
-  int type;               /* Type of trap. */
-  int religion;           /* Religion that ignores this trap. */
-  int num_attacks;        /* Number of attacks */
-  int attack_chance;      /* Chance of attack killing someone */
-  char *name;             /* Name of trap. */
-  char *ignored;          /* Message if you can ignore this trap. */
-  char *flying;           /* Message if you fly over the trap. */
-  char *attack;           /* Message if it attacks you. */
+  int type;                     /* Type of trap. */
+  int religion;                 /* Religion that ignores this trap. */
+  int num_attacks;              /* Number of attacks */
+  int attack_chance;            /* Chance of attack killing someone */
+  char *name;                   /* Name of trap. */
+  char *ignored;                /* Message if you can ignore this trap. */
+  char *flying;                 /* Message if you fly over the trap. */
+  char *attack;                 /* Message if it attacks you. */
 };
 
 extern struct trap_struct traps[];
@@ -858,31 +858,31 @@ extern struct trap_struct traps[];
  *
  */
 struct effect {
-  int type;         /* Type of effect, usually == to a sk_ number */
-  int subtype;      /* A subtype, surprise! */
-  int days;         /* Remaining days of the effect. */
-  int data;         /* Generic data for effect. */
+  int type;                     /* Type of effect, usually == to a sk_ number */
+  int subtype;                  /* A subtype, surprise! */
+  int days;                     /* Remaining days of the effect. */
+  int data;                     /* Generic data for effect. */
 };
 
 /*
  *  Effect identifiers.
  *
  */
-#define ef_defense		1001	/* Add to defense of stack. */
-#define ef_religion_trap	1002	/* A religion trap. */
+#define ef_defense		1001    /* Add to defense of stack. */
+#define ef_religion_trap	1002    /* A religion trap. */
 #define ef_fast_move		1004    /* Fast move into the next province */
 #define ef_slow_move		1005    /* Slow moves into this province */
 #define ef_improve_mine		1006    /* Improve a mine's production */
 #define ef_protect_mine		1007    /* Protect a mine against calamities */
 #define ef_bless_fort		1008    /* Bless a fort */
-#define ef_improve_production	1010    /* Generic production improvement +50%*/
+#define ef_improve_production	1010    /* Generic production improvement +50% */
 #define ef_improve_make		1011    /* Generic make improvement +100% */
 #define ef_improve_fort		1012    /* Increase a fortification */
 #define ef_edge_of_kireus	1013    /* Edged weapons +25 attack */
 #define ef_urchin_spy		1014    /* Report unit's doings for 7 days */
 #define ef_charisma		1015    /* Double leadership */
 #define ef_improve_taxes	1016    /* Double taxes */
-#define ef_guard_loyalty	1017 	/* Unit immune to loyalty checks */
+#define ef_guard_loyalty	1017    /* Unit immune to loyalty checks */
 #define ef_hide_item		1018    /* Hide an item. */
 #define ef_hide_money		1019    /* Hide money. */
 #define ef_smuggle_goods	1020    /* Smuggling. */
@@ -894,9 +894,9 @@ struct effect {
 #define ef_kill_dirt_golem      1026    /* Timer on golems */
 #define ef_kill_flesh_golem     1027    /* Timer on golems */
 #define ef_food_found    	1028    /* Food found by a ranger */
-#define ef_conceal_artifacts	1029	/* Conceal someone's artifacts */
-#define ef_obscure_artifact	1030	/* Obscure artifact's identity */
-#define ef_forced_march		1031	/* Next move at riding speed */
+#define ef_conceal_artifacts	1029    /* Conceal someone's artifacts */
+#define ef_obscure_artifact	1030    /* Obscure artifact's identity */
+#define ef_forced_march		1031    /* Next move at riding speed */
 #define ef_faery_warning	1032    /* Give people a month grace. */
 #define ef_tap_wound		1033    /* The wound from Tap Health. */
 #define ef_magic_barrier	1034    /* New implementation of magic barrier */
@@ -910,44 +910,44 @@ struct effect {
  *  Generalized magic items -- not unlike effects.
  *
  */
-#define ART_NONE	0	/* No effect */
-#define ART_COMBAT      1	/* + to combat */
-#define ART_CTL_MEN	2	/* + to controlled men */
-#define ART_CTL_BEASTS	3	/* + to controlled beasts */
-#define ART_SAFETY	4	/* safety from one monster type */
-#define ART_IMPRV_ATT	5	/* improve attack of particular unit */
-#define ART_IMPRV_DEF	6	/* improve defense of particular unit */
-#define ART_SAFE_SEA	7	/* safety at sea */
-#define ART_TERRAIN	8	/* improved defense in particular terrain */
-#define ART_FAST_TERR	9	/* fast movement into particular terrain */
-#define ART_SPEED_USE	10	/* speed use of skill */
-#define ART_PROT_HADES	11	/* protection in Hades */
-#define ART_PROT_FAERY	12	/* protection in Faery */
-#define ART_WORKERS	13	/* improve productivity of workers */
-#define ART_INCOME	14	/* improved income from X */
-#define ART_LEARNING	15	/* improved learning */
-#define ART_TEACHING	16	/* improved teaching */
-#define ART_TRAINING	17	/* improved training (of X?) */
-#define ART_DESTROY	18	/* destroy monster X (uses) */
-#define ART_SKILL	19	/* grants a skill */
-#define ART_FLYING	20	/* permit user to fly */
-#define ART_PROT_SKILL	21	/* protection from a skill (aura blast,scry) */
-#define ART_SHIELD_PROV	22	/* protect entire province from scrying */
-#define ART_RIDING	23	/* permit user riding pace */
-#define ART_POWER	24	/* increase piety/aura (1 use) */
-#define ART_SUMMON_AID	25	/* summon help (1 use) */
-#define ART_MAINTENANCE	26	/* reduce maintenance costs */
-#define ART_BARGAIN	27	/* better market prices */
-#define ART_WEIGHTLESS	28	/* weightlessness */
-#define ART_HEALING	29	/* faster healing */
-#define ART_SICKNESS	30	/* protection from sickness */
-#define ART_RESTORE	31	/* restore life */
-#define ART_TELEPORT	32	/* teleportation (uses) */
-#define ART_ORB		33	/* orb */
-#define ART_CROWN	34	/* crown */
-#define ART_AURACULUM	35	/* auraculum */
-#define ART_CARRY	36	/* increase land carry capacity */
-#define ART_PEN		37	/* the Pen Crown */
+#define ART_NONE	0       /* No effect */
+#define ART_COMBAT      1       /* + to combat */
+#define ART_CTL_MEN	2       /* + to controlled men */
+#define ART_CTL_BEASTS	3       /* + to controlled beasts */
+#define ART_SAFETY	4       /* safety from one monster type */
+#define ART_IMPRV_ATT	5       /* improve attack of particular unit */
+#define ART_IMPRV_DEF	6       /* improve defense of particular unit */
+#define ART_SAFE_SEA	7       /* safety at sea */
+#define ART_TERRAIN	8       /* improved defense in particular terrain */
+#define ART_FAST_TERR	9       /* fast movement into particular terrain */
+#define ART_SPEED_USE	10      /* speed use of skill */
+#define ART_PROT_HADES	11      /* protection in Hades */
+#define ART_PROT_FAERY	12      /* protection in Faery */
+#define ART_WORKERS	13      /* improve productivity of workers */
+#define ART_INCOME	14      /* improved income from X */
+#define ART_LEARNING	15      /* improved learning */
+#define ART_TEACHING	16      /* improved teaching */
+#define ART_TRAINING	17      /* improved training (of X?) */
+#define ART_DESTROY	18      /* destroy monster X (uses) */
+#define ART_SKILL	19      /* grants a skill */
+#define ART_FLYING	20      /* permit user to fly */
+#define ART_PROT_SKILL	21      /* protection from a skill (aura blast,scry) */
+#define ART_SHIELD_PROV	22      /* protect entire province from scrying */
+#define ART_RIDING	23      /* permit user riding pace */
+#define ART_POWER	24      /* increase piety/aura (1 use) */
+#define ART_SUMMON_AID	25      /* summon help (1 use) */
+#define ART_MAINTENANCE	26      /* reduce maintenance costs */
+#define ART_BARGAIN	27      /* better market prices */
+#define ART_WEIGHTLESS	28      /* weightlessness */
+#define ART_HEALING	29      /* faster healing */
+#define ART_SICKNESS	30      /* protection from sickness */
+#define ART_RESTORE	31      /* restore life */
+#define ART_TELEPORT	32      /* teleportation (uses) */
+#define ART_ORB		33      /* orb */
+#define ART_CROWN	34      /* crown */
+#define ART_AURACULUM	35      /* auraculum */
+#define ART_CARRY	36      /* increase land carry capacity */
+#define ART_PEN		37      /* the Pen Crown */
 
 #define ART_LAST	38
 
@@ -987,112 +987,112 @@ struct entity_artifact {
  *
  */
 struct char_religion {
-  int priest;        /* Who this noble is dedicated to, if anyone. */
-  ilist followers;   /* Who is dedicated to us, if anyone. */
-  int piety;         /* Our current piety. */
+  int priest;                   /* Who this noble is dedicated to, if anyone. */
+  ilist followers;              /* Who is dedicated to us, if anyone. */
+  int piety;                    /* Our current piety. */
 };
 
 struct entity_char {
-	int unit_item;			/* unit is made of this kind of item */
+  int unit_item;                /* unit is made of this kind of item */
 
-        schar health;
-	schar sick;			/* 1=character is getting worse */
+  schar health;
+  schar sick;                   /* 1=character is getting worse */
 
-	schar guard;			/* character is guarding the loc */
-	schar loy_kind;			/* LOY_xxx */
-	int loy_rate;			/* level with kind of loyalty */
+  schar guard;                  /* character is guarding the loc */
+  schar loy_kind;               /* LOY_xxx */
+  int loy_rate;                 /* level with kind of loyalty */
 
-	olytime death_time;		/* when was character killed */
+  olytime death_time;           /* when was character killed */
 
-	struct skill_ent **skills;	/* ilist of skills known by char */
+  struct skill_ent **skills;    /* ilist of skills known by char */
 
 #if 0
-        struct effect **effects;        /* ilist of effects on char */
+  struct effect **effects;      /* ilist of effects on char */
 #endif
 
-	int moving;			/* daystamp of beginning of movement */
-	int unit_lord;			/* who is our owner? */
+  int moving;                   /* daystamp of beginning of movement */
+  int unit_lord;                /* who is our owner? */
 
-	ilist contact;			/* who have we contacted, also, who */
-					/* has found us */
+  ilist contact;                /* who have we contacted, also, who */
+  /* has found us */
 
-	struct char_magic *x_char_magic;
+  struct char_magic *x_char_magic;
 
-	schar prisoner;			/* is this character a prisoner? */
-	schar behind;			/* are we behind in combat? */
-	schar time_flying;		/* time airborne over ocean */
-	schar break_point;		/* break point when fighting */
-	schar personal_break_point;	/* personal break point when fighting */
-	schar rank;			/* noble peerage status */
-	schar npc_prog;			/* npc program */
+  schar prisoner;               /* is this character a prisoner? */
+  schar behind;                 /* are we behind in combat? */
+  schar time_flying;            /* time airborne over ocean */
+  schar break_point;            /* break point when fighting */
+  schar personal_break_point;   /* personal break point when fighting */
+  schar rank;                   /* noble peerage status */
+  schar npc_prog;               /* npc program */
 
-        short guild;                    /* This is the guild we belong to. */
+  short guild;                  /* This is the guild we belong to. */
 
-	short attack;			/* fighter attack rating */
-	short defense;			/* fighter defense rating */
-	short missile;			/* capable of missile attacks? */
+  short attack;                 /* fighter attack rating */
+  short defense;                /* fighter defense rating */
+  short missile;                /* capable of missile attacks? */
 
   struct char_religion religion;        /* Our religion info... */
 
-  int pay;				/* How much will you pay to enter? */
+  int pay;                      /* How much will you pay to enter? */
 
 /*
  *  The following are not saved by io.c:
  */
 
-	schar melt_me;			/* in process of melting away */
-	schar fresh_hire;		/* don't erode loyalty */
-	schar new_lord;			/* got a new lord this turn */
-	short studied;			/* num days we studied */
-	struct accept_ent **accept;	/* what we can be given */
+  schar melt_me;                /* in process of melting away */
+  schar fresh_hire;             /* don't erode loyalty */
+  schar new_lord;               /* got a new lord this turn */
+  short studied;                /* num days we studied */
+  struct accept_ent **accept;   /* what we can be given */
 };
 
 struct char_magic {
-	int max_aura;			/* maximum aura level for magician */
-	int cur_aura;			/* current aura level for magician */
-	int auraculum;			/* char created an auraculum */
+  int max_aura;                 /* maximum aura level for magician */
+  int cur_aura;                 /* current aura level for magician */
+  int auraculum;                /* char created an auraculum */
 
-	sparse visions;			/* visions revealed */
+  sparse visions;               /* visions revealed */
 #if 0
-	int pledge;			/* lands are pledged to another */
+  int pledge;                   /* lands are pledged to another */
 #endif
-	int token;			/* we are controlled by this art */
+  int token;                    /* we are controlled by this art */
 
-	int project_cast;		/* project next cast */
-	short quick_cast;		/* speed next cast */
-	short ability_shroud;
+  int project_cast;             /* project next cast */
+  short quick_cast;             /* speed next cast */
+  short ability_shroud;
 
-	schar hide_mage;		/* hide magician status */
-	schar hinder_meditation;
-	schar magician;			/* is a magician */
-	schar aura_reflect;		/* reflect aura blast */
-	schar hide_self;		/* character is hidden */
-	schar swear_on_release;		/* swear to one who frees us */
-	schar knows_weather;		/* knows weather magic */
+  schar hide_mage;              /* hide magician status */
+  schar hinder_meditation;
+  schar magician;               /* is a magician */
+  schar aura_reflect;           /* reflect aura blast */
+  schar hide_self;              /* character is hidden */
+  schar swear_on_release;       /* swear to one who frees us */
+  schar knows_weather;          /* knows weather magic */
 
-	schar mage_worked;		/* worked this month -- not saved */
-	schar ferry_flag;		/* ferry has tooted its horn -- ns */
-	ilist pledged_to_us;		/* temp -- not saved */
+  schar mage_worked;            /* worked this month -- not saved */
+  schar ferry_flag;             /* ferry has tooted its horn -- ns */
+  ilist pledged_to_us;          /* temp -- not saved */
 };
 
 
 #define		TOUGH_NUM	2520
 
-#define		SKILL_dont	0	/* don't know the skill */
-#define		SKILL_learning	1	/* in the process of learning it */
-#define		SKILL_know	2	/* know it */
+#define		SKILL_dont	0       /* don't know the skill */
+#define		SKILL_learning	1       /* in the process of learning it */
+#define		SKILL_know	2       /* know it */
 
 struct skill_ent {
-	int skill;
-	int days_studied;		/* days studied * TOUGH_NUM */
-	int experience;		/* experience level with skill */
-	char know;			/* SKILL_xxx */
+  int skill;
+  int days_studied;             /* days studied * TOUGH_NUM */
+  int experience;               /* experience level with skill */
+  char know;                    /* SKILL_xxx */
 
 /*
  *  Not saved:
  */
 
-	char exp_this_month;		/* flag for add_skill_experience() */
+  char exp_this_month;          /* flag for add_skill_experience() */
 };
 
 /*
@@ -1107,27 +1107,27 @@ struct loc_control_ent {
 };
 
 struct item_ent {
-	int item;
-	int qty;
+  int item;
+  int qty;
 };
 
 struct entity_loc {
-	ilist prov_dest;		/* cached exits for flood fills */
-	int near_grave;			/* nearest graveyard */
-	short shroud;			/* magical scry shroud */
-	short barrier;			/* magical barrier */
-  	short tax_rate;			/* Tax rate for this loc. */
-  	int recruited;			/* How many recruited this month */
-	schar hidden;			/* is location hidden? */
-	schar dist_from_sea;		/* provinces to sea province */
-	schar dist_from_swamp;
-	schar dist_from_gate;
-	schar sea_lane;			/* fast ocean travel here */
-					/* also "tracks" for npc ferries */
+  ilist prov_dest;              /* cached exits for flood fills */
+  int near_grave;               /* nearest graveyard */
+  short shroud;                 /* magical scry shroud */
+  short barrier;                /* magical barrier */
+  short tax_rate;               /* Tax rate for this loc. */
+  int recruited;                /* How many recruited this month */
+  schar hidden;                 /* is location hidden? */
+  schar dist_from_sea;          /* provinces to sea province */
+  schar dist_from_swamp;
+  schar dist_from_gate;
+  schar sea_lane;               /* fast ocean travel here */
+  /* also "tracks" for npc ferries */
 #if 0
-        struct effect **effects;        /* ilist of effects on location */
+  struct effect **effects;      /* ilist of effects on location */
 #endif
-        struct entity_mine *mine_info;  /* If there's a mine. */
+  struct entity_mine *mine_info;        /* If there's a mine. */
   /*
    *  Loction control -- need two so that we can only change
    *  fees at the end of the month.
@@ -1135,7 +1135,7 @@ struct entity_loc {
    *  Control2 doesn't need to be saved.
    *
    */
-  	struct loc_control_ent control, control2;
+  struct loc_control_ent control, control2;
 };
 
 /*
@@ -1150,9 +1150,9 @@ struct entity_loc {
 #define BT_MOAT 4
 
 struct entity_build {
-  uchar type;			/* What work is going on? */
-  schar build_materials;	/* fifths of materials we've used */
-  int effort_required;		/* not finished if nonzero */
+  uchar type;                   /* What work is going on? */
+  schar build_materials;        /* fifths of materials we've used */
+  int effort_required;          /* not finished if nonzero */
   int effort_given;
 };
 
@@ -1163,12 +1163,12 @@ struct entity_build {
  *
  */
 struct entity_ship {
-  int hulls;  /* Various ship parts */
+  int hulls;                    /* Various ship parts */
   int forts;
   int sails;
   int ports;
   int keels;
-  schar galley_ram;		/* galley is fitted with a ram */
+  schar galley_ram;             /* galley is fitted with a ram */
 };
 
 /*
@@ -1183,7 +1183,7 @@ struct entity_ship {
 #define IRON_SHORING 2
 
 struct mine_contents {
-  struct item_ent **items;	/* ilist of items held */
+  struct item_ent **items;      /* ilist of items held */
   /* int iron, gold, mithril, gate_crystals; */
 };
 
@@ -1193,113 +1193,113 @@ struct entity_mine {
 };
 
 struct entity_subloc {
-	ilist teaches;			/* skills location offers */
-	int opium_econ;			/* addiction level of city */
-	int defense;			/* defense rating of structure */
+  ilist teaches;                /* skills location offers */
+  int opium_econ;               /* addiction level of city */
+  int defense;                  /* defense rating of structure */
 
-	schar loot;			/* loot & pillage level */
-        uchar hp;                       /* "hit points" */
-	uchar damage;			/* 0=none, hp=fully destroyed */
-        uchar moat;                     /* Has a moat? */
+  schar loot;                   /* loot & pillage level */
+  uchar hp;                     /* "hit points" */
+  uchar damage;                 /* 0=none, hp=fully destroyed */
+  uchar moat;                   /* Has a moat? */
 #if 0
-	short shaft_depth;		/* depth of mine shaft */
+  short shaft_depth;            /* depth of mine shaft */
 #endif
 
-	struct entity_build **builds;   /* Ongoing builds here. */
+  struct entity_build **builds; /* Ongoing builds here. */
 
-	int moving;			/* daystamp of beginning of movement */
-        struct entity_ship *x_ship;       /* Maybe a ship? */
+  int moving;                   /* daystamp of beginning of movement */
+  struct entity_ship *x_ship;   /* Maybe a ship? */
 #if 0
-	int capacity;			/* capacity of ship */
-	schar galley_ram;		/* galley is fitted with a ram */
+  int capacity;                 /* capacity of ship */
+  schar galley_ram;             /* galley is fitted with a ram */
 #endif
 
-	ilist near_cities;		/* cities rumored to be nearby */
-	schar safe;			/* safe haven */
-	schar major;			/* major city */
-	schar prominence;		/* prominence of city */
+  ilist near_cities;            /* cities rumored to be nearby */
+  schar safe;                   /* safe haven */
+  schar major;                  /* major city */
+  schar prominence;             /* prominence of city */
 
 #if 0
-	schar link_when;		/* month link is open, -1 = never */
-	schar link_open;		/* link is open now */
+  schar link_when;              /* month link is open, -1 = never */
+  schar link_open;              /* link is open now */
 #endif
-	ilist link_to;			/* where we are linked to */
-	ilist link_from;		/* where we are linked from */
+  ilist link_to;                /* where we are linked to */
+  ilist link_from;              /* where we are linked from */
 #if 0
-	ilist bound_storms;		/* storms bound to this ship */
+  ilist bound_storms;           /* storms bound to this ship */
 #endif
-        int guild;                      /* what skill, if a sub_guild */
+  int guild;                    /* what skill, if a sub_guild */
 #if 0
-        struct effect **effects;        /* ilist of effects on sub-location */
+  struct effect **effects;      /* ilist of effects on sub-location */
 #endif
-	short tax_market;		/* Market tax rate. */
-        short tax_market2;              /* Temporary until end of month */
+  short tax_market;             /* Market tax rate. */
+  short tax_market2;            /* Temporary until end of month */
   /* Location control -- either here or loc */
-  	struct loc_control_ent control, control2;
-        int entrance_size;              /* Size of entrance to subloc */
+  struct loc_control_ent control, control2;
+  int entrance_size;            /* Size of entrance to subloc */
 };
 
 struct entity_item {
-        short weight;
-        short land_cap;
-        short ride_cap;
-        short fly_cap;
-	short attack;		/* fighter attack rating */
-	short defense;		/* fighter defense rating */
-	short missile;		/* capable of missile attacks? */
-        short maintenance;      /* Maintenance cost */
-        short npc_split;        /* Size to "split" at... */
-        short animal_part;      /* Produces this when killed. */
+  short weight;
+  short land_cap;
+  short ride_cap;
+  short fly_cap;
+  short attack;                 /* fighter attack rating */
+  short defense;                /* fighter defense rating */
+  short missile;                /* capable of missile attacks? */
+  short maintenance;            /* Maintenance cost */
+  short npc_split;              /* Size to "split" at... */
+  short animal_part;            /* Produces this when killed. */
 
-	schar is_man_item;	/* unit is a character like thing */
-	schar animal;		/* unit is or contains a horse or an ox */
-	schar prominent;	/* big things that everyone sees */
-	schar capturable;	/* ni-char contents are capturable */
-  	schar ungiveable;       /* Can't be transferred between nobles. */
-  	schar wild;       	/* Appears in the wild as a random encounter. */
-				/* Value is actually the NPC_prog. */
+  schar is_man_item;            /* unit is a character like thing */
+  schar animal;                 /* unit is or contains a horse or an ox */
+  schar prominent;              /* big things that everyone sees */
+  schar capturable;             /* ni-char contents are capturable */
+  schar ungiveable;             /* Can't be transferred between nobles. */
+  schar wild;                   /* Appears in the wild as a random encounter. */
+  /* Value is actually the NPC_prog. */
 
-	char *plural_name;
-	int base_price;		/* base price of item for market seeding */
-        int trade_good;         /* Is this thing a trade good? & how much*/
-	int who_has;		/* who has this unique item */
+  char *plural_name;
+  int base_price;               /* base price of item for market seeding */
+  int trade_good;               /* Is this thing a trade good? & how much */
+  int who_has;                  /* who has this unique item */
 
-	struct item_magic	*x_item_magic;
-  struct entity_artifact	*x_item_artifact; /* Eventually replace item_magic */
+  struct item_magic *x_item_magic;
+  struct entity_artifact *x_item_artifact;      /* Eventually replace item_magic */
 };
 
 struct item_magic {
-	int creator;
-	int lore;			/* deliver this lore for the item */
+  int creator;
+  int lore;                     /* deliver this lore for the item */
 
-        int religion;                   /* Might be a religious artifact */
+  int religion;                 /* Might be a religious artifact */
 
-	schar curse_loyalty;		/* curse noncreator loyalty */
-	schar cloak_region;
-	schar cloak_creator;
-	schar use_key;			/* special use action */
+  schar curse_loyalty;          /* curse noncreator loyalty */
+  schar cloak_region;
+  schar cloak_creator;
+  schar use_key;                /* special use action */
 
-	ilist may_use;			/* list of usable skills via this */
-	ilist may_study;		/* list of skills studying from this */
+  ilist may_use;                /* list of usable skills via this */
+  ilist may_study;              /* list of skills studying from this */
 
-	int project_cast;		/* stored projected cast */
-	int token_ni;			/* ni for controlled npc units */
-	short quick_cast;		/* stored quick cast */
+  int project_cast;             /* stored projected cast */
+  int token_ni;                 /* ni for controlled npc units */
+  short quick_cast;             /* stored quick cast */
 
-	schar attack_bonus;
-	schar defense_bonus;
-	schar missile_bonus;
-	schar aura_bonus;
-	schar aura;			/* auraculum aura */
+  schar attack_bonus;
+  schar defense_bonus;
+  schar missile_bonus;
+  schar aura_bonus;
+  schar aura;                   /* auraculum aura */
 
-	schar token_num;		/* how many token controlled units */
-	schar orb_use_count;		/* how many uses left in the orb */
+  schar token_num;              /* how many token controlled units */
+  schar orb_use_count;          /* how many uses left in the orb */
 
 /*
  *  Not saved:
  */
 
-	schar one_turn_use;		/* flag for one use per turn */
+  schar one_turn_use;           /* flag for one use per turn */
 };
 
 /*
@@ -1307,14 +1307,14 @@ struct item_magic {
  *
  */
 struct entity_religion_skill {
-  char *name;        /* Of the god.  */
-  int strength;      /* Related strength skill */
-  int weakness;      /* Related weakness skill */
-  int plant;         /* The holy plant. */
-  int animal;        /* The holy plant. */
-  int terrain;       /* Holy terrain. */
-  int high_priest;   /* The high priest */
-  int bishops[2];    /* The two bishops */
+  char *name;                   /* Of the god.  */
+  int strength;                 /* Related strength skill */
+  int weakness;                 /* Related weakness skill */
+  int plant;                    /* The holy plant. */
+  int animal;                   /* The holy plant. */
+  int terrain;                  /* Holy terrain. */
+  int high_priest;              /* The high priest */
+  int bishops[2];               /* The two bishops */
 };
 
 /*
@@ -1335,75 +1335,75 @@ struct entity_religion_skill {
  *
  */
 struct entity_skill {
-  int time_to_learn;	/* days of study req'd to learn skill */
-  int time_to_use;	/* days to use this skill */
-  int flags;            /* Flags such as IS_POLLED, REQ_HOLY_SYMBOL, etc. */
-  int required_skill;	/* skill required to learn this skill */
-  int np_req;		/* noble points required to learn */
-  ilist offered;		/* skills learnable after this one */
-  ilist research;		/* skills researable with this one */
+  int time_to_learn;            /* days of study req'd to learn skill */
+  int time_to_use;              /* days to use this skill */
+  int flags;                    /* Flags such as IS_POLLED, REQ_HOLY_SYMBOL, etc. */
+  int required_skill;           /* skill required to learn this skill */
+  int np_req;                   /* noble points required to learn */
+  ilist offered;                /* skills learnable after this one */
+  ilist research;               /* skills researable with this one */
   ilist guild;                  /* skills offered if you're a guild member. */
 
-  struct req_ent **req;	/* ilist of items required for use or cast */
-  int produced;		/* simple production skill result */
+  struct req_ent **req;         /* ilist of items required for use or cast */
+  int produced;                 /* simple production skill result */
 
-  int no_exp;		/* this skill not rated for experience */
-  int practice_cost;    /* cost to practice this skill. */
-  int practice_time;    /* time to practice this skill. */
-  int practice_prog;    /* A day longer to practice each N experience levels. */
+  int no_exp;                   /* this skill not rated for experience */
+  int practice_cost;            /* cost to practice this skill. */
+  int practice_time;            /* time to practice this skill. */
+  int practice_prog;            /* A day longer to practice each N experience levels. */
   struct entity_religion_skill *religion_skill; /* Possible religion pointer. */
-  int piety;            /* Piety required to cast religious skill */
-  			/* Or aura to cast magic skill; not used for all. */
+  int piety;                    /* Piety required to cast religious skill */
+  /* Or aura to cast magic skill; not used for all. */
 /* not saved */
 
-	int use_count;		/* times skill used during turn */
-	int last_use_who;	/* who last used the skill (this turn) */
+  int use_count;                /* times skill used during turn */
+  int last_use_who;             /* who last used the skill (this turn) */
 };
 
-#define	REQ_NO	0		/* don't consume item */
-#define	REQ_YES	1		/* consume item */
-#define	REQ_OR	2		/* or with next */
+#define	REQ_NO	0               /* don't consume item */
+#define	REQ_YES	1               /* consume item */
+#define	REQ_OR	2               /* or with next */
 
 struct req_ent {
-	int item;		/* item required to use */
-	int qty;		/* quantity required */
-	schar consume;		/* REQ_xx */
+  int item;                     /* item required to use */
+  int qty;                      /* quantity required */
+  schar consume;                /* REQ_xx */
 };
 
 struct entity_gate {
-	int to_loc;		/* destination of gate */
-	int notify_jumps;	/* whom to notify */
-	int notify_unseal;	/* whom to notify */
-	short seal_key;		/* numeric gate password */
-	schar road_hidden;	/* this is a hidden road or passage */
+  int to_loc;                   /* destination of gate */
+  int notify_jumps;             /* whom to notify */
+  int notify_unseal;            /* whom to notify */
+  short seal_key;               /* numeric gate password */
+  schar road_hidden;            /* this is a hidden road or passage */
 };
 
 struct entity_misc {
-	char *display;		/* entity display banner */
-	int npc_created;	/* turn peasant mob created */
-	int npc_home;		/* where npc was created */
-	int npc_cookie;		/* allocation cookie item for us */
-	int summoned_by;	/* who summoned us? */
-	char *save_name;	/* orig name of noble for dead bodies */
-	int old_lord;		/* who did this dead body used to belong to */
-	sparse npc_memory;
-	int only_vulnerable;	/* only defeatable with this rare artifact */
-	int garr_castle;	/* castle which owns this garrison */
-	short border_open;      /* Is the garrison's border open? */  
-	int bind_storm;		/* storm bound to this ship */
+  char *display;                /* entity display banner */
+  int npc_created;              /* turn peasant mob created */
+  int npc_home;                 /* where npc was created */
+  int npc_cookie;               /* allocation cookie item for us */
+  int summoned_by;              /* who summoned us? */
+  char *save_name;              /* orig name of noble for dead bodies */
+  int old_lord;                 /* who did this dead body used to belong to */
+  sparse npc_memory;
+  int only_vulnerable;          /* only defeatable with this rare artifact */
+  int garr_castle;              /* castle which owns this garrison */
+  short border_open;            /* Is the garrison's border open? */
+  int bind_storm;               /* storm bound to this ship */
 
-	short storm_str;	/* storm strength */
-	schar npc_dir;		/* last direction npc moved */
-	schar mine_delay;	/* time until collapsed mine vanishes */
-	char cmd_allow;		/* unit under restricted control */
+  short storm_str;              /* storm strength */
+  schar npc_dir;                /* last direction npc moved */
+  schar mine_delay;             /* time until collapsed mine vanishes */
+  char cmd_allow;               /* unit under restricted control */
 
-	schar opium_double;	/* improved opium production -- not saved */
-	char **post_txt;	/* text of posted sign -- not saved */
-	int storm_move;		/* next loc storm will move to -- not saved */
-	ilist garr_watch;	/* units garrison watches for -- not saved */
-	ilist garr_host;	/* units garrison will attack -- not saved */
-	int garr_tax;		/* garrison taxes collected -- not saved */
-	int garr_forward;	/* garrison taxes forwarded -- not saved */
+  schar opium_double;           /* improved opium production -- not saved */
+  char **post_txt;              /* text of posted sign -- not saved */
+  int storm_move;               /* next loc storm will move to -- not saved */
+  ilist garr_watch;             /* units garrison watches for -- not saved */
+  ilist garr_host;              /* units garrison will attack -- not saved */
+  int garr_tax;                 /* garrison taxes collected -- not saved */
+  int garr_forward;             /* garrison taxes forwarded -- not saved */
 };
 
 
@@ -1417,38 +1417,38 @@ struct entity_misc {
 #define	STATE_ERROR	3
 
 struct wait_arg {
-	int tag;
-	int a1, a2;
-	char *flag;
+  int tag;
+  int a1, a2;
+  char *flag;
 };
 
 struct command {
-	int who;		/* entity this is under (redundant) */
-	int wait;		/* time until completion */
-	int cmd;		/* index into cmd_tbl */
+  int who;                      /* entity this is under (redundant) */
+  int wait;                     /* time until completion */
+  int cmd;                      /* index into cmd_tbl */
 
-	int use_skill;		/* skill we are using, if any */
-	int use_ent;		/* index into use_tbl[] for skill usage */
-	int use_exp;		/* experience level at using this skill */
-	int days_executing;	/* how long has this command been running */
+  int use_skill;                /* skill we are using, if any */
+  int use_ent;                  /* index into use_tbl[] for skill usage */
+  int use_exp;                  /* experience level at using this skill */
+  int days_executing;           /* how long has this command been running */
 
-	int a,b,c,d,e,f,g,h,i,j;/* command arguments */
+  int a, b, c, d, e, f, g, h, i, j;     /* command arguments */
 
-	char *line;		/* original command line */
-	char *parsed_line;	/* cut-up line, pointed to by parse */
-	char **parse;		/* ilist of parsed arguments */
+  char *line;                   /* original command line */
+  char *parsed_line;            /* cut-up line, pointed to by parse */
+  char **parse;                 /* ilist of parsed arguments */
 
-	schar state;		/* LOAD, RUN, ERROR, DONE */
-	schar status;		/* success or failure */
-	schar poll;		/* call finish routine each day? */
-	schar pri;		/* command priority or precedence */
-	schar conditional;	/* 0=none 1=last succeeded 2=last failed */
-	schar inhibit_finish;	/* don't call d_xxx */
+  schar state;                  /* LOAD, RUN, ERROR, DONE */
+  schar status;                 /* success or failure */
+  schar poll;                   /* call finish routine each day? */
+  schar pri;                    /* command priority or precedence */
+  schar conditional;            /* 0=none 1=last succeeded 2=last failed */
+  schar inhibit_finish;         /* don't call d_xxx */
 
-	schar fuzzy;		/* command matched fuzzy -- not saved */
-	schar second_wait;	/* delay resulting from auto attacks -- saved */
-	struct wait_arg **wait_parse;	/* not saved */
-	schar debug;		/* debugging check -- not saved */
+  schar fuzzy;                  /* command matched fuzzy -- not saved */
+  schar second_wait;            /* delay resulting from auto attacks -- saved */
+  struct wait_arg **wait_parse; /* not saved */
+  schar debug;                  /* debugging check -- not saved */
 };
 
 #define	numargs(c)	(ilist_len(c->parse) - 1)
@@ -1476,16 +1476,16 @@ struct command {
 #define CMD_practice   8
 
 struct cmd_tbl_ent {
-	char *allow;		/* who may execute the command */
-	char *name;		/* name of command */
+  char *allow;                  /* who may execute the command */
+  char *name;                   /* name of command */
 
-	int (*start)(struct command *);		/* initiator */
-	int (*finish)(struct command *);	/* conclusion */
-	int (*interrupt)(struct command *);	/* interrupted order */
+  int (*start) (struct command *);      /* initiator */
+  int (*finish) (struct command *);     /* conclusion */
+  int (*interrupt) (struct command *);  /* interrupted order */
 
-	int time;		/* how long command takes */
-	int poll;		/* call finish each day, not just at end */
-	int pri;		/* command priority or precedence */
+  int time;                     /* how long command takes */
+  int poll;                     /* call finish each day, not just at end */
+  int pri;                      /* command priority or precedence */
   /*
    *  Tue Dec 26 18:37:31 2000 -- Scott Turner
    *
@@ -1501,8 +1501,8 @@ struct cmd_tbl_ent {
   int num_args_required;
   int max_args;
   int arg_types[5];
-  char * (*cmd_comment)(struct command *);
-  void (*cmd_check)(struct command *);
+  char *(*cmd_comment) (struct command *);
+  void (*cmd_check) (struct command *);
 };
 
 
@@ -1512,26 +1512,26 @@ struct cmd_tbl_ent {
 #define	CONSUME		4
 
 struct trade {
-  int kind;		/* BUY or SELL */
+  int kind;                     /* BUY or SELL */
   int item;
   int qty;
   int cost;
-  int cloak;		/* don't reveal identity of trader */
+  int cloak;                    /* don't reveal identity of trader */
   int have_left;
-  int month_prod;		/* month city produces item */
-  int who;		/* redundant -- not saved */
-  int sort;		/* temp key for sorting -- not saved */
-  int old_qty;          /* qty at beginning of month, for trade goods */
-  int counter;          /* Counter to age and lose untraded goods. */
+  int month_prod;               /* month city produces item */
+  int who;                      /* redundant -- not saved */
+  int sort;                     /* temp key for sorting -- not saved */
+  int old_qty;                  /* qty at beginning of month, for trade goods */
+  int counter;                  /* Counter to age and lose untraded goods. */
 };
 
 
 struct admit {
-	int targ;		/* char or loc admit is declared for */
-	int sense;		/* 0=default no, 1=all but.. */
-	ilist l;
+  int targ;                     /* char or loc admit is declared for */
+  int sense;                    /* 0=default no, 1=all but.. */
+  ilist l;
 
-	int flag;		/* first time set this turn -- not saved */
+  int flag;                     /* first time set this turn -- not saved */
 };
 
 /*
@@ -1540,18 +1540,18 @@ struct admit {
  *
  */
 struct entity_nation {
-  char *name;         /* Name of the nation, e.g., Mandor Empire */
-  char *citizen;      /* Name of a citizen, eg., Mandorean */
-  int nobles;         /* Total nobles */
-  int nps;            /* Total NPS */
-  int gold; 	      /* Total gold */
-  int players;        /* Num players */
-  short win;	      /* Win? */
-  ilist proscribed_skills;  /* Skills you can't have... */
-  int player_limit;   /* Limit to # of players */ 
-  int capital;        /* Capital city. */
-  short jump_start;   /* Jump start points to start */
-  short neutral;      /* Can't capture/lose NPs. */
+  char *name;                   /* Name of the nation, e.g., Mandor Empire */
+  char *citizen;                /* Name of a citizen, eg., Mandorean */
+  int nobles;                   /* Total nobles */
+  int nps;                      /* Total NPS */
+  int gold;                     /* Total gold */
+  int players;                  /* Num players */
+  short win;                    /* Win? */
+  ilist proscribed_skills;      /* Skills you can't have... */
+  int player_limit;             /* Limit to # of players */
+  int capital;                  /* Capital city. */
+  short jump_start;             /* Jump start points to start */
+  short neutral;                /* Can't capture/lose NPs. */
 };
 
 #if 0
@@ -1610,8 +1610,8 @@ extern struct entity_nation nations[MAX_NATIONS];
 #define is_artifact(n) 		(rp_item(n) ?  rp_item(n)->x_item_artifact : NULL)
 
 extern struct box **bx;
-extern int box_head[];			/* head of x_next_kind chain */
-extern int sub_head[];			/* head of x_next_sub chain */
+extern int box_head[];          /* head of x_next_kind chain */
+extern int sub_head[];          /* head of x_next_sub chain */
 
 
 #define	kind(n)		(((n) > 0 && (n) < MAX_BOXES && bx[n]) ? \
@@ -1687,8 +1687,8 @@ extern int sub_head[];			/* head of x_next_sub chain */
 #define loc_hp(n)		(rp_subloc(n) ? rp_subloc(n)->hp : 0)
 #define loc_moat(n)		(rp_subloc(n) ? rp_subloc(n)->moat : 0)
 /* #define loc_barrier(n)		(rp_loc(n) ? rp_loc(n)->barrier : 0) */
-#define loc_barrier(n)		(get_effect(n, ef_magic_barrier, 0, 0))     
-#define no_barrier(n)		(get_effect(n, ef_inhibit_barrier, 0, 0))     
+#define loc_barrier(n)		(get_effect(n, ef_magic_barrier, 0, 0))
+#define no_barrier(n)		(get_effect(n, ef_inhibit_barrier, 0, 0))
 #define loc_shroud(n)		(rp_loc(n) ? rp_loc(n)->shroud : 0)
 #define loc_sea_lane(n)		(rp_loc(n) ? rp_loc(n)->sea_lane : 0)
 #define sea_dist(n)		(rp_loc(n) ? rp_loc(n)->dist_from_sea : 0)
@@ -1749,8 +1749,8 @@ extern int sub_head[];			/* head of x_next_sub chain */
 #if 0
 #define	mine_depth(n)	  (rp_subloc(n) ? rp_subloc(n)->shaft_depth / 3 : 0)
 #endif
-     
-#define entrance_size(n)  (rp_subloc(n) ? rp_subloc(n)->entrance_size : 0)    
+
+#define entrance_size(n)  (rp_subloc(n) ? rp_subloc(n)->entrance_size : 0)
 #define	release_swear(n)  (rp_magic(n) ? rp_magic(n)->swear_on_release : 0)
 #define	our_token(n)	  (rp_magic(n) ? rp_magic(n)->token : 0)
 
@@ -1769,7 +1769,7 @@ extern int sub_head[];			/* head of x_next_sub chain */
 #define	item_creat_loc(n)    (rp_item_magic(n) ? \
 					rp_item_magic(n)->region_created : 0)
 #endif
-     
+
 #define	item_curse_non(n)    (rp_item_magic(n) ? \
 					rp_item_magic(n)->curse_loyalty : 0)
 
@@ -1860,13 +1860,13 @@ extern char *libdir;
  *  Saved in libdir/system:
  */
 
-extern olytime sysclock;		/* current time in Olympia */
-extern int game_number;                 /* we hope to have many :-) */
-extern int indep_player;		/* independent unit player */
-extern int gm_player;			/* The Fates */
-extern int deserted_player;		/* Deserted nobles */
-extern int eat_pl;			/* Order scanner */
-extern int skill_player;		/* Player for skill list report */
+extern olytime sysclock;        /* current time in Olympia */
+extern int game_number;         /* we hope to have many :-) */
+extern int indep_player;        /* independent unit player */
+extern int gm_player;           /* The Fates */
+extern int deserted_player;     /* Deserted nobles */
+extern int eat_pl;              /* Order scanner */
+extern int skill_player;        /* Player for skill list report */
 extern int post_has_been_run;
 extern int seed_has_been_run;
 extern int dist_sea_compute;
@@ -1875,12 +1875,12 @@ extern int cookie_init;
 extern int faery_region;
 extern int faery_player;
 extern int hades_region;
-extern int hades_pit;			/* Pit of Hades */
+extern int hades_pit;           /* Pit of Hades */
 extern int hades_player;
 extern int cloud_region;
 extern int npc_pl;
-extern int garr_pl;			/* garrison player */
-extern int combat_pl;			/* combat log */
+extern int garr_pl;             /* garrison player */
+extern int combat_pl;           /* combat log */
 extern int garrison_magic;
 extern int show_to_garrison;
 extern int xsize, ysize;
@@ -1891,36 +1891,36 @@ extern int xsize, ysize;
  *
  */
 struct options_struct {
-  schar turn_limit;                /* Limit players to a certain # of turns. */
-  schar auto_drop;                 /* Drop non-responsive players. */
-  schar free;                      /* Don't charge for this game. */
-  char turn_charge[24];            /* How much to charge per turn. */
-  schar mp_antipathy;              /* Do mages & priests hate each other? */
-  schar survive_np;		   /* Does SFW return NPs when forgotten? */
-  schar death_nps;		   /* What NPs get returned at death? */
-  schar guild_teaching;		   /* Do guilds teach guild skills? */
-  char *accounting_dir;             /* Directory to "join" from. */
-  char *accounting_prog;            /* Path of the accounting program. */
-  char *html_path;                 /* Path to html directories */
-  char *html_passwords;            /* Path to html passwords */
-  schar times_pay;		   /* What the Times pays for an article. */
-  char cpp[80];                    /* Path of cpp */
-  schar full_markets;		   /* City markets buy wood, etc. */
-  schar output_tags;		   /* include <tag> in output */
-  schar open_ended;		   /* No end to game. */
-  int num_books;                   /* Number of teaching books in city */
-  int market_age;                  /* Months untouched in market before removal. */
-  int min_piety;		   /* Any priest can have this much piety. */
-  int piety_limit;		   /* Normal priest limited to
-				             piety_limit * num_followers */
-  int head_priest_piety_limit;     /* Head priest limited to
-				     head_priest_piety_limit * num_followers */
-  int top_piety;		   /* Monthly +piety for head priest */
-  int middle_piety;		   /* Monthly +piety for junior priests */
-  int bottom_piety;		   /* Monthly +piety for everyone else */
-  int claim_give;		   /* Allow putting gold in claim? */
-  int check_balance;               /* No orders w/o positive balance. */
-  int free_np_limit;               /* Play for free with this many NPs. */
+  schar turn_limit;             /* Limit players to a certain # of turns. */
+  schar auto_drop;              /* Drop non-responsive players. */
+  schar free;                   /* Don't charge for this game. */
+  char turn_charge[24];         /* How much to charge per turn. */
+  schar mp_antipathy;           /* Do mages & priests hate each other? */
+  schar survive_np;             /* Does SFW return NPs when forgotten? */
+  schar death_nps;              /* What NPs get returned at death? */
+  schar guild_teaching;         /* Do guilds teach guild skills? */
+  char *accounting_dir;         /* Directory to "join" from. */
+  char *accounting_prog;        /* Path of the accounting program. */
+  char *html_path;              /* Path to html directories */
+  char *html_passwords;         /* Path to html passwords */
+  schar times_pay;              /* What the Times pays for an article. */
+  char cpp[80];                 /* Path of cpp */
+  schar full_markets;           /* City markets buy wood, etc. */
+  schar output_tags;            /* include <tag> in output */
+  schar open_ended;             /* No end to game. */
+  int num_books;                /* Number of teaching books in city */
+  int market_age;               /* Months untouched in market before removal. */
+  int min_piety;                /* Any priest can have this much piety. */
+  int piety_limit;              /* Normal priest limited to
+                                   piety_limit * num_followers */
+  int head_priest_piety_limit;  /* Head priest limited to
+                                   head_priest_piety_limit * num_followers */
+  int top_piety;                /* Monthly +piety for head priest */
+  int middle_piety;             /* Monthly +piety for junior priests */
+  int bottom_piety;             /* Monthly +piety for everyone else */
+  int claim_give;               /* Allow putting gold in claim? */
+  int check_balance;            /* No orders w/o positive balance. */
+  int free_np_limit;            /* Play for free with this many NPs. */
 };
 extern struct options_struct options;
 
@@ -1928,7 +1928,7 @@ extern struct options_struct options;
 #define	in_hades(n)		(region(n) == hades_region)
 #define	in_clouds(n)		(region(n) == cloud_region)
 
-extern int immed_see_all;	/* override hidden-ness, for debugging */
+extern int immed_see_all;       /* override hidden-ness, for debugging */
 
 #define	see_all(n)		immed_see_all
 
@@ -1949,10 +1949,10 @@ extern int immediate;
 extern int indent;
 extern int show_day;
 extern struct cmd_tbl_ent cmd_tbl[];
-extern int evening;			/* are we in the evening phase? */
+extern int evening;             /* are we in the evening phase? */
 extern char *from_host;
 extern char *reply_host;
-extern ilist new_players;		/* new players added this turn */
+extern ilist new_players;       /* new players added this turn */
 
 
 #define		wait(n)		(rp_command(n) ? rp_command(n)->wait : 0)
@@ -1995,16 +1995,16 @@ extern ilist new_players;		/* new players added this turn */
 #define	char_really_hidden(n)	(char_hidden(n) && \
 				 char_alone_stealth(n) && \
 				 !is_prisoner(n))
-     
+
 #define will_pay(n)	(rp_char(n) ? rp_char(n)->pay : 0)
 #define refugee(n) (!nation(n) && subkind(n) != sub_ni)
 
 
-#define		CHAR_FIELD	5	/* field length for box_code_less */
+#define		CHAR_FIELD	5       /* field length for box_code_less */
 
 
-#define	MAX_POST 60	/* max line length for posts and messages */
- 
+#define	MAX_POST 60             /* max line length for posts and messages */
+
 /* Used in combat.c and move.c */
 
 #define		A_WON	1
@@ -2023,5 +2023,3 @@ extern ilist new_players;		/* new players added this turn */
 #define TAGS (1 << 2)
 #define RAW (1 << 3)
 #define ALT (1 << 4)
-
-

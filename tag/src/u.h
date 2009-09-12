@@ -5,26 +5,27 @@
 
 
 struct weights {
-	int animals;
+  int animals;
 
-	int total_weight;	/* total weight of unit or stack */
+  int total_weight;             /* total weight of unit or stack */
 
-	int land_cap;		/* carryable weight on land */
-	int land_weight;
+  int land_cap;                 /* carryable weight on land */
+  int land_weight;
 
-	int ride_cap;		/* carryable weight on horseback */
-	int ride_weight;
+  int ride_cap;                 /* carryable weight on horseback */
+  int ride_weight;
 
-	int fly_cap;
-	int fly_weight;
+  int fly_cap;
+  int fly_weight;
 };
 
 extern void determine_unit_weights(int who, struct weights *w, int mountains);
-extern void determine_stack_weights(int who, struct weights *w, int mountains);
+extern void determine_stack_weights(int who, struct weights *w,
+                                    int mountains);
 extern int ship_weight(int ship);
 
-extern void olytime_increment(olytime *p);
-extern void olytime_turn_change(olytime *p);
+extern void olytime_increment(olytime * p);
+extern void olytime_turn_change(olytime * p);
 
 extern int lookup(char *table[], char *s);
 extern char *cap(char *s);
@@ -51,7 +52,7 @@ extern int can_pay(int who, int amount);
 
 extern void set_known(int who, int i);
 extern int test_known(int who, int i);
-extern void clear_know_rec(sparse *kr);
+extern void clear_know_rec(sparse * kr);
 
 extern void clear_temps(int kind);
 
@@ -75,7 +76,7 @@ extern void get_rid_of_building(int fort);
 #define		MATES_SILENT	(-2)
 #define		TAKE_ALL	1
 #define		TAKE_SOME	2
-#define		TAKE_NI		3	/* noble item: wrapper adds one */
+#define		TAKE_NI		3       /* noble item: wrapper adds one */
 
 extern void add_char_damage(int who, int amount, int inherit);
 extern void take_unit_items(int from, int inherit, int how_many);
@@ -96,4 +97,4 @@ extern int stack_has_use_key(int who, int key);
 extern int my_prisoner(int who, int pris);
 extern int beast_capturable(int who);
 
-extern void set_bit(sparse *kr, int i);
+extern void set_bit(sparse * kr, int i);

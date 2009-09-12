@@ -422,4 +422,3 @@
 		    i = ll_l[ll_i];
 
 #define	next_follower	} assert(ll_check == 28); ilist_reclaim(&ll_l); }
-

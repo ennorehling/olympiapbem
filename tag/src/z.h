@@ -4,7 +4,7 @@
 #define	TRUE	1
 #define	FALSE	0
 
-#define		LEN		2048	/* generic string max length */
+#define		LEN		2048    /* generic string max length */
 
 #ifdef SYSV
 #define bzero(a,n)		memset(a, '\0', n)
@@ -53,21 +53,21 @@ typedef int *ilist;
 
 #define ilist_len(a)		(((int *)(a)) == NULL ? 0 : ((int *)(a))[-2])
 
-extern void ilist_append(ilist *l, int n);
-extern void ilist_add(ilist *l, int n);
-extern void ilist_prepend(ilist *l, int n);
-extern void ilist_delete(ilist *l, int i);
-extern void ilist_clear(ilist *l);
-extern void ilist_reclaim(ilist *l);
+extern void ilist_append(ilist * l, int n);
+extern void ilist_add(ilist * l, int n);
+extern void ilist_prepend(ilist * l, int n);
+extern void ilist_delete(ilist * l, int i);
+extern void ilist_clear(ilist * l);
+extern void ilist_reclaim(ilist * l);
 extern int ilist_lookup(ilist l, int n);
-extern void ilist_rem_value(ilist *l, int n);
-extern void ilist_rem_value_uniq(ilist *l, int n);
+extern void ilist_rem_value(ilist * l, int n);
+extern void ilist_rem_value_uniq(ilist * l, int n);
 extern ilist ilist_copy(ilist l);
 extern void ilist_scramble(ilist l);
-extern void ilist_insert(ilist *l, int pos, int n);
+extern void ilist_insert(ilist * l, int pos, int n);
 
 extern int readfile(char *path);
 extern char *readlin();
 extern char *readlin_ew();
 extern char *eat_leading_trailing_whitespace(char *s);
-int int_comp(int * a, int * b);
+int int_comp(int *a, int *b);

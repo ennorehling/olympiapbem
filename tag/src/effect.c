@@ -27,8 +27,7 @@
  *
  */
 int
-add_effect(int what, int t, int st, int duration, int value)
-{
+add_effect(int what, int t, int st, int duration, int value) {
   int i;
   ilist *el = NULL;
   struct effect **e = NULL;
@@ -37,20 +36,21 @@ add_effect(int what, int t, int st, int duration, int value)
    *  Validity checks.
    *
    */
-  if (!valid_box(what)) return 0;
+  if (!valid_box(what))
+    return 0;
   /*
    *  Only characters, locations, and sublocations have
    *  effects on them.
    *
    */
-  e = effects(what); 
-  el = (ilist *) &effects(what);
+  e = effects(what);
+  el = (ilist *) & effects(what);
 
   /*
    *  Allocate and fill in the new effect.
    *
    */
-  new = my_malloc(sizeof(*new));
+  new = my_malloc(sizeof (*new));
   new->type = t;
   new->subtype = st;
   new->days = duration;
@@ -71,26 +71,27 @@ add_effect(int what, int t, int st, int duration, int value)
  *
  */
 void
-delete_effect(int what, int type, int st)
-{
+delete_effect(int what, int type, int st) {
   int i;
   ilist *el = NULL;
   struct effect **e = NULL;
-  
+
   /*
    *  Validity checks.
    *
    */
-  if (!valid_box(what)) return;
+  if (!valid_box(what))
+    return;
   /*
    *  Only characters, locations, and sublocations have
    *  effects on them.
    *
    */
-  e = effects(what); 
-  el = (ilist *) &effects(what);
+  e = effects(what);
+  el = (ilist *) & effects(what);
 
-  if (e == NULL) return;
+  if (e == NULL)
+    return;
 
   for (i = ilist_len(e) - 1; i >= 0; i--) {
     if (e[i]->type == type && (!st || e[i]->subtype == st)) {
@@ -108,25 +109,26 @@ delete_effect(int what, int type, int st)
  *
  */
 void
-delete_all_effects(int what, int type, int st)
-{
+delete_all_effects(int what, int type, int st) {
   int i;
   ilist *el = NULL;
   struct effect **e = NULL;
-  
+
   /*
    *  Validity checks.
    *
    */
-  if (!valid_box(what)) return;
+  if (!valid_box(what))
+    return;
   /*
    *  Only characters, locations, and sublocations have
    *  effects on them.
    *
    */
-  e = effects(what); 
-  if (e == NULL) return;
-  el = (ilist *) &effects(what);
+  e = effects(what);
+  if (e == NULL)
+    return;
+  el = (ilist *) & effects(what);
 
   /*
    *  We go through this backwards so that ilist_delete doesn't
@@ -140,6 +142,7 @@ delete_all_effects(int what, int type, int st)
   };
   return;
 };
+
 /*
  *  UPDATE_EFFECTS
  *  Tue Aug  6 12:05:04 1996 -- Scott Turner
@@ -147,29 +150,31 @@ delete_all_effects(int what, int type, int st)
  *  Update something's effects for the passage of a day.
  *
  */
-void update_effects(int what)
-{
+void
+update_effects(int what) {
   int i;
   ilist *el = NULL;
   struct effect **e = NULL;
-  
+
   /*
    *  Validity checks.
    *
    */
-  if (!valid_box(what)) return;
+  if (!valid_box(what))
+    return;
   /*
    *  Only characters, locations, and sublocations have
    *  effects on them.
    *
    */
-  e = effects(what); 
-  el = (ilist *) &effects(what);
+  e = effects(what);
+  el = (ilist *) & effects(what);
   /*
    *  Possibly no effects, in which case we're done.
    *
    */
-  if (e == NULL) return;
+  if (e == NULL)
+    return;
   /*
    *  Otherwise, go through the list, decrement the "days" for each
    *  effect, and delete any that are now expired.  We go through
@@ -185,11 +190,10 @@ void update_effects(int what)
      *
      *  Check hidden stuff every 30 days...
      */
-    if (e[i]->type == ef_hide_money ||
-	e[i]->type == ef_hide_item) {
-      if (e[i]->days % 30 == 0 && rnd(1,100) < (e[i]->days/30)) {
-	wout(what,"You have a nagging feeling you've forgotten something.");
-	ilist_delete(el, i);
+    if (e[i]->type == ef_hide_money || e[i]->type == ef_hide_item) {
+      if (e[i]->days % 30 == 0 && rnd(1, 100) < (e[i]->days / 30)) {
+        wout(what, "You have a nagging feeling you've forgotten something.");
+        ilist_delete(el, i);
       };
       e[i]->days++;
       continue;
@@ -201,28 +205,32 @@ void update_effects(int what)
      */
     if (e[i]->type == ef_kill_dirt_golem) {
       if (e[i]->days < 2) {
-	/*
-	 *  Remove a dirt golem from this guy.
-	 *
-	 */
-	if (consume_item(what, item_dirt_golem, 1)) {
-	  wout(what,"A dirt golem suddenly crumbles to dust!");
-	} else {
-	  wout(gm_player,"No dirt golem available to crumble for %s.",box_name(what));
-	};
+        /*
+         *  Remove a dirt golem from this guy.
+         *
+         */
+        if (consume_item(what, item_dirt_golem, 1)) {
+          wout(what, "A dirt golem suddenly crumbles to dust!");
+        }
+        else {
+          wout(gm_player, "No dirt golem available to crumble for %s.",
+               box_name(what));
+        };
       };
     };
     if (e[i]->type == ef_kill_flesh_golem) {
       if (e[i]->days < 2) {
-	/*
-	 *  Remove a flesh golem from this guy.
-	 *
-	 */
-	if (consume_item(what, item_flesh_golem, 1)) {
-	  wout(what,"A flesh golem suddenly crumbles to dust!");
-	} else {
-	  wout(gm_player,"No flesh golem available to crumble for %s.",box_name(what));
-	};
+        /*
+         *  Remove a flesh golem from this guy.
+         *
+         */
+        if (consume_item(what, item_flesh_golem, 1)) {
+          wout(what, "A flesh golem suddenly crumbles to dust!");
+        }
+        else {
+          wout(gm_player, "No flesh golem available to crumble for %s.",
+               box_name(what));
+        };
       };
     };
     /*
@@ -230,16 +238,17 @@ void update_effects(int what)
      *
      */
     if (e[i]->type == ef_tap_wound && e[i]->days == 1) {
-      wout(what,"You feel a aura-rending blast hit your body!");
+      wout(what, "You feel a aura-rending blast hit your body!");
       add_char_damage(what, e[i]->data, MATES);
     };
-    
+
     /*
      *  Generic case.
      *
      */
     --e[i]->days;
-    if (e[i]->days == 0) ilist_delete(el, i);
+    if (e[i]->days == 0)
+      ilist_delete(el, i);
   };
 
   /*
@@ -256,38 +265,40 @@ void update_effects(int what)
  *  Get the first effect of a type off of an effect list.
  *
  */
-int get_effect(int what, int t, int st, int v)
-{
+int
+get_effect(int what, int t, int st, int v) {
   int i;
   struct effect **e = NULL;
   /*
    *  Validity checks.
    *
    */
-  if (!valid_box(what)) return 0;
+  if (!valid_box(what))
+    return 0;
   /*
    *  Only characters, locations, and sublocations have
    *  effects on them.
    *
    */
-  e = effects(what); 
+  e = effects(what);
   /*
    *  Possibly no effects, in which case we're done.
    *
    */
-  if (e == NULL) return 0;
+  if (e == NULL)
+    return 0;
   /*
    *  Look for the effect.
    *
    */
-  for(i=0;i < ilist_len(e);i++)
+  for (i = 0; i < ilist_len(e); i++)
     if (e[i]->type == t &&
-	(!st || e[i]->subtype == st) &&
-	(!v || e[i]->data == v)) return e[i]->data;
+        (!st || e[i]->subtype == st) && (!v || e[i]->data == v))
+      return e[i]->data;
 
   return 0;
 };
-    
+
 /*
  *  GET_ALL_EFFECTS
  *  Tue Aug  6 12:05:34 1996 -- Scott Turner
@@ -295,35 +306,36 @@ int get_effect(int what, int t, int st, int v)
  *  Like above, only sums multiple cumulative effects.
  *
  */
-int get_all_effects(int what, int t, int st, int v)
-{
+int
+get_all_effects(int what, int t, int st, int v) {
   int i, answer = 0;
   struct effect **e = NULL;
   /*
    *  Validity checks.
    *
    */
-  if (!valid_box(what)) return 0;
+  if (!valid_box(what))
+    return 0;
   /*
    *  Only characters, locations, and sublocations have
    *  effects on them.
    *
    */
-  e = effects(what); 
+  e = effects(what);
   /*
    *  Possibly no effects, in which case we're done.
    *
    */
-  if (e == NULL) return 0;
+  if (e == NULL)
+    return 0;
   /*
    *  Look for the effect.
    *
    */
-  for(i=0;i < ilist_len(e);i++)
+  for (i = 0; i < ilist_len(e); i++)
     if (e[i]->type == t &&
-	(!st || e[i]->subtype == st) &&
-	(!v || e[i]->data == v)) answer += e[i]->data;
+        (!st || e[i]->subtype == st) && (!v || e[i]->data == v))
+      answer += e[i]->data;
 
   return answer;
 };
-    

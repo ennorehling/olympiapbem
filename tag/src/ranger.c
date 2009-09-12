@@ -10,24 +10,22 @@
  *
  */
 int
-v_find_food(struct command *c)
-{
-  if (has_item(province(c->who),item_peasant) >= 100) {
-    wout(c->who,"You may only search for food in wilderness provinces.");
+v_find_food(struct command *c) {
+  if (has_item(province(c->who), item_peasant) >= 100) {
+    wout(c->who, "You may only search for food in wilderness provinces.");
     return FALSE;
   };
-  
+
   return TRUE;
 }
 
 
 int
-d_find_food(struct command *c)
-{
+d_find_food(struct command *c) {
   int food_found = 10;
 
-  if (has_item(province(c->who),item_peasant) >= 100) {
-    wout(c->who,"You may only search for food in wilderness provinces.");
+  if (has_item(province(c->who), item_peasant) >= 100) {
+    wout(c->who, "You may only search for food in wilderness provinces.");
     return FALSE;
   };
 
@@ -39,17 +37,19 @@ d_find_food(struct command *c)
   delete_effect(c->who, ef_food_found, 0);
   food_found += 10;
   if (subkind(province(c->who)) == sub_mountain) {
-    food_found += skill_exp(c->who, sk_find_food)/2;
-  } else if (subkind(province(c->who)) == sub_desert) {
-    food_found += skill_exp(c->who, sk_find_food)/4;
-  } else {
+    food_found += skill_exp(c->who, sk_find_food) / 2;
+  }
+  else if (subkind(province(c->who)) == sub_desert) {
+    food_found += skill_exp(c->who, sk_find_food) / 4;
+  }
+  else {
     food_found += skill_exp(c->who, sk_find_food);
   };
-  
+
   if (!add_effect(c->who, ef_food_found, 0, 35, food_found)) {
-    wout(c->who,"Through some odd circumstance you cannot find any food!");
+    wout(c->who, "Through some odd circumstance you cannot find any food!");
     return FALSE;
   };
-  
+
   return TRUE;
 }

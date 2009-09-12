@@ -16,8 +16,7 @@
  *
  */
 int
-d_add_sails(struct command *c)
-{
+d_add_sails(struct command *c) {
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -44,7 +43,8 @@ d_add_sails(struct command *c)
    *
    */
   if (ship_cap(where) < SAIL_WEIGHT) {
-    wout(c->who, "This ship does not have the capacity to carry another sail.");
+    wout(c->who,
+         "This ship does not have the capacity to carry another sail.");
     return FALSE;
   };
 
@@ -56,16 +56,14 @@ d_add_sails(struct command *c)
    *  add it to the boat.
    */
   ship->sails++;
-  wout(c->who,"%s now equipped with %s sail%s.",
-       box_name(where), nice_num(ship->sails),
-       ship->sails == 1 ? "" : "s");
+  wout(c->who, "%s now equipped with %s sail%s.",
+       box_name(where), nice_num(ship->sails), ship->sails == 1 ? "" : "s");
   return TRUE;
 };
 
 
 int
-v_add_sails(struct command *c)
-{
+v_add_sails(struct command *c) {
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -92,7 +90,8 @@ v_add_sails(struct command *c)
    *
    */
   if (ship_cap(where) < SAIL_WEIGHT) {
-    wout(c->who, "This ship does not have the capacity to carry another sail.");
+    wout(c->who,
+         "This ship does not have the capacity to carry another sail.");
     return FALSE;
   };
 
@@ -100,8 +99,7 @@ v_add_sails(struct command *c)
 }
 
 int
-d_remove_sails(struct command *c)
-{
+d_remove_sails(struct command *c) {
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -124,16 +122,14 @@ d_remove_sails(struct command *c)
   };
 
   ship->sails--;
-  wout(c->who,"%s now equipped with %s sail%s.",
-       box_name(where), nice_num(ship->sails),
-       ship->sails == 1 ? "" : "s");
+  wout(c->who, "%s now equipped with %s sail%s.",
+       box_name(where), nice_num(ship->sails), ship->sails == 1 ? "" : "s");
   return TRUE;
 };
 
 
 int
-v_remove_sails(struct command *c)
-{
+v_remove_sails(struct command *c) {
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -165,8 +161,7 @@ v_remove_sails(struct command *c)
  *
  */
 int
-d_add_forts(struct command *c)
-{
+d_add_forts(struct command *c) {
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -175,7 +170,8 @@ d_add_forts(struct command *c)
    *
    */
   if (subkind(where) != sub_ship || ship == NULL) {
-    wout(c->who, "You must be in a finished ship to add fortification to it.");
+    wout(c->who,
+         "You must be in a finished ship to add fortification to it.");
     return FALSE;
   };
 
@@ -184,7 +180,8 @@ d_add_forts(struct command *c)
    *
    */
   if (ship_cap(where) < FORT_WEIGHT) {
-    wout(c->who, "This ship does not have the capacity for more fortification.");
+    wout(c->who,
+         "This ship does not have the capacity for more fortification.");
     return FALSE;
   };
 
@@ -195,26 +192,24 @@ d_add_forts(struct command *c)
    *  add it to the boat.
    */
   ship->forts++;
-  wout(c->who,"%s now equipped with %s unit%s of fortification.",
-       box_name(where), nice_num(ship->forts),
-       ship->forts == 1 ? "" : "s");
+  wout(c->who, "%s now equipped with %s unit%s of fortification.",
+       box_name(where), nice_num(ship->forts), ship->forts == 1 ? "" : "s");
 
   /*
    *  Fix the fortification level for the ship.
    *
    */
-  rp_subloc(where)->defense = 
-    (ship->forts / (float) ship->hulls)*SHIP_FORTS_BONUS+0.5;
+  rp_subloc(where)->defense =
+    (ship->forts / (float) ship->hulls) * SHIP_FORTS_BONUS + 0.5;
   wout(c->who, "New defense rating for %s is %d.",
        box_name(where), rp_subloc(where)->defense);
-  
+
   return TRUE;
 };
 
 
 int
-v_add_forts(struct command *c)
-{
+v_add_forts(struct command *c) {
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -223,7 +218,8 @@ v_add_forts(struct command *c)
    *
    */
   if (subkind(where) != sub_ship || ship == NULL) {
-    wout(c->who, "You must be in a finished ship to add fortification to it.");
+    wout(c->who,
+         "You must be in a finished ship to add fortification to it.");
     return FALSE;
   };
 
@@ -232,7 +228,8 @@ v_add_forts(struct command *c)
    *
    */
   if (ship_cap(where) < FORT_WEIGHT) {
-    wout(c->who, "This ship does not have the capacity for more fortification.");
+    wout(c->who,
+         "This ship does not have the capacity for more fortification.");
     return FALSE;
   };
 
@@ -240,8 +237,7 @@ v_add_forts(struct command *c)
 }
 
 int
-d_remove_forts(struct command *c)
-{
+d_remove_forts(struct command *c) {
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -264,26 +260,24 @@ d_remove_forts(struct command *c)
   };
 
   ship->forts--;
-  wout(c->who,"%s now equipped with %s unit%s of fortification.",
-       box_name(where), nice_num(ship->forts),
-       ship->forts == 1 ? "" : "s");
+  wout(c->who, "%s now equipped with %s unit%s of fortification.",
+       box_name(where), nice_num(ship->forts), ship->forts == 1 ? "" : "s");
 
   /*
    *  Fix the fortification level for the ship.
    *
    */
-  rp_subloc(where)->defense = 
-    (ship->forts / (float) ship->hulls)*SHIP_FORTS_BONUS+0.5;
+  rp_subloc(where)->defense =
+    (ship->forts / (float) ship->hulls) * SHIP_FORTS_BONUS + 0.5;
   wout(c->who, "New defense rating for %s is %d.",
        box_name(where), rp_subloc(where)->defense);
-  
+
   return TRUE;
 };
 
 
 int
-v_remove_forts(struct command *c)
-{
+v_remove_forts(struct command *c) {
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -315,8 +309,7 @@ v_remove_forts(struct command *c)
  *
  */
 int
-d_add_keels(struct command *c)
-{
+d_add_keels(struct command *c) {
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -354,17 +347,15 @@ d_add_keels(struct command *c)
    *  add it to the boat.
    */
   ship->keels++;
-  wout(c->who,"%s now equipped with %s unit%s of keel.",
-       box_name(where), nice_num(ship->keels),
-       ship->keels == 1 ? "" : "s");
+  wout(c->who, "%s now equipped with %s unit%s of keel.",
+       box_name(where), nice_num(ship->keels), ship->keels == 1 ? "" : "s");
 
   return TRUE;
 };
 
 
 int
-v_add_keels(struct command *c)
-{
+v_add_keels(struct command *c) {
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -399,8 +390,7 @@ v_add_keels(struct command *c)
 }
 
 int
-d_remove_keels(struct command *c)
-{
+d_remove_keels(struct command *c) {
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -423,16 +413,14 @@ d_remove_keels(struct command *c)
   };
 
   ship->keels--;
-  wout(c->who,"%s now equipped with %s unit%s of keel.",
-       box_name(where), nice_num(ship->keels),
-       ship->keels == 1 ? "" : "s");
+  wout(c->who, "%s now equipped with %s unit%s of keel.",
+       box_name(where), nice_num(ship->keels), ship->keels == 1 ? "" : "s");
   return TRUE;
 };
 
 
 int
-v_remove_keels(struct command *c)
-{
+v_remove_keels(struct command *c) {
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -464,8 +452,7 @@ v_remove_keels(struct command *c)
  *
  */
 int
-d_add_ports(struct command *c)
-{
+d_add_ports(struct command *c) {
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -494,16 +481,14 @@ d_add_ports(struct command *c)
    *  add it to the boat.
    */
   ship->ports++;
-  wout(c->who,"%s now equipped with %s rowing port%s.",
-       box_name(where), nice_num(ship->ports),
-       ship->ports == 1 ? "" : "s");
+  wout(c->who, "%s now equipped with %s rowing port%s.",
+       box_name(where), nice_num(ship->ports), ship->ports == 1 ? "" : "s");
   return TRUE;
 };
 
 
 int
-v_add_ports(struct command *c)
-{
+v_add_ports(struct command *c) {
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -529,8 +514,7 @@ v_add_ports(struct command *c)
 }
 
 int
-d_remove_ports(struct command *c)
-{
+d_remove_ports(struct command *c) {
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -553,17 +537,15 @@ d_remove_ports(struct command *c)
   };
 
   ship->ports--;
-  wout(c->who,"%s now equipped with %s rowing port%s.",
-       box_name(where), nice_num(ship->ports),
-       ship->ports == 1 ? "" : "s");
+  wout(c->who, "%s now equipped with %s rowing port%s.",
+       box_name(where), nice_num(ship->ports), ship->ports == 1 ? "" : "s");
 
   return TRUE;
 };
 
 
 int
-v_remove_ports(struct command *c)
-{
+v_remove_ports(struct command *c) {
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -596,58 +578,55 @@ v_remove_ports(struct command *c)
  *
  */
 void
-ship_summary(int pl)
-{
+ship_summary(int pl) {
   int first = 0, sc, sw, i;
-  
+
   loop_known(p_player(pl)->locs, i) {
     if (valid_box(i) && subkind(i) == sub_ship) {
       struct entity_ship *ship = rp_ship(i);
-      if (!ship) continue;
+      if (!ship)
+        continue;
       if (!first) {
-	tagout(pl,"<tag type=ship_report pl=%d>", pl);
-	tagout(pl,"<tag type=header>", pl);
-	out(pl, "");
-	out(pl, "Ship Report:");
-	out(pl, "");
-	out(pl, "ship  hulls  ports  sails  keels  forts  damge  capacity");
-	out(pl, "----  -----  -----  -----  -----  -----  -----  --------");
-	tagout(pl,"</tag type=header>", pl);
+        tagout(pl, "<tag type=ship_report pl=%d>", pl);
+        tagout(pl, "<tag type=header>", pl);
+        out(pl, "");
+        out(pl, "Ship Report:");
+        out(pl, "");
+        out(pl, "ship  hulls  ports  sails  keels  forts  damge  capacity");
+        out(pl, "----  -----  -----  -----  -----  -----  -----  --------");
+        tagout(pl, "</tag type=header>", pl);
 
 
-	first = 1;
+        first = 1;
       };
       sw = ship_weight(i);
       sc = ship_cap(i);
 
-      tagout(pl,"<tag type=ship ship=%d hulls=%d ports=%d "
-	      "sails=%d keels=%d forts=%d damage=%d "
-	      "weight=%d capacity=%d>",
-	      i,
-	      ship->hulls,
-	      ship->ports,
-	      ship->sails,
-	      ship->keels,
-	      ship->forts,
-	      loc_damage(i),
-	      sw, sc);
+      tagout(pl, "<tag type=ship ship=%d hulls=%d ports=%d "
+             "sails=%d keels=%d forts=%d damage=%d "
+             "weight=%d capacity=%d>",
+             i,
+             ship->hulls,
+             ship->ports,
+             ship->sails, ship->keels, ship->forts, loc_damage(i), sw, sc);
 
       out(pl, "%4s  %5d  %5d  %5d  %5d  %5d  %4d%%  %s/%s (%d%%)",
-	  box_code_less(i),
-	  ship->hulls,
-	  ship->ports,
-	  ship->sails,
-	  ship->keels,
-	  ship->forts,
-	  loc_damage(i),
-	  comma_num(sw), comma_num(sc), sw * 100 / sc);
+          box_code_less(i),
+          ship->hulls,
+          ship->ports,
+          ship->sails,
+          ship->keels,
+          ship->forts,
+          loc_damage(i), comma_num(sw), comma_num(sc), sw * 100 / sc);
 
-      tagout(pl,"</tag type=ship>");
-      
+      tagout(pl, "</tag type=ship>");
+
     };
-  } next_known;
+  }
+  next_known;
 
-  if (first) tagout(pl,"</tag type=ship_report pl=%d>", pl);
+  if (first)
+    tagout(pl, "</tag type=ship_report pl=%d>", pl);
 
 };
 
@@ -658,15 +637,17 @@ ship_summary(int pl)
  *
  */
 void
-ship_storm_check(int ship)
-{
+ship_storm_check(int ship) {
   int where = province(ship), coastal, damage_chance = 15;
   int storm_strength = weather_here(where, sub_rain);
   struct entity_ship *s;
 
-  if (!is_ship(ship)) return;
-  if (storm_strength < 1) return;
-  if (storm_strength > 50) storm_strength = 50;
+  if (!is_ship(ship))
+    return;
+  if (storm_strength < 1)
+    return;
+  if (storm_strength > 50)
+    storm_strength = 50;
 
   s = rp_ship(ship);
 
@@ -694,22 +675,24 @@ ship_storm_check(int ship)
     damage_chance -= 5;
   };
 
-  if (storm_strength < 1 ||
-      damage_chance < 1 || rnd(1,100) > damage_chance) return;
+  if (storm_strength < 1 || damage_chance < 1 || rnd(1, 100) > damage_chance)
+    return;
 
   /*
    *  Pen sailors take 1/2 damage.
    *
    */
   if (nation(first_character(ship)) &&
-      strncmp(rp_nation(nation(first_character(ship)))->name, "Pen", 3) == 0) {
-    wout(first_character(ship), "You sail cleanly through the heart of the storm.");
+      strncmp(rp_nation(nation(first_character(ship)))->name, "Pen",
+              3) == 0) {
+    wout(first_character(ship),
+         "You sail cleanly through the heart of the storm.");
     return;
   };
 
   wout(ship, "A storm batters the ship and causes some damage.");
-  add_structure_damage(ship, rnd(1,storm_strength));
-  
+  add_structure_damage(ship, rnd(1, storm_strength));
+
 };
 
 /*
@@ -721,112 +704,99 @@ ship_storm_check(int ship)
  */
 
 int
-v_add_ram(struct command *c)
-{
-	int ship = subloc(c->who);
+v_add_ram(struct command *c) {
+  int ship = subloc(c->who);
 
-	/*
-	 *  In a ship?
-	 *
-	 */
-	if (ship == 0 || subkind(ship) != sub_ship) {
-	  wout(c->who, "You must be in a finished ship to remove a ram.");
-	  return FALSE;
-	};
+  /*
+   *  In a ship?
+   *
+   */
+  if (ship == 0 || subkind(ship) != sub_ship) {
+    wout(c->who, "You must be in a finished ship to remove a ram.");
+    return FALSE;
+  };
 
-	if (ship_has_ram(ship))
-	{
-		wout(c->who, "%s already has a ram.", box_name(ship));
-	}
+  if (ship_has_ram(ship)) {
+    wout(c->who, "%s already has a ram.", box_name(ship));
+  }
 
-	wout(c->who, "Work to add an iron-tipped ram to this vessel.");
-	return TRUE;
+  wout(c->who, "Work to add an iron-tipped ram to this vessel.");
+  return TRUE;
 }
 
 
 int
-d_add_ram(struct command *c)
-{
-	int ship = subloc(c->who);
+d_add_ram(struct command *c) {
+  int ship = subloc(c->who);
 
-	/*
-	 *  In a ship?
-	 *
-	 */
-	if (ship == 0 || subkind(ship) != sub_ship) {
-	  wout(c->who, "You must be in a finished ship to remove a ram.");
-	  return FALSE;
-	};
+  /*
+   *  In a ship?
+   *
+   */
+  if (ship == 0 || subkind(ship) != sub_ship) {
+    wout(c->who, "You must be in a finished ship to remove a ram.");
+    return FALSE;
+  };
 
-	if (ship_has_ram(ship))
-	{
-		wout(c->who, "%s already has a ram.", box_name(ship));
-		return FALSE;
-	}
+  if (ship_has_ram(ship)) {
+    wout(c->who, "%s already has a ram.", box_name(ship));
+    return FALSE;
+  }
 
-	p_ship(ship)->galley_ram = 1;
+  p_ship(ship)->galley_ram = 1;
 
-	wout(c->who, "%s has been fitted with a ram!", box_name(ship));
-	wout(ship, "%s has been fitted with a ram!", box_name(ship));
+  wout(c->who, "%s has been fitted with a ram!", box_name(ship));
+  wout(ship, "%s has been fitted with a ram!", box_name(ship));
 
-	return TRUE;
+  return TRUE;
 }
 
 
 
 int
-v_remove_ram(struct command *c)
-{
-	int ship = subloc(c->who);
+v_remove_ram(struct command *c) {
+  int ship = subloc(c->who);
 
-	/*
-	 *  In a ship?
-	 *
-	 */
-	if (ship == 0 || subkind(ship) != sub_ship) {
-	  wout(c->who, "You must be in a finished ship to remove a ram.");
-	  return FALSE;
-	};
+  /*
+   *  In a ship?
+   *
+   */
+  if (ship == 0 || subkind(ship) != sub_ship) {
+    wout(c->who, "You must be in a finished ship to remove a ram.");
+    return FALSE;
+  };
 
-	if (ship_has_ram(ship))
-	{
-		wout(c->who, "%s already has a ram.", box_name(ship));
-	}
+  if (ship_has_ram(ship)) {
+    wout(c->who, "%s already has a ram.", box_name(ship));
+  }
 
-	wout(c->who, "Work to add an iron-tipped ram to this vessel.");
-	return TRUE;
+  wout(c->who, "Work to add an iron-tipped ram to this vessel.");
+  return TRUE;
 }
 
 
 int
-d_remove_ram(struct command *c)
-{
-	int ship = subloc(c->who);
+d_remove_ram(struct command *c) {
+  int ship = subloc(c->who);
 
-	/*
-	 *  In a ship?
-	 *
-	 */
-	if (ship == 0 || subkind(ship) != sub_ship) {
-	  wout(c->who, "You must be in a finished ship to remove a ram.");
-	  return FALSE;
-	};
+  /*
+   *  In a ship?
+   *
+   */
+  if (ship == 0 || subkind(ship) != sub_ship) {
+    wout(c->who, "You must be in a finished ship to remove a ram.");
+    return FALSE;
+  };
 
-	if (ship_has_ram(ship))
-	{
-		wout(c->who, "%s already has a ram.", box_name(ship));
-		return FALSE;
-	}
+  if (ship_has_ram(ship)) {
+    wout(c->who, "%s already has a ram.", box_name(ship));
+    return FALSE;
+  }
 
-	p_ship(ship)->galley_ram = 1;
+  p_ship(ship)->galley_ram = 1;
 
-	wout(c->who, "%s has been fitted with a ram!", box_name(ship));
-	wout(ship, "%s has been fitted with a ram!", box_name(ship));
+  wout(c->who, "%s has been fitted with a ram!", box_name(ship));
+  wout(ship, "%s has been fitted with a ram!", box_name(ship));
 
-	return TRUE;
+  return TRUE;
 }
-
-
-
-  
-  

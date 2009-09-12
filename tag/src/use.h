@@ -17,4 +17,3 @@ extern int forget_skill(int who, int skill);
 #define TAUGHT_SPECIFIC -1
 #define TAUGHT_GENERIC -2
 #define TAUGHT_STUDYPOINTS -3
-

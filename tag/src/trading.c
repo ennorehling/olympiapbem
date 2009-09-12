@@ -18,8 +18,7 @@ struct trade *new_trade(int who, int kind, int item);
  *
  */
 int
-v_dedicate_tower(struct command *c)
-{
+v_dedicate_tower(struct command *c) {
   int where = subloc(c->who);
   int school = c->a;
   int i;
@@ -31,7 +30,7 @@ v_dedicate_tower(struct command *c)
    */
   if (!valid_box(school) || kind(school) != T_skill ||
       skill_school(school) != school) {
-    wout(c->who,"To dedicate a tower, you must specify the skill school.");
+    wout(c->who, "To dedicate a tower, you must specify the skill school.");
     return FALSE;
   };
 
@@ -41,16 +40,19 @@ v_dedicate_tower(struct command *c)
    *
    */
   p = rp_skill(school);
-  if (p == NULL) return FALSE;
-  
+  if (p == NULL)
+    return FALSE;
+
   for (i = 0; i < ilist_len(p->offered); i++)
     if (!has_skill(c->who, p->offered[i])) {
-      wout(c->who,"You must master all available skills before creating a guild.");
+      wout(c->who,
+           "You must master all available skills before creating a guild.");
       return FALSE;
     };
   for (i = 0; i < ilist_len(p->research); i++)
     if (!has_skill(c->who, p->research[i])) {
-      wout(c->who,"You must master all available skills before creating a guild.");
+      wout(c->who,
+           "You must master all available skills before creating a guild.");
       return FALSE;
     };
 
@@ -59,8 +61,7 @@ v_dedicate_tower(struct command *c)
    *  isn't that guild.
    *
    */
-  if (guild_member(c->who) &&
-      guild_member(c->who) != school) {
+  if (guild_member(c->who) && guild_member(c->who) != school) {
     wout(c->who, "You cannot dedicate this tower, because you're already");
     wout(c->who, "a member of the %s Guild.", box_name(guild_member(c->who)));
     return FALSE;
@@ -71,10 +72,10 @@ v_dedicate_tower(struct command *c)
    *
    */
   if (subkind(where) != sub_tower) {
-    wout(c->who,"To dedicate a tower, you must be inside the tower.");
+    wout(c->who, "To dedicate a tower, you must be inside the tower.");
     return FALSE;
   };
-  
+
   /*
    *  Have to be top dog.
    *
@@ -111,15 +112,15 @@ v_dedicate_tower(struct command *c)
    *  Can't be any other guilds of the same sort here.
    *
    */
-  loop_here(loc(where),i) {
+  loop_here(loc(where), i) {
     if (subkind(i) == sub_guild &&
-	rp_subloc(i) &&
-	rp_subloc(i)->guild == school) {
+        rp_subloc(i) && rp_subloc(i)->guild == school) {
       wout(c->who, "There is already a guild for %s in this city.",
-	   box_name(school));
+           box_name(school));
       return FALSE;
     };
-  } next_here;
+  }
+  next_here;
 
   /*
    *  Tue Dec 29 11:33:45 1998 -- Scott Turner
@@ -127,10 +128,9 @@ v_dedicate_tower(struct command *c)
    *  Have to be a guild member already or ready to join the guild.
    *
    */
-  if (guild_member(c->who) != school &&
-      !can_join_guild(c->who, school)) {
+  if (guild_member(c->who) != school && !can_join_guild(c->who, school)) {
     wout(c->who, "You must be a guild member or ready to join to "
-	 "dedicate a guild.");
+         "dedicate a guild.");
     return FALSE;
   };
 
@@ -144,19 +144,18 @@ v_dedicate_tower(struct command *c)
  *
  */
 void
-make_tower_guild(int where, int school)
-{
+make_tower_guild(int where, int school) {
   struct entity_subloc *p = p_subloc(where);
-  
+
   change_box_subkind(where, sub_guild);
   p->guild = school;
-  if (options.guild_teaching) ilist_append(&p->teaches, school);
-  
+  if (options.guild_teaching)
+    ilist_append(&p->teaches, school);
+
 };
 
 int
-d_dedicate_tower(struct command *c)
-{
+d_dedicate_tower(struct command *c) {
   int where = subloc(c->who), i;
   struct entity_subloc *p = rp_subloc(where);
   int school = c->a;
@@ -166,10 +165,10 @@ d_dedicate_tower(struct command *c)
    *
    */
   if (subkind(where) != sub_tower) {
-    wout(c->who,"To dedicate a tower, you must be inside the tower.");
+    wout(c->who, "To dedicate a tower, you must be inside the tower.");
     return FALSE;
   };
-  
+
   /*
    *  Have to be top dog.
    *
@@ -197,15 +196,15 @@ d_dedicate_tower(struct command *c)
    *  Can't be any other guilds of the same sort here.
    *
    */
-  loop_here(loc(where),i) {
+  loop_here(loc(where), i) {
     if (subkind(i) == sub_guild &&
-	rp_subloc(i) &&
-	rp_subloc(i)->guild == school) {
+        rp_subloc(i) && rp_subloc(i)->guild == school) {
       wout(c->who, "There is already a guild for %s in this city.",
-	   box_name(school));
+           box_name(school));
       return FALSE;
     };
-  } next_here;
+  }
+  next_here;
 
   /*
    *  Tue Dec 29 11:33:45 1998 -- Scott Turner
@@ -213,10 +212,9 @@ d_dedicate_tower(struct command *c)
    *  Have to be a guild member already or ready to join the guild.
    *
    */
-  if (guild_member(c->who) != school &&
-      !can_join_guild(c->who, school)) {
+  if (guild_member(c->who) != school && !can_join_guild(c->who, school)) {
     wout(c->who, "You must be a guild member or ready to join to "
-	 "dedicate a guild.");
+         "dedicate a guild.");
     return FALSE;
   };
 
@@ -234,19 +232,19 @@ d_dedicate_tower(struct command *c)
    *
    */
   if (p == NULL) {
-    wout(c->who,"For some reason, you cannot dedicate this tower.");
+    wout(c->who, "For some reason, you cannot dedicate this tower.");
     return FALSE;
-  } else {
+  }
+  else {
     make_tower_guild(where, school);
-    wout(c->who,"%s now dedicated to %s.",
-	 box_name(where),
-	 just_name(school));
+    wout(c->who, "%s now dedicated to %s.",
+         box_name(where), just_name(school));
     (void) join_guild(c->who, school);
     /*
      *  Have to "touch" the location so it generates a location report.
      *
      */
-     touch_loc(c->who);
+    touch_loc(c->who);
   };
   return TRUE;
 };
@@ -258,20 +256,22 @@ d_dedicate_tower(struct command *c)
  *  Select a trade good at random, based on the relative weights.
  *
  */
-int random_trade_good()
-{
+int
+random_trade_good() {
   int t, sofar = 0, selected = 0;
-  
+
   loop_subkind(sub_trade_good, t) {
     if (rp_item(t)) {
       sofar += rp_item(t)->trade_good;
-      if (rnd(1,sofar) <= rp_item(t)->trade_good) selected = t;
+      if (rnd(1, sofar) <= rp_item(t)->trade_good)
+        selected = t;
     };
-  } next_subkind;
-  
+  }
+  next_subkind;
+
   return selected;
 };
- 
+
 
 /*
  *  ADD_TRADING_PRODUCTION
@@ -281,17 +281,17 @@ int random_trade_good()
  *  one that is already there.
  *
  */
-void add_trade(int where, int type)
-{
+void
+add_trade(int where, int type) {
   int i, found, new_tg;
   int other = (type == PRODUCE) ? CONSUME : PRODUCE;
   struct trade *t;
-  
+
   do {
     new_tg = random_trade_good();
   } while (find_trade(where, type, new_tg) != NULL ||
-	   find_trade(where, other, new_tg) != NULL);
-  
+           find_trade(where, other, new_tg) != NULL);
+
   /*
    *  Create a new trade and add it to the market.
    *
@@ -311,7 +311,7 @@ void add_trade(int where, int type)
    */
   other = (type == PRODUCE) ? SELL : BUY;
   t = new_trade(where, other, new_tg);
-  t->qty = rp_item(new_tg)->trade_good/NUM_MONTHS;
+  t->qty = rp_item(new_tg)->trade_good / NUM_MONTHS;
   t->cost = rp_item(new_tg)->base_price;
 };
 
@@ -320,8 +320,7 @@ void add_trade(int where, int type)
  *
  */
 static void
-update_big_city_trades(int where)
-{
+update_big_city_trades(int where) {
   /*
    *  Remove small city trades.
    *
@@ -332,20 +331,20 @@ update_big_city_trades(int where)
    *  Update (or add) big city trades.
    *
    */
-  update_city_trade(where, CONSUME, item_lana_bark, rnd(1,5),
-		    rp_item(item_lana_bark)->base_price, 0);
-  update_city_trade(where, CONSUME, item_pretus_bones, rnd(1,5),
-		    rp_item(item_pretus_bones)->base_price, 0);
-  update_city_trade(where, CONSUME, item_mallorn_wood, rnd(1,5),
-		    rp_item(item_mallorn_wood)->base_price, 0);
-  update_city_trade(where, CONSUME, item_yew, rnd(1,5),
-		    rp_item(item_yew)->base_price, 0);
-  update_city_trade(where, CONSUME, item_farrenstone, rnd(1,5),
-		    rp_item(item_farrenstone)->base_price, 0);
-  update_city_trade(where, CONSUME, item_spiny_root, rnd(1,5),
-		    rp_item(item_spiny_root)->base_price, 0);
-  update_city_trade(where, CONSUME, item_avinia_leaf, rnd(1,5),
-		    rp_item(item_avinia_leaf)->base_price, 0);
+  update_city_trade(where, CONSUME, item_lana_bark, rnd(1, 5),
+                    rp_item(item_lana_bark)->base_price, 0);
+  update_city_trade(where, CONSUME, item_pretus_bones, rnd(1, 5),
+                    rp_item(item_pretus_bones)->base_price, 0);
+  update_city_trade(where, CONSUME, item_mallorn_wood, rnd(1, 5),
+                    rp_item(item_mallorn_wood)->base_price, 0);
+  update_city_trade(where, CONSUME, item_yew, rnd(1, 5),
+                    rp_item(item_yew)->base_price, 0);
+  update_city_trade(where, CONSUME, item_farrenstone, rnd(1, 5),
+                    rp_item(item_farrenstone)->base_price, 0);
+  update_city_trade(where, CONSUME, item_spiny_root, rnd(1, 5),
+                    rp_item(item_spiny_root)->base_price, 0);
+  update_city_trade(where, CONSUME, item_avinia_leaf, rnd(1, 5),
+                    rp_item(item_avinia_leaf)->base_price, 0);
 }
 
 /*
@@ -353,13 +352,12 @@ update_big_city_trades(int where)
  *
  */
 static void
-update_small_city_trades(int where)
-{
-  int amount = (10000 - has_item(province(where), item_peasant))/400;
-  update_city_trade(where, CONSUME, item_lumber, amount/2,
-		    rp_item(item_lumber)->base_price, 0);
+update_small_city_trades(int where) {
+  int amount = (10000 - has_item(province(where), item_peasant)) / 400;
+  update_city_trade(where, CONSUME, item_lumber, amount / 2,
+                    rp_item(item_lumber)->base_price, 0);
   update_city_trade(where, CONSUME, item_stone, amount,
-		    rp_item(item_stone)->base_price, 0);
+                    rp_item(item_stone)->base_price, 0);
 };
 
 /*
@@ -373,8 +371,7 @@ update_small_city_trades(int where)
  *
  */
 void
-do_production(int where, int override)
-{
+do_production(int where, int override) {
   struct trade *t;
   struct trade *new;
 
@@ -388,26 +385,28 @@ do_production(int where, int override)
       int prod_month = t->month_prod - 1;
 
       if (next_month != prod_month)
-	okay = FALSE;
+        okay = FALSE;
     }
 
     if (t->kind == PRODUCE && okay) {
       new = new_trade(where, SELL, t->item);
 
       if (new->qty < t->qty)
-	new->qty = t->qty;
-
-      new->cost = t->cost;
-      new->cloak = t->cloak;
-    } else if (t->kind == CONSUME) {
-      new = new_trade(where, BUY, t->item);
-      if (new->qty < t->qty)
-	new->qty = t->qty;
+        new->qty = t->qty;
 
       new->cost = t->cost;
       new->cloak = t->cloak;
     }
-  } next_trade;
+    else if (t->kind == CONSUME) {
+      new = new_trade(where, BUY, t->item);
+      if (new->qty < t->qty)
+        new->qty = t->qty;
+
+      new->cost = t->cost;
+      new->cloak = t->cloak;
+    }
+  }
+  next_trade;
 }
 
 /*
@@ -424,8 +423,7 @@ do_production(int where, int override)
  *
  */
 static void
-update_market(int where)
-{
+update_market(int where) {
   struct trade *t, *new;
   int change, i, other, bp;
 
@@ -434,28 +432,31 @@ update_market(int where)
      *  Ignore opium!
      *
      */
-    if (t->item == item_opium) continue;
-    
+    if (t->item == item_opium)
+      continue;
+
     /*
      * Calculate what the change in price, if any, will be.
      *
      */
-    change = (t->cost * (9 + rnd(1,11))) / 100;
-    if (change < 1) change = 1;
-    
+    change = (t->cost * (9 + rnd(1, 11))) / 100;
+    if (change < 1)
+      change = 1;
+
     /*
      *  If this isn't a sell or buy, skip over it.
      *
      */
-    if (t->kind != SELL && t->kind != BUY) continue;
-    
+    if (t->kind != SELL && t->kind != BUY)
+      continue;
+
     /*
      *  other is the corresponding other part of the
      *  transaction, i.e., SELL-PRODUCE and BUY-CONSUME.
      *
      */
     other = CONSUME;
-    
+
     /*
      *  If we're a SELL we switch the other and the "polarity"
      *  of the price change.
@@ -471,7 +472,7 @@ update_market(int where)
      */
     new = new_trade(where, other, t->item);
     assert(new != NULL);
-    
+
     /*  
      *  Add in the price delta if quantity unchanged from last month;
      *  otherwise subtract it.
@@ -485,14 +486,15 @@ update_market(int where)
     if (!t->old_qty || t->old_qty == t->qty) {
       t->counter++;
       if (rp_item(t->item)) {
-	t->cost += change;
-	new->cost += change;
+        t->cost += change;
+        new->cost += change;
       };
-    } else {
+    }
+    else {
       t->counter = 0;
       if (rp_item(t->item)) {
-	t->cost -= change;
-	new->cost -= change;
+        t->cost -= change;
+        new->cost -= change;
       };
     };
 
@@ -507,12 +509,11 @@ update_market(int where)
      *  Hmm.
      */
     if ((rp_item(t->item)->trade_good || item_unique(t->item)) &&
-	t->counter > options.market_age) {
+        t->counter > options.market_age) {
       wout(gm_player, "Deleting good %s from %s.",
-	   box_name(t->item),
-	   box_name(where));
-      ilist_rem_value((ilist *) &bx[where]->trades, (int) t);
-      ilist_rem_value((ilist *) &bx[where]->trades, (int) new);
+           box_name(t->item), box_name(where));
+      ilist_rem_value((ilist *) & bx[where]->trades, (int) t);
+      ilist_rem_value((ilist *) & bx[where]->trades, (int) new);
       continue;
     };
 
@@ -547,18 +548,19 @@ update_market(int where)
       new->cost = 1;
     };
 
-    if (!bp && t->cost > 50) { 
+    if (!bp && t->cost > 50) {
       t->cost = 50;
       new->cost = 50;
     };
-    
+
     /*
      *  Now save the current quantity for next month.
      *
      */
     t->old_qty = t->qty;
-	
-  } next_trade;
+
+  }
+  next_trade;
 
   /*
    *   Tue Jan 18 10:51:16 2000 -- Scott Turner
@@ -577,8 +579,10 @@ update_market(int where)
   loop_trade(where, t) {
     int other = SELL;
 
-    if (t->kind != CONSUME && t->kind != PRODUCE) continue;
-    if (t->kind == CONSUME) other = BUY;
+    if (t->kind != CONSUME && t->kind != PRODUCE)
+      continue;
+    if (t->kind == CONSUME)
+      other = BUY;
 
     /*
      *  A production or consumption with no qty can be deleted
@@ -586,10 +590,10 @@ update_market(int where)
      *
      */
     if (t->qty == 0) {
-      ilist_rem_value((ilist *) &bx[where]->trades, (int) t);
+      ilist_rem_value((ilist *) & bx[where]->trades, (int) t);
       continue;
     };
-    
+
     /*
      *  Some productions only happen 1x year.
      *
@@ -599,7 +603,8 @@ update_market(int where)
       int next_month = (this_month + 1) % NUM_MONTHS;
       int prod_month = t->month_prod - 1;
 
-      if (next_month != prod_month) continue;
+      if (next_month != prod_month)
+        continue;
     };
 
     /*
@@ -610,23 +615,24 @@ update_market(int where)
     new = new_trade(where, other, t->item);
     if (new->qty < t->qty) {
       if (rp_item(t->item)->trade_good) {
-	new->qty += (t->qty/8);  /* per month */
-      } else {
-	new->qty = t->qty;
+        new->qty += (t->qty / 8);       /* per month */
+      }
+      else {
+        new->qty = t->qty;
       };
       new->old_qty = new->qty;
     };
     new->cost = t->cost;
     new->cloak = t->cloak;
-  } next_trade;
+  }
+  next_trade;
 };
 
 static void
-add_trade_goods(int where)
-{
+add_trade_goods(int where) {
   struct trade *t;
   int produce = 0, consume = 0, i;
-  
+
   loop_trade(where, t) {
     /*
      *  Track how many of each; we may need to add some
@@ -639,11 +645,12 @@ add_trade_goods(int where)
     if (t->kind == PRODUCE) {
       produce++;
     };
-	
+
     if (t->kind == CONSUME) {
       consume++;
     };
-  } next_trade;
+  }
+  next_trade;
 
   /*
    *  We need to have 3 productions and 3 consumptions.
@@ -654,7 +661,7 @@ add_trade_goods(int where)
      *  Add a production.
      *
      */
-    for(i = 0; i < (3 - produce); i++) 
+    for (i = 0; i < (3 - produce); i++)
       add_trade(where, PRODUCE);
   };
   if (consume < 3) {
@@ -662,7 +669,7 @@ add_trade_goods(int where)
      *  Add a consumption.
      *
      */
-    for(i = 0; i < (3 - consume); i++) 
+    for (i = 0; i < (3 - consume); i++)
       add_trade(where, CONSUME);
   };
 };
@@ -684,8 +691,7 @@ add_trade_goods(int where)
  *
  */
 void
-update_markets()
-{
+update_markets() {
   struct trade *t, *new;
   int where, produce = 0, consume = 0, change, i;
   stage("update_markets()");
@@ -694,8 +700,9 @@ update_markets()
     if (is_guild(where) == sk_trading) {
       update_market(where);
       add_trade_goods(where);
-    };    
-  } next_guild;
+    };
+  }
+  next_guild;
 
   /*
    *  Wed Sep 15 17:39:39 1999 -- Scott Turner
@@ -729,9 +736,10 @@ update_markets()
      *  City-size specific trades.
      *
      */
-    if (has_item(where,item_peasant) > 9500) {
+    if (has_item(where, item_peasant) > 9500) {
       update_big_city_trades(where);
-    } else {
+    }
+    else {
       update_small_city_trades(where);
     };
 
@@ -739,15 +747,15 @@ update_markets()
      *  Everyone buys wild horses.
      *
      */
-    update_city_trade(where, CONSUME, item_wild_horse, rnd(1,10),
-		     rp_item(item_wild_horse)->base_price, 0);
+    update_city_trade(where, CONSUME, item_wild_horse, rnd(1, 10),
+                      rp_item(item_wild_horse)->base_price, 0);
 
     /*
      *  Update the markets.
      *
      */
     update_market(where);
-    
+
     /*
      *  
      * Opium
@@ -759,12 +767,11 @@ update_markets()
       trade_suffuse_ring(where);
     };
 
-    if (!in_faery(where) &&
-	!in_clouds(where) &&
-	!in_hades(where))
+    if (!in_faery(where) && !in_clouds(where) && !in_hades(where))
       add_scrolls(where);
 
-  } next_city;
+  }
+  next_city;
 }
 
 /*
@@ -776,17 +783,16 @@ update_markets()
  *
  */
 int
-v_smuggle_goods(struct command *c)
-{
+v_smuggle_goods(struct command *c) {
   int flag = c->a;
 
   if (flag && get_effect(c->who, ef_smuggle_goods, 0, 0)) {
-    wout(c->who,"You are already prepared to smuggle goods.");
+    wout(c->who, "You are already prepared to smuggle goods.");
     return FALSE;
   };
 
   if (!flag && !get_effect(c->who, ef_smuggle_goods, 0, 0)) {
-    wout(c->who,"You are not smuggling at this time.");
+    wout(c->who, "You are not smuggling at this time.");
     return FALSE;
   };
 
@@ -794,27 +800,26 @@ v_smuggle_goods(struct command *c)
 };
 
 int
-d_smuggle_goods(struct command *c)
-{
+d_smuggle_goods(struct command *c) {
   int flag = c->a;
 
   if (flag) {
     if (get_effect(c->who, ef_smuggle_goods, 0, 0)) {
-      wout(c->who,"You are already prepared to smuggle goods.");
+      wout(c->who, "You are already prepared to smuggle goods.");
       return FALSE;
     };
     add_effect(c->who, ef_smuggle_goods, 0, -1, 1);
-    wout(c->who,"You are now prepared to smuggle goods.");
+    wout(c->who, "You are now prepared to smuggle goods.");
     return TRUE;
   };
 
   if (!flag) {
     if (!get_effect(c->who, ef_smuggle_goods, 0, 0)) {
-      wout(c->who,"You are not smuggling at this time.");
+      wout(c->who, "You are not smuggling at this time.");
       return FALSE;
     };
     delete_effect(c->who, ef_smuggle_goods, 0);
-    wout(c->who,"You are no longer smuggling goods.");
+    wout(c->who, "You are no longer smuggling goods.");
     return TRUE;
   };
 };
@@ -823,17 +828,16 @@ d_smuggle_goods(struct command *c)
  *
  */
 int
-v_smuggle_men(struct command *c)
-{
+v_smuggle_men(struct command *c) {
   int flag = c->a;
 
   if (flag && get_effect(c->who, ef_smuggle_men, 0, 0)) {
-    wout(c->who,"You are already prepared to smuggle goods.");
+    wout(c->who, "You are already prepared to smuggle goods.");
     return FALSE;
   };
 
   if (!flag && !get_effect(c->who, ef_smuggle_men, 0, 0)) {
-    wout(c->who,"You are not smuggling at this time.");
+    wout(c->who, "You are not smuggling at this time.");
     return FALSE;
   };
 
@@ -841,27 +845,26 @@ v_smuggle_men(struct command *c)
 };
 
 int
-d_smuggle_men(struct command *c)
-{
+d_smuggle_men(struct command *c) {
   int flag = c->a;
 
   if (flag) {
     if (get_effect(c->who, ef_smuggle_men, 0, 0)) {
-      wout(c->who,"You are already prepared to smuggle goods.");
+      wout(c->who, "You are already prepared to smuggle goods.");
       return FALSE;
     };
     add_effect(c->who, ef_smuggle_men, 0, -1, 1);
-    wout(c->who,"You are now prepared to smuggle goods.");
+    wout(c->who, "You are now prepared to smuggle goods.");
     return TRUE;
   };
 
   if (!flag) {
     if (!get_effect(c->who, ef_smuggle_men, 0, 0)) {
-      wout(c->who,"You are not smuggling at this time.");
+      wout(c->who, "You are not smuggling at this time.");
       return FALSE;
     };
     delete_effect(c->who, ef_smuggle_men, 0);
-    wout(c->who,"You are no longer smuggling goods.");
+    wout(c->who, "You are no longer smuggling goods.");
     return TRUE;
   };
 
@@ -882,8 +885,8 @@ d_smuggle_men(struct command *c)
  *  Is a good traded by this place?
  *
  */
-struct trade *traded_here(int where, int good)
-{
+struct trade *
+traded_here(int where, int good) {
   struct trade *t;
 
   /*
@@ -894,9 +897,10 @@ struct trade *traded_here(int where, int good)
    *
    */
   loop_trade(where, t) {
-    if (t->item == good &&
-	(t->kind == SELL || t->kind == BUY)) return t;
-  } next_trade;
+    if (t->item == good && (t->kind == SELL || t->kind == BUY))
+      return t;
+  }
+  next_trade;
   return NULL;
 };
 
@@ -906,8 +910,8 @@ struct trade *traded_here(int where, int good)
  *  Is a good traded by this place?
  *
  */
-struct trade *produced_here(int where, int good)
-{
+struct trade *
+produced_here(int where, int good) {
   struct trade *t;
 
   /*
@@ -918,9 +922,10 @@ struct trade *produced_here(int where, int good)
    *
    */
   loop_trade(where, t) {
-    if (t->item == good &&
-	(t->kind == CONSUME || t->kind == PRODUCE)) return t;
-  } next_trade;
+    if (t->item == good && (t->kind == CONSUME || t->kind == PRODUCE))
+      return t;
+  }
+  next_trade;
   return NULL;
 };
 
@@ -932,8 +937,7 @@ struct trade *produced_here(int where, int good)
  *
  */
 int
-v_increase_demand(struct command *c)
-{
+v_increase_demand(struct command *c) {
   int where = subloc(c->who);
   int good = c->a;
 
@@ -946,7 +950,7 @@ v_increase_demand(struct command *c)
    *  market.
    */
   if (!market_here(where)) {
-    wout(c->who,"You must be in a market to use this skill.");
+    wout(c->who, "You must be in a market to use this skill.");
     return FALSE;
   };
 
@@ -954,8 +958,8 @@ v_increase_demand(struct command *c)
    *  Needs to be a good traded in this guild (by the guild).
    *
    */
-  if (!good || !traded_here(where,good)) {
-    wout(c->who,"That good is not traded here.");
+  if (!good || !traded_here(where, good)) {
+    wout(c->who, "That good is not traded here.");
     return FALSE;
   };
 
@@ -963,8 +967,7 @@ v_increase_demand(struct command *c)
 };
 
 int
-d_increase_demand(struct command *c)
-{
+d_increase_demand(struct command *c) {
   int where = subloc(c->who);
   int good = c->a, change;
   struct trade *t;
@@ -978,7 +981,7 @@ d_increase_demand(struct command *c)
    *  market.
    */
   if (!market_here(where)) {
-    wout(c->who,"You must be in a market to use this skill.");
+    wout(c->who, "You must be in a market to use this skill.");
     return FALSE;
   };
 
@@ -991,8 +994,8 @@ d_increase_demand(struct command *c)
    *  has only one BUY or SELL for a particular good.
    *
    */
-  if (!good || !(t = traded_here(where,good))) {
-    wout(c->who,"That good is not traded here.");
+  if (!good || !(t = traded_here(where, good))) {
+    wout(c->who, "That good is not traded here.");
     return FALSE;
   };
 
@@ -1001,7 +1004,7 @@ d_increase_demand(struct command *c)
    *
    */
   if (!rp_item(t->item)) {
-    wout(c->who,"I'm confused about that trade good, tell the GM.");
+    wout(c->who, "I'm confused about that trade good, tell the GM.");
     return FALSE;
   };
 
@@ -1009,28 +1012,30 @@ d_increase_demand(struct command *c)
    *  No more than 2*base_price
    *
    */
-  if (rp_item(t->item) && rp_item(t->item)->base_price*2 <= t->cost) {
-    wout(c->who, "The demand for %s is straining the market and cannot be further increased.", box_name(t->item));
+  if (rp_item(t->item) && rp_item(t->item)->base_price * 2 <= t->cost) {
+    wout(c->who,
+         "The demand for %s is straining the market and cannot be further increased.",
+         box_name(t->item));
     return FALSE;
   };
-    
+
   /*
    *  Up the price, etc.
    *
    */
-  change = (t->cost * (5 + rnd(1,3))) / 100;
-  if (change < 1) change = 1;
+  change = (t->cost * (5 + rnd(1, 3))) / 100;
+  if (change < 1)
+    change = 1;
   t->cost += change;
-  wout(c->who,"The demand for %s increases; the new price is %s.",
-       box_name(t->item),
-       gold_s(t->cost));
+  wout(c->who, "The demand for %s increases; the new price is %s.",
+       box_name(t->item), gold_s(t->cost));
 
   /*
    *  Also modify the consume/produce price, as necessary.
    *
    */
-  if ((t = produced_here(where,good))) {
-    t->cost +=change;
+  if ((t = produced_here(where, good))) {
+    t->cost += change;
   };
 
   return TRUE;
@@ -1040,8 +1045,7 @@ d_increase_demand(struct command *c)
  *
  */
 int
-v_decrease_demand(struct command *c)
-{
+v_decrease_demand(struct command *c) {
   int where = subloc(c->who);
   int good = c->a;
 
@@ -1054,7 +1058,7 @@ v_decrease_demand(struct command *c)
    *  market.
    */
   if (!market_here(where)) {
-    wout(c->who,"You must be in a market to use this skill.");
+    wout(c->who, "You must be in a market to use this skill.");
     return FALSE;
   };
 
@@ -1062,8 +1066,8 @@ v_decrease_demand(struct command *c)
    *  Needs to be a good traded in this guild (by the guild).
    *
    */
-  if (!good || !traded_here(where,good)) {
-    wout(c->who,"That good is not traded here.");
+  if (!good || !traded_here(where, good)) {
+    wout(c->who, "That good is not traded here.");
     return FALSE;
   };
 
@@ -1071,8 +1075,7 @@ v_decrease_demand(struct command *c)
 };
 
 int
-d_decrease_demand(struct command *c)
-{
+d_decrease_demand(struct command *c) {
   int where = subloc(c->who);
   int good = c->a, change;
   struct trade *t;
@@ -1086,7 +1089,7 @@ d_decrease_demand(struct command *c)
    *  market.
    */
   if (!market_here(where)) {
-    wout(c->who,"You must be in a market to use this skill.");
+    wout(c->who, "You must be in a market to use this skill.");
     return FALSE;
   };
 
@@ -1094,8 +1097,8 @@ d_decrease_demand(struct command *c)
    *  Needs to be a good traded in this guild (by the guild).
    *
    */
-  if (!good || !(t = traded_here(where,good))) {
-    wout(c->who,"That good is not traded here.");
+  if (!good || !(t = traded_here(where, good))) {
+    wout(c->who, "That good is not traded here.");
     return FALSE;
   };
 
@@ -1104,7 +1107,7 @@ d_decrease_demand(struct command *c)
    *
    */
   if (!rp_item(t->item)) {
-    wout(c->who,"I'm confused about that trade good, tell the GM.");
+    wout(c->who, "I'm confused about that trade good, tell the GM.");
     return FALSE;
   };
 
@@ -1112,27 +1115,29 @@ d_decrease_demand(struct command *c)
    *  No more than 2*base_price
    *
    */
-  if (rp_item(t->item) && rp_item(t->item)->base_price/2 >= t->cost) {
-    wout(c->who, "The demand for %s has bottomed out and cannot be further decreased.", box_name(t->item));
+  if (rp_item(t->item) && rp_item(t->item)->base_price / 2 >= t->cost) {
+    wout(c->who,
+         "The demand for %s has bottomed out and cannot be further decreased.",
+         box_name(t->item));
     return FALSE;
   };
-    
+
   /*
    *  Up the price, etc.
    *
    */
-  change = (t->cost * (5 + rnd(1,3))) / 100;
-  if (change < 1) change = 1;
+  change = (t->cost * (5 + rnd(1, 3))) / 100;
+  if (change < 1)
+    change = 1;
   t->cost -= change;
-  wout(c->who,"The demand for %s decreases; the new price is %s.",
-       box_name(t->item),
-       gold_s(t->cost));
+  wout(c->who, "The demand for %s decreases; the new price is %s.",
+       box_name(t->item), gold_s(t->cost));
 
   /*
    *  Also modify the consume/produce price, as necessary.
    *
    */
-  if ((t = produced_here(where,good))) {
+  if ((t = produced_here(where, good))) {
     t->cost -= change;
   };
 
@@ -1145,8 +1150,7 @@ d_decrease_demand(struct command *c)
  *  Increase the # of a good demanded or offered.
  */
 int
-v_increase_supply(struct command *c)
-{
+v_increase_supply(struct command *c) {
   int where = subloc(c->who);
   int good = c->a;
 
@@ -1159,7 +1163,7 @@ v_increase_supply(struct command *c)
    *  market.
    */
   if (!market_here(where)) {
-    wout(c->who,"You must be in a market to use this skill.");
+    wout(c->who, "You must be in a market to use this skill.");
     return FALSE;
   };
 
@@ -1167,8 +1171,8 @@ v_increase_supply(struct command *c)
    *  Needs to be a good traded in this guild (by the guild).
    *
    */
-  if (!good || !traded_here(where,good) || !produced_here(where,good)) {
-    wout(c->who,"That good is not traded here.");
+  if (!good || !traded_here(where, good) || !produced_here(where, good)) {
+    wout(c->who, "That good is not traded here.");
     return FALSE;
   };
 
@@ -1176,8 +1180,7 @@ v_increase_supply(struct command *c)
 };
 
 int
-d_increase_supply(struct command *c)
-{
+d_increase_supply(struct command *c) {
   int where = subloc(c->who);
   int good = c->a;
   float change;
@@ -1192,7 +1195,7 @@ d_increase_supply(struct command *c)
    *  market.
    */
   if (!market_here(where)) {
-    wout(c->who,"You must be in a market to use this skill.");
+    wout(c->who, "You must be in a market to use this skill.");
     return FALSE;
   };
 
@@ -1201,8 +1204,8 @@ d_increase_supply(struct command *c)
    *
    */
   if (!good || !(t = traded_here(where, good)) ||
-      !(p = produced_here(where,good))) {
-    wout(c->who,"That good is not produced here.");
+      !(p = produced_here(where, good))) {
+    wout(c->who, "That good is not produced here.");
     return FALSE;
   };
 
@@ -1211,7 +1214,7 @@ d_increase_supply(struct command *c)
    *
    */
   if (!rp_item(t->item)) {
-    wout(c->who,"I'm confused about that trade good, tell the GM.");
+    wout(c->who, "I'm confused about that trade good, tell the GM.");
     return FALSE;
   };
 
@@ -1220,19 +1223,22 @@ d_increase_supply(struct command *c)
    *
    */
   if (rp_item(t->item) && rp_item(t->item)->trade_good <= t->qty) {
-    wout(c->who, "The supply of %s is exhausted and cannot be further increased.", box_name(t->item));
+    wout(c->who,
+         "The supply of %s is exhausted and cannot be further increased.",
+         box_name(t->item));
     return FALSE;
   };
-    
+
   /*
    *  Add up to 15-33% more of the good; handle amounts < 1 as
    *  chance...
    *
    */
-  change = ((p->qty/8) * (14 + rnd(1,19))) / 100.0;
-  if (change < 1 && rnd(1,100) < change*100) change = 1.0;
+  change = ((p->qty / 8) * (14 + rnd(1, 19))) / 100.0;
+  if (change < 1 && rnd(1, 100) < change * 100)
+    change = 1.0;
   t->qty += change;
-  wout(c->who,"The supply of %s increases; the new amount available is %d.",
+  wout(c->who, "The supply of %s increases; the new amount available is %d.",
        box_name(t->item), t->qty);
 
   return TRUE;
@@ -1242,8 +1248,7 @@ d_increase_supply(struct command *c)
  *
  */
 int
-v_decrease_supply(struct command *c)
-{
+v_decrease_supply(struct command *c) {
   int where = subloc(c->who);
   int good = c->a;
 
@@ -1256,7 +1261,7 @@ v_decrease_supply(struct command *c)
    *  market.
    */
   if (!market_here(where)) {
-    wout(c->who,"You must be in a market to use this skill.");
+    wout(c->who, "You must be in a market to use this skill.");
     return FALSE;
   };
 
@@ -1264,8 +1269,8 @@ v_decrease_supply(struct command *c)
    *  Needs to be a good traded in this guild (by the guild).
    *
    */
-  if (!good || !traded_here(where,good) || !produced_here(where,good)) {
-    wout(c->who,"That good is not traded here.");
+  if (!good || !traded_here(where, good) || !produced_here(where, good)) {
+    wout(c->who, "That good is not traded here.");
     return FALSE;
   };
 
@@ -1273,8 +1278,7 @@ v_decrease_supply(struct command *c)
 };
 
 int
-d_decrease_supply(struct command *c)
-{
+d_decrease_supply(struct command *c) {
   int where = subloc(c->who);
   int good = c->a;
   float change;
@@ -1289,7 +1293,7 @@ d_decrease_supply(struct command *c)
    *  market.
    */
   if (!market_here(where)) {
-    wout(c->who,"You must be in a market to use this skill.");
+    wout(c->who, "You must be in a market to use this skill.");
     return FALSE;
   };
 
@@ -1298,9 +1302,8 @@ d_decrease_supply(struct command *c)
    *
    */
   if (!good ||
-      !(t = traded_here(where, good)) ||
-      !(p = produced_here(where,good))) {
-    wout(c->who,"That good is not traded here.");
+      !(t = traded_here(where, good)) || !(p = produced_here(where, good))) {
+    wout(c->who, "That good is not traded here.");
     return FALSE;
   };
 
@@ -1309,7 +1312,7 @@ d_decrease_supply(struct command *c)
    *
    */
   if (!rp_item(t->item)) {
-    wout(c->who,"I'm confused about that trade good, tell the GM.");
+    wout(c->who, "I'm confused about that trade good, tell the GM.");
     return FALSE;
   };
 
@@ -1318,20 +1321,23 @@ d_decrease_supply(struct command *c)
    *
    */
   if (t->qty < 1) {
-    wout(c->who, "The supply of %s cannot be further decreased.", box_name(t->item));
+    wout(c->who, "The supply of %s cannot be further decreased.",
+         box_name(t->item));
     return FALSE;
   };
-    
+
   /*
    *  Add up to 15-33% more of the good; handle amounts < 1 as
    *  chance...
    *
    */
-  change = ((p->qty/8) * (14 + rnd(1,19))) / 100.0;
-  if (change < 1 && rnd(1,100) < change*100) change = 1.0;
+  change = ((p->qty / 8) * (14 + rnd(1, 19))) / 100.0;
+  if (change < 1 && rnd(1, 100) < change * 100)
+    change = 1.0;
   t->qty -= change;
-  if (t->qty < 0) t->qty = 0;
-  wout(c->who,"The supply of %s decreases; the new amount available is %d.",
+  if (t->qty < 0)
+    t->qty = 0;
+  wout(c->who, "The supply of %s decreases; the new amount available is %d.",
        box_name(t->item), t->qty);
 
   return TRUE;
@@ -1344,16 +1350,15 @@ d_decrease_supply(struct command *c)
  *  then unhide the hidden item.
  */
 int
-v_hide_item(struct command *c)
-{
-  int item=c->a;
+v_hide_item(struct command *c) {
+  int item = c->a;
 
   /*
    *  Is he unhiding?
    *
    */
   if (!item && !get_effect(c->who, ef_hide_item, 0, 0)) {
-    wout(c->who,"You don't have anything to unhide.");
+    wout(c->who, "You don't have anything to unhide.");
     return FALSE;
   };
 
@@ -1371,10 +1376,10 @@ v_hide_item(struct command *c)
    *
    */
   if (item && !has_item(c->who, item)) {
-    wout(c->who,"You do not have that item to hide.");
+    wout(c->who, "You do not have that item to hide.");
     return FALSE;
   };
-  
+
   return TRUE;
 };
 
@@ -1386,18 +1391,17 @@ v_hide_item(struct command *c)
  *
  */
 int
-d_hide_item(struct command *c)
-{
-  int item=c->a;
+d_hide_item(struct command *c) {
+  int item = c->a;
   int what = get_effect(c->who, ef_hide_item, 0, 0);
-    
+
   /*
    *  Is he unhiding?
    *
    */
   if (!item) {
     if (!what) {
-      wout(c->who,"You don't have anything to unhide.");
+      wout(c->who, "You don't have anything to unhide.");
       return FALSE;
     };
     /*
@@ -1407,10 +1411,11 @@ d_hide_item(struct command *c)
     delete_effect(c->who, ef_hide_item, 0);
     if (item_unique(what)) {
       move_item(indep_player, c->who, what, 1);
-    } else {
+    }
+    else {
       gen_item(c->who, what, 1);
     };
-    wout(c->who,"You unhide one %s.", box_name(what));
+    wout(c->who, "You unhide one %s.", box_name(what));
     return TRUE;
   };
 
@@ -1428,7 +1433,7 @@ d_hide_item(struct command *c)
    *
    */
   if (!has_item(c->who, item)) {
-    wout(c->who,"You do not have that item to hide.");
+    wout(c->who, "You do not have that item to hide.");
     return FALSE;
   };
 
@@ -1440,24 +1445,26 @@ d_hide_item(struct command *c)
     delete_effect(c->who, ef_hide_item, 0);
     if (item_unique(what)) {
       move_item(indep_player, c->who, what, 1);
-    } else {
+    }
+    else {
       gen_item(c->who, what, 1);
     };
-    wout(c->who,"You unhide one %s.", box_name(what));
+    wout(c->who, "You unhide one %s.", box_name(what));
   };
-  
+
   /*
    *  Hang the effect and delete the item from his possession.
    *
    */
   if (!item_unique(item)) {
     consume_item(c->who, item, 1);
-  } else {
-      move_item(c->who, indep_player, item, 1);
+  }
+  else {
+    move_item(c->who, indep_player, item, 1);
   };
   add_effect(c->who, ef_hide_item, 0, 1, item);
-  wout(c->who,"You hide one %s.",box_name(item));
-  
+  wout(c->who, "You hide one %s.", box_name(item));
+
   return TRUE;
 };
 
@@ -1470,9 +1477,8 @@ d_hide_item(struct command *c)
  *
  */
 int
-v_hide_money(struct command *c)
-{
-  int amount=c->a;
+v_hide_money(struct command *c) {
+  int amount = c->a;
   int what = get_effect(c->who, ef_hide_money, 0, 0);
 
   /*
@@ -1483,14 +1489,13 @@ v_hide_money(struct command *c)
     wout(c->who, "You don't have any money to unhide.");
     return FALSE;
   };
-    
+
   return TRUE;
 };
 
 int
-d_hide_money(struct command *c)
-{
-  int amount=c->a;
+d_hide_money(struct command *c) {
+  int amount = c->a;
   int what = get_effect(c->who, ef_hide_money, 0, 0);
 
   /*
@@ -1501,14 +1506,14 @@ d_hide_money(struct command *c)
     wout(c->who, "You don't have any money to unhide.");
     return FALSE;
   };
-    
+
   /*
    *  Does he have enough money?
    *
    */
   if (what + has_item(c->who, item_gold) < amount) {
-    wout(c->who,"You don't have %s to hide, hiding %s.",
-	 gold_s(amount-what), has_item(c->who, item_gold));
+    wout(c->who, "You don't have %s to hide, hiding %s.",
+         gold_s(amount - what), has_item(c->who, item_gold));
     what = has_item(c->who, item_gold);
   };
 
@@ -1516,17 +1521,18 @@ d_hide_money(struct command *c)
    *  Adjust the levels.
    *
    */
-  if (amount-what > 0) {
-    charge(c->who, amount-what);
-    wout(c->who,"Adding %s to the amount in hiding.",gold_s(amount-what));
-  } else {
-    gen_item(c->who, item_gold, what-amount);
-    wout(c->who,"Removing %s from the amount in hiding.",
-	 gold_s(what-amount));
+  if (amount - what > 0) {
+    charge(c->who, amount - what);
+    wout(c->who, "Adding %s to the amount in hiding.", gold_s(amount - what));
+  }
+  else {
+    gen_item(c->who, item_gold, what - amount);
+    wout(c->who, "Removing %s from the amount in hiding.",
+         gold_s(what - amount));
   };
   delete_effect(c->who, ef_hide_money, 0);
   add_effect(c->who, ef_hide_money, 0, 1, amount);
-  wout(c->who,"You now have %s in hiding.",gold_s(amount));
-  
+  wout(c->who, "You now have %s in hiding.", gold_s(amount));
+
   return TRUE;
 };

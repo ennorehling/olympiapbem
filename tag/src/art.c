@@ -28,8 +28,7 @@
 
 
 int
-has_auraculum(int who)
-{
+has_auraculum(int who) {
   int ac;
 
   ac = char_auraculum(who);
@@ -46,29 +45,27 @@ has_auraculum(int who)
  */
 
 int
-max_eff_aura(int who)
-{
-	int a;				/* aura */
-	int ac;				/* auraculum */
+max_eff_aura(int who) {
+  int a;                        /* aura */
+  int ac;                       /* auraculum */
 
-	a = char_max_aura(who);
-	if (ac = has_auraculum(who)) {
-	  a += p_item_artifact(ac)->param2;
-	};
+  a = char_max_aura(who);
+  if (ac = has_auraculum(who)) {
+    a += p_item_artifact(ac)->param2;
+  };
 
-	{
-		struct item_ent *e;
-		int n;
+  {
+    struct item_ent *e;
+    int n;
 
-		loop_inv(who, e)
-		{
-			if (n = item_aura_bonus(e->item))
-				a += n;
-		}
-		next_inv;
-	}
+    loop_inv(who, e) {
+      if (n = item_aura_bonus(e->item))
+        a += n;
+    }
+    next_inv;
+  }
 
-	return a;
+  return a;
 }
 
 /*
@@ -78,8 +75,7 @@ max_eff_aura(int who)
  *
  */
 int
-v_forge_palantir(struct command *c)
-{
+v_forge_palantir(struct command *c) {
   if (!check_aura(c->who, skill_aura(c->use_skill))) {
     return FALSE;
   };
@@ -89,8 +85,7 @@ v_forge_palantir(struct command *c)
 }
 
 int
-d_forge_palantir(struct command *c)
-{
+d_forge_palantir(struct command *c) {
   int new;
   struct entity_item *p;
   struct item_magic *pm;
@@ -105,7 +100,8 @@ d_forge_palantir(struct command *c)
   if (!charge_aura(c->who, skill_aura(c->use_skill))) {
     return FALSE;
   };
-  wout(c->who,"Used %s aura casting this spell.", nice_num(skill_aura(c->use_skill)));
+  wout(c->who, "Used %s aura casting this spell.",
+       nice_num(skill_aura(c->use_skill)));
 
   set_name(new, "Palantir");
   p = p_item(new);
@@ -113,10 +109,10 @@ d_forge_palantir(struct command *c)
   p_item_artifact(new)->type = ART_ORB;
   p_item_artifact(new)->param1 = 0;
   p_item_artifact(new)->param2 = 0;
-  p_item_artifact(new)->uses = rnd(3,9);
+  p_item_artifact(new)->uses = rnd(3, 9);
 
   wout(c->who, "Created %s.", box_name(new));
-  log_output(LOG_SPECIAL, "%s created %s.", box_name(c->who), box_name(new));
+  log_write(LOG_SPECIAL, "%s created %s.", box_name(c->who), box_name(new));
   return TRUE;
 }
 
@@ -126,8 +122,7 @@ d_forge_palantir(struct command *c)
  *
  */
 int
-v_use_palantir(struct command *c)
-{
+v_use_palantir(struct command *c) {
   int item = c->a;
   int target = c->b;
   struct item_magic *p;
@@ -139,11 +134,10 @@ v_use_palantir(struct command *c)
 
   p = rp_item_magic(item);
 
-  if (p && p->one_turn_use)
-    {
-      wout(c->who, "The palantir may only be used once per month.");
-      return FALSE;
-    }
+  if (p && p->one_turn_use) {
+    wout(c->who, "The palantir may only be used once per month.");
+    return FALSE;
+  }
 
   wout(c->who, "Will attempt to view %s with the palantir.",
        box_code(target));
@@ -155,55 +149,48 @@ v_use_palantir(struct command *c)
 
 
 int
-d_use_palantir(struct command *c)
-{
-	int item = c->a;
-	int target = c->b;
+d_use_palantir(struct command *c) {
+  int item = c->a;
+  int target = c->b;
 
-	if (!is_loc_or_ship(target))
-	{
-		wout(c->who, "%s is not a location.", box_code(target));
-		return FALSE;
-	}
+  if (!is_loc_or_ship(target)) {
+    wout(c->who, "%s is not a location.", box_code(target));
+    return FALSE;
+  }
 
-	if (loc_shroud(target))
-	{
-		log_output(LOG_CODE, "Murky palantir result, who=%s, targ=%s",
-				box_code_less(c->who), box_code_less(target));
-		wout(c->who, "Only murky, indistinct images are seen in "
-							"the palantir.");
-		return FALSE;
-	}
+  if (loc_shroud(target)) {
+    log_write(LOG_CODE, "Murky palantir result, who=%s, targ=%s",
+               box_code_less(c->who), box_code_less(target));
+    wout(c->who, "Only murky, indistinct images are seen in "
+         "the palantir.");
+    return FALSE;
+  }
 
-	log_output(LOG_CODE, "Palantir scry, who=%s, targ=%s",
-				box_code_less(c->who), box_code_less(target));
+  log_write(LOG_CODE, "Palantir scry, who=%s, targ=%s",
+             box_code_less(c->who), box_code_less(target));
 
-	p_item_magic(item)->one_turn_use++;
+  p_item_magic(item)->one_turn_use++;
 
-	wout(c->who, "A vision of %s appears:", box_name(target));
-	out(c->who, "");
-	show_loc(c->who, target);
+  wout(c->who, "A vision of %s appears:", box_name(target));
+  out(c->who, "");
+  show_loc(c->who, target);
 
-	alert_palantir_scry(c->who, target);
+  alert_palantir_scry(c->who, target);
 
-	return TRUE;
+  return TRUE;
 }
 
 int
-v_destroy_art(struct command *c)
-{
+v_destroy_art(struct command *c) {
   int item = c->a;
 
   if (has_item(c->who, item) < 1) {
-    wout(c->who, "%s does not have %s.",
-	 box_name(c->who),
-	 box_code(item));
+    wout(c->who, "%s does not have %s.", box_name(c->who), box_code(item));
     return FALSE;
   }
 
   if (!is_artifact(item)) {
-    wout(c->who, "Cannot destroy %s with this spell.",
-	 box_name(item));
+    wout(c->who, "Cannot destroy %s with this spell.", box_name(item));
     return FALSE;
   }
 
@@ -216,32 +203,27 @@ v_destroy_art(struct command *c)
 }
 
 int
-d_destroy_art(struct command *c)
-{
+d_destroy_art(struct command *c) {
   int item = c->a;
   int aura;
 
-  if (has_item(c->who, item) < 0)
-    {
-      wout(c->who, "%s does not have %s.",
-	   box_name(c->who),
-	   box_code(item));
-      return FALSE;
-    }
+  if (has_item(c->who, item) < 0) {
+    wout(c->who, "%s does not have %s.", box_name(c->who), box_code(item));
+    return FALSE;
+  }
 
-  if (!is_artifact(item))
-    {
-      wout(c->who, "Cannot destroy %s with this spell.",
-	   box_name(item));
-      return FALSE;
-    }
+  if (!is_artifact(item)) {
+    wout(c->who, "Cannot destroy %s with this spell.", box_name(item));
+    return FALSE;
+  }
 
   if (!charge_aura(c->who, skill_aura(c->use_skill))) {
     return FALSE;
   };
-  wout(c->who,"Used %s aura casting this spell.", nice_num(skill_aura(c->use_skill)));
+  wout(c->who, "Used %s aura casting this spell.",
+       nice_num(skill_aura(c->use_skill)));
 
-  aura = rnd(1,20);
+  aura = rnd(1, 20);
   if (rp_item_artifact(item)->param2 & CA_N_MELEE ||
       rp_item_artifact(item)->param2 & CA_N_MISSILE ||
       rp_item_artifact(item)->param2 & CA_N_SPECIAL ||
@@ -254,47 +236,45 @@ d_destroy_art(struct command *c)
       rp_item_artifact(item)->param2 & CA_M_MISSILE_D ||
       rp_item_artifact(item)->param2 & CA_M_SPECIAL_D) {
     aura = rp_item_artifact(item)->param1 / 5;
-  } if (rp_item_artifact(item)->type == ART_AURACULUM) {
+  }
+  if (rp_item_artifact(item)->type == ART_AURACULUM) {
     aura = rp_item_artifact(item)->param2 / 2;
-  } if (rp_item_artifact(item)->type == ART_ORB) {
-    aura = rnd(1,8);
+  }
+  if (rp_item_artifact(item)->type == ART_ORB) {
+    aura = rnd(1, 8);
   };
 
-  if (aura > 20) aura = 20;
+  if (aura > 20)
+    aura = 20;
 
   add_aura(c->who, aura);
   wout(c->who, "You gain %s aura from the destroyed artifact.",
        nice_num(char_cur_aura(c->who)));
 
-  log_output(LOG_SPECIAL, "%s destroyed %s.",
-	     box_name(c->who), box_name(item));
+  log_write(LOG_SPECIAL, "%s destroyed %s.",
+             box_name(c->who), box_name(item));
 
   destroy_unique_item(c->who, item);
 };
 
 int
-v_mutate_art(struct command *c)
-{
+v_mutate_art(struct command *c) {
   int item = c->a;
 
   if (has_item(c->who, item) < 1) {
-    wout(c->who, "%s does not have %s.",
-	 box_name(c->who),
-	 box_code(item));
+    wout(c->who, "%s does not have %s.", box_name(c->who), box_code(item));
     return FALSE;
   }
 
   if (!is_artifact(item)) {
-    wout(c->who, "Cannot mutate %s with this spell.",
-	 box_name(item));
+    wout(c->who, "Cannot mutate %s with this spell.", box_name(item));
     return FALSE;
   }
 
   if (rp_item_artifact(item)->type == ART_COMBAT ||
       rp_item_artifact(item)->type == ART_AURACULUM ||
       rp_item_artifact(item)->type == ART_ORB) {
-    wout(c->who, "%s is not a mutable artifact.",
-	 box_name(item));
+    wout(c->who, "%s is not a mutable artifact.", box_name(item));
     return FALSE;
   };
 
@@ -306,38 +286,32 @@ v_mutate_art(struct command *c)
 }
 
 int
-d_mutate_art(struct command *c)
-{
+d_mutate_art(struct command *c) {
   int item = c->a;
   int aura, new;
 
-  if (has_item(c->who, item) < 0)
-    {
-      wout(c->who, "%s does not have %s.",
-	   box_name(c->who),
-	   box_code(item));
-      return FALSE;
-    }
+  if (has_item(c->who, item) < 0) {
+    wout(c->who, "%s does not have %s.", box_name(c->who), box_code(item));
+    return FALSE;
+  }
 
-  if (!is_artifact(item))
-    {
-      wout(c->who, "Cannot mutate %s with this spell.",
-	   box_name(item));
-      return FALSE;
-    }
+  if (!is_artifact(item)) {
+    wout(c->who, "Cannot mutate %s with this spell.", box_name(item));
+    return FALSE;
+  }
 
   if (rp_item_artifact(item)->type == ART_COMBAT ||
       rp_item_artifact(item)->type == ART_AURACULUM ||
       rp_item_artifact(item)->type == ART_ORB) {
-    wout(c->who, "%s is not a mutable artifact.",
-	 box_name(item));
+    wout(c->who, "%s is not a mutable artifact.", box_name(item));
     return FALSE;
   };
 
   if (!charge_aura(c->who, skill_aura(c->use_skill))) {
     return FALSE;
   };
-  wout(c->who,"Used %s aura casting this spell.", nice_num(skill_aura(c->use_skill)));
+  wout(c->who, "Used %s aura casting this spell.",
+       nice_num(skill_aura(c->use_skill)));
 
   new = create_random_artifact(c->who);
   wout(c->who, "%s mutates into %s!", box_name(item), box_name(new));
@@ -352,8 +326,7 @@ d_mutate_art(struct command *c)
  *
  */
 int
-v_conceal_arts(struct command *c)
-{
+v_conceal_arts(struct command *c) {
   int target = c->a;
 
   if (!cast_check_char_here(c->who, target)) {
@@ -369,8 +342,7 @@ v_conceal_arts(struct command *c)
 }
 
 int
-d_conceal_arts(struct command *c)
-{
+d_conceal_arts(struct command *c) {
   int target = c->a;
 
   if (!cast_check_char_here(c->who, target)) {
@@ -381,13 +353,14 @@ d_conceal_arts(struct command *c)
   if (!charge_aura(c->who, skill_aura(c->use_skill))) {
     return FALSE;
   };
-  wout(c->who,"Used %s aura casting this spell.", nice_num(skill_aura(c->use_skill)));
+  wout(c->who, "Used %s aura casting this spell.",
+       nice_num(skill_aura(c->use_skill)));
 
   if (!add_effect(target, ef_conceal_artifacts, 0, 30, 1)) {
     wout(c->who, "For some odd reason, your spell fails.");
     return FALSE;
   };
-  wout(c->who,"%s now has artifacts concealed for 30 days.",
+  wout(c->who, "%s now has artifacts concealed for 30 days.",
        box_name(target));
 
   reset_cast_where(c->who);
@@ -401,8 +374,7 @@ d_conceal_arts(struct command *c)
  *
  */
 int
-v_reveal_arts(struct command *c)
-{
+v_reveal_arts(struct command *c) {
   int target = c->a;
 
   if (!cast_check_char_here(c->who, target)) {
@@ -418,8 +390,7 @@ v_reveal_arts(struct command *c)
 }
 
 int
-d_reveal_arts(struct command *c)
-{
+d_reveal_arts(struct command *c) {
   int target = c->a;
   int num = 0;
   struct item_ent *e;
@@ -432,7 +403,8 @@ d_reveal_arts(struct command *c)
   if (!charge_aura(c->who, skill_aura(c->use_skill))) {
     return FALSE;
   };
-  wout(c->who,"Used %s aura casting this spell.", nice_num(skill_aura(c->use_skill)));
+  wout(c->who, "Used %s aura casting this spell.",
+       nice_num(skill_aura(c->use_skill)));
 
   if (get_effect(target, ef_conceal_artifacts, 0, 0)) {
     wout(c->who, "%s is carrying no artifacts.", box_name(target));
@@ -440,13 +412,13 @@ d_reveal_arts(struct command *c)
   };
 
   loop_inv(target, e) {
-    if (item_unique(e->item) &&
-	is_artifact(e->item)) {
-      wout(c->who,"%s is carrying an artifact %s.", box_name(target),
-	   box_name(e->item));
+    if (item_unique(e->item) && is_artifact(e->item)) {
+      wout(c->who, "%s is carrying an artifact %s.", box_name(target),
+           box_name(e->item));
       num++;
     };
-  } next_inv;
+  }
+  next_inv;
 
   if (!num) {
     wout(c->who, "%s is carrying no artifacts.", box_name(target));
@@ -464,14 +436,14 @@ d_reveal_arts(struct command *c)
  *
  */
 int
-v_deep_identify(struct command *c)
-{
+v_deep_identify(struct command *c) {
   int target = c->a;
 
   if (!charge_aura(c->who, skill_aura(c->use_skill))) {
     return FALSE;
   };
-  wout(c->who,"Used %s aura casting this spell.", nice_num(skill_aura(c->use_skill)));
+  wout(c->who, "Used %s aura casting this spell.",
+       nice_num(skill_aura(c->use_skill)));
 
   if (!valid_box(target) ||
       !is_artifact(target) ||
@@ -482,8 +454,9 @@ v_deep_identify(struct command *c)
   };
 
   artifact_identify("You study the aura of this artifact "
-	 "and identify it as: ",c);
+                    "and identify it as: ", c);
 };
+
 /*
  *  Tue Oct 27 11:26:28 1998 -- Scott Turner
  *
@@ -491,8 +464,7 @@ v_deep_identify(struct command *c)
  *
  */
 int
-v_obscure_art(struct command *c)
-{
+v_obscure_art(struct command *c) {
   int target = c->a;
 
   if (!has_item(c->who, target)) {
@@ -508,8 +480,7 @@ v_obscure_art(struct command *c)
 }
 
 int
-d_obscure_art(struct command *c)
-{
+d_obscure_art(struct command *c) {
   int target = c->a;
 
   if (!has_item(c->who, target)) {
@@ -520,15 +491,15 @@ d_obscure_art(struct command *c)
   if (!charge_aura(c->who, skill_aura(c->use_skill))) {
     return FALSE;
   };
-  wout(c->who,"Used %s aura casting this spell.", nice_num(skill_aura(c->use_skill)));
+  wout(c->who, "Used %s aura casting this spell.",
+       nice_num(skill_aura(c->use_skill)));
 
   if (!add_effect(target, ef_obscure_artifact, 0, -1, 1)) {
     wout(c->who, "For some odd reason, your spell fails.");
     return FALSE;
   };
 
-  wout(c->who,"%s is now permanently obscured.",
-       box_name(target));
+  wout(c->who, "%s is now permanently obscured.", box_name(target));
 
   return TRUE;
 };
@@ -540,8 +511,7 @@ d_obscure_art(struct command *c)
  *
  */
 int
-v_unobscure_art(struct command *c)
-{
+v_unobscure_art(struct command *c) {
   int target = c->a;
 
   if (!has_item(c->who, target)) {
@@ -557,8 +527,7 @@ v_unobscure_art(struct command *c)
 }
 
 int
-d_unobscure_art(struct command *c)
-{
+d_unobscure_art(struct command *c) {
   int target = c->a;
 
   if (!has_item(c->who, target)) {
@@ -569,12 +538,12 @@ d_unobscure_art(struct command *c)
   if (!charge_aura(c->who, skill_aura(c->use_skill))) {
     return FALSE;
   };
-  wout(c->who,"Used %s aura casting this spell.", nice_num(skill_aura(c->use_skill)));
+  wout(c->who, "Used %s aura casting this spell.",
+       nice_num(skill_aura(c->use_skill)));
 
   delete_effect(target, ef_obscure_artifact, 0);
 
-  wout(c->who,"Remove obscurity cast upon %s.",
-       box_name(target));
+  wout(c->who, "Remove obscurity cast upon %s.", box_name(target));
 
   return TRUE;
 };
@@ -586,30 +555,32 @@ d_unobscure_art(struct command *c)
  *  Ignore concealed artifacts.
  */
 int
-find_nearest_artifact(int who)
-{
+find_nearest_artifact(int who) {
   int distance = 9999, d, i;
   int where = province(who);
 
   if (region(where) == faery_region ||
-      region(where) == hades_region ||
-      region(where) == cloud_region) return -1;
-  
+      region(where) == hades_region || region(where) == cloud_region)
+    return -1;
+
   loop_artifact(i) {
     if (region(item_unique(i)) == faery_region ||
-	region(item_unique(i)) == hades_region ||
-	region(item_unique(i)) == cloud_region) continue;
+        region(item_unique(i)) == hades_region ||
+        region(item_unique(i)) == cloud_region)
+      continue;
     /*
      *  Might be concealed.
      *
      */
     if (item_unique(i) &&
-	get_effect(item_unique(i), ef_conceal_artifacts, 0, 0)) continue;
+        get_effect(item_unique(i), ef_conceal_artifacts, 0, 0))
+      continue;
     d = los_province_distance(item_unique(i), where);
     if (d < distance) {
       distance = d;
     };
-  } next_artifact;
+  }
+  next_artifact;
 
   return distance;
 };
@@ -621,15 +592,13 @@ find_nearest_artifact(int who)
  *
  */
 int
-v_detect_arts(struct command *c)
-{
+v_detect_arts(struct command *c) {
   if (region(c->who) == faery_region ||
-      region(c->who) == hades_region ||
-      region(c->who) == cloud_region) {
+      region(c->who) == hades_region || region(c->who) == cloud_region) {
     wout(c->who, "Your magic does not work in this place.");
     return FALSE;
   };
-  
+
   if (!check_aura(c->who, skill_aura(c->use_skill))) {
     return FALSE;
   };
@@ -638,13 +607,11 @@ v_detect_arts(struct command *c)
 }
 
 int
-d_detect_arts(struct command *c)
-{
+d_detect_arts(struct command *c) {
   int distance;
-  
+
   if (region(c->who) == faery_region ||
-      region(c->who) == hades_region ||
-      region(c->who) == cloud_region) {
+      region(c->who) == hades_region || region(c->who) == cloud_region) {
     wout(c->who, "Your magic does not work in this place.");
     return FALSE;
   };
@@ -652,30 +619,29 @@ d_detect_arts(struct command *c)
   if (!charge_aura(c->who, skill_aura(c->use_skill))) {
     return FALSE;
   };
-  wout(c->who,"Used %s aura casting this spell.", nice_num(skill_aura(c->use_skill)));
+  wout(c->who, "Used %s aura casting this spell.",
+       nice_num(skill_aura(c->use_skill)));
 
   distance = find_nearest_artifact(c->who);
   if (distance == -1) {
     wout(c->who, "The nearest artifact is very distant.");
-  } else {
+  }
+  else {
     wout(c->who, "The nearest artifact is %s province%s away.",
-	 nice_num(distance), distance == 1 ? "" : "s");
+         nice_num(distance), distance == 1 ? "" : "s");
   };
 
   return TRUE;
 };
 
 int
-v_forge_aura(struct command *c)
-{
+v_forge_aura(struct command *c) {
   int aura;
 
-  if (char_auraculum(c->who))
-    {
-      wout(c->who, "%s may only be used once.",
-	   box_name(c->use_skill));
-      return FALSE;
-    }
+  if (char_auraculum(c->who)) {
+    wout(c->who, "%s may only be used once.", box_name(c->use_skill));
+    return FALSE;
+  }
 
   if (c->a < 1)
     c->a = 1;
@@ -684,34 +650,28 @@ v_forge_aura(struct command *c)
   if (!check_aura(c->who, aura))
     return FALSE;
 
-  if (aura > char_max_aura(c->who))
-    {
-      wout(c->who, "The specified amount of aura exceeds the "
-	   "maximum aura level of %s.", box_name(c->who));
-      return FALSE;
-    }
+  if (aura > char_max_aura(c->who)) {
+    wout(c->who, "The specified amount of aura exceeds the "
+         "maximum aura level of %s.", box_name(c->who));
+    return FALSE;
+  }
 
   wout(c->who, "Attempt to forge an auraculum.");
   return TRUE;
 }
 
 static void
-notify_others_auraculum(int who, int item)
-{
+notify_others_auraculum(int who, int item) {
   int n;
 
-  loop_char(n)
-    {
-      if (n != who && is_magician(n) && has_auraculum(n))
-	wout(n, "%s has constructed an auraculum.",
-	     box_name(who));
-    }
+  loop_char(n) {
+    if (n != who && is_magician(n) && has_auraculum(n))
+      wout(n, "%s has constructed an auraculum.", box_name(who));
+  }
   next_char;
 
-  log_output(LOG_SPECIAL, "%s created %s, %s.",
-	     box_name(who),
-	     box_name(item),
-	     subkind_s[subkind(item)]);
+  log_write(LOG_SPECIAL, "%s created %s, %s.",
+             box_name(who), box_name(item), subkind_s[subkind(item)]);
 }
 
 /*
@@ -721,26 +681,24 @@ notify_others_auraculum(int who, int item)
  *
  */
 int
-d_forge_aura(struct command *c)
-{
+d_forge_aura(struct command *c) {
   int aura = c->a;
   char *new_name;
   int new;
   struct entity_item *p;
   struct char_magic *cm;
 
-  if (aura > char_max_aura(c->who))
-    {
-      wout(c->who, "The specified amount of aura exceeds the "
-	   "maximum aura level of %s.", box_name(c->who));
-      return FALSE;
-    }
+  if (aura > char_max_aura(c->who)) {
+    wout(c->who, "The specified amount of aura exceeds the "
+         "maximum aura level of %s.", box_name(c->who));
+    return FALSE;
+  }
 
   if (!charge_aura(c->who, aura))
     return FALSE;
 
   if (numargs(c) < 2) {
-    switch (rnd(1,3)) {
+    switch (rnd(1, 3)) {
     case 1:
       new_name = "Gold ring";
       break;
@@ -753,7 +711,8 @@ d_forge_aura(struct command *c)
     default:
       assert(FALSE);
     }
-  } else {
+  }
+  else {
     new_name = str_save(c->parse[2]);
   };
 
@@ -767,11 +726,11 @@ d_forge_aura(struct command *c)
   set_name(new, new_name);
 
   p = p_item(new);
-  p->weight = rnd(1,3);
+  p->weight = rnd(1, 3);
 
   p_item_artifact(new)->type = ART_AURACULUM;
-  p_item_artifact(new)->param1 = c->who;  /* creator */
-  p_item_artifact(new)->param2 = aura*2;  /* aura */
+  p_item_artifact(new)->param1 = c->who;        /* creator */
+  p_item_artifact(new)->param2 = aura * 2;      /* aura */
 
   cm = p_magic(c->who);
   cm->auraculum = new;
@@ -786,8 +745,7 @@ d_forge_aura(struct command *c)
 }
 
 int
-v_forge_art_x(struct command *c)
-{
+v_forge_art_x(struct command *c) {
   int aura = c->a;
   int rare_item;
 
@@ -799,41 +757,37 @@ v_forge_art_x(struct command *c)
   if (!check_aura(c->who, aura))
     return FALSE;
 
-  if (!can_pay(c->who, 500))
-    {
-      wout(c->who, "Requires %s.", gold_s(500));
-      return FALSE;
-    }
+  if (!can_pay(c->who, 500)) {
+    wout(c->who, "Requires %s.", gold_s(500));
+    return FALSE;
+  }
 
-  switch (c->use_skill)
-    {
-    case sk_forge_weapon:
-    case sk_forge_armor:
-      rare_item = item_mithril;
-      break;
+  switch (c->use_skill) {
+  case sk_forge_weapon:
+  case sk_forge_armor:
+    rare_item = item_mithril;
+    break;
 
-    case sk_forge_bow:
-      rare_item = item_mallorn_wood;
-      break;
+  case sk_forge_bow:
+    rare_item = item_mallorn_wood;
+    break;
 
-    default:
-      assert(FALSE);
-    }
+  default:
+    assert(FALSE);
+  }
   c->d = rare_item;
 
-  if (!has_item(c->who, rare_item) >= 1)
-    {
-      wout(c->who, "Requires %s.", box_name_qty(rare_item, 1));
-      return FALSE;
-    }
+  if (!has_item(c->who, rare_item) >= 1) {
+    wout(c->who, "Requires %s.", box_name_qty(rare_item, 1));
+    return FALSE;
+  }
 
   return TRUE;
 }
 
 
 int
-d_forge_art_x(struct command *c)
-{
+d_forge_art_x(struct command *c) {
   int new;
   int aura = c->a;
   int rare_item = c->d;
@@ -843,17 +797,15 @@ d_forge_art_x(struct command *c)
   if (!check_aura(c->who, aura))
     return FALSE;
 
-  if (!charge(c->who, 500))
-    {
-      wout(c->who, "Requires %s.", gold_s(500));
-      return FALSE;
-    }
+  if (!charge(c->who, 500)) {
+    wout(c->who, "Requires %s.", gold_s(500));
+    return FALSE;
+  }
 
-  if (!has_item(c->who, rare_item) >= 1)
-    {
-      wout(c->who, "Requires %s.", box_name_qty(rare_item, 1));
-      return FALSE;
-    }
+  if (!has_item(c->who, rare_item) >= 1) {
+    wout(c->who, "Requires %s.", box_name_qty(rare_item, 1));
+    return FALSE;
+  }
 
   charge_aura(c->who, aura);
   charge(c->who, 500);
@@ -863,29 +815,29 @@ d_forge_art_x(struct command *c)
   p_item(new)->weight = 10;
   p_item_artifact(new)->type = ART_COMBAT;
 
-  switch (c->use_skill)
-    {
-    case sk_forge_weapon:
-      rp_item_artifact(new)->param2 = CA_N_MELEE;
-      rp_item_artifact(new)->param1 = aura * 5;
-      new_name = "enchanted sword";
-      break;
+  switch (c->use_skill) {
+  case sk_forge_weapon:
+    rp_item_artifact(new)->param2 = CA_N_MELEE;
+    rp_item_artifact(new)->param1 = aura * 5;
+    new_name = "enchanted sword";
+    break;
 
-    case sk_forge_armor:
-      rp_item_artifact(new)->param2 = CA_N_MELEE_D | CA_N_MISSILE_D | CA_N_SPECIAL_D;
-      rp_item_artifact(new)->param1 = aura * 5;
-      new_name = "enchanted armor";
-      break;
+  case sk_forge_armor:
+    rp_item_artifact(new)->param2 =
+      CA_N_MELEE_D | CA_N_MISSILE_D | CA_N_SPECIAL_D;
+    rp_item_artifact(new)->param1 = aura * 5;
+    new_name = "enchanted armor";
+    break;
 
-    case sk_forge_bow:
-      rp_item_artifact(new)->param2 = CA_N_MISSILE;
-      rp_item_artifact(new)->param1 = aura * 5;
-      new_name = "enchanted bow";
-      break;
+  case sk_forge_bow:
+    rp_item_artifact(new)->param2 = CA_N_MISSILE;
+    rp_item_artifact(new)->param1 = aura * 5;
+    new_name = "enchanted bow";
+    break;
 
-    default:
-      assert(FALSE);
-    }
+  default:
+    assert(FALSE);
+  }
 
   if (numargs(c) >= 2 && c->parse[2] && *(c->parse[2]))
     new_name = c->parse[2];
@@ -897,8 +849,7 @@ d_forge_art_x(struct command *c)
 }
 
 int
-new_suffuse_ring(int who)
-{
+new_suffuse_ring(int who) {
   int new;
   int ni;
   int lore;
@@ -917,71 +868,63 @@ new_suffuse_ring(int who)
 static ilist orb_used_this_month = NULL;
 
 int
-v_use_orb(struct command *c)
-{
-	int item = c->a;
-	int target = c->b;
-	int where = 0;
-	int owner;
-	struct item_magic *p;
+v_use_orb(struct command *c) {
+  int item = c->a;
+  int target = c->b;
+  int where = 0;
+  int owner;
+  struct item_magic *p;
 
-	if (ilist_lookup(orb_used_this_month, item) >= 0)
-	{
-	    wout(c->who, "The orb may only be used once per month.");
-	    wout(c->who, "Only murky, indistinct images are seen in the orb.");
-	    return FALSE;
-	}
+  if (ilist_lookup(orb_used_this_month, item) >= 0) {
+    wout(c->who, "The orb may only be used once per month.");
+    wout(c->who, "Only murky, indistinct images are seen in the orb.");
+    return FALSE;
+  }
 
-	ilist_append(&orb_used_this_month, item);
+  ilist_append(&orb_used_this_month, item);
 
-	if (rnd(1,3) == 1)
-	{
-	    wout(c->who, "Only murky, indistinct images are seen in the orb.");
-	    return FALSE;
-	}
+  if (rnd(1, 3) == 1) {
+    wout(c->who, "Only murky, indistinct images are seen in the orb.");
+    return FALSE;
+  }
 
-	switch (kind(target))
-	{
-	case T_loc:
-	case T_ship:
-		where = province(target);
-		break;
+  switch (kind(target)) {
+  case T_loc:
+  case T_ship:
+    where = province(target);
+    break;
 
-	case T_char:
-		where = province(target);
-		break;
+  case T_char:
+    where = province(target);
+    break;
 
-	case T_item:
-		if (owner = item_unique(target))
-			where = province(owner);
-		break;
-	}
+  case T_item:
+    if (owner = item_unique(target))
+      where = province(owner);
+    break;
+  }
 
-	if (where == 0)
-	{
-		wout(c->who, "The orb is unsure what location is meant to be scried.");
-	}
-	else if (loc_shroud(where))
-	{
-		wout(c->who, "The orb is unable to penetrate a shroud over %s.",
-					box_name(where));
-	}
-	else
-	{
-		wout(c->who, "A vision of %s appears:", box_name(where));
-		show_loc(c->who, where);
-		alert_scry_generic(c->who, where);
-	}
+  if (where == 0) {
+    wout(c->who, "The orb is unsure what location is meant to be scried.");
+  }
+  else if (loc_shroud(where)) {
+    wout(c->who, "The orb is unable to penetrate a shroud over %s.",
+         box_name(where));
+  }
+  else {
+    wout(c->who, "A vision of %s appears:", box_name(where));
+    show_loc(c->who, where);
+    alert_scry_generic(c->who, where);
+  }
 
-	p = p_item_magic(item);
+  p = p_item_magic(item);
 
-	p->orb_use_count--;
-	if (p->orb_use_count <= 0)
-	{
-		wout(c->who, "After the vision fades, the orb grows "
-				"dark, and shatters.  The orb is gone");
-		destroy_unique_item(c->who, item);
-	}
+  p->orb_use_count--;
+  if (p->orb_use_count <= 0) {
+    wout(c->who, "After the vision fades, the orb grows "
+         "dark, and shatters.  The orb is gone");
+    destroy_unique_item(c->who, item);
+  }
 
-	return TRUE;
+  return TRUE;
 }

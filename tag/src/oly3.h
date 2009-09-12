@@ -4,14 +4,14 @@
  *
  *
  */
-#define ATTACK_LIMIT 4   /* The number of attacks in a row permitted. */
-#define CONTROL_SKILL          /* New skill to control men in battle. */
-#define DEFAULT_CONTROLLED 10  /* Number controlled if you don't have the skill.*/
+#define ATTACK_LIMIT 4          /* The number of attacks in a row permitted. */
+#define CONTROL_SKILL           /* New skill to control men in battle. */
+#define DEFAULT_CONTROLLED 10   /* Number controlled if you don't have the skill. */
 #define GARRISON_CONTROLLED 20  /* Default controlled by garrison */
-#define DEFENDER_CONTROL_BONUS 20  /* On defense, control extra men. */
-#define TACTICS_FACTOR 0.02    /* % given with each week of study. */
-#define TACTICS_LIMIT 2.0      /* Maximum bonus from tactics. */
-#define CITY_DEFENSE_BONUS 1.25      /* Terrain bonuses to defense */
+#define DEFENDER_CONTROL_BONUS 20       /* On defense, control extra men. */
+#define TACTICS_FACTOR 0.02     /* % given with each week of study. */
+#define TACTICS_LIMIT 2.0       /* Maximum bonus from tactics. */
+#define CITY_DEFENSE_BONUS 1.25 /* Terrain bonuses to defense */
 #define FOREST_DEFENSE_BONUS 1.50
 #define MOUNTAIN_DEFENSE_BONUS 2.00
 #define SWAMP_DEFENSE_BONUS 0.75
@@ -20,7 +20,7 @@
  *  Scrolls & Books
  *
  */
-#define SCROLL_CHANCE 50  /* % for a scroll or book to appear in a city */
+#define SCROLL_CHANCE 50        /* % for a scroll or book to appear in a city */
 
 /*
  *  Shipcraft stuff

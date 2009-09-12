@@ -430,7 +430,7 @@ void
 out(int who, const char *format, ...) {
   va_list ap;
   
-va_start(ap, format);
+  va_start(ap, format);
   vout(who, format, ap);
   va_end(ap);
 }
@@ -613,7 +613,8 @@ match_lines(int who, char *s) {
 
 
 void
-log_write(int k, const char *format, ...) {
+log_write(int k, const char *format, ...)
+{
   int save_out_path = out_path;
   int save_out_alt_who = out_alt_who;
   va_list ap;
@@ -624,7 +625,7 @@ log_write(int k, const char *format, ...) {
   out_alt_who = k;
 
   va_start(ap, format);
-  vout(k, format, ap);
+  vout(gm_player, format, ap);
   va_end(ap);
 
   out_path = save_out_path;

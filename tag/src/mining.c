@@ -9,57 +9,79 @@
  */
 #define MINE_PRODUCTS 4
 
-int mine_products[MINE_PRODUCTS] = {item_iron, item_gold, item_mithril,
-				    item_gate_crystal};
+int mine_products[MINE_PRODUCTS] = { item_iron, item_gold, item_mithril,
+  item_gate_crystal
+};
 
 struct {
   int mins[MINE_PRODUCTS];
   int maxs[MINE_PRODUCTS];
-} mine_qties[MINE_MAX+1] = {
+} mine_qties[MINE_MAX + 1] = {
 /*        iron  gold  mithril gate_crystal  */
 /*        ----  ----  ------- ------------  */
-/* 0 */   {{0,    0,    0,   0},
-	   {0,    0,    0,   0}},
-/* 1 */   {{0,    0,    0,   0},
-	   {10,    0,    0,   0}},
-/* 2 */   {{10,    0,    0,   0},
-	   {20,   0,    0,   0}},
-/* 3 */   {{10,    0,    0,   0},
-	   {30,   0,    0,   0}},
-/* 4 */   {{10,    0,    0,   0},
-	   {40,   0,    0,   0}},
-/* 5 */   {{10,    0,    0,   0},
-	   {30,  100,    0,   0}},
-/* 6 */   {{0,    0,    0,   0},
-	   {20,  300,   0,   0}},
-/* 7 */   {{0,   100,    0,   0},
-	   {20,  450,   0,   0}},
-/* 8 */   {{0,   120,    0,   0},
-	   {20,  600,   0,   0}},
-/* 9 */   {{0,   140,    0,   0},
-	   {20,  750,   0,   0}},
-/*10 */   {{0,   160,    0,   0},
-	   {20,  900,   1,   0}},
-/*11 */   {{0,   180,    0,   0},
-	   {0,  1000,   3,   0}},
-/*12 */   {{0,   200,    0,   0},
-	   {0,  1200,   6,   0}},
-/*13 */   {{0,   220,    0,   0},
-	   {0,  1300,   9,   0}},
-/*14 */   {{0,   240,    0,   0},
-	   {0,  1500,  12,   0}},
-/*15 */   {{0,   200,    0,   0},
-	   {0,  1200,  15,   1}},
-/*16 */   {{0,   160,    0,   0},
-	   {0,   900,  10,   1}},
-/*17 */   {{0,   120,    0,   0},
-	   {0,  600,   5,   1}},
-/*18 */   {{0,    80,    0,   0},
-	   {0,   300,   0,   1}},
-/*19 */   {{0,    20,    0,   1},
-	   {0,   100,    0,   1}},
-/*20 */   {{0,    0,    0,   1},
-	   {0,   100,    0,   3}}
+/* 0 */  { {
+  0, 0, 0, 0}, {
+  0, 0, 0, 0}},
+/* 1 */  { {
+  0, 0, 0, 0}, {
+  10, 0, 0, 0}},
+/* 2 */  { {
+  10, 0, 0, 0}, {
+  20, 0, 0, 0}},
+/* 3 */  { {
+  10, 0, 0, 0}, {
+  30, 0, 0, 0}},
+/* 4 */  { {
+  10, 0, 0, 0}, {
+  40, 0, 0, 0}},
+/* 5 */  { {
+  10, 0, 0, 0}, {
+  30, 100, 0, 0}},
+/* 6 */  { {
+  0, 0, 0, 0}, {
+  20, 300, 0, 0}},
+/* 7 */  { {
+  0, 100, 0, 0}, {
+  20, 450, 0, 0}},
+/* 8 */  { {
+  0, 120, 0, 0}, {
+  20, 600, 0, 0}},
+/* 9 */  { {
+  0, 140, 0, 0}, {
+  20, 750, 0, 0}},
+/*10 */  { {
+  0, 160, 0, 0}, {
+  20, 900, 1, 0}},
+/*11 */  { {
+  0, 180, 0, 0}, {
+  0, 1000, 3, 0}},
+/*12 */  { {
+  0, 200, 0, 0}, {
+  0, 1200, 6, 0}},
+/*13 */  { {
+  0, 220, 0, 0}, {
+  0, 1300, 9, 0}},
+/*14 */  { {
+  0, 240, 0, 0}, {
+  0, 1500, 12, 0}},
+/*15 */  { {
+  0, 200, 0, 0}, {
+  0, 1200, 15, 1}},
+/*16 */  { {
+  0, 160, 0, 0}, {
+  0, 900, 10, 1}},
+/*17 */  { {
+  0, 120, 0, 0}, {
+  0, 600, 5, 1}},
+/*18 */  { {
+  0, 80, 0, 0}, {
+  0, 300, 0, 1}},
+/*19 */  { {
+  0, 20, 0, 1}, {
+  0, 100, 0, 1}},
+/*20 */  { {
+  0, 0, 0, 1}, {
+  0, 100, 0, 3}}
 };
 
 /*
@@ -83,11 +105,10 @@ struct {
  *
  */
 static float
-mine_chance(int item, int who, int skill)
-{
+mine_chance(int item, int who, int skill) {
   float initial_chance = 0.0, exp_bonus = 0.0, worker_bonus = 0.0;
 
-  switch(item) {
+  switch (item) {
   case item_iron:
     initial_chance = 70.0;
     break;
@@ -109,23 +130,25 @@ mine_chance(int item, int who, int skill)
    *
    */
   exp_bonus = skill_exp(who, skill) * 5.0;
-  if (exp_bonus > 50) exp_bonus = 50.0;
+  if (exp_bonus > 50)
+    exp_bonus = 50.0;
 
   /*
    *  Worker bonus
    *
    */
   worker_bonus = effective_workers(who) * 0.20;
-  if (worker_bonus > 20.0) worker_bonus = 20.0;
+  if (worker_bonus > 20.0)
+    worker_bonus = 20.0;
 
   /*
    *  Add it up and return the daily %.
    *
    */
   return (initial_chance + exp_bonus + worker_bonus) / 7.0;
-  
+
 };
-    
+
 /*
  *  Mon Jan 20 11:54:43 1997 -- Scott Turner
  *
@@ -139,15 +162,14 @@ mine_chance(int item, int who, int skill)
  *
  */
 int
-mine_depth(int where)
-{
+mine_depth(int where) {
   int depth = -1;
-  
+
   while (where > 0 && subkind(where) == sub_mine_shaft) {
     where = location_direction(where, DIR_UP);
     depth++;
   };
-  
+
   return depth;
 
 };
@@ -162,12 +184,12 @@ mine_depth(int where)
  *  Ugghhhhhhhh.  This is considerably uglier, since mine shafts are no
  *  longer sublocs.  We need to go "up" until we find a mine_info.
  */
-struct entity_mine
-*get_mine_info(int where)
-{
+struct entity_mine *
+get_mine_info(int where) {
   int up;
 
-  if (subkind(where) != sub_mine_shaft) return NULL;
+  if (subkind(where) != sub_mine_shaft)
+    return NULL;
 
   while (where > 0 && subkind(where) == sub_mine_shaft) {
     up = location_direction(where, DIR_UP);
@@ -176,7 +198,8 @@ struct entity_mine
 
   assert(where);
 
-  if (!p_loc(where)->mine_info) create_mine_info(where);
+  if (!p_loc(where)->mine_info)
+    create_mine_info(where);
 
   return p_loc(where)->mine_info;
 
@@ -189,9 +212,8 @@ struct entity_mine
  *
  */
 void
-create_mine_info(int mine)
-{
-  int i,j;
+create_mine_info(int mine) {
+  int i, j;
   ilist *el = NULL;
   struct item_ent *new;
 
@@ -201,7 +223,7 @@ create_mine_info(int mine)
    *  Allocate the entity_mine.
    *
    */
-  p_loc(mine)->mine_info = my_malloc(sizeof(*p_loc(mine)->mine_info));
+  p_loc(mine)->mine_info = my_malloc(sizeof (*p_loc(mine)->mine_info));
 
   /*
    *  Now go through each level of the mine and add in all
@@ -209,16 +231,16 @@ create_mine_info(int mine)
    *
    */
   for (i = 0; i < MINE_MAX; i++) {
-    el = (ilist *) &(p_loc(mine)->mine_info->mc[i].items);
+    el = (ilist *) & (p_loc(mine)->mine_info->mc[i].items);
     p_loc(mine)->mine_info->shoring[i] = NO_SHORING;
     for (j = 0; j < MINE_PRODUCTS; j++) {
-	int qty = rnd(mine_qties[i].mins[j],mine_qties[i].maxs[j]);
-	if (qty) {
-	  new = my_malloc(sizeof(*new));
-	  new->item = mine_products[j];
-	  new->qty = qty;
-	  ilist_append(el, (int) new);
-	};
+      int qty = rnd(mine_qties[i].mins[j], mine_qties[i].maxs[j]);
+      if (qty) {
+        new = my_malloc(sizeof (*new));
+        new->item = mine_products[j];
+        new->qty = qty;
+        ilist_append(el, (int) new);
+      };
     };
   };
 };
@@ -230,23 +252,24 @@ create_mine_info(int mine)
  *
  */
 static int
-mine_has_item(int mine, int depth, int item)
-{
+mine_has_item(int mine, int depth, int item) {
   int i;
   struct entity_mine *mi = get_mine_info(mine);
-  
-  if (!mi) return 0;
+
+  if (!mi)
+    return 0;
 
   assert(depth >= 0);
-  if (depth >= MINE_MAX) depth = MINE_MAX-1;
+  if (depth >= MINE_MAX)
+    depth = MINE_MAX - 1;
 
   for (i = 0; i < ilist_len(mi->mc[depth].items); i++)
     if (mi->mc[depth].items[i]->item == item)
       return mi->mc[depth].items[i]->qty;
-  
+
   return 0;
 };
- 
+
 /*
  *  Sat Jan 25 11:30:04 1997 -- Scott Turner
  *
@@ -254,35 +277,34 @@ mine_has_item(int mine, int depth, int item)
  *
  */
 static void
-mine_sub_item(int mine, int depth, int item, int amount)
-{
+mine_sub_item(int mine, int depth, int item, int amount) {
   int i;
   struct entity_mine *mi = get_mine_info(mine);
-  
-  if (!mi) return;
+
+  if (!mi)
+    return;
 
   assert(depth >= 0);
-  if (depth >= MINE_MAX) depth = MINE_MAX-1;
+  if (depth >= MINE_MAX)
+    depth = MINE_MAX - 1;
 
   for (i = 0; i < ilist_len(mi->mc[depth].items); i++)
     if (mi->mc[depth].items[i]->item == item) {
       mi->mc[depth].items[i]->qty -= amount;
       return;
     };
-  
+
   return;
 };
 
 int
-start_generic_mine(struct command *c, int item, int skill)
-{
+start_generic_mine(struct command *c, int item, int skill) {
   int where = subloc(c->who);
   int days = c->a ? c->a : 7;
   int nworkers;
 
   if (subkind(where) != sub_mine_shaft) {
-    wout(c->who, "Must be in a mine shaft to extract %s.",
-	 just_name(item));
+    wout(c->who, "Must be in a mine shaft to extract %s.", just_name(item));
     return FALSE;
   }
 
@@ -293,18 +315,16 @@ start_generic_mine(struct command *c, int item, int skill)
   }
 
   c->wait = days;
-  
+
   wout(c->who, "Will mine %s for the next %s days.",
-       just_name(item),
-       nice_num(c->wait));
+       just_name(item), nice_num(c->wait));
 
   return TRUE;
 }
 
 
 int
-finish_generic_mine(struct command *c, int item, int skill)
-{
+finish_generic_mine(struct command *c, int item, int skill) {
   int where = subloc(c->who);
   int has;
   int nworkers;
@@ -320,8 +340,7 @@ finish_generic_mine(struct command *c, int item, int skill)
 
   nworkers = effective_workers(c->who);
   if (nworkers < 10) {
-    wout(c->who, "%s no longer has ten workers.",
-	 box_name(c->who));
+    wout(c->who, "%s no longer has ten workers.", box_name(c->who));
     return FALSE;
   };
 
@@ -333,7 +352,7 @@ finish_generic_mine(struct command *c, int item, int skill)
    */
   chance = mine_chance(item, c->who, skill) * c->days_executing;
 
-  if (chance < rnd(1,100)) {
+  if (chance < rnd(1, 100)) {
     wout(c->who, "Mining yielded no %s.", just_name(item));
     return FALSE;
   };
@@ -346,7 +365,7 @@ finish_generic_mine(struct command *c, int item, int skill)
   has = mine_has_item(where, depth, item);
   if (!has) {
     wout(c->who, "Mining yielded no %s.", just_name(item));
-    if (rnd(1,100) < 70) {
+    if (rnd(1, 100) < 70) {
       wout(c->who, "This level appears to be mined out.");
     };
     return FALSE;
@@ -357,14 +376,16 @@ finish_generic_mine(struct command *c, int item, int skill)
    *  40-60% of this, depending upon how many men we have as workers.
    *
    */
-  if (nworkers > 100) nworkers = 100;
-  qty = (has * rnd(40,40+(nworkers/5)))/100;
+  if (nworkers > 100)
+    nworkers = 100;
+  qty = (has * rnd(40, 40 + (nworkers / 5))) / 100;
 
   /*
    *  Guarantee at least 1 for gate crystals, mithril, etc.
    *
    */
-  if (!qty) qty = 1;
+  if (!qty)
+    qty = 1;
 
   /*
    *  Remove that much from the mine; any bonuses don't affect
@@ -379,25 +400,27 @@ finish_generic_mine(struct command *c, int item, int skill)
    */
   if (get_effect(where, ef_improve_mine, 0, 0)) {
     qty += ((float) qty * 0.50 + 0.50);
-    wout(c->who,"%s is unusually productive.",box_name(where));
+    wout(c->who, "%s is unusually productive.", box_name(where));
   };
 
   /*
    *  We might have hit a rich lode.
    *
    */
-  lode = rnd(1,5000);
+  lode = rnd(1, 5000);
   if (lode < c->days_executing) {
     wout(c->who, "You hit an incredibly rich lode of %s!", just_name(item));
     qty *= 100;
-  } else if (lode < c->days_executing * 10) {
+  }
+  else if (lode < c->days_executing * 10) {
     wout(c->who, "You hit a very rich lode of %s!", just_name(item));
     qty *= 10;
-  } else if (lode < c->days_executing * 100) {
+  }
+  else if (lode < c->days_executing * 100) {
     wout(c->who, "You hit a rich lode of %s!", just_name(item));
     qty *= 2;
   };
-	
+
   gen_item(c->who, item, qty);
 
   wout(c->who, "Mining yielded %s.", box_name_qty(item, qty));
@@ -406,65 +429,57 @@ finish_generic_mine(struct command *c, int item, int skill)
 
 
 int
-v_mine_iron(struct command *c)
-{
+v_mine_iron(struct command *c) {
 
-	return start_generic_mine(c, item_iron, sk_mine_iron);
+  return start_generic_mine(c, item_iron, sk_mine_iron);
 }
 
 
 int
-d_mine_iron(struct command *c)
-{
+d_mine_iron(struct command *c) {
 
-	return finish_generic_mine(c, item_iron, sk_mine_iron);
+  return finish_generic_mine(c, item_iron, sk_mine_iron);
 }
 
 
 int
-v_mine_gold(struct command *c)
-{
+v_mine_gold(struct command *c) {
 
-	return start_generic_mine(c, item_gold, sk_mine_gold);
+  return start_generic_mine(c, item_gold, sk_mine_gold);
 }
 
 
 int
-d_mine_gold(struct command *c)
-{
+d_mine_gold(struct command *c) {
 
-	return finish_generic_mine(c, item_gold, sk_mine_gold);
+  return finish_generic_mine(c, item_gold, sk_mine_gold);
 }
 
 
 int
-v_mine_mithril(struct command *c)
-{
+v_mine_mithril(struct command *c) {
 
-	return start_generic_mine(c, item_mithril, sk_mine_mithril);
+  return start_generic_mine(c, item_mithril, sk_mine_mithril);
 }
 
 
 int
-d_mine_mithril(struct command *c)
-{
+d_mine_mithril(struct command *c) {
 
-	return finish_generic_mine(c, item_mithril, sk_mine_mithril);
+  return finish_generic_mine(c, item_mithril, sk_mine_mithril);
 }
 
 int
-v_mine_gate_crystal(struct command *c)
-{
+v_mine_gate_crystal(struct command *c) {
 
-	return start_generic_mine(c, item_gate_crystal, sk_mine_crystal);
+  return start_generic_mine(c, item_gate_crystal, sk_mine_crystal);
 }
 
 
 int
-d_mine_gate_crystal(struct command *c)
-{
+d_mine_gate_crystal(struct command *c) {
 
-	return finish_generic_mine(c, item_gate_crystal, sk_mine_crystal);
+  return finish_generic_mine(c, item_gate_crystal, sk_mine_crystal);
 }
 
 
@@ -476,8 +491,7 @@ d_mine_gate_crystal(struct command *c)
  *
  */
 int
-d_add_wooden_shoring(struct command *c)
-{
+d_add_wooden_shoring(struct command *c) {
   int depth;
   struct entity_mine *mi;
   int where = subloc(c->who);
@@ -494,12 +508,12 @@ d_add_wooden_shoring(struct command *c)
   mi = get_mine_info(where);
   depth = mine_depth(where);
   assert(mi);
-  
+
   if (mi->shoring[depth] >= WOODEN_SHORING) {
     wout(c->who, "This mine shaft already has wooden shoring.");
     return FALSE;
   }
-  
+
   mi->shoring[depth] = WOODEN_SHORING;
   wout(c->who, "Wooden shoring added to %s.", box_name(where));
 
@@ -507,8 +521,7 @@ d_add_wooden_shoring(struct command *c)
 }
 
 int
-v_add_wooden_shoring(struct command *c)
-{
+v_add_wooden_shoring(struct command *c) {
   int depth;
   struct entity_mine *mi;
   int where = subloc(c->who);
@@ -525,7 +538,7 @@ v_add_wooden_shoring(struct command *c)
   mi = get_mine_info(where);
   depth = mine_depth(where);
   assert(mi);
-  
+
   if (mi->shoring[depth] >= WOODEN_SHORING) {
     wout(c->who, "This mine shaft already has wooden shoring.");
     return FALSE;
@@ -539,7 +552,7 @@ v_add_wooden_shoring(struct command *c)
     wout(c->who, "You do not have sufficient wood to shore this shaft.");
     return FALSE;
   };
-  
+
   return TRUE;
 }
 
@@ -551,8 +564,7 @@ v_add_wooden_shoring(struct command *c)
  *
  */
 int
-d_add_iron_shoring(struct command *c)
-{
+d_add_iron_shoring(struct command *c) {
   int depth;
   struct entity_mine *mi;
   int where = subloc(c->who);
@@ -569,12 +581,12 @@ d_add_iron_shoring(struct command *c)
   mi = get_mine_info(where);
   depth = mine_depth(where);
   assert(mi);
-  
+
   if (mi->shoring[depth] >= IRON_SHORING) {
     wout(c->who, "This mine shaft already has iron shoring.");
     return FALSE;
   }
-  
+
   mi->shoring[depth] = IRON_SHORING;
   wout(c->who, "Iron shoring added to %s.", box_name(where));
 
@@ -582,8 +594,7 @@ d_add_iron_shoring(struct command *c)
 }
 
 int
-v_add_iron_shoring(struct command *c)
-{
+v_add_iron_shoring(struct command *c) {
   int depth;
   struct entity_mine *mi;
   int where = subloc(c->who);
@@ -600,7 +611,7 @@ v_add_iron_shoring(struct command *c)
   mi = get_mine_info(where);
   depth = mine_depth(where);
   assert(mi);
-  
+
   if (mi->shoring[depth] >= IRON_SHORING) {
     wout(c->who, "This mine shaft already has iron shoring.");
     return FALSE;
@@ -614,7 +625,6 @@ v_add_iron_shoring(struct command *c)
     wout(c->who, "You do not have sufficient iron to shore this shaft.");
     return FALSE;
   };
-  
+
   return TRUE;
 }
-

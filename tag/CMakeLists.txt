@@ -38,4 +38,6 @@ set (SERVER_HDRS
 add_executable (olympia ${SERVER_SRCS} ${SERVER_HDRS})
 if (WIN32)
   target_link_libraries (olympia oly-libc)
+elseif (UNIX)
+  target_link_libraries (olympia m)
 endif (WIN32)
