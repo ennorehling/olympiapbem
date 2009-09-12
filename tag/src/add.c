@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <sys/types.h>
 #include <libc/dirent.h>
 #include <libc/unistd.h>
@@ -563,7 +564,7 @@ rename_act_join_files() {
 
   for (i = 0; i < ilist_len(new_players); i++) {
     pl = new_players[i];
-    sprintf(acct, box_code_less(pl));
+    strcpy(acct, box_code_less(pl));
 
     old_name = sout("%s/%s/Join-tag-%d",
                     options.accounting_dir, acct, game_number);

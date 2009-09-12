@@ -1,5 +1,7 @@
 
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include "z.h"
 #include "oly.h"
@@ -1013,7 +1015,7 @@ setup_html_all() {
     fprintf(stderr, "Can't open %s for writing?", fnam);
     fp = stderr;
   };
-  fprintf(fp, "<TABLE CELLSPACING=0 CELLPADDING=5 WIDTH=\"100%\" "
+  fprintf(fp, "<TABLE CELLSPACING=0 CELLPADDING=5 WIDTH=\"100%%\" "
           "BGCOLOR=\"#48D1CC\" >\n");
 
   /* write and execute only for self. */
