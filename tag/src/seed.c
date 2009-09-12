@@ -12,7 +12,8 @@
  */
 
 static int
-choose_city_prominence(int city) {
+choose_city_prominence(int city)
+{
   int n;
 
   if (safe_haven(city) || major_city(city))
@@ -34,7 +35,8 @@ choose_city_prominence(int city) {
 
 
 static void
-add_near_city(int where, int city) {
+add_near_city(int where, int city)
+{
   struct entity_subloc *p;
 
   p = p_subloc(where);
@@ -44,7 +46,8 @@ add_near_city(int where, int city) {
 
 
 void
-prop_city_near_list(int city) {
+prop_city_near_list(int city)
+{
   int prom;
   int m;
   int i;
@@ -86,7 +89,8 @@ prop_city_near_list(int city) {
 
 
 void
-seed_city_near_lists() {
+seed_city_near_lists()
+{
   int city;
 
   stage("INIT: seed_city_near_lists()");
@@ -104,7 +108,8 @@ seed_city_near_lists() {
 
 
 void
-seed_mob_cookies() {
+seed_mob_cookies()
+{
   int i;
 
   loop_loc(i) {
@@ -121,7 +126,8 @@ seed_mob_cookies() {
 
 
 void
-seed_undead_cookies() {
+seed_undead_cookies()
+{
   int i;
 
   loop_loc(i) {
@@ -135,7 +141,8 @@ seed_undead_cookies() {
 
 
 void
-seed_weather_cookies() {
+seed_weather_cookies()
+{
   int i;
 
   loop_loc(i) {
@@ -167,7 +174,8 @@ seed_weather_cookies() {
 
 
 void
-seed_cookies() {
+seed_cookies()
+{
 
   stage("INIT: seed_cookies()");
 
@@ -184,7 +192,8 @@ seed_cookies() {
  *
  */
 static void
-compute_dist_generic(int terr) {
+compute_dist_generic(int terr)
+{
   int where;
   struct exit_view **l;
   int set_one;
@@ -259,7 +268,8 @@ compute_dist_generic(int terr) {
  */
 
 void
-compute_dist_gate() {
+compute_dist_gate()
+{
   int where;
   struct exit_view **l;
   int set_one;
@@ -328,7 +338,8 @@ compute_dist_gate() {
 
 
 void
-compute_nearby_graves() {
+compute_nearby_graves()
+{
   int where;
   struct exit_view **l;
   int set_one = TRUE;
@@ -414,7 +425,8 @@ compute_nearby_graves() {
 
 
 void
-compute_dist() {
+compute_dist()
+{
   int i;
 
   stage("INIT: compute_dist()");
@@ -444,7 +456,8 @@ compute_dist() {
 
 
 int
-int_comp(int *a, int *b) {
+int_comp(int *a, int *b)
+{
 
   return *a - *b;
 }
@@ -458,7 +471,8 @@ int_comp(int *a, int *b) {
  *
  */
 static void
-seed_city_skill(int where) {
+seed_city_skill(int where)
+{
   struct entity_subloc *p;
   int num, new, skill, count = 0;
 
@@ -512,7 +526,8 @@ seed_city_skill(int where) {
 
 
 void
-seed_city_trade(int where) {
+seed_city_trade(int where)
+{
   int prov = province(where);
   int prov_kind = subkind(prov);
   struct entity_subloc *p = rp_subloc(where);
@@ -597,7 +612,8 @@ seed_city_trade(int where) {
 
 
 int
-base_price(int n) {
+base_price(int n)
+{
   struct entity_item *t;
 
   assert(kind(n) == T_item);
@@ -618,7 +634,8 @@ base_price(int n) {
 
 
 static int
-nearby_city(ilist cities, int a) {
+nearby_city(ilist cities, int a)
+{
   int i;
   int m = 999999;
   int dist;
@@ -645,7 +662,8 @@ nearby_city(ilist cities, int a) {
 
 
 static int
-nearby_city_two(ilist cities, int a, int b) {
+nearby_city_two(ilist cities, int a, int b)
+{
   int i;
   int m = 999999;
   int dist;
@@ -673,7 +691,8 @@ nearby_city_two(ilist cities, int a, int b) {
 
 
 static void
-long_route_sup(int item, ilist source, ilist consume, int distance) {
+long_route_sup(int item, ilist source, ilist consume, int distance)
+{
   int qty;
   int profit;
   int premium;
@@ -717,7 +736,8 @@ long_route_sup(int item, ilist source, ilist consume, int distance) {
 
 
 static void
-city_cluster(ilist cities, ilist * l, int where) {
+city_cluster(ilist cities, ilist * l, int where)
+{
   int one, two;
 
   ilist_append(l, where);
@@ -741,7 +761,8 @@ city_cluster(ilist cities, ilist * l, int where) {
 
 
 static int
-long_route(ilist cities, int item) {
+long_route(ilist cities, int item)
+{
   static ilist source = NULL;
   static ilist consume = NULL;
   int count = 0;
@@ -849,7 +870,8 @@ int common_trade_items[] = {
 
 #if 0
 void
-seed_long_routes() {
+seed_long_routes()
+{
   int i;
   static ilist all_cities = NULL;
   static ilist cities = NULL;
@@ -907,7 +929,8 @@ seed_long_routes() {
 
 
 void
-seed_common_tradegoods() {
+seed_common_tradegoods()
+{
   int reg;
   int i, j;
   static ilist cities = NULL;
@@ -966,7 +989,8 @@ seed_common_tradegoods() {
 
 
 void
-seed_rare_tradegoods() {
+seed_rare_tradegoods()
+{
   int reg;
   int i, j;
   static ilist cities = NULL;
@@ -1031,7 +1055,8 @@ seed_rare_tradegoods() {
 
 
 void
-seed_city(int where) {
+seed_city(int where)
+{
   int new;
   int i, num;
   struct entity_subloc *p;
@@ -1073,7 +1098,8 @@ seed_city(int where) {
 }
 
 void
-seed_population() {
+seed_population()
+{
   int where;
 
   stage("seed_population()");
@@ -1109,7 +1135,8 @@ seed_population() {
 void seed_orcs();
 
 void
-seed_initial_locations() {
+seed_initial_locations()
+{
 
   int i;
 
@@ -1146,7 +1173,8 @@ seed_initial_locations() {
  *
  */
 void
-seed_taxes() {
+seed_taxes()
+{
   int where;
   int base;
   int pil;
@@ -1180,7 +1208,8 @@ seed_taxes() {
 
 #if 0
 static void
-init_gate_dests() {
+init_gate_dests()
+{
   int i;
   int where;
   int dest;
@@ -1213,7 +1242,8 @@ init_gate_dests() {
 
 
 int
-distance(int orig, int dest, int gate) {
+distance(int orig, int dest, int gate)
+{
   int i, j;
   int where;
   int flag = TRUE;
@@ -1273,7 +1303,8 @@ distance(int orig, int dest, int gate) {
  *
  */
 void
-seed_orcs() {
+seed_orcs()
+{
   int where, who, found, item;
 
   stage("seed_orcs()");
@@ -1325,7 +1356,8 @@ seed_orcs() {
 };
 
 int
-v_seedorc(struct command *c) {
+v_seedorc(struct command *c)
+{
   seed_orcs();
   wout(c->who, "Orcs seeded!");
   return TRUE;

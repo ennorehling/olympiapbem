@@ -11,7 +11,8 @@
 #define		POPPY_OPIUM	25
 
 
-struct terr_struct {
+struct terr_struct
+{
   int terr;                     /* terrain type */
   int item;                     /* good produced by location */
   int qty;                      /* amount produced */
@@ -87,7 +88,8 @@ struct terr_struct terr_prod2[] = {
  *
  */
 static void
-replenish(int where, int item, int qty, int max) {
+replenish(int where, int item, int qty, int max)
+{
   int n;
 
   n = has_item(where, item);
@@ -104,7 +106,8 @@ replenish(int where, int item, int qty, int max) {
 }
 
 void
-location_production() {
+location_production()
+{
   int where;
   int i, enclosed;
   int terr, encl_terr;
@@ -261,7 +264,8 @@ location_production() {
 
 
 static int
-item_gen_here(int where, int item) {
+item_gen_here(int where, int item)
+{
   int i, enclosed, encl_terr;
 
   for (i = 0; terr_prod[i].terr; i++)
@@ -285,7 +289,8 @@ item_gen_here(int where, int item) {
 }
 
 
-struct harvest {
+struct harvest
+{
   int item;
   int skill;
   int worker;
@@ -433,7 +438,8 @@ harv_tbl[] = {
 
 
 static struct harvest *
-find_harv(int k, int who) {
+find_harv(int k, int who)
+{
   int i;
 
   for (i = 0; harv_tbl[i].item; i++)
@@ -449,7 +455,8 @@ static ilist collectors = NULL;
 
 
 void
-init_collect_list() {
+init_collect_list()
+{
   int i;
   struct command *c;
   int cmd_collect;
@@ -468,7 +475,8 @@ init_collect_list() {
 
 
 static void
-bump_other_collectors(int where, struct harvest *t) {
+bump_other_collectors(int where, struct harvest *t)
+{
   int i;
   struct command *c;
   int wh2;
@@ -504,7 +512,8 @@ bump_other_collectors(int where, struct harvest *t) {
  *
  */
 static int
-item_avail(int where, int item) {
+item_avail(int where, int item)
+{
   int num = has_item(where, item);
   if (item == item_peasant) {
     if (subkind(where) == sub_city) {
@@ -521,7 +530,8 @@ item_avail(int where, int item) {
 };
 
 int
-v_generic_harvest(struct command *c, int number, int days, struct harvest *t) {
+v_generic_harvest(struct command *c, int number, int days, struct harvest *t)
+{
   int where = subloc(c->who);
   int workers;
   int avail;
@@ -595,7 +605,8 @@ v_generic_harvest(struct command *c, int number, int days, struct harvest *t) {
  */
 
 int
-d_generic_harvest(struct command *c, struct harvest *t) {
+d_generic_harvest(struct command *c, struct harvest *t)
+{
   int where = subloc(c->who);
   int number = c->c;
   int qty;
@@ -684,7 +695,8 @@ d_generic_harvest(struct command *c, struct harvest *t) {
 
 
 int
-i_generic_harvest(struct command *c, struct harvest *t) {
+i_generic_harvest(struct command *c, struct harvest *t)
+{
   int where = subloc(c->who);
 
   if (t->item == item_fish && is_ship(where))
@@ -727,7 +739,8 @@ i_generic_harvest(struct command *c, struct harvest *t) {
  *
  */
 int
-v_collect(struct command *c) {
+v_collect(struct command *c)
+{
   int item = c->a;
   int number = c->b;
   int days = c->c;
@@ -761,7 +774,8 @@ v_collect(struct command *c) {
 
 
 int
-d_collect(struct command *c) {
+d_collect(struct command *c)
+{
   int item = c->a;
   struct harvest *t;
 
@@ -778,7 +792,8 @@ d_collect(struct command *c) {
 
 
 int
-i_collect(struct command *c) {
+i_collect(struct command *c)
+{
   int item = c->a;
   struct harvest *t;
 
@@ -795,7 +810,8 @@ i_collect(struct command *c) {
 
 
 int
-v_quarry(struct command *c) {
+v_quarry(struct command *c)
+{
   int ret;
 
   ret = oly_parse(c, sout("collect %d %d %d", item_stone, c->a, c->b));
@@ -805,7 +821,8 @@ v_quarry(struct command *c) {
 }
 
 int
-v_recruit(struct command *c) {
+v_recruit(struct command *c)
+{
   int ret;
 
   ret = oly_parse(c, sout("collect %d %d %d", item_peasant, c->a, c->b));
@@ -816,7 +833,8 @@ v_recruit(struct command *c) {
 
 
 int
-v_raise_corpses(struct command *c) {
+v_raise_corpses(struct command *c)
+{
   int ret;
 
   ret = oly_parse(c, sout("collect %d %d %d", item_corpse, c->a, c->b));
@@ -827,7 +845,8 @@ v_raise_corpses(struct command *c) {
 
 
 int
-v_fish(struct command *c) {
+v_fish(struct command *c)
+{
   int ret;
 
   ret = oly_parse(c, sout("collect %d %d %d", item_fish, c->a, c->b));
@@ -838,7 +857,8 @@ v_fish(struct command *c) {
 
 
 int
-v_wood(struct command *c) {
+v_wood(struct command *c)
+{
   int ret;
 
   ret = oly_parse(c, sout("collect %d %d %d", item_lumber, c->a, c->b));
@@ -849,7 +869,8 @@ v_wood(struct command *c) {
 
 
 int
-v_opium(struct command *c) {
+v_opium(struct command *c)
+{
   int ret;
 
   ret = oly_parse(c, sout("collect %d %d %d", item_opium, c->a, c->b));
@@ -860,7 +881,8 @@ v_opium(struct command *c) {
 
 
 int
-v_mallorn(struct command *c) {
+v_mallorn(struct command *c)
+{
   int ret;
 
   ret = oly_parse(c, sout("collect %d %d %d", item_mallorn_wood, c->a, c->b));
@@ -871,7 +893,8 @@ v_mallorn(struct command *c) {
 
 
 int
-v_yew(struct command *c) {
+v_yew(struct command *c)
+{
   int ret;
 
   ret = oly_parse(c, sout("collect %d %d %d", item_yew, c->a, c->b));
@@ -882,7 +905,8 @@ v_yew(struct command *c) {
 
 
 int
-v_catch(struct command *c) {
+v_catch(struct command *c)
+{
   int ret;
 
   ret = oly_parse(c, sout("collect %d %d %d", item_wild_horse, c->a, c->b));
@@ -898,7 +922,8 @@ v_catch(struct command *c) {
  *
  */
 int
-v_grow_pop(struct command *c) {
+v_grow_pop(struct command *c)
+{
   int where = province(c->who);
 
   /*
@@ -924,7 +949,8 @@ v_grow_pop(struct command *c) {
 };
 
 int
-d_grow_pop(struct command *c) {
+d_grow_pop(struct command *c)
+{
   int where = province(c->who);
 
   /*

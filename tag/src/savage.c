@@ -10,7 +10,8 @@ static int num_savages = 0;     /* total # of savages in the world */
 
 
 static int
-create_savage(int where) {
+create_savage(int where)
+{
   int new = create_monster_stack(item_savage, rnd(4, 26), where);
   if (new < 0)
     return -1;
@@ -21,7 +22,8 @@ create_savage(int where) {
 
 
 static int
-call_savage(int where, int to_where, int who, int why) {
+call_savage(int where, int to_where, int who, int why)
+{
   int new;
 
   if (controlled_humans_here(where))
@@ -56,7 +58,8 @@ call_savage(int where, int to_where, int who, int why) {
 
 
 int
-v_use_drum(struct command *c) {
+v_use_drum(struct command *c)
+{
   struct exit_view **l;
   int where = subloc(c->who);
   int speed = c->a;
@@ -128,7 +131,8 @@ v_use_drum(struct command *c) {
 
 
 int
-v_summon_savage(struct command *c) {
+v_summon_savage(struct command *c)
+{
   int i, num_savages = 0;
 
   if (has_item(c->who, item_drum) < 1) {
@@ -162,7 +166,8 @@ v_summon_savage(struct command *c) {
 
 
 static int
-keep_savage_check(struct command *c) {
+keep_savage_check(struct command *c)
+{
   int target = c->a;
 
   if (kind(target) != T_char || noble_item(target) != item_savage) {
@@ -185,7 +190,8 @@ keep_savage_check(struct command *c) {
 
 
 int
-v_keep_savage(struct command *c) {
+v_keep_savage(struct command *c)
+{
   int target = c->a;
 
   if (!keep_savage_check(c))
@@ -196,7 +202,8 @@ v_keep_savage(struct command *c) {
 
 
 int
-d_keep_savage(struct command *c) {
+d_keep_savage(struct command *c)
+{
   int target = c->a;
 
   if (!keep_savage_check(c))
@@ -211,7 +218,8 @@ d_keep_savage(struct command *c) {
 
 
 int
-savage_hates(int where) {
+savage_hates(int where)
+{
 
   switch (subkind(where)) {
   case sub_inn:
@@ -234,7 +242,8 @@ savage_hates(int where) {
 
 
 int
-savage_hate_here(int where) {
+savage_hate_here(int where)
+{
   int i;
   int ret = 0;
 
@@ -251,7 +260,8 @@ savage_hate_here(int where) {
 
 
 void
-auto_savage(int who) {
+auto_savage(int who)
+{
   int where = subloc(who);
   int target;
   int i;
@@ -332,7 +342,8 @@ auto_savage(int who) {
  */
 
 void
-init_savage_attacks() {
+init_savage_attacks()
+{
   int fort;
   struct exit_view **l;
   int where;

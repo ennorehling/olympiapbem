@@ -32,7 +32,8 @@
 
 #define WHERE_SHIP	(-1)
 
-struct make {
+struct make
+{
   int item;
   int inp1;
   int inp2;
@@ -105,7 +106,8 @@ make_tbl[] = {
 
 
 static struct make *
-find_make(int item) {
+find_make(int item)
+{
   int i;
 
   for (i = 0; make_tbl[i].item; i++)
@@ -121,7 +123,8 @@ find_make(int item) {
  */
 
 int
-v_generic_make(struct command *c, int number, struct make *t) {
+v_generic_make(struct command *c, int number, struct make *t)
+{
   int where = subloc(c->who);
   int days = -1;                /* as long as it takes to get number */
 
@@ -178,7 +181,8 @@ v_generic_make(struct command *c, int number, struct make *t) {
 
 
 int
-d_generic_make(struct command *c, struct make *t) {
+d_generic_make(struct command *c, struct make *t)
+{
   int number = c->c;
   int qty;
 
@@ -243,7 +247,8 @@ d_generic_make(struct command *c, struct make *t) {
 
 
 int
-i_generic_make(struct command *c, struct make *t) {
+i_generic_make(struct command *c, struct make *t)
+{
   int where = subloc(c->who);
 
   out(c->who, "%s %s.", cap(t->got_em),
@@ -267,7 +272,8 @@ i_generic_make(struct command *c, struct make *t) {
  */
 
 int
-v_second_make(struct command *c, int number, struct make *t) {
+v_second_make(struct command *c, int number, struct make *t)
+{
   int where = subloc(c->who);
 
   c->c = number;                /* number desired; 0 means all possible */
@@ -301,7 +307,8 @@ v_second_make(struct command *c, int number, struct make *t) {
 
 
 int
-d_second_make(struct command *c, struct make *t) {
+d_second_make(struct command *c, struct make *t)
+{
   int number = c->c;
 
   if (t->inp1 && has_item(c->who, t->inp1) < 1) {
@@ -343,7 +350,8 @@ d_second_make(struct command *c, struct make *t) {
 
 
 int
-v_make(struct command *c) {
+v_make(struct command *c)
+{
   int item = c->a;
   int number = c->b;
   struct make *t;
@@ -363,7 +371,8 @@ v_make(struct command *c) {
 
 
 int
-d_make(struct command *c) {
+d_make(struct command *c)
+{
   int item = c->a;
   struct make *t;
 
@@ -383,7 +392,8 @@ d_make(struct command *c) {
 
 
 int
-i_make(struct command *c) {
+i_make(struct command *c)
+{
   int item = c->a;
   struct make *t;
 
@@ -403,7 +413,8 @@ i_make(struct command *c) {
 
 
 int
-v_use_train_riding(struct command *c) {
+v_use_train_riding(struct command *c)
+{
   int ret;
 
   ret = oly_parse(c,
@@ -415,7 +426,8 @@ v_use_train_riding(struct command *c) {
 
 
 int
-v_use_train_war(struct command *c) {
+v_use_train_war(struct command *c)
+{
   int ret;
 
   ret = oly_parse(c, sout("make %s %d", box_code_less(item_warmount), c->a));

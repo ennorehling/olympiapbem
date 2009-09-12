@@ -6,7 +6,8 @@
 
 
 int
-here_pos(int who) {
+here_pos(int who)
+{
   struct loc_info *p;
   int ret;
 
@@ -27,7 +28,8 @@ here_pos(int who) {
  */
 
 int
-here_precedes(int a, int b) {
+here_precedes(int a, int b)
+{
   struct loc_info *p;
   int i;
 
@@ -49,7 +51,8 @@ here_precedes(int a, int b) {
 
 
 static int
-first_prisoner_pos(int where) {
+first_prisoner_pos(int where)
+{
   struct loc_info *p;
   int i;
 
@@ -68,7 +71,8 @@ first_prisoner_pos(int where) {
 
 
 int
-stack_parent(int who) {
+stack_parent(int who)
+{
   int n;
 
   n = loc(who);
@@ -81,7 +85,8 @@ stack_parent(int who) {
 
 
 int
-stack_leader(int who) {
+stack_leader(int who)
+{
   int n;
   int count = 0;
 
@@ -104,7 +109,8 @@ stack_leader(int who) {
  */
 
 int
-stacked_beneath(int a, int b) {
+stacked_beneath(int a, int b)
+{
 
   assert(kind(a) == T_char);
   assert(kind(b) == T_char);
@@ -123,7 +129,8 @@ stacked_beneath(int a, int b) {
 
 
 void
-promote(int who, int new_pos) {
+promote(int who, int new_pos)
+{
   struct loc_info *p;
   int i;
   int who_pos;
@@ -142,7 +149,8 @@ promote(int who, int new_pos) {
 
 
 static void
-unstack(int who) {
+unstack(int who)
+{
   int leader = stack_leader(who);
 
   assert(valid_box(leader));
@@ -174,7 +182,8 @@ unstack(int who) {
 
 
 void
-leave_stack(int who) {
+leave_stack(int who)
+{
   int leader;
 
   leader = stack_parent(who);
@@ -193,7 +202,8 @@ leave_stack(int who) {
 
 
 static void
-stack(int who, int target) {
+stack(int who, int target)
+{
   int pos;
 
   assert(stack_parent(who) == 0);
@@ -215,7 +225,8 @@ stack(int who, int target) {
 
 
 void
-join_stack(int who, int target) {
+join_stack(int who, int target)
+{
 
   assert(!stacked_beneath(who, target));
   assert(!is_prisoner(target));
@@ -235,7 +246,8 @@ join_stack(int who, int target) {
 
 
 int
-check_prisoner_escape(int who, int chance) {
+check_prisoner_escape(int who, int chance)
+{
   int leader = stack_parent(who);
   int hound = stack_has_item(who, item_hound);
   int n;
@@ -266,7 +278,8 @@ check_prisoner_escape(int who, int chance) {
 
 
 void
-prisoner_escapes(int who) {
+prisoner_escapes(int who)
+{
   int leader;
   int where, out_one;
 
@@ -297,7 +310,8 @@ prisoner_escapes(int who) {
     wout(leader, "%s jumped overboard and presumably "
          "drowned.", just_name(who));
 
-    log_write(LOG_SPECIAL, "!! Someone swam ashore, who=%s", box_code_less(who));
+    log_write(LOG_SPECIAL, "!! Someone swam ashore, who=%s",
+              box_code_less(who));
   }
 
   move_stack(who, out_one);
@@ -305,7 +319,8 @@ prisoner_escapes(int who) {
 
 
 void
-prisoner_movement_escape_check(int who) {
+prisoner_movement_escape_check(int who)
+{
   int i;
 
   loop_char_here(who, i) {
@@ -317,7 +332,8 @@ prisoner_movement_escape_check(int who) {
 
 
 void
-weekly_prisoner_escape_check() {
+weekly_prisoner_escape_check()
+{
   int i;
   int who;
   int chance;
@@ -342,7 +358,8 @@ weekly_prisoner_escape_check() {
 
 
 void
-drop_stack(int who, int to_drop) {
+drop_stack(int who, int to_drop)
+{
   int release_swear_flag = FALSE;
 
   assert(stack_parent(to_drop) == who);
@@ -368,7 +385,8 @@ drop_stack(int who, int to_drop) {
   unstack(to_drop);
 
   if (release_swear_flag) {
-    log_write(LOG_SPECIAL, "%s frees a swear_on_release prisoner", box_name(who));
+    log_write(LOG_SPECIAL, "%s frees a swear_on_release prisoner",
+              box_name(who));
 
     if (rnd(1, 5) < 5) {
       wout(who, "%s is grateful for your gallantry.", box_name(to_drop));
@@ -401,7 +419,8 @@ drop_stack(int who, int to_drop) {
 
 
 void
-free_all_prisoners(int who) {
+free_all_prisoners(int who)
+{
   int i;
 
   loop_here(who, i) {
@@ -420,7 +439,8 @@ free_all_prisoners(int who) {
  */
 
 void
-extract_stacked_unit(int who) {
+extract_stacked_unit(int who)
+{
   int i;
   int first = 0;
 
@@ -473,7 +493,8 @@ extract_stacked_unit(int who) {
  */
 
 void
-promote_stack(int lower, int higher) {
+promote_stack(int lower, int higher)
+{
   struct loc_info *p;
   int pos;
 
@@ -505,7 +526,8 @@ promote_stack(int lower, int higher) {
 
 
 void
-take_prisoner(int who, int target) {
+take_prisoner(int who, int target)
+{
   int ni = 0;
 
   assert(who != target);
@@ -554,7 +576,8 @@ take_prisoner(int who, int target) {
 
 
 int
-has_prisoner(int who, int pris) {
+has_prisoner(int who, int pris)
+{
   int i;
   int ret = FALSE;
 
@@ -571,7 +594,8 @@ has_prisoner(int who, int pris) {
 
 
 int
-move_prisoner(int who, int target, int pris) {
+move_prisoner(int who, int target, int pris)
+{
   int rs = release_swear(pris);
 
   unstack(pris);
@@ -586,7 +610,8 @@ move_prisoner(int who, int target, int pris) {
 
 
 int
-give_prisoner(int who, int target, int pris) {
+give_prisoner(int who, int target, int pris)
+{
 
   if (check_prisoner_escape(pris, 2))
     return FALSE;
@@ -604,7 +629,8 @@ give_prisoner(int who, int target, int pris) {
 
 
 int
-v_stack(struct command *c) {
+v_stack(struct command *c)
+{
   int target = c->a;
 
   if (!check_char_gone(c->who, target))
@@ -638,7 +664,8 @@ v_stack(struct command *c) {
 
 
 int
-v_unstack(struct command *c) {
+v_unstack(struct command *c)
+{
   int target = c->a;
   int i;
 
@@ -678,7 +705,8 @@ v_unstack(struct command *c) {
 
 
 int
-v_surrender(struct command *c) {
+v_surrender(struct command *c)
+{
   int target = c->a;
 
   if (!check_char_gone(c->who, target))
@@ -695,7 +723,7 @@ v_surrender(struct command *c) {
   }
 
   log_write(LOG_SPECIAL, "Player %s surrenders %s",
-      box_code_less(player(c->who)), box_name(c->who));
+            box_code_less(player(c->who)), box_name(c->who));
 
   vector_stack(stack_leader(c->who), TRUE);
   vector_stack(stack_leader(target), FALSE);
@@ -712,7 +740,8 @@ v_surrender(struct command *c) {
  */
 
 static int
-promote_after(int a, int b) {
+promote_after(int a, int b)
+{
   int where = subloc(a);
   int ret = 0;
   int i;
@@ -743,7 +772,8 @@ promote_after(int a, int b) {
 
 
 int
-v_promote(struct command *c) {
+v_promote(struct command *c)
+{
   int target = c->a;
   int targ_par;
 

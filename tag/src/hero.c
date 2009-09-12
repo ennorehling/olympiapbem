@@ -77,7 +77,8 @@
  *  quit after the first wound.
  */
 int
-v_personal_fight_to_death(struct command *c) {
+v_personal_fight_to_death(struct command *c)
+{
   int flag = c->a;
 
   if (flag < 0)
@@ -100,7 +101,8 @@ v_personal_fight_to_death(struct command *c) {
  *  
  */
 int
-v_forced_march(struct command *c) {
+v_forced_march(struct command *c)
+{
   /*  Has a $10 cost */
   if (!charge(c->who, 10)) {
     wout(c->who, "Can't afford %s to prepare for a forced march.",

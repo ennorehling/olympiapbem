@@ -7,7 +7,8 @@
 
 
 static int
-keep_undead_check(struct command *c, int check_bond) {
+keep_undead_check(struct command *c, int check_bond)
+{
   int target = c->a;
 
   if (kind(target) != T_char || subkind(target) != sub_demon_lord) {
@@ -30,7 +31,8 @@ keep_undead_check(struct command *c, int check_bond) {
 
 
 int
-v_keep_undead(struct command *c) {
+v_keep_undead(struct command *c)
+{
   int target = c->a;
 
   if (!keep_undead_check(c, TRUE))
@@ -44,7 +46,8 @@ v_keep_undead(struct command *c) {
 
 
 int
-d_keep_undead(struct command *c) {
+d_keep_undead(struct command *c)
+{
   int target = c->a;
 
   if (!keep_undead_check(c, TRUE))
@@ -62,7 +65,8 @@ d_keep_undead(struct command *c) {
 
 
 int
-v_undead_lord(struct command *c) {
+v_undead_lord(struct command *c)
+{
   int where = subloc(c->who);
   int aura = c->a;
 
@@ -82,7 +86,8 @@ v_undead_lord(struct command *c) {
 
 
 int
-d_undead_lord(struct command *c) {
+d_undead_lord(struct command *c)
+{
   int where = subloc(c->who);
   int aura = c->a;
   int undead;
@@ -139,7 +144,8 @@ d_undead_lord(struct command *c) {
 
 
 int
-v_banish_undead(struct command *c) {
+v_banish_undead(struct command *c)
+{
 
   if (!keep_undead_check(c, FALSE))
     return FALSE;
@@ -155,7 +161,8 @@ v_banish_undead(struct command *c) {
 
 
 int
-d_banish_undead(struct command *c) {
+d_banish_undead(struct command *c)
+{
   int target = c->a;
   int where = subloc(c->who);
   int head;
@@ -179,7 +186,8 @@ d_banish_undead(struct command *c) {
 
 
 int
-v_eat_dead(struct command *c) {
+v_eat_dead(struct command *c)
+{
   int body = c->a;
 
   /*
@@ -219,7 +227,8 @@ v_eat_dead(struct command *c) {
 
 
 static void
-get_some_skills(int who, int body, int chance) {
+get_some_skills(int who, int body, int chance)
+{
   struct skill_ent *e;
   int parent;
 
@@ -277,7 +286,8 @@ get_some_skills(int who, int body, int chance) {
 
 
 int
-d_eat_dead(struct command *c) {
+d_eat_dead(struct command *c)
+{
   int body = c->a;
   extern int dead_body_np;
 
@@ -355,7 +365,8 @@ d_eat_dead(struct command *c) {
 
 
 static int
-random_body_here(int where) {
+random_body_here(int where)
+{
   struct item_ent *e;
   static ilist l = NULL;
 
@@ -380,7 +391,8 @@ random_body_here(int where) {
 
 #if 0
 int
-v_exhume(struct command *c) {
+v_exhume(struct command *c)
+{
   int where = subloc(c->who);
   int targ = c->a;
   int n;
@@ -416,7 +428,8 @@ v_exhume(struct command *c) {
 
 
 int
-d_exhume(struct command *c) {
+d_exhume(struct command *c)
+{
   int where = subloc(c->who);
   int targ = c->a;
   int n;
@@ -457,7 +470,8 @@ d_exhume(struct command *c) {
 #endif
 
 void
-auto_undead(int who) {
+auto_undead(int who)
+{
   int master;
   int where = subloc(who);
 
@@ -479,7 +493,8 @@ auto_undead(int who) {
 
 
 int
-v_aura_blast(struct command *c) {
+v_aura_blast(struct command *c)
+{
   int target = c->a;
   int aura = c->b;
   int have_left = c->c;
@@ -495,7 +510,8 @@ v_aura_blast(struct command *c) {
 
 
 int
-d_aura_blast(struct command *c) {
+d_aura_blast(struct command *c)
+{
   int target = c->a;
   int aura = c->b;
   int have_left = c->c;
@@ -538,7 +554,7 @@ d_aura_blast(struct command *c) {
        box_name(c->who), box_name(target));
 
   log_write(LOG_SPECIAL, "%s blasts %s with a burst of aura!",
-             box_name(c->who), box_name(target));
+            box_name(c->who), box_name(target));
 
   /*
    *  Wed Sep 30 13:18:37 1998 -- Scott Turner
@@ -583,7 +599,8 @@ d_aura_blast(struct command *c) {
 }
 
 int
-v_aura_reflect(struct command *c) {
+v_aura_reflect(struct command *c)
+{
   int flag = c->a;
 
   p_magic(c->who)->aura_reflect = flag;
@@ -603,7 +620,8 @@ v_aura_reflect(struct command *c) {
  *
  */
 int
-v_create_flesh_golem(struct command *c) {
+v_create_flesh_golem(struct command *c)
+{
   int body = c->a;
 
   if (kind(body) != T_item || subkind(body) != sub_dead_body) {
@@ -621,7 +639,8 @@ v_create_flesh_golem(struct command *c) {
 }
 
 int
-d_create_flesh_golem(struct command *c) {
+d_create_flesh_golem(struct command *c)
+{
   int body = c->a;
   extern int dead_body_np;
 

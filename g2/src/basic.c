@@ -10,7 +10,8 @@
 
 
 int
-v_meditate(struct command *c) {
+v_meditate(struct command *c)
+{
 
   wout(c->who, "Meditate for %s.", weeks(c->wait));
   return TRUE;
@@ -18,7 +19,8 @@ v_meditate(struct command *c) {
 
 
 static int
-hinder_med_chance(int who) {
+hinder_med_chance(int who)
+{
   struct char_magic *p;
 
   p = rp_magic(who);
@@ -45,7 +47,8 @@ hinder_med_chance(int who) {
 
 
 int
-d_meditate(struct command *c) {
+d_meditate(struct command *c)
+{
   struct char_magic *p;
   int chance;
   int bonus;
@@ -74,7 +77,8 @@ d_meditate(struct command *c) {
 
 
 int
-v_adv_med(struct command *c) {
+v_adv_med(struct command *c)
+{
 
   wout(c->who, "Meditate for %s.", weeks(c->wait));
   return TRUE;
@@ -82,7 +86,8 @@ v_adv_med(struct command *c) {
 
 
 int
-d_adv_med(struct command *c) {
+d_adv_med(struct command *c)
+{
   struct char_magic *p;
   int chance;
   int m_a;
@@ -113,7 +118,8 @@ d_adv_med(struct command *c) {
 
 
 int
-v_hinder_med(struct command *c) {
+v_hinder_med(struct command *c)
+{
   int target = c->a;
   int aura;
 
@@ -137,7 +143,8 @@ v_hinder_med(struct command *c) {
 
 
 static void
-hinder_med_omen(int who, int other) {
+hinder_med_omen(int who, int other)
+{
 
   switch (rnd(1, 4)) {
   case 1:
@@ -167,7 +174,8 @@ hinder_med_omen(int who, int other) {
 
 
 int
-d_hinder_med(struct command *c) {
+d_hinder_med(struct command *c)
+{
   int target = c->a;
   int aura = c->b;
   struct char_magic *p;
@@ -191,7 +199,8 @@ d_hinder_med(struct command *c) {
 
 
 int
-v_heal(struct command *c) {
+v_heal(struct command *c)
+{
   int target = c->a;
   int aura;
 
@@ -217,7 +226,8 @@ v_heal(struct command *c) {
 
 
 int
-d_heal(struct command *c) {
+d_heal(struct command *c)
+{
   int target = c->a;
   int aura = c->b;
   int chance;
@@ -272,7 +282,8 @@ d_heal(struct command *c) {
 
 
 int
-v_reveal_mage(struct command *c) {
+v_reveal_mage(struct command *c)
+{
   int target = c->a;
   int category = c->b;
   int aura;
@@ -303,7 +314,8 @@ v_reveal_mage(struct command *c) {
 
 
 int
-d_reveal_mage(struct command *c) {
+d_reveal_mage(struct command *c)
+{
   int target = c->a;
   int category = c->b;
   int aura = c->c;
@@ -381,7 +393,8 @@ d_reveal_mage(struct command *c) {
 
 
 int
-v_view_aura(struct command *c) {
+v_view_aura(struct command *c)
+{
   int aura;
   int where;
 
@@ -403,7 +416,8 @@ v_view_aura(struct command *c) {
 
 
 int
-d_view_aura(struct command *c) {
+d_view_aura(struct command *c)
+{
   int n;
   int level;
   int first = TRUE;
@@ -472,7 +486,8 @@ d_view_aura(struct command *c) {
 
 
 int
-v_shroud_abil(struct command *c) {
+v_shroud_abil(struct command *c)
+{
   int aura;
 
   if (c->a < 1)
@@ -487,7 +502,8 @@ v_shroud_abil(struct command *c) {
 
 
 int
-d_shroud_abil(struct command *c) {
+d_shroud_abil(struct command *c)
+{
   int aura = c->a;
   struct char_magic *p;
 
@@ -505,7 +521,8 @@ d_shroud_abil(struct command *c) {
 
 
 int
-v_detect_abil(struct command *c) {
+v_detect_abil(struct command *c)
+{
 
   if (!check_aura(c->who, 1))
     return FALSE;
@@ -516,7 +533,8 @@ v_detect_abil(struct command *c) {
 
 
 int
-d_detect_abil(struct command *c) {
+d_detect_abil(struct command *c)
+{
 
   if (!charge_aura(c->who, 1))
     return FALSE;
@@ -526,7 +544,8 @@ d_detect_abil(struct command *c) {
 
 
 int
-v_dispel_abil(struct command *c) {
+v_dispel_abil(struct command *c)
+{
   int target = c->a;
 
   if (!cast_check_char_here(c->who, target))
@@ -543,7 +562,8 @@ v_dispel_abil(struct command *c) {
 
 
 int
-d_dispel_abil(struct command *c) {
+d_dispel_abil(struct command *c)
+{
   int target = c->a;
   struct char_magic *p;
 
@@ -567,7 +587,8 @@ d_dispel_abil(struct command *c) {
 
 
 int
-v_quick_cast(struct command *c) {
+v_quick_cast(struct command *c)
+{
   int aura;
 
   if (c->a < 1)
@@ -584,7 +605,8 @@ v_quick_cast(struct command *c) {
 
 
 int
-d_quick_cast(struct command *c) {
+d_quick_cast(struct command *c)
+{
   int aura = c->a;
   struct char_magic *p;
 
@@ -601,7 +623,8 @@ d_quick_cast(struct command *c) {
 
 
 int
-v_save_quick(struct command *c) {
+v_save_quick(struct command *c)
+{
 
   if (char_quick_cast(c->who) < 1) {
     wout(c->who, "No stored spell cast speedup.");
@@ -617,7 +640,8 @@ v_save_quick(struct command *c) {
 
 
 int
-d_save_quick(struct command *c) {
+d_save_quick(struct command *c)
+{
   int new;
   struct char_magic *p;
   struct item_magic *im;
@@ -650,7 +674,8 @@ d_save_quick(struct command *c) {
 
 
 int
-v_use_quick_cast(struct command *c) {
+v_use_quick_cast(struct command *c)
+{
   int item = c->a;
   struct item_magic *im;
 
@@ -676,7 +701,8 @@ v_use_quick_cast(struct command *c) {
 
 
 int
-v_write_spell(struct command *c) {
+v_write_spell(struct command *c)
+{
   int spell = c->a;
   int know;
 
@@ -713,7 +739,8 @@ v_write_spell(struct command *c) {
 
 
 int
-new_scroll(int who) {
+new_scroll(int who)
+{
   int new;
   struct item_magic *p;
 
@@ -738,7 +765,8 @@ new_scroll(int who) {
 
 
 int
-d_write_spell(struct command *c) {
+d_write_spell(struct command *c)
+{
   int spell = c->a;
   int new;
   struct item_magic *p;
@@ -760,7 +788,8 @@ d_write_spell(struct command *c) {
 
 
 int
-v_appear_common(struct command *c) {
+v_appear_common(struct command *c)
+{
   int aura = c->a;
   struct char_magic *p;
 
@@ -783,14 +812,16 @@ v_appear_common(struct command *c) {
 
 
 int
-v_tap_health(struct command *c) {
+v_tap_health(struct command *c)
+{
 
   return TRUE;
 }
 
 
 int
-d_tap_health(struct command *c) {
+d_tap_health(struct command *c)
+{
   struct char_magic *pm;
   int amount = c->a;
   int health = char_health(c->who);

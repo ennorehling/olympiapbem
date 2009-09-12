@@ -9,7 +9,8 @@
 
 
 int
-v_discard(struct command *c) {
+v_discard(struct command *c)
+{
   int item = c->a;
   int qty = c->b;
   int have_left = c->c;
@@ -41,7 +42,8 @@ v_discard(struct command *c) {
 
 
 void
-drop_player(int pl) {
+drop_player(int pl)
+{
   int who;
   char *s = "";
   char *email = "";
@@ -107,7 +109,8 @@ drop_player(int pl) {
 
 
 int
-v_quit(struct command *c) {
+v_quit(struct command *c)
+{
   int target = c->a;
 
   if (target == 0)
@@ -134,7 +137,8 @@ v_quit(struct command *c) {
 
 
 void
-text_list_free(char **l) {
+text_list_free(char **l)
+{
   int i;
 
   for (i = 0; i < ilist_len(l); i++)
@@ -143,7 +147,8 @@ text_list_free(char **l) {
 
 
 static int
-line_length_check(char **l) {
+line_length_check(char **l)
+{
   int i;
   int len = 0;
 
@@ -155,7 +160,8 @@ line_length_check(char **l) {
 
 
 static char **
-parse_text_list(struct command *c) {
+parse_text_list(struct command *c)
+{
   int lines = c->a;
   char **l = NULL;
   char *order;
@@ -204,7 +210,8 @@ parse_text_list(struct command *c) {
 
 
 int
-v_post(struct command *c) {
+v_post(struct command *c)
+{
   char **l = NULL;
   int new;
 
@@ -232,7 +239,8 @@ v_post(struct command *c) {
 
 
 int
-v_message(struct command *c) {
+v_message(struct command *c)
+{
   int targ = c->b;
   char **l = NULL;
   int first;
@@ -303,7 +311,8 @@ char *months[] = {
 
 
 void
-open_times() {
+open_times()
+{
   char *fnam;
 
   if (press_fp == NULL) {
@@ -340,7 +349,8 @@ open_times() {
 
 
 void
-times_masthead() {
+times_masthead()
+{
   char *fnam;
   time_t l;
   struct tm *tm;
@@ -398,7 +408,8 @@ times_masthead() {
 
 
 void
-close_times() {
+close_times()
+{
 
   if (press_fp != NULL) {
     fclose(press_fp);
@@ -413,7 +424,8 @@ close_times() {
 
 
 int
-v_rumor(struct command *c) {
+v_rumor(struct command *c)
+{
   char **l = NULL;
   int i;
 
@@ -449,7 +461,8 @@ v_rumor(struct command *c) {
 
 
 int
-v_press(struct command *c) {
+v_press(struct command *c)
+{
   char **l = NULL;
   int i;
   char attrib[100];
@@ -493,7 +506,8 @@ v_press(struct command *c) {
 
 
 int
-v_public(struct command *c) {
+v_public(struct command *c)
+{
   int pl = player(c->who);
   struct entity_player *p;
 
@@ -514,7 +528,8 @@ v_public(struct command *c) {
 
 
 int
-v_improve_opium(struct command *c) {
+v_improve_opium(struct command *c)
+{
   int where = subloc(c->who);
 
   if (subkind(where) != sub_poppy_field) {
@@ -527,7 +542,8 @@ v_improve_opium(struct command *c) {
 
 
 int
-d_improve_opium(struct command *c) {
+d_improve_opium(struct command *c)
+{
   int where = subloc(c->who);
 
   if (subkind(where) != sub_poppy_field) {
@@ -542,7 +558,8 @@ d_improve_opium(struct command *c) {
 
 
 int
-v_die(struct command *c) {
+v_die(struct command *c)
+{
 
   kill_char(c->who, MATES);
   return TRUE;
@@ -550,7 +567,8 @@ v_die(struct command *c) {
 
 
 int
-v_format(struct command *c) {
+v_format(struct command *c)
+{
   int pl;
 
   pl = player(c->who);
@@ -564,7 +582,8 @@ v_format(struct command *c) {
 
 
 int
-v_notab(struct command *c) {
+v_notab(struct command *c)
+{
   int pl;
 
   pl = player(c->who);
@@ -581,21 +600,24 @@ v_notab(struct command *c) {
 
 
 int
-v_stop(struct command *c) {
+v_stop(struct command *c)
+{
 
   return TRUE;
 }
 
 
 int
-v_archery(struct command *c) {
+v_archery(struct command *c)
+{
 
   return TRUE;
 }
 
 
 int
-d_archery(struct command *c) {
+d_archery(struct command *c)
+{
   struct entity_char *p;
   int amount;
 
@@ -616,14 +638,16 @@ d_archery(struct command *c) {
 
 
 int
-v_defense(struct command *c) {
+v_defense(struct command *c)
+{
 
   return TRUE;
 }
 
 
 int
-d_defense(struct command *c) {
+d_defense(struct command *c)
+{
   struct entity_char *p;
   int amount;
 
@@ -644,14 +668,16 @@ d_defense(struct command *c) {
 
 
 int
-v_swordplay(struct command *c) {
+v_swordplay(struct command *c)
+{
 
   return TRUE;
 }
 
 
 int
-d_swordplay(struct command *c) {
+d_swordplay(struct command *c)
+{
   struct entity_char *p;
   int amount;
 
@@ -672,7 +698,8 @@ d_swordplay(struct command *c) {
 
 
 int
-v_claim(struct command *c) {
+v_claim(struct command *c)
+{
   int item = c->a;
   int qty = c->b;
   int have_left = c->c;
@@ -695,7 +722,7 @@ v_claim(struct command *c) {
   if (numargs(c) < 2 &&
       (kind(item) != T_item || has_item(pl, item) < 1) && qty == 0) {
     log_write(LOG_CODE, "correcting CLAIM for %s:  %s",
-        box_code_less(player(c->who)), c->line);
+              box_code_less(player(c->who)), c->line);
 
     wout(c->who, "(assuming you meant CLAIM %d %d)", item_gold, item);
     qty = item;
@@ -726,7 +753,8 @@ v_claim(struct command *c) {
 
 
 int
-v_fight_to_death(struct command *c) {
+v_fight_to_death(struct command *c)
+{
   int flag = c->a;
 
   if (flag) {
@@ -744,7 +772,8 @@ v_fight_to_death(struct command *c) {
 
 
 int
-v_fee(struct command *c) {
+v_fee(struct command *c)
+{
   int amount = c->a;
 
   p_magic(c->who)->fee = amount;
@@ -756,7 +785,8 @@ v_fee(struct command *c) {
 
 
 static void
-board_message(int who, int ship) {
+board_message(int who, int ship)
+{
   char *with;
   char *desc;
   char *comma = "";
@@ -783,7 +813,8 @@ board_message(int who, int ship) {
 
 
 int
-v_board(struct command *c) {
+v_board(struct command *c)
+{
   int ship = c->a;
   int max_fee = c->b;
   struct exit_view *v;
@@ -880,7 +911,8 @@ v_board(struct command *c) {
 
 
 static void
-unboard_message(int who, int ship) {
+unboard_message(int who, int ship)
+{
   char *with;
   char *desc;
   char *comma = "";
@@ -912,7 +944,8 @@ unboard_message(int who, int ship) {
  */
 
 int
-v_unload(struct command *c) {
+v_unload(struct command *c)
+{
   int ship = subloc(c->who);
   int where;
   int i;
@@ -957,7 +990,8 @@ v_unload(struct command *c) {
  */
 
 int
-v_ferry(struct command *c) {
+v_ferry(struct command *c)
+{
   int ship = subloc(c->who);
   int where;
 
@@ -979,7 +1013,8 @@ v_ferry(struct command *c) {
 
 #if 0
 int
-v_tell(struct command *c) {
+v_tell(struct command *c)
+{
   int target = c->a;
   int what = c->b;
 

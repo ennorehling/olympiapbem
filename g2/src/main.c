@@ -23,7 +23,8 @@ int time_self = FALSE;          /* print timing info */
 int save_flag = FALSE;
 
 
-call_init_routines() {
+call_init_routines()
+{
 
   init_lower();
   glob_init();                  /* initialize global tables */
@@ -34,7 +35,8 @@ call_init_routines() {
 
 
 void
-write_totimes(void) {
+write_totimes(void)
+{
   FILE *fp;
   char *fnam;
   int pl;
@@ -61,7 +63,8 @@ write_totimes(void) {
 
 
 void
-write_email(void) {
+write_email(void)
+{
   FILE *fp;
   char *fnam;
   int pl;
@@ -86,7 +89,8 @@ write_email(void) {
 }
 
 static void
-list_a_player(FILE * fp, int pl, int *flag) {
+list_a_player(FILE * fp, int pl, int *flag)
+{
   struct entity_player *p;
   char *s;
   char c;
@@ -125,7 +129,8 @@ list_a_player(FILE * fp, int pl, int *flag) {
 
 
 void
-write_player_list(void) {
+write_player_list(void)
+{
   FILE *fp;
   char *fnam;
   int pl;
@@ -161,7 +166,8 @@ write_player_list(void) {
 }
 
 
-write_forward_sup(int who_for, int target, FILE * fp) {
+write_forward_sup(int who_for, int target, FILE * fp)
+{
   int pl;
   char *s;
 
@@ -175,7 +181,8 @@ write_forward_sup(int who_for, int target, FILE * fp) {
 
 
 void
-write_forwards(void) {
+write_forwards(void)
+{
   FILE *fp;
   char *fnam;
   int i, j;
@@ -214,7 +221,8 @@ write_forwards(void) {
 }
 
 
-write_faction_sup(int who_for, int target, FILE * fp) {
+write_faction_sup(int who_for, int target, FILE * fp)
+{
   int pl;
   char *s;
 
@@ -228,7 +236,8 @@ write_faction_sup(int who_for, int target, FILE * fp) {
 
 
 void
-write_factions(void) {
+write_factions(void)
+{
   FILE *fp;
   char *fnam;
   int i;
@@ -253,7 +262,8 @@ write_factions(void) {
 
 
 int
-send_rep(int pl, int turn) {
+send_rep(int pl, int turn)
+{
   struct entity_player *p;
   char report[LEN];
   FILE *fp;
@@ -346,7 +356,8 @@ send_rep(int pl, int turn) {
 }
 
 
-mail_reports() {
+mail_reports()
+{
   int pl;
 
   stage("mail_reports()");
@@ -435,7 +446,8 @@ output_html_rep(pl)
   system(fnam2);
 }
 
-copy_public_turns() {
+copy_public_turns()
+{
   char fnam[LEN];
   char cmd[LEN];
   int pl;
@@ -455,7 +467,8 @@ copy_public_turns() {
 }
 
 void
-setup_html_all(void) {
+setup_html_all(void)
+{
   int pl;
 
   stage("setup_html()");
@@ -471,7 +484,8 @@ setup_html_all(void) {
 }
 
 int
-main(int argc, char **argv) {
+main(int argc, char **argv)
+{
   extern int optind, opterr;
   extern char *optarg;
   int errflag = 0;
@@ -658,4 +672,3 @@ main(int argc, char **argv) {
 
   return 0;
 }
-

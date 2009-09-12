@@ -46,7 +46,8 @@ static int line_count = 0;
 
 
 static void
-find_meta_commands() {
+find_meta_commands()
+{
   extern int fuzzy_find;
 
   cmd_begin = find_command("begin");
@@ -128,7 +129,8 @@ find_meta_commands() {
 
 
 static void
-init_eat_vars() {
+init_eat_vars()
+{
 
   if (cmd_begin < 0)
     find_meta_commands();
@@ -154,7 +156,8 @@ init_eat_vars() {
  */
 
 static char *
-crack_address_sup(char *s) {
+crack_address_sup(char *s)
+{
   char *t;
   extern char *strchr();
 
@@ -184,7 +187,8 @@ crack_address_sup(char *s) {
  */
 
 static char *
-local_kludge(char *s) {
+local_kludge(char *s)
+{
   int l = strlen(s);
   char *t;
   extern char *strchr();
@@ -203,7 +207,8 @@ local_kludge(char *s) {
 
 
 static char *
-crack_address(char *s) {
+crack_address(char *s)
+{
 
   s = crack_address_sup(s);
 
@@ -219,7 +224,8 @@ crack_address(char *s) {
 
 
 static char *
-parse_reply(FILE * fp) {
+parse_reply(FILE * fp)
+{
   static char *from_space = NULL;
   static char *from_colon = NULL;
   static char *reply_to = NULL;
@@ -276,7 +282,8 @@ parse_reply(FILE * fp) {
 
 
 static char *
-eat_line_2(FILE * fp, int eat_white) {
+eat_line_2(FILE * fp, int eat_white)
+{
   char *line;
 
   if (eat_white)
@@ -305,7 +312,8 @@ eat_line_2(FILE * fp, int eat_white) {
 
 
 static char *
-eat_next_line_sup(FILE * fp) {
+eat_next_line_sup(FILE * fp)
+{
   char *line;
 
   line = getlin_ew(fp);
@@ -331,7 +339,8 @@ eat_next_line_sup(FILE * fp) {
 
 
 static char *
-eat_next_line(FILE * fp) {
+eat_next_line(FILE * fp)
+{
   char *line;
 
   do {
@@ -344,7 +353,8 @@ eat_next_line(FILE * fp) {
 
 
 static void
-err(int k, char *s) {
+err(int k, char *s)
+{
 
   out_alt_who = k;
 
@@ -356,7 +366,8 @@ err(int k, char *s) {
 
 
 static void
-next_cmd(FILE * fp, struct command *c) {
+next_cmd(FILE * fp, struct command *c)
+{
   char *line;
 
   c->cmd = 0;
@@ -390,7 +401,8 @@ next_cmd(FILE * fp, struct command *c) {
 
 
 static int
-do_begin(struct command *c) {
+do_begin(struct command *c)
+{
   char *pl_pass;
 
   if (numargs(c) < 1) {
@@ -440,7 +452,8 @@ do_begin(struct command *c) {
 
 
 static int
-valid_char_or_player(int who) {
+valid_char_or_player(int who)
+{
 
   if (kind(who) == T_char || kind(who) == T_player)
     return TRUE;
@@ -453,7 +466,8 @@ valid_char_or_player(int who) {
 
 
 static int
-do_unit(struct command *c) {
+do_unit(struct command *c)
+{
 
   unit = -1;                    /* ignore following unit commands */
 
@@ -483,7 +497,8 @@ do_unit(struct command *c) {
 
 
 static int
-do_email(struct command *c) {
+do_email(struct command *c)
+{
 
   if (cc_addr) {
     err(EAT_ERR, "no more than one EMAIL order per message");
@@ -511,7 +526,8 @@ do_email(struct command *c) {
 
 
 static int
-do_vis_email(struct command *c) {
+do_vis_email(struct command *c)
+{
 
   if (pl == 0) {
     err(EAT_ERR, "BEGIN must come before VIS_EMAIL");
@@ -531,7 +547,8 @@ do_vis_email(struct command *c) {
 
 
 static int
-do_lore(struct command *c) {
+do_lore(struct command *c)
+{
   int sheet = c->a;
 
   if (pl == 0) {
@@ -560,7 +577,8 @@ do_lore(struct command *c) {
 
 
 static int
-do_players(struct command *c) {
+do_players(struct command *c)
+{
   FILE *fp;
   char *fnam;
   char *s;
@@ -586,7 +604,8 @@ do_players(struct command *c) {
 
 
 static int
-do_resend(struct command *c) {
+do_resend(struct command *c)
+{
   int turn;
 
   if (pl == 0) {
@@ -612,7 +631,8 @@ do_resend(struct command *c) {
 
 
 static int
-do_format(struct command *c) {
+do_format(struct command *c)
+{
 
   if (pl == 0) {
     err(EAT_ERR, "BEGIN must appear before FORMAT");
@@ -627,7 +647,8 @@ do_format(struct command *c) {
 
 
 static int
-do_split(struct command *c) {
+do_split(struct command *c)
+{
   int lines = c->a;
   int bytes = c->b;
 
@@ -667,7 +688,8 @@ do_split(struct command *c) {
 
 
 static int
-do_notab(struct command *c) {
+do_notab(struct command *c)
+{
 
   if (pl == 0) {
     err(EAT_ERR, "BEGIN must appear before NOTAB");
@@ -687,7 +709,8 @@ do_notab(struct command *c) {
 
 
 static int
-do_password(struct command *c) {
+do_password(struct command *c)
+{
 
   if (pl == 0) {
     err(EAT_ERR, "BEGIN must appear before PASSWORD");
@@ -716,7 +739,8 @@ do_password(struct command *c) {
 #define DASH_LINE "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
 
 static void
-show_post(char **l, int cmd) {
+show_post(char **l, int cmd)
+{
   int i;
   char attrib[100];
   char *t;
@@ -750,7 +774,8 @@ show_post(char **l, int cmd) {
 
 
 static int
-do_eat_command(struct command *c, FILE * fp) {
+do_eat_command(struct command *c, FILE * fp)
+{
 
   assert(c->cmd != cmd_end);
 
@@ -869,7 +894,8 @@ static struct command dummy_cmd;
 
 
 static void
-parse_and_munch(FILE * fp) {
+parse_and_munch(FILE * fp)
+{
   struct command *c;
 
   c = &dummy_cmd;
@@ -884,7 +910,8 @@ parse_and_munch(FILE * fp) {
 
 
 static void
-eat_banner() {
+eat_banner()
+{
   char *to;
   char *full_name = "";
 
@@ -940,7 +967,8 @@ eat_banner() {
 
 
 static void
-include_orig(FILE * fp) {
+include_orig(FILE * fp)
+{
   char *s;
 
   out_alt_who = EAT_HEADERS;
@@ -952,7 +980,8 @@ include_orig(FILE * fp) {
 
 
 static void
-show_pending() {
+show_pending()
+{
 
   out_alt_who = EAT_QUEUE;
   orders_template(eat_pl, pl);
@@ -963,7 +992,8 @@ int eat_queue_mode = 0;
 
 
 static void
-eat(char *fnam) {
+eat(char *fnam)
+{
   FILE *fp;
   int ret;
   int okay_flag = 0;
@@ -1056,7 +1086,8 @@ eat(char *fnam) {
 
 
 static void
-write_remind_list() {
+write_remind_list()
+{
   FILE *fp;
   char *fnam;
   int pl;
@@ -1092,7 +1123,8 @@ write_remind_list() {
 
 
 static int
-read_spool() {
+read_spool()
+{
   DIR *d;
   struct dirent *e;
   char fnam[LEN];
@@ -1134,7 +1166,8 @@ read_spool() {
 
 
 void
-eat_loop() {
+eat_loop()
+{
 
   setbuf(stdout, NULL);
   mkdir(sout("%s/orders", libdir), 0755);

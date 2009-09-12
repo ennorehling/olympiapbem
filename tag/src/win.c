@@ -12,7 +12,8 @@
  */
 #define MIN_TURNS 12
 static int
-check_nation_win() {
+check_nation_win()
+{
   int k, i, flag, ruler, j, total;
 
   /*
@@ -116,7 +117,8 @@ check_nation_win() {
  *
  */
 void
-check_win_conditions() {
+check_win_conditions()
+{
   /*
    *  Nation win
    *

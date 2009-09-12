@@ -6,7 +6,8 @@
 
 
 int
-v_bird_spy(struct command *c) {
+v_bird_spy(struct command *c)
+{
   int targ = c->a;
   int where = subloc(c->who);
   struct exit_view *v;
@@ -54,7 +55,8 @@ v_bird_spy(struct command *c) {
 
 
 int
-d_bird_spy(struct command *c) {
+d_bird_spy(struct command *c)
+{
   int targ = c->d;
 
   if (!is_loc_or_ship(targ)) {
@@ -75,7 +77,8 @@ d_bird_spy(struct command *c) {
  *  unless an explicit {self, self, 0} is given.
  */
 
-struct breed {
+struct breed
+{
   int i1, i2;
   int result;
 }
@@ -96,7 +99,8 @@ breed_tbl[] = {
 
 
 static int
-breed_time(int item) {
+breed_time(int item)
+{
 
   switch (item) {
   case item_nazgul:
@@ -122,7 +126,8 @@ breed_time(int item) {
 
 
 static int
-breed_translate(int item) {
+breed_translate(int item)
+{
 
   switch (item) {
   case item_riding_horse:
@@ -136,7 +141,8 @@ breed_translate(int item) {
 
 
 static int
-breed_match(int which, int i1, int i2) {
+breed_match(int which, int i1, int i2)
+{
   int a[2];
   int b[2];
   int i, j;
@@ -163,7 +169,8 @@ breed_match(int which, int i1, int i2) {
 
 
 static int
-find_breed(int i1, int i2) {
+find_breed(int i1, int i2)
+{
   int i;
 
   i1 = breed_translate(i1);
@@ -181,7 +188,8 @@ find_breed(int i1, int i2) {
 
 
 int
-v_breed(struct command *c) {
+v_breed(struct command *c)
+{
   int i1 = c->a;
   int i2 = c->b;
   int exp;
@@ -248,7 +256,8 @@ v_breed(struct command *c) {
 
 
 int
-d_breed(struct command *c) {
+d_breed(struct command *c)
+{
   int i1 = c->a;
   int i2 = c->b;
   int offspring;
@@ -321,13 +330,15 @@ d_breed(struct command *c) {
 
 
 int
-v_breed_hound(struct command *c) {
+v_breed_hound(struct command *c)
+{
   return TRUE;
 }
 
 
 int
-d_breed_hound(struct command *c) {
+d_breed_hound(struct command *c)
+{
 
   gen_item(c->who, item_hound, 1);
   wout(c->who, "Bred and trained %s.", box_name_qty(item_hound, 1));

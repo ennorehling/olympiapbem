@@ -21,13 +21,15 @@ output_order_comp(a, b)
 
 
 void
-sort_for_output(ilist l) {
+sort_for_output(ilist l)
+{
   qsort(l, ilist_len(l), sizeof (int), output_order_comp);
 }
 
 
 void
-determine_output_order() {
+determine_output_order()
+{
   int count = 0;
   int reg;
   int i;
@@ -66,7 +68,8 @@ determine_output_order() {
 
 
 void
-show_carry_capacity(int who, int num) {
+show_carry_capacity(int who, int num)
+{
   struct weights w;
   char *walk_percent = "";
   char buf[LEN];
@@ -97,7 +100,8 @@ show_carry_capacity(int who, int num) {
 
 
 static void
-show_item_skills_sup(int who, int item, struct item_magic *p) {
+show_item_skills_sup(int who, int item, struct item_magic *p)
+{
   int i;
   char *req_s;
   int sk;
@@ -176,7 +180,8 @@ show_item_skills_sup(int who, int item, struct item_magic *p) {
 
 
 void
-show_item_skills(int who, int num) {
+show_item_skills(int who, int num)
+{
   struct item_ent *e;
   struct item_magic *p;
 
@@ -201,7 +206,8 @@ inv_item_comp(a, b)
 
 
 static char *
-extra_item_info(int who, int item, int qty) {
+extra_item_info(int who, int item, int qty)
+{
   char buf[LEN];
   int lc, rc, fc;
   int at, df, mi;
@@ -246,7 +252,8 @@ extra_item_info(int who, int item, int qty) {
 
 
 void
-show_char_inventory(int who, int num) {
+show_char_inventory(int who, int num)
+{
   int first = TRUE;
   struct item_ent *e;
   int weight;
@@ -301,7 +308,8 @@ show_char_inventory(int who, int num) {
  */
 
 char *
-char_rep_location(int who) {
+char_rep_location(int who)
+{
   int where = subloc(who);
   char *s = "";
   char *reg_name;
@@ -350,7 +358,8 @@ char_rep_location(int who) {
 
 
 static void
-char_rep_stack_info(int who, int num) {
+char_rep_stack_info(int who, int num)
+{
   int n;
   int first = TRUE;
 
@@ -374,7 +383,8 @@ char_rep_stack_info(int who, int num) {
 static int pledge_backlinks = FALSE;
 
 static void
-collect_pledge_backlinks() {
+collect_pledge_backlinks()
+{
   int i;
   int n;
   struct char_magic *p;
@@ -392,7 +402,8 @@ collect_pledge_backlinks() {
 
 
 static void
-show_pledged(int who, int num) {
+show_pledged(int who, int num)
+{
   int i, n;
   int first = TRUE;
   struct char_magic *p;
@@ -421,7 +432,8 @@ show_pledged(int who, int num) {
 
 
 static char *
-prisoner_health(int who) {
+prisoner_health(int who)
+{
   int health = char_health(who);
 
   assert(health != 0);
@@ -434,7 +446,8 @@ prisoner_health(int who) {
 
 
 static void
-char_rep_prisoners(int who, int num) {
+char_rep_prisoners(int who, int num)
+{
   int n;
   int first = TRUE;
 
@@ -453,7 +466,8 @@ char_rep_prisoners(int who, int num) {
 
 
 static void
-char_rep_health(int who, int num) {
+char_rep_health(int who, int num)
+{
   int n;
   char *s = "";
 
@@ -475,7 +489,8 @@ char_rep_health(int who, int num) {
 }
 
 static void
-char_rep_combat(int who, int num) {
+char_rep_combat(int who, int num)
+{
   int n;
   char *s;
   int mk, att, def, mis;
@@ -516,7 +531,8 @@ char_rep_combat(int who, int num) {
 
 
 static void
-char_rep_misc(int who, int num) {
+char_rep_misc(int who, int num)
+{
   char *s;
   struct char_magic *p;
 
@@ -544,7 +560,8 @@ char_rep_misc(int who, int num) {
 
 
 static void
-char_rep_magic(int who, int num) {
+char_rep_magic(int who, int num)
+{
   int ca, ma, mea;
 
   ca = char_cur_aura(num);
@@ -571,7 +588,8 @@ char_rep_magic(int who, int num) {
 
 
 void
-char_rep_sup(int who, int num) {
+char_rep_sup(int who, int num)
+{
 
   wiout(who, 16, "Location:       %s", char_rep_location(num));
   out(who, "Loyalty:        %s", cap(loyal_s(num)));
@@ -602,7 +620,8 @@ char_rep_sup(int who, int num) {
 
 
 void
-character_report() {
+character_report()
+{
   int who;
 
   stage("character_report()");
@@ -631,7 +650,8 @@ character_report() {
 
 
 void
-show_unclaimed(int who, int num) {
+show_unclaimed(int who, int num)
+{
   int first = TRUE;
   struct item_ent *e;
   int weight;
@@ -663,7 +683,8 @@ show_unclaimed(int who, int num) {
 
 
 void
-player_ent_info() {
+player_ent_info()
+{
   int pl;
 
   loop_player(pl) {
@@ -678,7 +699,8 @@ next_player}
 
 
 static int
-sum_fighters(int who) {
+sum_fighters(int who)
+{
   int sum = 0;
   struct item_ent *t;
 
@@ -726,7 +748,8 @@ static char *stupid_words[] = {
 
 
 static char *
-strip_leading_stupid_word(char *s) {
+strip_leading_stupid_word(char *s)
+{
   char *t;
   int i;
   int len;
@@ -750,14 +773,16 @@ strip_leading_stupid_word(char *s) {
 
 
 int
-stupid_word(char *s) {
+stupid_word(char *s)
+{
 
   return lookup(stupid_words, s) >= 0;
 }
 
 
 static char *
-prev_word(char *s, char *t) {
+prev_word(char *s, char *t)
+{
 
   while (t > s && *t != ' ')
     t--;
@@ -769,7 +794,8 @@ prev_word(char *s, char *t) {
 
 
 static char *
-summary_trunc_name(int who) {
+summary_trunc_name(int who)
+{
   char *s, *t;
 
   s = sout("%s", just_name(who));
@@ -805,7 +831,8 @@ static char *loyal_chars = "ucofns";
 
 
 static void
-unit_summary_sup(int pl, int who) {
+unit_summary_sup(int pl, int who)
+{
   char *nam;
   char *health_s;
   char *under_s;
@@ -873,7 +900,8 @@ unit_summary_sup(int pl, int who) {
 
 
 void
-unit_summary(int pl) {
+unit_summary(int pl)
+{
   int i;
   int count = 0;
 
@@ -917,7 +945,8 @@ unit_summary(int pl) {
 
 
 static char *
-loc_ind_s(int where) {
+loc_ind_s(int where)
+{
   int ld;
 
   ld = loc_depth(where) - 1;
@@ -930,7 +959,8 @@ loc_ind_s(int where) {
 
 
 static void
-loc_stack_catchup(int pl, int where) {
+loc_stack_catchup(int pl, int where)
+{
 
   if (where == 0 || bx[where]->temp)
     return;
@@ -945,7 +975,8 @@ static int loc_stack_explain;
 
 
 static void
-loc_stack_rep_sup(int pl, int where, int who) {
+loc_stack_rep_sup(int pl, int where, int who)
+{
   char *where_s = "";
   char *star = "";
   char *ind = "";
@@ -968,7 +999,8 @@ loc_stack_rep_sup(int pl, int where, int who) {
 
 
 void
-loc_stack_report(int pl) {
+loc_stack_report(int pl)
+{
   int i, j;
   static ilist l = NULL;
   static ilist locs = NULL;
@@ -1031,7 +1063,8 @@ loc_stack_report(int pl) {
 
 
 void
-player_report_sup(int pl) {
+player_report_sup(int pl)
+{
   struct entity_player *p;
 
   if (subkind(pl) == sub_pl_system)
@@ -1054,7 +1087,8 @@ player_report_sup(int pl) {
 
 
 void
-stack_capacity_report(int pl) {
+stack_capacity_report(int pl)
+{
   struct weights w;
   int who;
   char *walk_s = "";
@@ -1135,7 +1169,8 @@ stack_capacity_report(int pl) {
 
 
 void
-player_report() {
+player_report()
+{
   int pl;
 
   stage("player_report()");
@@ -1163,7 +1198,8 @@ player_report() {
 
 
 static void
-rep_player(int pl) {
+rep_player(int pl)
+{
   char *s;
 
   s = box_name(pl);
@@ -1175,7 +1211,8 @@ rep_player(int pl) {
 
 
 static void
-rep_char(int pl, ilist l) {
+rep_char(int pl, ilist l)
+{
   int i;
   char *s;
 
@@ -1196,7 +1233,8 @@ rep_char(int pl, ilist l) {
 
 
 static void
-rep_loc(int pl, ilist l) {
+rep_loc(int pl, ilist l)
+{
   int i;
   char *s;
 
@@ -1216,7 +1254,8 @@ rep_loc(int pl, ilist l) {
 
 
 static void
-inc(int pl, int code, char *s) {
+inc(int pl, int code, char *s)
+{
 
   lines(pl, s);
   out(pl, "#include %d", code);
@@ -1225,7 +1264,8 @@ inc(int pl, int code, char *s) {
 
 
 void
-gen_include_sup(int pl) {
+gen_include_sup(int pl)
+{
   static ilist char_l = NULL;
   static ilist loc_l = NULL;
   int n;
@@ -1407,7 +1447,8 @@ gen_include_sup(int pl) {
 
 
 void
-gen_include_section() {
+gen_include_section()
+{
   int pl;
 
   out_path = MASTER;
@@ -1425,7 +1466,8 @@ gen_include_section() {
 
 
 void
-turn_end_loc_reports() {
+turn_end_loc_reports()
+{
   int pl;
   int i;
   struct entity_player *p;
@@ -1476,7 +1518,8 @@ turn_end_loc_reports() {
 
 
 void
-player_banner() {
+player_banner()
+{
   int pl;
   struct entity_player *p;
 
@@ -1534,7 +1577,8 @@ player_banner() {
 
 
 void
-report_account_sup(int pl) {
+report_account_sup(int pl)
+{
   char fnam[LEN];
   char cmd[LEN];
   FILE *fp;
@@ -1601,7 +1645,8 @@ report_account_sup(int pl) {
 
 
 void
-report_account() {
+report_account()
+{
   int pl;
 
   stage("report_account()");
@@ -1623,7 +1668,8 @@ report_account() {
 
 
 void
-charge_account() {
+charge_account()
+{
   int pl;
   struct entity_player *p;
   char cmd[LEN];

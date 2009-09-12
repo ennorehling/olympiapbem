@@ -37,7 +37,8 @@ skill_use_comp(a, b)
 
 
 static void
-gm_show_skill_use_counts(int pl) {
+gm_show_skill_use_counts(int pl)
+{
   int sk;
   static ilist l = NULL;
   int i;
@@ -92,7 +93,8 @@ skills_known_comp(a, b)
 }
 
 static void
-gm_show_skills_known(int pl) {
+gm_show_skills_known(int pl)
+{
   int sk;
   static ilist l = NULL;
   int i;
@@ -151,7 +153,8 @@ gm_show_skills_known(int pl) {
 
 
 static void
-gm_show_interesting_attributes(int pl) {
+gm_show_interesting_attributes(int pl)
+{
   int i;
   int ability_shroud = 0;
   int hinder_meditation = 0;
@@ -245,7 +248,8 @@ gm_show_interesting_attributes(int pl) {
 
 
 void
-gm_list_animate_items(int pl) {
+gm_list_animate_items(int pl)
+{
   int i;
   char buf[100];
 
@@ -287,7 +291,8 @@ gm_list_animate_items(int pl) {
 
 
 static void
-gm_show_gold(int pl) {
+gm_show_gold(int pl)
+{
   int sum;
 
   sum = gold_common_magic + gold_lead_to_gold + gold_pot_basket +
@@ -344,7 +349,8 @@ gm_show_gold(int pl) {
 
 
 static void
-gm_show_control_arts(int pl) {
+gm_show_control_arts(int pl)
+{
   int item;
   int n;
 
@@ -371,7 +377,8 @@ gm_show_control_arts(int pl) {
 
 
 static int
-gm_count_stuff(int pl) {
+gm_count_stuff(int pl)
+{
   int castle = 0;
   int castle_notdone = 0;
   int tower = 0;
@@ -461,7 +468,8 @@ gm_count_stuff(int pl) {
 
 
 static void
-gm_show_gate_stats(int pl) {
+gm_show_gate_stats(int pl)
+{
   int n_gates = 0;
   int n_found = 0;
   int ngate_seal = 0, ngate_jump = 0, ngate_unseal = 0;
@@ -515,7 +523,8 @@ gm_show_gate_stats(int pl) {
 
 
 static void
-gm_show_locs_visited(int pl) {
+gm_show_locs_visited(int pl)
+{
   int n_prov = 0;
   int n_prov_visit = 0;
   int n_sub = 0;
@@ -600,7 +609,8 @@ gm_show_locs_visited(int pl) {
 
 
 static void
-gm_loyalty_stats(int pl) {
+gm_loyalty_stats(int pl)
+{
   int i;
   int tot = 0, oath = 0, fear = 0, cont = 0, unsw = 0, npc = 0;
 
@@ -659,7 +669,8 @@ region_occupy_comp(a, b)
 
 
 static void
-gm_land_stats(int pl) {
+gm_land_stats(int pl)
+{
   int i;
   static ilist l = NULL;
   int n_chars = 0;
@@ -710,7 +721,8 @@ wealth_list_comp(a, b)
 
 
 static void
-gm_faction_wealth(int pl) {
+gm_faction_wealth(int pl)
+{
   int i;
   static ilist l = NULL;
 
@@ -758,7 +770,8 @@ nobles_list_comp(a, b)
 
 
 static void
-gm_nobles_list(int pl) {
+gm_nobles_list(int pl)
+{
   int i;
   static ilist l = NULL;
 
@@ -796,7 +809,8 @@ gm_nobles_list(int pl) {
 
 
 static void
-gm_player_details(int pl) {
+gm_player_details(int pl)
+{
   int i, j;
   int sum_gold, sum_units, sum_bld, sum_subloc, sum_ship, sum_skills;
   char *age;
@@ -897,7 +911,8 @@ gm_player_details(int pl) {
 
 
 void
-list_all_notices(int pl) {
+list_all_notices(int pl)
+{
   int i;
 
   clear_temps(T_loc);
@@ -925,7 +940,8 @@ list_all_notices(int pl) {
 
 
 void
-list_all_items(int pl) {
+list_all_items(int pl)
+{
   int i;
 
   out_path = MASTER;
@@ -954,7 +970,8 @@ list_all_items(int pl) {
 
 
 void
-gm_report(int pl) {
+gm_report(int pl)
+{
 
   stage("gm_report()");
   gm_show_interesting_attributes(pl);

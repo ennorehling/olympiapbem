@@ -30,7 +30,8 @@ static ilist ranks = NULL;
  */
 
 static int
-ranking(int n) {
+ranking(int n)
+{
 
   while (n > 0 && bx[ranks[n]]->temp == bx[ranks[n - 1]]->temp)
     n--;
@@ -40,7 +41,8 @@ ranking(int n) {
 
 
 static char *
-top_rank() {
+top_rank()
+{
   int i;
   int n = 0;
   char *s = "";
@@ -66,7 +68,8 @@ top_rank() {
 
 
 static void
-out_rank_mine_top(int who, int num, char *title, int total) {
+out_rank_mine_top(int who, int num, char *title, int total)
+{
   char *s;
   int j = 20 + 1 + 11 + 2 + 5 + 2;
   int val = bx[ranks[num]]->temp;
@@ -86,7 +89,8 @@ out_rank_mine_top(int who, int num, char *title, int total) {
 
 
 static void
-out_ranking(char *title, int total) {
+out_ranking(char *title, int total)
+{
   int i;
 
   ilist_clear(&ranks);
@@ -118,7 +122,8 @@ static int nother;
 
 
 static void
-collect_game_totals() {
+collect_game_totals()
+{
   int i, j;
 
   nplayers = 0;
@@ -149,7 +154,8 @@ collect_game_totals() {
 
 
 static void
-summary_units() {
+summary_units()
+{
   int i;
 
   clear_temps(T_player);
@@ -164,7 +170,8 @@ summary_units() {
 
 
 static void
-summary_skills() {
+summary_skills()
+{
   int pl, who;
   int i;
   int nskills = 0;
@@ -210,7 +217,8 @@ summary_skills() {
 
 
 static void
-summary_spells() {
+summary_spells()
+{
   int pl, who;
   int i;
   int nskills = 0;
@@ -256,7 +264,8 @@ summary_spells() {
 
 
 static void
-summary_men() {
+summary_men()
+{
   int i;
   struct item_ent *e;
 
@@ -276,7 +285,8 @@ summary_men() {
 
 
 static void
-summary_gold() {
+summary_gold()
+{
   int i;
 
   clear_temps(T_player);
@@ -291,7 +301,8 @@ summary_gold() {
 
 
 static void
-summary_land_owned() {
+summary_land_owned()
+{
   int i, j;
   ilist l;
 
@@ -308,7 +319,8 @@ summary_land_owned() {
 
 
 static void
-summary_provinces() {
+summary_provinces()
+{
   int i;
   int pl;
   int nlocs = 0;
@@ -348,7 +360,8 @@ summary_provinces() {
 
 #if 0
 static void
-summary_sublocs() {
+summary_sublocs()
+{
   int i;
   int pl;
   int nlocs = 0;
@@ -388,7 +401,8 @@ summary_sublocs() {
 
 
 void
-summary_report() {
+summary_report()
+{
   int pl;
   char *s, *p;
 

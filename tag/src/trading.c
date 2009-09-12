@@ -18,7 +18,8 @@ struct trade *new_trade(int who, int kind, int item);
  *
  */
 int
-v_dedicate_tower(struct command *c) {
+v_dedicate_tower(struct command *c)
+{
   int where = subloc(c->who);
   int school = c->a;
   int i;
@@ -144,7 +145,8 @@ v_dedicate_tower(struct command *c) {
  *
  */
 void
-make_tower_guild(int where, int school) {
+make_tower_guild(int where, int school)
+{
   struct entity_subloc *p = p_subloc(where);
 
   change_box_subkind(where, sub_guild);
@@ -155,7 +157,8 @@ make_tower_guild(int where, int school) {
 };
 
 int
-d_dedicate_tower(struct command *c) {
+d_dedicate_tower(struct command *c)
+{
   int where = subloc(c->who), i;
   struct entity_subloc *p = rp_subloc(where);
   int school = c->a;
@@ -257,7 +260,8 @@ d_dedicate_tower(struct command *c) {
  *
  */
 int
-random_trade_good() {
+random_trade_good()
+{
   int t, sofar = 0, selected = 0;
 
   loop_subkind(sub_trade_good, t) {
@@ -282,7 +286,8 @@ random_trade_good() {
  *
  */
 void
-add_trade(int where, int type) {
+add_trade(int where, int type)
+{
   int i, found, new_tg;
   int other = (type == PRODUCE) ? CONSUME : PRODUCE;
   struct trade *t;
@@ -320,7 +325,8 @@ add_trade(int where, int type) {
  *
  */
 static void
-update_big_city_trades(int where) {
+update_big_city_trades(int where)
+{
   /*
    *  Remove small city trades.
    *
@@ -352,7 +358,8 @@ update_big_city_trades(int where) {
  *
  */
 static void
-update_small_city_trades(int where) {
+update_small_city_trades(int where)
+{
   int amount = (10000 - has_item(province(where), item_peasant)) / 400;
   update_city_trade(where, CONSUME, item_lumber, amount / 2,
                     rp_item(item_lumber)->base_price, 0);
@@ -371,7 +378,8 @@ update_small_city_trades(int where) {
  *
  */
 void
-do_production(int where, int override) {
+do_production(int where, int override)
+{
   struct trade *t;
   struct trade *new;
 
@@ -423,7 +431,8 @@ do_production(int where, int override) {
  *
  */
 static void
-update_market(int where) {
+update_market(int where)
+{
   struct trade *t, *new;
   int change, i, other, bp;
 
@@ -629,7 +638,8 @@ update_market(int where) {
 };
 
 static void
-add_trade_goods(int where) {
+add_trade_goods(int where)
+{
   struct trade *t;
   int produce = 0, consume = 0, i;
 
@@ -691,7 +701,8 @@ add_trade_goods(int where) {
  *
  */
 void
-update_markets() {
+update_markets()
+{
   struct trade *t, *new;
   int where, produce = 0, consume = 0, change, i;
   stage("update_markets()");
@@ -783,7 +794,8 @@ update_markets() {
  *
  */
 int
-v_smuggle_goods(struct command *c) {
+v_smuggle_goods(struct command *c)
+{
   int flag = c->a;
 
   if (flag && get_effect(c->who, ef_smuggle_goods, 0, 0)) {
@@ -800,7 +812,8 @@ v_smuggle_goods(struct command *c) {
 };
 
 int
-d_smuggle_goods(struct command *c) {
+d_smuggle_goods(struct command *c)
+{
   int flag = c->a;
 
   if (flag) {
@@ -828,7 +841,8 @@ d_smuggle_goods(struct command *c) {
  *
  */
 int
-v_smuggle_men(struct command *c) {
+v_smuggle_men(struct command *c)
+{
   int flag = c->a;
 
   if (flag && get_effect(c->who, ef_smuggle_men, 0, 0)) {
@@ -845,7 +859,8 @@ v_smuggle_men(struct command *c) {
 };
 
 int
-d_smuggle_men(struct command *c) {
+d_smuggle_men(struct command *c)
+{
   int flag = c->a;
 
   if (flag) {
@@ -886,7 +901,8 @@ d_smuggle_men(struct command *c) {
  *
  */
 struct trade *
-traded_here(int where, int good) {
+traded_here(int where, int good)
+{
   struct trade *t;
 
   /*
@@ -911,7 +927,8 @@ traded_here(int where, int good) {
  *
  */
 struct trade *
-produced_here(int where, int good) {
+produced_here(int where, int good)
+{
   struct trade *t;
 
   /*
@@ -937,7 +954,8 @@ produced_here(int where, int good) {
  *
  */
 int
-v_increase_demand(struct command *c) {
+v_increase_demand(struct command *c)
+{
   int where = subloc(c->who);
   int good = c->a;
 
@@ -967,7 +985,8 @@ v_increase_demand(struct command *c) {
 };
 
 int
-d_increase_demand(struct command *c) {
+d_increase_demand(struct command *c)
+{
   int where = subloc(c->who);
   int good = c->a, change;
   struct trade *t;
@@ -1045,7 +1064,8 @@ d_increase_demand(struct command *c) {
  *
  */
 int
-v_decrease_demand(struct command *c) {
+v_decrease_demand(struct command *c)
+{
   int where = subloc(c->who);
   int good = c->a;
 
@@ -1075,7 +1095,8 @@ v_decrease_demand(struct command *c) {
 };
 
 int
-d_decrease_demand(struct command *c) {
+d_decrease_demand(struct command *c)
+{
   int where = subloc(c->who);
   int good = c->a, change;
   struct trade *t;
@@ -1150,7 +1171,8 @@ d_decrease_demand(struct command *c) {
  *  Increase the # of a good demanded or offered.
  */
 int
-v_increase_supply(struct command *c) {
+v_increase_supply(struct command *c)
+{
   int where = subloc(c->who);
   int good = c->a;
 
@@ -1180,7 +1202,8 @@ v_increase_supply(struct command *c) {
 };
 
 int
-d_increase_supply(struct command *c) {
+d_increase_supply(struct command *c)
+{
   int where = subloc(c->who);
   int good = c->a;
   float change;
@@ -1248,7 +1271,8 @@ d_increase_supply(struct command *c) {
  *
  */
 int
-v_decrease_supply(struct command *c) {
+v_decrease_supply(struct command *c)
+{
   int where = subloc(c->who);
   int good = c->a;
 
@@ -1278,7 +1302,8 @@ v_decrease_supply(struct command *c) {
 };
 
 int
-d_decrease_supply(struct command *c) {
+d_decrease_supply(struct command *c)
+{
   int where = subloc(c->who);
   int good = c->a;
   float change;
@@ -1350,7 +1375,8 @@ d_decrease_supply(struct command *c) {
  *  then unhide the hidden item.
  */
 int
-v_hide_item(struct command *c) {
+v_hide_item(struct command *c)
+{
   int item = c->a;
 
   /*
@@ -1391,7 +1417,8 @@ v_hide_item(struct command *c) {
  *
  */
 int
-d_hide_item(struct command *c) {
+d_hide_item(struct command *c)
+{
   int item = c->a;
   int what = get_effect(c->who, ef_hide_item, 0, 0);
 
@@ -1477,7 +1504,8 @@ d_hide_item(struct command *c) {
  *
  */
 int
-v_hide_money(struct command *c) {
+v_hide_money(struct command *c)
+{
   int amount = c->a;
   int what = get_effect(c->who, ef_hide_money, 0, 0);
 
@@ -1494,7 +1522,8 @@ v_hide_money(struct command *c) {
 };
 
 int
-d_hide_money(struct command *c) {
+d_hide_money(struct command *c)
+{
   int amount = c->a;
   int what = get_effect(c->who, ef_hide_money, 0, 0);
 

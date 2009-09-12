@@ -8,7 +8,8 @@
 
 
 static struct admit *
-rp_admit(int pl, int targ) {
+rp_admit(int pl, int targ)
+{
   int i;
   struct entity_player *p;
 
@@ -24,7 +25,8 @@ rp_admit(int pl, int targ) {
 
 
 static struct admit *
-p_admit(int pl, int targ) {
+p_admit(int pl, int targ)
+{
   int i;
   struct entity_player *p;
   struct admit *new;
@@ -50,7 +52,8 @@ p_admit(int pl, int targ) {
  */
 
 int
-will_admit(int pl, int who, int targ) {
+will_admit(int pl, int who, int targ)
+{
   struct admit *p;
   int found;
   int found_pl;
@@ -85,7 +88,8 @@ will_admit(int pl, int who, int targ) {
 
 
 int
-v_admit(struct command *c) {
+v_admit(struct command *c)
+{
   int targ = c->a;
   int pl = player(c->who);
   struct admit *p;
@@ -135,7 +139,8 @@ admit_comp(a, b)
 
 
 static void
-print_admit_sup(int pl, struct admit *p) {
+print_admit_sup(int pl, struct admit *p)
+{
   char buf[LEN];
   int i;
   int count = 0;
@@ -170,7 +175,8 @@ print_admit_sup(int pl, struct admit *p) {
 
 
 void
-print_admit(int pl) {
+print_admit(int pl)
+{
   struct entity_player *p;
   int i;
   int first = TRUE;
@@ -202,7 +208,8 @@ print_admit(int pl) {
 
 
 void
-clear_all_att(int who) {
+clear_all_att(int who)
+{
   struct att_ent *p;
 
   p = rp_disp(who);
@@ -216,7 +223,8 @@ clear_all_att(int who) {
 
 
 void
-set_att(int who, int targ, int disp) {
+set_att(int who, int targ, int disp)
+{
   struct att_ent *p;
   extern int int_comp();
 
@@ -340,7 +348,8 @@ is_defend(who, targ)
 
 
 static int
-v_set_att(struct command *c, int k) {
+v_set_att(struct command *c, int k)
+{
 
   while (numargs(c) > 0) {
     if (!valid_box(c->a)) {
@@ -362,31 +371,36 @@ v_set_att(struct command *c, int k) {
 
 
 int
-v_hostile(struct command *c) {
+v_hostile(struct command *c)
+{
   return v_set_att(c, HOSTILE);
 }
 
 
 int
-v_defend(struct command *c) {
+v_defend(struct command *c)
+{
   return v_set_att(c, DEFEND);
 }
 
 
 int
-v_neutral(struct command *c) {
+v_neutral(struct command *c)
+{
   return v_set_att(c, NEUTRAL);
 }
 
 
 int
-v_att_clear(struct command *c) {
+v_att_clear(struct command *c)
+{
   return v_set_att(c, ATT_NONE);
 }
 
 
 static void
-print_att_sup(int who, ilist l, char *header, int *first) {
+print_att_sup(int who, ilist l, char *header, int *first)
+{
   int i;
   int count = 0;
   char buf[LEN];
@@ -425,7 +439,8 @@ print_att_sup(int who, ilist l, char *header, int *first) {
 
 
 void
-print_att(int who, int n) {
+print_att(int who, int n)
+{
   int first = TRUE;
   struct att_ent *p;
 

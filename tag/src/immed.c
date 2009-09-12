@@ -6,7 +6,8 @@
 
 
 void
-immediate_commands() {
+immediate_commands()
+{
   struct command *c;
   char buf[LEN];
   char *line;
@@ -67,7 +68,8 @@ immediate_commands() {
 
 
 int
-v_be(struct command *c) {
+v_be(struct command *c)
+{
 
   if (valid_box(c->a)) {
     immediate = c->a;
@@ -81,7 +83,8 @@ v_be(struct command *c) {
 
 
 int
-v_listcmds(struct command *c) {
+v_listcmds(struct command *c)
+{
   char buf[200];
   int i;
 
@@ -105,7 +108,8 @@ v_listcmds(struct command *c) {
 
 
 int
-v_add_item(struct command *c) {
+v_add_item(struct command *c)
+{
 
   if (kind(c->a) == T_item) {
     if (kind(c->who) != T_char)
@@ -120,7 +124,8 @@ v_add_item(struct command *c) {
 
 
 int
-v_sub_item(struct command *c) {
+v_sub_item(struct command *c)
+{
 
   consume_item(c->who, c->a, c->b);
   return TRUE;
@@ -128,7 +133,8 @@ v_sub_item(struct command *c) {
 
 
 int
-v_dump(struct command *c) {
+v_dump(struct command *c)
+{
 
   if (valid_box(c->a)) {
     bx[c->a]->temp = 0;
@@ -141,7 +147,8 @@ v_dump(struct command *c) {
 
 
 int
-v_poof(struct command *c) {
+v_poof(struct command *c)
+{
 
   if (!is_loc_or_ship(c->a)) {
     wout(c->who, "%s is not a location.", c->parse[1]);
@@ -161,7 +168,8 @@ v_poof(struct command *c) {
 
 
 int
-v_see_all(struct command *c) {
+v_see_all(struct command *c)
+{
 
   if (c->parse[1] == NULL || *c->parse[1] == '\0')
     immed_see_all = 1;
@@ -178,7 +186,8 @@ v_see_all(struct command *c) {
 
 
 int
-v_makeloc(struct command *c) {
+v_makeloc(struct command *c)
+{
   int n;
   int sk;
   int kind;
@@ -214,7 +223,8 @@ v_makeloc(struct command *c) {
 
 
 int
-v_invent(struct command *c) {
+v_invent(struct command *c)
+{
 
   show_char_inventory(c->who, c->who, "");
   show_carry_capacity(c->who, c->who);
@@ -224,7 +234,8 @@ v_invent(struct command *c) {
 
 
 int
-v_know(struct command *c) {
+v_know(struct command *c)
+{
 
   if (kind(c->a) != T_skill) {
     wout(c->who, "%s is not a skill.", c->parse[1]);
@@ -241,7 +252,8 @@ v_know(struct command *c) {
 
 
 int
-v_skills(struct command *c) {
+v_skills(struct command *c)
+{
 
   list_skills(c->who, c->who, "");
   list_partial_skills(c->who, c->who, "");
@@ -250,7 +262,8 @@ v_skills(struct command *c) {
 
 
 int
-v_save(struct command *c) {
+v_save(struct command *c)
+{
 
   save_db();
   return TRUE;
@@ -258,7 +271,8 @@ v_save(struct command *c) {
 
 
 int
-v_los(struct command *c) {
+v_los(struct command *c)
+{
   int target = c->a;
   int d;
 
@@ -276,7 +290,8 @@ v_los(struct command *c) {
 
 
 int
-v_kill(struct command *c) {
+v_kill(struct command *c)
+{
 
   kill_char(c->a, MATES, S_body);
 
@@ -285,7 +300,8 @@ v_kill(struct command *c) {
 
 
 int
-v_take_pris(struct command *c) {
+v_take_pris(struct command *c)
+{
 
   if (!check_char_here(c->who, c->a))
     return FALSE;
@@ -297,7 +313,8 @@ v_take_pris(struct command *c) {
 
 
 int
-v_seed(struct command *c) {
+v_seed(struct command *c)
+{
 
   seed_initial_locations();
   return TRUE;
@@ -305,7 +322,8 @@ v_seed(struct command *c) {
 
 
 int
-v_postproc(struct command *c) {
+v_postproc(struct command *c)
+{
   int i;
   struct skill_ent *e;
   struct entity_char *ch;
@@ -331,7 +349,8 @@ v_postproc(struct command *c) {
 
 
 int
-v_lore(struct command *c) {
+v_lore(struct command *c)
+{
 
   if (valid_box(c->a))
     deliver_lore(c->who, c->a);
@@ -345,7 +364,8 @@ v_lore(struct command *c) {
  */
 
 int
-v_ct(struct command *c) {
+v_ct(struct command *c)
+{
   int i;
 
   loop_loc(i) {
@@ -362,7 +382,8 @@ v_ct(struct command *c) {
 
 
 int
-v_seedmarket(struct command *c) {
+v_seedmarket(struct command *c)
+{
   int i;
 
   loop_city(i) {
@@ -388,7 +409,8 @@ v_seedmarket(struct command *c) {
  *
  */
 int
-v_credit(struct command *c) {
+v_credit(struct command *c)
+{
   int target = c->a;
   int amount = c->b;
   int item = c->c;
@@ -431,7 +453,8 @@ v_credit(struct command *c) {
 
 
 int
-v_relore(struct command *c) {
+v_relore(struct command *c)
+{
   int i;
   int skill = c->a;
 
@@ -451,7 +474,8 @@ v_relore(struct command *c) {
 
 
 int
-v_xyzzy(struct command *c) {
+v_xyzzy(struct command *c)
+{
   int item = 50912;
   int targ = 27624;
   int i;
@@ -468,7 +492,8 @@ v_xyzzy(struct command *c) {
 
 
 int
-v_fix2(struct command *c) {
+v_fix2(struct command *c)
+{
   int i;
 
   loop_char(i) {
@@ -482,7 +507,8 @@ v_fix2(struct command *c) {
 
 
 void
-fix_gates() {
+fix_gates()
+{
   int where;
   struct exit_view **l;
   int set_one;
@@ -566,7 +592,8 @@ fix_gates() {
 
 
 int
-v_fix(struct command *c) {
+v_fix(struct command *c)
+{
   int i;
 
   loop_char(i) {

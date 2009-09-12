@@ -26,7 +26,8 @@ static ilist run_q = NULL;
  */
 
 char **
-parse_line(char **l, char *s) {
+parse_line(char **l, char *s)
+{
   char *p;
   char *prev;
 
@@ -84,7 +85,8 @@ parse_line(char **l, char *s) {
 
 
 void
-remove_comment(char *s) {
+remove_comment(char *s)
+{
 
   while (*s) {
     while (*s == '"') {
@@ -110,7 +112,8 @@ remove_comment(char *s) {
 
 
 void
-remove_ctrl_chars(char *s) {
+remove_ctrl_chars(char *s)
+{
 
   while (*s) {
     if (*s & 0x80)
@@ -123,7 +126,8 @@ remove_ctrl_chars(char *s) {
 
 
 int
-parse_arg(int who, char *s) {
+parse_arg(int who, char *s)
+{
   int n;
 
 /*
@@ -149,7 +153,8 @@ parse_arg(int who, char *s) {
 int fuzzy_find;                 /* was string found with a fuzzy match? */
 
 int
-find_command(char *s) {
+find_command(char *s)
+{
   int i;
 
   fuzzy_find = FALSE;
@@ -176,7 +181,8 @@ find_command(char *s) {
  */
 
 int
-oly_parse_cmd(struct command *c, char *s) {
+oly_parse_cmd(struct command *c, char *s)
+{
 
   c->cmd = 0;
   c->fuzzy = FALSE;
@@ -232,7 +238,8 @@ oly_parse_cmd(struct command *c, char *s) {
  */
 
 int
-oly_parse(struct command *c, char *s) {
+oly_parse(struct command *c, char *s)
+{
 
   c->a = 0;
   c->b = 0;
@@ -270,7 +277,8 @@ oly_parse(struct command *c, char *s) {
 
 
 void
-cmd_shift(struct command *c) {
+cmd_shift(struct command *c)
+{
 
   if (ilist_len(c->parse) > 1) {
 /*
@@ -298,7 +306,8 @@ cmd_shift(struct command *c) {
 
 
 int
-check_allow(struct command *c, char *allow) {
+check_allow(struct command *c, char *allow)
+{
   int t;
   extern char *strchr();
 
@@ -342,7 +351,8 @@ check_allow(struct command *c, char *allow) {
 
 
 static int
-get_command(int who, char *s) {
+get_command(int who, char *s)
+{
   int fact;                     /* who controls us now? */
   char *order;
 
@@ -387,7 +397,8 @@ get_command(int who, char *s) {
 
 
 static int
-exec_precedence(int who) {
+exec_precedence(int who)
+{
   int n;
   int stack_depth = 0;
   int pos;
@@ -417,7 +428,8 @@ exec_comp(a, b)
 
 
 static void
-sort_load_queue(ilist l) {
+sort_load_queue(ilist l)
+{
   int i;
 
   for (i = 0; i < ilist_len(l); i++)
@@ -434,7 +446,8 @@ sort_load_queue(ilist l) {
  */
 
 static void
-sort_run_queue(ilist l) {
+sort_run_queue(ilist l)
+{
   int i;
   int pri;
   struct command *c;
@@ -453,7 +466,8 @@ sort_run_queue(ilist l) {
 
 
 static void
-set_state(struct command *c, int state, int new_pri) {
+set_state(struct command *c, int state, int new_pri)
+{
 
   switch (c->state) {
   case STATE_RUN:
@@ -495,7 +509,8 @@ set_state(struct command *c, int state, int new_pri) {
  */
 
 static int
-load_command(struct command *c) {
+load_command(struct command *c)
+{
   char buf[LEN];
 
   assert(c != NULL);
@@ -524,7 +539,8 @@ load_command(struct command *c) {
 
 
 void
-command_done(struct command *c) {
+command_done(struct command *c)
+{
 
   if (immediate) {
     set_state(c, STATE_DONE, 0);
@@ -539,7 +555,8 @@ command_done(struct command *c) {
 
 
 int
-finish_command(struct command *c) {
+finish_command(struct command *c)
+{
   extern int cmd_wait;
 
   assert(c != NULL);
@@ -585,7 +602,8 @@ finish_command(struct command *c) {
 
 
 void
-do_command(struct command *c) {
+do_command(struct command *c)
+{
 
   assert(c != NULL);
 
@@ -634,7 +652,8 @@ do_command(struct command *c) {
 
 
 void
-init_load_sup(int who) {
+init_load_sup(int who)
+{
   struct command *c;
 
   c = rp_command(who);
@@ -672,7 +691,8 @@ init_load_sup(int who) {
 
 
 void
-initial_command_load() {
+initial_command_load()
+{
   int i;
 
   loop_char(i) {
@@ -688,7 +708,8 @@ initial_command_load() {
 
 
 int
-min_pri_ready() {
+min_pri_ready()
+{
   int pri;
   int i;
   struct command *c;
@@ -713,7 +734,8 @@ min_pri_ready() {
 
 
 void
-init_wait_list() {
+init_wait_list()
+{
   int i;
   struct command *c;
 
@@ -728,7 +750,8 @@ init_wait_list() {
 
 
 void
-check_all_waits() {
+check_all_waits()
+{
   int i;
   struct command *c;
 
@@ -746,7 +769,8 @@ static int auto_attack_flag;
 
 
 void
-start_phase() {
+start_phase()
+{
   int i, j;
   int pri;
   struct command *c;
@@ -795,7 +819,8 @@ start_phase() {
 
 
 static void
-evening_phase() {
+evening_phase()
+{
   int i, j;
   struct command *c;
   ilist l;
@@ -854,7 +879,8 @@ evening_phase() {
  */
 
 static void
-daily_command_loop() {
+daily_command_loop()
+{
 
   auto_attack_flag = TRUE;
   start_phase();
@@ -864,7 +890,8 @@ daily_command_loop() {
 
 
 static void
-process_player_orders() {
+process_player_orders()
+{
   int pl;
   struct command *c;
 
@@ -898,7 +925,8 @@ process_player_orders() {
  */
 
 void
-interrupt_order(int who) {
+interrupt_order(int who)
+{
   struct command *c;
 
   if (stack_leader(who) == who)
@@ -920,7 +948,8 @@ interrupt_order(int who) {
 
 
 static void
-process_interrupted_units() {
+process_interrupted_units()
+{
   int who;
   struct command *who_c;
 
@@ -948,7 +977,8 @@ process_interrupted_units() {
 int month_done = FALSE;
 
 void
-process_orders() {
+process_orders()
+{
 
   stage("process_orders()");
 

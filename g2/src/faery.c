@@ -15,7 +15,8 @@ int faery_player = 0;
 
 
 void
-create_faery() {
+create_faery()
+{
   int r, c;
   int map[SZ_row + 1][SZ_col + 1];
   int n;
@@ -214,7 +215,8 @@ create_faery() {
 
 
 void
-link_opener(int who, int where, int sk) {
+link_opener(int who, int where, int sk)
+{
   struct entity_subloc *p, *pp;
   int i;
   int set_something = FALSE;
@@ -257,7 +259,8 @@ link_opener(int who, int where, int sk) {
 
 
 int
-v_use_faery_stone(struct command *c) {
+v_use_faery_stone(struct command *c)
+{
 
   link_opener(c->who, subloc(c->who), sub_faery_hill);
   return TRUE;
@@ -265,7 +268,8 @@ v_use_faery_stone(struct command *c) {
 
 
 static void
-create_elven_hunt() {
+create_elven_hunt()
+{
   int new;
   struct loc_info *p;
   int where;
@@ -292,7 +296,8 @@ create_elven_hunt() {
 
 
 static void
-warn_human(int who, int targ) {
+warn_human(int who, int targ)
+{
 
   queue(who, "message 1 %s", box_code_less(targ));
   queue(who, "You are not welcome in Faery.  Leave, "
@@ -302,7 +307,8 @@ warn_human(int who, int targ) {
 
 
 static void
-auto_faery_sup(int who) {
+auto_faery_sup(int who)
+{
   int i;
   int where = subloc(who);
   struct entity_misc *p;
@@ -335,7 +341,8 @@ auto_faery_sup(int who) {
 
 
 void
-auto_faery() {
+auto_faery()
+{
   int i;
   int n_faery = 0;
 
@@ -358,7 +365,8 @@ auto_faery() {
 
 #if 0
 void
-swap_region_locs(int reg) {
+swap_region_locs(int reg)
+{
   ilist l = NULL;
   int i;
   int j;

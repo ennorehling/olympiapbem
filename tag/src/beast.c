@@ -5,7 +5,8 @@
 
 
 int
-v_bird_spy(struct command *c) {
+v_bird_spy(struct command *c)
+{
   int targ = c->a;
   int where = subloc(c->who);
   struct exit_view *v;
@@ -63,7 +64,8 @@ v_bird_spy(struct command *c) {
 
 
 int
-d_bird_spy(struct command *c) {
+d_bird_spy(struct command *c)
+{
   int targ = c->d;
 
   if (!has_holy_symbol(c->who)) {
@@ -94,7 +96,8 @@ d_bird_spy(struct command *c) {
  *  unless an explicit {self, self, 0} is given.
  */
 
-struct breed {
+struct breed
+{
   int i1, i2;
   int result;
 }
@@ -115,7 +118,8 @@ breed_tbl[] = {
 
 
 static int
-normal_union(int b1, int b2) {
+normal_union(int b1, int b2)
+{
   /* Thu Oct 10 12:14:35 1996 -- Scott Turner     */
   /* The following animals are considered normal: */
 
@@ -128,7 +132,8 @@ normal_union(int b1, int b2) {
 
 
 static int
-breed_translate(int item) {
+breed_translate(int item)
+{
 
   switch (item) {
   case item_riding_horse:
@@ -142,7 +147,8 @@ breed_translate(int item) {
 
 
 static int
-breed_match(int which, int i1, int i2) {
+breed_match(int which, int i1, int i2)
+{
   int a[2];
   int b[2];
   int i, j;
@@ -169,7 +175,8 @@ breed_match(int which, int i1, int i2) {
 
 
 static int
-find_breed(int i1, int i2) {
+find_breed(int i1, int i2)
+{
   int i;
 
   i1 = breed_translate(i1);
@@ -192,7 +199,8 @@ find_breed(int i1, int i2) {
  *
  */
 int
-v_breed(struct command *c) {
+v_breed(struct command *c)
+{
   int i1 = c->a;
   int i2 = c->b;
   int exp;
@@ -274,7 +282,8 @@ v_breed(struct command *c) {
 
 
 int
-d_breed(struct command *c) {
+d_breed(struct command *c)
+{
   int i1 = c->a;
   int i2 = c->b;
   int offspring;
@@ -393,7 +402,8 @@ d_breed(struct command *c) {
  *
  */
 int
-v_capture_beasts(struct command *c) {
+v_capture_beasts(struct command *c)
+{
   int target = c->a;
 
   if (!has_holy_symbol(c->who)) {
@@ -449,7 +459,8 @@ v_capture_beasts(struct command *c) {
  *
  */
 int
-get_random_beast(int target, int *from) {
+get_random_beast(int target, int *from)
+{
   int i, choice = 0;
   int sum = 0;
   struct item_ent *e;
@@ -483,7 +494,8 @@ get_random_beast(int target, int *from) {
 };
 
 int
-d_capture_beasts(struct command *c) {
+d_capture_beasts(struct command *c)
+{
   int type, piety, from = 0;
   int target = c->a;
 

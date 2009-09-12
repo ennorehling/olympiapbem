@@ -5,7 +5,8 @@
 
 
 int
-controlled_humans_here(int where) {
+controlled_humans_here(int where)
+{
   int i;
   int ret = FALSE;
 
@@ -22,7 +23,8 @@ controlled_humans_here(int where) {
 
 
 struct exit_view *
-get_exit_dir(struct exit_view **l, int dir) {
+get_exit_dir(struct exit_view **l, int dir)
+{
   int i;
 
   for (i = 0; i < ilist_len(l); i++)
@@ -34,7 +36,8 @@ get_exit_dir(struct exit_view **l, int dir) {
 
 
 struct exit_view *
-choose_npc_direction(int who, int where, int dir) {
+choose_npc_direction(int who, int where, int dir)
+{
   struct exit_view *e;
   struct exit_view **l;
 
@@ -57,7 +60,8 @@ choose_npc_direction(int who, int where, int dir) {
 
 
 void
-npc_move(int who) {
+npc_move(int who)
+{
   struct exit_view *e;
   int where = subloc(who);
 
@@ -77,7 +81,8 @@ npc_move(int who) {
 
 
 static void
-auto_unsworn(int who) {
+auto_unsworn(int who)
+{
   int n;
   int where = subloc(who);
 
@@ -94,7 +99,8 @@ auto_unsworn(int who) {
 
 
 static void
-auto_mob(int who) {
+auto_mob(int who)
+{
   struct entity_misc *p;
 
   p = rp_misc(who);
@@ -124,7 +130,8 @@ auto_mob(int who) {
 
 
 static int
-create_hades_bandit(int where) {
+create_hades_bandit(int where)
+{
   int new;
   char *name = NULL;
   int item;
@@ -171,7 +178,8 @@ create_hades_bandit(int where) {
 
 
 static int
-create_faery_bandit(int where) {
+create_faery_bandit(int where)
+{
   int new;
   char *name = NULL;
   int item;
@@ -209,7 +217,8 @@ create_faery_bandit(int where) {
 
 
 void
-hades_attack_check(int who, int where) {
+hades_attack_check(int who, int where)
+{
   int new;
 
   if (rnd(1, 100) > 6)
@@ -233,7 +242,8 @@ hades_attack_check(int who, int where) {
 
 
 void
-faery_attack_check(int who, int where) {
+faery_attack_check(int who, int where)
+{
   int new;
 
   if (rnd(1, 100) > 6)
@@ -257,7 +267,8 @@ faery_attack_check(int who, int where) {
 
 
 static void
-auto_bandit(int who) {
+auto_bandit(int who)
+{
   int where = subloc(who);
   int i;
   int victim = 0;
@@ -284,7 +295,8 @@ auto_bandit(int who) {
 
 #define PROV_OR_CITY	-1
 
-struct cookie_monster_tbl {
+struct cookie_monster_tbl
+{
   int cookie;
   int kind, sk, ni;
   int terrain;
@@ -329,7 +341,8 @@ cookie_monster[] = {
 
 
 static struct cookie_monster_tbl *
-find_cookie(int k) {
+find_cookie(int k)
+{
   int i;
 
   assert(kind(k) == T_item);
@@ -343,7 +356,8 @@ find_cookie(int k) {
 
 
 int
-may_cookie_npc(int who, int where, int cookie) {
+may_cookie_npc(int who, int where, int cookie)
+{
   struct cookie_monster_tbl *t;
   int bad_place = FALSE;
 
@@ -374,7 +388,8 @@ may_cookie_npc(int who, int where, int cookie) {
 
 
 int
-do_cookie_npc(int who, int where, int cookie, int place) {
+do_cookie_npc(int who, int where, int cookie, int place)
+{
   struct cookie_monster_tbl *t;
   struct entity_misc *p;
   int new;
@@ -417,7 +432,8 @@ do_cookie_npc(int who, int where, int cookie, int place) {
 
 
 int
-create_peasant_mob(int where) {
+create_peasant_mob(int where)
+{
   int new;
 
   new = do_cookie_npc(0, where, item_mob_cookie, where);
@@ -435,7 +451,8 @@ create_peasant_mob(int where) {
 
 
 void
-queue_npc_orders() {
+queue_npc_orders()
+{
   int who;
 
   stage("queue_npc_orders()");

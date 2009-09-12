@@ -6,7 +6,8 @@
 
 
 int
-lord(int n) {
+lord(int n)
+{
 
   if (kind(n) == T_player)
     return n;
@@ -16,7 +17,8 @@ lord(int n) {
 
 
 int
-player(int n) {
+player(int n)
+{
 #if 0
   int loop_check = 5000;
 #endif
@@ -34,7 +36,8 @@ player(int n) {
 
 
 void
-set_loyal(int who, int k, int lev) {
+set_loyal(int who, int k, int lev)
+{
   struct entity_char *p;
 
   p = p_char(who);
@@ -49,7 +52,8 @@ set_loyal(int who, int k, int lev) {
  */
 
 int
-sworn_beneath(int a, int b) {
+sworn_beneath(int a, int b)
+{
 
   if (a == b)
     return FALSE;
@@ -65,7 +69,8 @@ sworn_beneath(int a, int b) {
 
 
 static void
-reswear_all_sworn(int who) {
+reswear_all_sworn(int who)
+{
   int pl = player(who);
   int i;
   int new_lord = lord(who);
@@ -79,7 +84,8 @@ reswear_all_sworn(int who) {
 
 
 void
-set_lord(int who, int new_lord, int k, int lev) {
+set_lord(int who, int new_lord, int k, int lev)
+{
   int old_pl;
   int new_pl;
 
@@ -129,7 +135,8 @@ set_lord(int who, int new_lord, int k, int lev) {
 
 
 int
-v_swear(struct command *c) {
+v_swear(struct command *c)
+{
   int target = c->a;
   int targ_lord, targ_pl;
   int old_lord, old_pl;
@@ -196,7 +203,8 @@ v_swear(struct command *c) {
 
 
 int
-is_unit(int pl, int v) {
+is_unit(int pl, int v)
+{
 
   assert(kind(pl) == T_player);
 
@@ -205,7 +213,8 @@ is_unit(int pl, int v) {
 
 
 int
-unit_deserts(int who, int to_who, int loy_check, int k, int lev) {
+unit_deserts(int who, int to_who, int loy_check, int k, int lev)
+{
   int must_pay = TRUE;
   int sp = player(who);
   wout(gm_player, "Attempted desertion %s to %s.",
@@ -340,7 +349,8 @@ unit_deserts(int who, int to_who, int loy_check, int k, int lev) {
 
 
 int
-v_bribe(struct command *c) {
+v_bribe(struct command *c)
+{
   int target = c->a;
   int amount = c->b;
 
@@ -387,7 +397,8 @@ v_bribe(struct command *c) {
 
 
 static void
-thanks_for_gift(int who, int target) {
+thanks_for_gift(int who, int target)
+{
 
   switch (rnd(1, 3)) {
   case 1:
@@ -422,7 +433,8 @@ thanks_for_gift(int who, int target) {
 #define		HEAD_FOR_HILLS	4
 
 int
-d_bribe(struct command *c) {
+d_bribe(struct command *c)
+{
   int target = c->a;
   int amount = c->b;
   int flag = c->c;
@@ -556,7 +568,8 @@ d_bribe(struct command *c) {
 
 
 int
-v_honor(struct command *c) {
+v_honor(struct command *c)
+{
   int amount = c->a;
 
   if (amount == 0) {
@@ -587,7 +600,8 @@ v_honor(struct command *c) {
 
 
 int
-v_oath(struct command *c) {
+v_oath(struct command *c)
+{
   int flag = c->a;
   int lk, lr;
   int pl = player(c->who);
@@ -651,7 +665,8 @@ v_oath(struct command *c) {
 
 
 int
-terrorize_vassal(struct command *c) {
+terrorize_vassal(struct command *c)
+{
   int target = c->a;
   int severity = c->b;
 
@@ -677,7 +692,8 @@ terrorize_vassal(struct command *c) {
 
 
 int
-terrorize_prisoner(struct command *c) {
+terrorize_prisoner(struct command *c)
+{
   int target = c->a;
   int severity = c->b;
 
@@ -709,7 +725,8 @@ terrorize_prisoner(struct command *c) {
 
 
 int
-v_terrorize(struct command *c) {
+v_terrorize(struct command *c)
+{
   int target = c->a;
   int severity = c->b;
 
@@ -762,7 +779,8 @@ v_terrorize(struct command *c) {
 
 
 int
-d_terrorize(struct command *c) {
+d_terrorize(struct command *c)
+{
   int target = c->a;
   int severity = c->b;
 
@@ -800,7 +818,8 @@ d_terrorize(struct command *c) {
 
 
 int
-v_raise(struct command *c) {
+v_raise(struct command *c)
+{
   int where = subloc(c->who);
 
   if (!check_skill(c->who, sk_raise_mob))
@@ -819,7 +838,8 @@ v_raise(struct command *c) {
 
 
 int
-d_raise(struct command *c) {
+d_raise(struct command *c)
+{
   int where = subloc(c->who);
   int mob;
 
@@ -850,7 +870,8 @@ d_raise(struct command *c) {
 
 
 int
-v_rally(struct command *c) {
+v_rally(struct command *c)
+{
   int i, num_mobs = 0;
   int mob = c->a;
 
@@ -889,7 +910,8 @@ v_rally(struct command *c) {
 
 
 int
-d_rally(struct command *c) {
+d_rally(struct command *c)
+{
   int mob = c->a;
   int n;
 
@@ -930,7 +952,8 @@ d_rally(struct command *c) {
 
 
 int
-v_incite(struct command *c) {
+v_incite(struct command *c)
+{
   int mob = c->a;
   int target = c->b;
 
@@ -961,7 +984,8 @@ v_incite(struct command *c) {
 
 
 int
-d_incite(struct command *c) {
+d_incite(struct command *c)
+{
   int mob = c->a;
   int target = c->b;
   int where = subloc(c->who);
@@ -1017,7 +1041,8 @@ d_incite(struct command *c) {
 
 
 int
-v_persuade_oath(struct command *c) {
+v_persuade_oath(struct command *c)
+{
   int target = c->a;
 
   if (!check_char_here(c->who, target))
@@ -1039,7 +1064,8 @@ v_persuade_oath(struct command *c) {
 
 
 int
-d_persuade_oath(struct command *c) {
+d_persuade_oath(struct command *c)
+{
   int target = c->a;
   int flag = c->b;
 

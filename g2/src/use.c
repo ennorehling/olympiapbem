@@ -5,7 +5,8 @@
 #include "oly.h"
 
 
-struct use_tbl_ent {
+struct use_tbl_ent
+{
   char *allow;                  /* who may execute the command */
   int skill;
 
@@ -17,69 +18,117 @@ struct use_tbl_ent {
   int poll;                     /* call finish each day, not just at end */
 };
 
-int v_sail(struct command *c), d_sail(struct command *c), i_sail(struct command *c);
-int v_brew(struct command *c), d_brew_heal(struct command *c), d_brew_death(struct command *c), d_brew_slave(struct command *c);
+int v_sail(struct command *c), d_sail(struct command *c),
+i_sail(struct command *c);
+int v_brew(struct command *c), d_brew_heal(struct command *c),
+d_brew_death(struct command *c), d_brew_slave(struct command *c);
 int v_add_ram(struct command *c), d_add_ram(struct command *c);
 
-int v_mine_iron(struct command *c), d_mine_iron(struct command *c), v_mine_gold(struct command *c), d_mine_gold(struct command *c);
-int v_mine_mithril(struct command *c), d_mine_mithril(struct command *c), v_quarry(struct command *c);
-int v_wood(struct command *c), v_yew(struct command *c), v_catch(struct command *c);
-int v_spy_inv(struct command *c), d_spy_inv(struct command *c), v_spy_lord(struct command *c), d_spy_lord(struct command *c);
+int v_mine_iron(struct command *c), d_mine_iron(struct command *c),
+v_mine_gold(struct command *c), d_mine_gold(struct command *c);
+int v_mine_mithril(struct command *c), d_mine_mithril(struct command *c),
+v_quarry(struct command *c);
+int v_wood(struct command *c), v_yew(struct command *c),
+v_catch(struct command *c);
+int v_spy_inv(struct command *c), d_spy_inv(struct command *c),
+v_spy_lord(struct command *c), d_spy_lord(struct command *c);
 int v_spy_skills(struct command *c), d_spy_skills(struct command *c);
-int v_adv_med(struct command *c), d_adv_med(struct command *c), v_hinder_med(struct command *c), d_hinder_med(struct command *c);
+int v_adv_med(struct command *c), d_adv_med(struct command *c),
+v_hinder_med(struct command *c), d_hinder_med(struct command *c);
 
 int v_defense(struct command *c), d_defense(struct command *c);
 int v_archery(struct command *c), d_archery(struct command *c);
 int v_swordplay(struct command *c), d_swordplay(struct command *c);
 
-int v_detect_gates(struct command *c), d_detect_gates(struct command *c), v_jump_gate(struct command *c), v_teleport(struct command *c);
-int v_reverse_jump(struct command *c), v_reveal_key(struct command *c), d_reveal_key(struct command *c);
-int v_seal_gate(struct command *c), d_seal_gate(struct command *c), v_unseal_gate(struct command *c), d_unseal_gate(struct command *c);
-int v_notify_unseal(struct command *c), d_notify_unseal(struct command *c), v_rem_seal(struct command *c), d_rem_seal(struct command *c);
-int v_notify_jump(struct command *c), d_notify_jump(struct command *c), v_meditate(struct command *c), d_meditate(struct command *c);
-int v_heal(struct command *c), d_heal(struct command *c), v_reveal_mage(struct command *c), d_reveal_mage(struct command *c), v_appear_common(struct command *c);
-int v_view_aura(struct command *c), d_view_aura(struct command *c), v_shroud_abil(struct command *c), d_shroud_abil(struct command *c);
-int v_detect_abil(struct command *c), d_detect_abil(struct command *c), v_detect_scry(struct command *c), d_detect_scry(struct command *c);
-int v_scry_region(struct command *c), d_scry_region(struct command *c), v_shroud_region(struct command *c), d_shroud_region(struct command *c);
-int v_dispel_region(struct command *c), d_dispel_region(struct command *c), v_dispel_abil(struct command *c), d_dispel_abil(struct command *c);
-int v_proj_cast(struct command *c), d_proj_cast(struct command *c), v_locate_char(struct command *c), d_locate_char(struct command *c);
-int v_bar_loc(struct command *c), d_bar_loc(struct command *c), v_unbar_loc(struct command *c), d_unbar_loc(struct command *c);
-int v_forge_palantir(struct command *c), d_forge_palantir(struct command *c), v_destroy_art(struct command *c), d_destroy_art(struct command *c);
-int v_show_art_creat(struct command *c), d_show_art_creat(struct command *c), v_show_art_reg(struct command *c),
-d_show_art_reg(struct command *c);
-int v_save_proj(struct command *c), d_save_proj(struct command *c), v_save_quick(struct command *c), d_save_quick(struct command *c);
-int v_quick_cast(struct command *c), d_quick_cast(struct command *c), v_rem_art_cloak(struct command *c), d_rem_art_cloak(struct command *c);
-int v_write_spell(struct command *c), d_write_spell(struct command *c), v_curse_noncreat(struct command *c), d_curse_noncreat(struct command *c);
-int v_cloak_creat(struct command *c), d_cloak_creat(struct command *c), v_cloak_reg(struct command *c), d_cloak_reg(struct command *c);
-int v_forge_aura(struct command *c), d_forge_aura(struct command *c), v_bribe(struct command *c), d_bribe(struct command *c);
-int v_shipbuild(struct command *c), v_summon_savage(struct command *c), v_keep_savage(struct command *c), d_keep_savage(struct command *c);
-int v_improve_opium(struct command *c), d_improve_opium(struct command *c), v_lead_to_gold(struct command *c), d_lead_to_gold(struct command *c);
-int v_raise(struct command *c), d_raise(struct command *c), v_rally(struct command *c), d_rally(struct command *c), v_incite(struct command *c), d_incite(struct command *c);
-int v_bird_spy(struct command *c), d_bird_spy(struct command *c), v_eat_dead(struct command *c), d_eat_dead(struct command *c);
-int v_raise_corpses(struct command *c), v_undead_lord(struct command *c), d_undead_lord(struct command *c);
-int v_banish_undead(struct command *c), d_banish_undead(struct command *c), v_keep_undead(struct command *c), d_keep_undead(struct command *c);
-int v_aura_blast(struct command *c), d_aura_blast(struct command *c), v_aura_reflect(struct command *c), v_banish_corpses(struct command *c),
+int v_detect_gates(struct command *c), d_detect_gates(struct command *c),
+v_jump_gate(struct command *c), v_teleport(struct command *c);
+int v_reverse_jump(struct command *c), v_reveal_key(struct command *c),
+d_reveal_key(struct command *c);
+int v_seal_gate(struct command *c), d_seal_gate(struct command *c),
+v_unseal_gate(struct command *c), d_unseal_gate(struct command *c);
+int v_notify_unseal(struct command *c), d_notify_unseal(struct command *c),
+v_rem_seal(struct command *c), d_rem_seal(struct command *c);
+int v_notify_jump(struct command *c), d_notify_jump(struct command *c),
+v_meditate(struct command *c), d_meditate(struct command *c);
+int v_heal(struct command *c), d_heal(struct command *c),
+v_reveal_mage(struct command *c), d_reveal_mage(struct command *c),
+v_appear_common(struct command *c);
+int v_view_aura(struct command *c), d_view_aura(struct command *c),
+v_shroud_abil(struct command *c), d_shroud_abil(struct command *c);
+int v_detect_abil(struct command *c), d_detect_abil(struct command *c),
+v_detect_scry(struct command *c), d_detect_scry(struct command *c);
+int v_scry_region(struct command *c), d_scry_region(struct command *c),
+v_shroud_region(struct command *c), d_shroud_region(struct command *c);
+int v_dispel_region(struct command *c), d_dispel_region(struct command *c),
+v_dispel_abil(struct command *c), d_dispel_abil(struct command *c);
+int v_proj_cast(struct command *c), d_proj_cast(struct command *c),
+v_locate_char(struct command *c), d_locate_char(struct command *c);
+int v_bar_loc(struct command *c), d_bar_loc(struct command *c),
+v_unbar_loc(struct command *c), d_unbar_loc(struct command *c);
+int v_forge_palantir(struct command *c), d_forge_palantir(struct command *c),
+v_destroy_art(struct command *c), d_destroy_art(struct command *c);
+int v_show_art_creat(struct command *c), d_show_art_creat(struct command *c),
+v_show_art_reg(struct command *c), d_show_art_reg(struct command *c);
+int v_save_proj(struct command *c), d_save_proj(struct command *c),
+v_save_quick(struct command *c), d_save_quick(struct command *c);
+int v_quick_cast(struct command *c), d_quick_cast(struct command *c),
+v_rem_art_cloak(struct command *c), d_rem_art_cloak(struct command *c);
+int v_write_spell(struct command *c), d_write_spell(struct command *c),
+v_curse_noncreat(struct command *c), d_curse_noncreat(struct command *c);
+int v_cloak_creat(struct command *c), d_cloak_creat(struct command *c),
+v_cloak_reg(struct command *c), d_cloak_reg(struct command *c);
+int v_forge_aura(struct command *c), d_forge_aura(struct command *c),
+v_bribe(struct command *c), d_bribe(struct command *c);
+int v_shipbuild(struct command *c), v_summon_savage(struct command *c),
+v_keep_savage(struct command *c), d_keep_savage(struct command *c);
+int v_improve_opium(struct command *c), d_improve_opium(struct command *c),
+v_lead_to_gold(struct command *c), d_lead_to_gold(struct command *c);
+int v_raise(struct command *c), d_raise(struct command *c),
+v_rally(struct command *c), d_rally(struct command *c),
+v_incite(struct command *c), d_incite(struct command *c);
+int v_bird_spy(struct command *c), d_bird_spy(struct command *c),
+v_eat_dead(struct command *c), d_eat_dead(struct command *c);
+int v_raise_corpses(struct command *c), v_undead_lord(struct command *c),
+d_undead_lord(struct command *c);
+int v_banish_undead(struct command *c), d_banish_undead(struct command *c),
+v_keep_undead(struct command *c), d_keep_undead(struct command *c);
+int v_aura_blast(struct command *c), d_aura_blast(struct command *c),
+v_aura_reflect(struct command *c), v_banish_corpses(struct command *c),
 d_banish_corpses(struct command *c);
-int v_summon_rain(struct command *c), d_summon_rain(struct command *c), v_summon_wind(struct command *c), d_summon_wind(struct command *c);
-int v_summon_fog(struct command *c), d_summon_fog(struct command *c), v_dissipate(struct command *c), d_dissipate(struct command *c);
-int v_direct_storm(struct command *c), v_renew_storm(struct command *c), d_renew_storm(struct command *c);
+int v_summon_rain(struct command *c), d_summon_rain(struct command *c),
+v_summon_wind(struct command *c), d_summon_wind(struct command *c);
+int v_summon_fog(struct command *c), d_summon_fog(struct command *c),
+v_dissipate(struct command *c), d_dissipate(struct command *c);
+int v_direct_storm(struct command *c), v_renew_storm(struct command *c),
+d_renew_storm(struct command *c);
 int v_lightning(struct command *c), d_lightning(struct command *c);
-int v_seize_storm(struct command *c), d_seize_storm(struct command *c), v_death_fog(struct command *c), d_death_fog(struct command *c);
-int v_hide(struct command *c), d_hide(struct command *c), v_sneak(struct command *c), d_sneak(struct command *c), v_fierce_wind(struct command *c),
-d_fierce_wind(struct command *c);
-int v_mage_menial(struct command *c), v_reveal_vision(struct command *c), d_reveal_vision(struct command *c);
-int v_resurrect(struct command *c), d_resurrect(struct command *c), v_prep_ritual(struct command *c), d_prep_ritual(struct command *c);
-int v_last_rites(struct command *c), d_last_rites(struct command *c), v_remove_bless(struct command *c), d_remove_bless(struct command *c);
+int v_seize_storm(struct command *c), d_seize_storm(struct command *c),
+v_death_fog(struct command *c), d_death_fog(struct command *c);
+int v_hide(struct command *c), d_hide(struct command *c),
+v_sneak(struct command *c), d_sneak(struct command *c),
+v_fierce_wind(struct command *c), d_fierce_wind(struct command *c);
+int v_mage_menial(struct command *c), v_reveal_vision(struct command *c),
+d_reveal_vision(struct command *c);
+int v_resurrect(struct command *c), d_resurrect(struct command *c),
+v_prep_ritual(struct command *c), d_prep_ritual(struct command *c);
+int v_last_rites(struct command *c), d_last_rites(struct command *c),
+v_remove_bless(struct command *c), d_remove_bless(struct command *c);
 int v_vision_protect(struct command *c), d_vision_protect(struct command *c);
-int v_find_rich(struct command *c), d_find_rich(struct command *c), v_torture(struct command *c), d_torture(struct command *c);
-int v_fight_to_death(struct command *c), v_breed(struct command *c), d_breed(struct command *c), v_fish(struct command *c);
-int v_petty_thief(struct command *c), d_petty_thief(struct command *c), v_persuade_oath(struct command *c), d_persuade_oath(struct command *c);
-int v_forge_art_x(struct command *c), d_forge_art_x(struct command *c), v_trance(struct command *c), d_trance(struct command *c);
-int v_teleport_item(struct command *c), d_teleport_item(struct command *c), v_tap_health(struct command *c), d_tap_health(struct command *c);
+int v_find_rich(struct command *c), d_find_rich(struct command *c),
+v_torture(struct command *c), d_torture(struct command *c);
+int v_fight_to_death(struct command *c), v_breed(struct command *c),
+d_breed(struct command *c), v_fish(struct command *c);
+int v_petty_thief(struct command *c), d_petty_thief(struct command *c),
+v_persuade_oath(struct command *c), d_persuade_oath(struct command *c);
+int v_forge_art_x(struct command *c), d_forge_art_x(struct command *c),
+v_trance(struct command *c), d_trance(struct command *c);
+int v_teleport_item(struct command *c), d_teleport_item(struct command *c),
+v_tap_health(struct command *c), d_tap_health(struct command *c);
 int v_bind_storm(struct command *c), d_bind_storm(struct command *c);
 int v_use_train_riding(struct command *c), v_use_train_war(struct command *c);
 int v_breed_hound(struct command *c), d_breed_hound(struct command *c);
-int v_find_buy(struct command *c), d_find_buy(struct command *c), v_find_sell(struct command *c), d_find_sell(struct command *c);
+int v_find_buy(struct command *c), d_find_buy(struct command *c),
+v_find_sell(struct command *c), d_find_sell(struct command *c);
 
 int v_implicit(struct command *c);
 
@@ -232,7 +281,8 @@ allow  skill             start             finish            intr    time poll
 
 
 int
-v_implicit(struct command *c) {
+v_implicit(struct command *c)
+{
 
   wout(c->who, "Use of this skill is automatic when appropriate.");
   wout(c->who, "No direct USE function exists.");
@@ -241,7 +291,8 @@ v_implicit(struct command *c) {
 
 
 int
-v_shipbuild(struct command *c) {
+v_shipbuild(struct command *c)
+{
 
   wout(c->who, "Use the BUILD order to build ships.");
   return FALSE;
@@ -249,7 +300,8 @@ v_shipbuild(struct command *c) {
 
 
 static int
-find_use_entry(int skill) {
+find_use_entry(int skill)
+{
   int i;
 
   for (i = 1; use_tbl[i].skill; i++)
@@ -271,7 +323,8 @@ find_use_entry(int skill) {
  */
 
 static int
-may_use_skill(int who, int sk) {
+may_use_skill(int who, int sk)
+{
   struct item_ent *e;
   struct item_magic *p;
   int ret = 0;
@@ -307,7 +360,8 @@ may_use_skill(int who, int sk) {
 
 
 static void
-magically_speed_casting(struct command *c, int sk) {
+magically_speed_casting(struct command *c, int sk)
+{
   struct char_magic *p;
   int n;                        /* amount speeded by */
 
@@ -343,7 +397,8 @@ magically_speed_casting(struct command *c, int sk) {
  */
 
 static int
-correct_use_item(struct command *c) {
+correct_use_item(struct command *c)
+{
   int item = c->a;
   struct item_magic *p;
 
@@ -361,7 +416,8 @@ correct_use_item(struct command *c) {
 
 
 static int
-meets_requirements(int who, int skill) {
+meets_requirements(int who, int skill)
+{
   int i;
   struct entity_skill *p;
   struct req_ent **l;
@@ -403,7 +459,8 @@ meets_requirements(int who, int skill) {
 
 
 static void
-consume_requirements(int who, int skill) {
+consume_requirements(int who, int skill)
+{
   int i;
   struct entity_skill *p;
   struct req_ent **l;
@@ -446,7 +503,8 @@ consume_requirements(int who, int skill) {
 
 
 static void
-consume_scroll(int who, int basis) {
+consume_scroll(int who, int basis)
+{
 
 /*
  *  Use or study of a one-shot scrolls causes the scroll
@@ -461,7 +519,8 @@ consume_scroll(int who, int basis) {
 
 
 void
-experience_use_speedup(struct command *c) {
+experience_use_speedup(struct command *c)
+{
   int exp;
 
   exp = max(c->use_exp - 1, 0);
@@ -481,7 +540,8 @@ experience_use_speedup(struct command *c) {
 
 
 int
-v_use(struct command *c) {
+v_use(struct command *c)
+{
   int sk = c->a;
   int ent;
   int n;
@@ -591,7 +651,8 @@ v_use(struct command *c) {
  */
 
 void
-add_skill_experience(int who, int sk) {
+add_skill_experience(int who, int sk)
+{
   struct skill_ent *p;
 
   p = rp_skill_ent(who, sk);
@@ -614,7 +675,8 @@ add_skill_experience(int who, int sk) {
 
 
 int
-d_use(struct command *c) {
+d_use(struct command *c)
+{
   int sk = c->use_skill;
   int ent = c->use_ent;
   int n;
@@ -688,7 +750,8 @@ d_use(struct command *c) {
 
 
 int
-i_use(struct command *c) {
+i_use(struct command *c)
+{
   int sk = c->use_skill;
   int ent = c->use_ent;
 
@@ -705,7 +768,8 @@ i_use(struct command *c) {
 
 
 int
-v_use_item(struct command *c) {
+v_use_item(struct command *c)
+{
   int item = c->a;
   int n;
   int ret;
@@ -829,7 +893,8 @@ v_use_item(struct command *c) {
 
 
 int
-d_use_item(struct command *c) {
+d_use_item(struct command *c)
+{
   int item = c->a;
   int n;
 
@@ -859,7 +924,8 @@ d_use_item(struct command *c) {
 
 
 static int
-exp_level(int exp) {
+exp_level(int exp)
+{
 
   if (exp <= 4)
     return exp_novice;
@@ -878,7 +944,8 @@ exp_level(int exp) {
 
 
 char *
-exp_s(int level) {
+exp_s(int level)
+{
 
   switch (level) {
   case exp_novice:
@@ -900,7 +967,8 @@ exp_s(int level) {
 
 
 struct skill_ent *
-rp_skill_ent(int who, int skill) {
+rp_skill_ent(int who, int skill)
+{
   struct entity_char *p;
   int i;
 
@@ -918,7 +986,8 @@ rp_skill_ent(int who, int skill) {
 
 
 struct skill_ent *
-p_skill_ent(int who, int skill) {
+p_skill_ent(int who, int skill)
+{
   struct entity_char *p;
   struct skill_ent *new;
   int i;
@@ -939,7 +1008,8 @@ p_skill_ent(int who, int skill) {
 
 
 int
-forget_skill(int who, int skill) {
+forget_skill(int who, int skill)
+{
   struct entity_char *p;
   struct skill_ent *t;
   struct char_magic *ch;
@@ -967,7 +1037,8 @@ forget_skill(int who, int skill) {
 
 
 int
-v_forget(struct command *c) {
+v_forget(struct command *c)
+{
   int skill = c->a;
   int i;
 
@@ -998,7 +1069,8 @@ v_forget(struct command *c) {
 
 
 int
-has_skill(int who, int skill) {
+has_skill(int who, int skill)
+{
   struct skill_ent *p;
 
   p = rp_skill_ent(who, skill);
@@ -1015,7 +1087,8 @@ has_skill(int who, int skill) {
  */
 
 void
-set_skill(int who, int skill, int know) {
+set_skill(int who, int skill, int know)
+{
   struct skill_ent *p;
 
   p = p_skill_ent(who, skill);
@@ -1025,7 +1098,8 @@ set_skill(int who, int skill, int know) {
 
 
 int
-skill_school(int sk) {
+skill_school(int sk)
+{
   int n;
   int count = 0;
 
@@ -1091,7 +1165,8 @@ flat_skill_comp(a, b)
 
 #if 0
 void
-list_skill_sup(int who, struct skill_ent *e) {
+list_skill_sup(int who, struct skill_ent *e)
+{
   char *exp;
 
   if (skill_no_exp(e->skill) || skill_school(e->skill) == e->skill)
@@ -1107,7 +1182,8 @@ list_skill_sup(int who, struct skill_ent *e) {
 #else
 
 void
-list_skill_sup(int who, struct skill_ent *e) {
+list_skill_sup(int who, struct skill_ent *e)
+{
 
   if (skill_no_exp(e->skill) || skill_school(e->skill) == e->skill)
     wout(who, "%s", box_name(e->skill));
@@ -1119,7 +1195,8 @@ list_skill_sup(int who, struct skill_ent *e) {
 
 
 void
-list_skills(int who, int num) {
+list_skills(int who, int num)
+{
   int i;
   struct skill_ent **l;
   int flag = TRUE;
@@ -1183,7 +1260,8 @@ list_skills_end:
  */
 
 static char *
-fractional_skill_qualifier(struct skill_ent *p) {
+fractional_skill_qualifier(struct skill_ent *p)
+{
   extern char *np_req_s();
 
   assert(p->know != SKILL_know);
@@ -1199,7 +1277,8 @@ fractional_skill_qualifier(struct skill_ent *p) {
 
 
 void
-list_partial_skills(int who, int num) {
+list_partial_skills(int who, int num)
+{
   int i;
   struct skill_ent **l;
   int flag = TRUE;
@@ -1239,7 +1318,8 @@ list_partial_skills(int who, int num) {
 
 
 int
-skill_cost(int sk) {
+skill_cost(int sk)
+{
 
   return 100;
 }
@@ -1253,7 +1333,8 @@ skill_cost(int sk) {
  */
 
 static int
-may_study(int who, int sk) {
+may_study(int who, int sk)
+{
   int where = subloc(who);
 
 /*
@@ -1328,7 +1409,8 @@ may_study(int who, int sk) {
 
 
 static int
-begin_study(struct command *c, int sk) {
+begin_study(struct command *c, int sk)
+{
   int cost;
   struct skill_ent *p;
   int np_req;
@@ -1372,7 +1454,8 @@ begin_study(struct command *c, int sk) {
  */
 
 static int
-correct_study_item(struct command *c) {
+correct_study_item(struct command *c)
+{
   int item = c->a;
   struct item_magic *p;
 
@@ -1399,7 +1482,8 @@ correct_study_item(struct command *c) {
  */
 
 int
-v_study(struct command *c) {
+v_study(struct command *c)
+{
   struct skill_ent *p;
   int sk = c->a;
   int fast = c->b;
@@ -1498,7 +1582,8 @@ v_study(struct command *c) {
  */
 
 void
-learn_skill(int who, int sk) {
+learn_skill(int who, int sk)
+{
   struct skill_ent *p;
   struct char_magic *ch;
 
@@ -1537,7 +1622,8 @@ learn_skill(int who, int sk) {
  */
 
 int
-d_study(struct command *c) {
+d_study(struct command *c)
+{
   struct skill_ent *p;
   int sk = c->a;
   struct entity_char *ch;
@@ -1571,7 +1657,8 @@ d_study(struct command *c) {
 
 
 static int
-research_notknown(int who, int sk) {
+research_notknown(int who, int sk)
+{
   static ilist l = NULL;
   int i;
   struct entity_skill *p;
@@ -1603,7 +1690,8 @@ research_notknown(int who, int sk) {
 
 
 int
-v_research(struct command *c) {
+v_research(struct command *c)
+{
   int sk = c->a;
   int where = subloc(c->who);
 
@@ -1673,7 +1761,8 @@ v_research(struct command *c) {
 
 
 int
-d_research(struct command *c) {
+d_research(struct command *c)
+{
   int sk = c->a;
   int new_skill;
   struct entity_char *ch;
@@ -1722,7 +1811,8 @@ d_research(struct command *c) {
 
 
 int
-char_np_total(int who) {
+char_np_total(int who)
+{
   int sum = 1;                  /* chars cost 1 NP to start */
   struct skill_ent *e;
 

@@ -27,7 +27,8 @@
  *
  */
 int
-add_effect(int what, int t, int st, int duration, int value) {
+add_effect(int what, int t, int st, int duration, int value)
+{
   int i;
   ilist *el = NULL;
   struct effect **e = NULL;
@@ -71,7 +72,8 @@ add_effect(int what, int t, int st, int duration, int value) {
  *
  */
 void
-delete_effect(int what, int type, int st) {
+delete_effect(int what, int type, int st)
+{
   int i;
   ilist *el = NULL;
   struct effect **e = NULL;
@@ -109,7 +111,8 @@ delete_effect(int what, int type, int st) {
  *
  */
 void
-delete_all_effects(int what, int type, int st) {
+delete_all_effects(int what, int type, int st)
+{
   int i;
   ilist *el = NULL;
   struct effect **e = NULL;
@@ -151,7 +154,8 @@ delete_all_effects(int what, int type, int st) {
  *
  */
 void
-update_effects(int what) {
+update_effects(int what)
+{
   int i;
   ilist *el = NULL;
   struct effect **e = NULL;
@@ -266,7 +270,8 @@ update_effects(int what) {
  *
  */
 int
-get_effect(int what, int t, int st, int v) {
+get_effect(int what, int t, int st, int v)
+{
   int i;
   struct effect **e = NULL;
   /*
@@ -307,7 +312,8 @@ get_effect(int what, int t, int st, int v) {
  *
  */
 int
-get_all_effects(int what, int t, int st, int v) {
+get_all_effects(int what, int t, int st, int v)
+{
   int i, answer = 0;
   struct effect **e = NULL;
   /*

@@ -434,7 +434,8 @@ main(argc, argv)
 }
 
 
-call_init_routines() {
+call_init_routines()
+{
 
   init_lower();
   dir_assert();
@@ -444,7 +445,8 @@ call_init_routines() {
   init_random();                /* seed random number generator */
 }
 
-write_totimes() {
+write_totimes()
+{
   FILE *fp;
   char *fnam;
   int pl;
@@ -470,7 +472,8 @@ write_totimes() {
 }
 
 
-write_email() {
+write_email()
+{
   FILE *fp;
   char *fnam;
   int pl;
@@ -495,7 +498,8 @@ write_email() {
 }
 
 static char *
-fix_email(char *email) {
+fix_email(char *email)
+{
   static char buf[256];
   int i, j;
   for (i = 0, j = 0; i < 256 && i < strlen(email); i++, j++)
@@ -514,7 +518,8 @@ fix_email(char *email) {
 };
 
 static void
-list_a_player(FILE * fp, int pl, int *flag) {
+list_a_player(FILE * fp, int pl, int *flag)
+{
   struct entity_player *p;
   char *s;
   int n;
@@ -562,7 +567,8 @@ list_a_player(FILE * fp, int pl, int *flag) {
  *
  */
 int
-v_nationlist(struct command *c) {
+v_nationlist(struct command *c)
+{
   struct entity_player *p;
 
   p = p_player(player(c->who));
@@ -590,7 +596,8 @@ v_nationlist(struct command *c) {
  *  Add DM to all the lists.
  *
  */
-write_nations_lists() {
+write_nations_lists()
+{
   FILE *fp;
   char *fnam;
   int i;
@@ -637,7 +644,8 @@ write_nations_lists() {
   next_nation;
 }
 
-write_player_list() {
+write_player_list()
+{
   FILE *fp;
   char *fnam;
   int pl;
@@ -687,7 +695,8 @@ write_player_list() {
 }
 
 
-write_forward_sup(int who_for, int target, FILE * fp) {
+write_forward_sup(int who_for, int target, FILE * fp)
+{
   int pl;
   char *s, *u;
 
@@ -700,7 +709,8 @@ write_forward_sup(int who_for, int target, FILE * fp) {
 }
 
 
-write_forwards() {
+write_forwards()
+{
   FILE *fp;
   char *fnam;
   int i, j;
@@ -736,7 +746,8 @@ write_forwards() {
 }
 
 
-write_faction_sup(int who_for, int target, FILE * fp) {
+write_faction_sup(int who_for, int target, FILE * fp)
+{
   int pl;
   char *s, *u;
 
@@ -749,7 +760,8 @@ write_faction_sup(int who_for, int target, FILE * fp) {
 }
 
 
-write_factions() {
+write_factions()
+{
   FILE *fp;
   char *fnam;
   int i, j;
@@ -778,7 +790,8 @@ write_factions() {
  *
  */
 int
-make_report(int format, char *fnam, char *report, int pl) {
+make_report(int format, char *fnam, char *report, int pl)
+{
   char form[16], entab[16], tags[16], *tmp;
 
   tags[0] = 0;
@@ -814,7 +827,8 @@ make_report(int format, char *fnam, char *report, int pl) {
  *
  */
 static char *
-format_string(int i) {
+format_string(int i)
+{
   switch (i) {
   case HTML:
     return "HTML";
@@ -838,7 +852,8 @@ format_string(int i) {
  *
  */
 int
-send_rep(int pl, int turn) {
+send_rep(int pl, int turn)
+{
   struct entity_player *p;
   char report[LEN];
   FILE *fp;
@@ -957,7 +972,8 @@ send_rep(int pl, int turn) {
   return TRUE;
 }
 
-mail_reports() {
+mail_reports()
+{
   int pl;
   int i;
 
@@ -975,7 +991,8 @@ mail_reports() {
 }
 
 int
-preprocess(char *in, char *out, char *args) {
+preprocess(char *in, char *out, char *args)
+{
   char buf[LEN];
   int err = 0;
 
@@ -1001,7 +1018,8 @@ preprocess(char *in, char *out, char *args) {
  *  Add stuff to write out the %d.pre file.
  *
  */
-setup_html_all() {
+setup_html_all()
+{
   int pl;
   char fnam[LEN];
   char fnam2[LEN];
@@ -1089,7 +1107,8 @@ setup_html_dir(pl)
   fclose(fp);
 }
 
-set_html_pass(int pl) {
+set_html_pass(int pl)
+{
   char buf[LEN];
   struct entity_player *p;
   char *pw;
@@ -1108,7 +1127,8 @@ set_html_pass(int pl) {
   system(buf);
 }
 
-output_html_rep(int pl) {
+output_html_rep(int pl)
+{
   char *report, *fnam;
   int ret;
 
@@ -1141,7 +1161,8 @@ output_html_rep(int pl) {
  *  map.
  *
  */
-output_html_map(int pl) {
+output_html_map(int pl)
+{
   char *info, *fnam;
   int minx = 1000, miny = 1000, maxx = 0, maxy = 0, i;
 
@@ -1218,7 +1239,8 @@ output_html_map(int pl) {
 }
 
 #if 0
-copy_public_turns() {
+copy_public_turns()
+{
   char fnam[LEN];
   char cmd[LEN];
   int pl;

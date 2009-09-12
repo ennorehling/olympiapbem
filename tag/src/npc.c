@@ -5,7 +5,8 @@
 
 
 int
-controlled_humans_here(int where) {
+controlled_humans_here(int where)
+{
   int i;
   int ret = FALSE;
 
@@ -22,7 +23,8 @@ controlled_humans_here(int where) {
 
 
 struct exit_view *
-get_exit_dir(struct exit_view **l, int dir) {
+get_exit_dir(struct exit_view **l, int dir)
+{
   int i;
 
   for (i = 0; i < ilist_len(l); i++)
@@ -42,7 +44,8 @@ get_exit_dir(struct exit_view **l, int dir) {
 
 struct exit_view *
 choose_npc_direction(int who, int where, int dir,
-                     int avoid_garrisons, int avoid_cities, int avoid_civ) {
+                     int avoid_garrisons, int avoid_cities, int avoid_civ)
+{
   struct exit_view *e;
   struct exit_view **l;
   int i;
@@ -121,7 +124,8 @@ choose_npc_direction(int who, int where, int dir,
 
 
 void
-npc_move(int who) {
+npc_move(int who)
+{
   struct exit_view *e;
   int where = subloc(who);
   int avoid_garrisons = 0, avoid_cities = 1, avoid_civ = 0;
@@ -195,7 +199,8 @@ npc_move(int who) {
 
 
 static void
-auto_unsworn(int who) {
+auto_unsworn(int who)
+{
   int n;
   int where = subloc(who);
 
@@ -212,7 +217,8 @@ auto_unsworn(int who) {
 
 
 static void
-auto_mob(int who) {
+auto_mob(int who)
+{
   struct entity_misc *p;
 
   p = rp_misc(who);
@@ -242,7 +248,8 @@ auto_mob(int who) {
 
 
 static int
-create_bandit(int where) {
+create_bandit(int where)
+{
   int new;
   char *name;
   int item;
@@ -291,7 +298,8 @@ create_bandit(int where) {
 
 
 void
-wilderness_attack_check(int who, int where) {
+wilderness_attack_check(int who, int where)
+{
   int new;
 
   if (rnd(1, 16) > 1 ||
@@ -339,7 +347,8 @@ wilderness_attack_check(int who, int where) {
  *
  */
 static void
-execute_prisoners(int who, char *reason) {
+execute_prisoners(int who, char *reason)
+{
   int pris;
   int found = 0;
 
@@ -355,7 +364,8 @@ execute_prisoners(int who, char *reason) {
 };
 
 static void
-release_prisoners(int who, char *reason) {
+release_prisoners(int who, char *reason)
+{
   int pris;
   int found = 0;
 
@@ -388,7 +398,8 @@ release_prisoners(int who, char *reason) {
  *  province.
  */
 static int
-breed_okay(int who) {
+breed_okay(int who)
+{
   int mm = MM(who);
   int where = subloc(who);
   int i, first = 1, item;
@@ -446,7 +457,8 @@ breed_okay(int who) {
  *
  */
 static int
-auto_drop(who) {
+auto_drop(who)
+{
   struct item_ent *e;
   int found_item = 0;
 
@@ -469,7 +481,8 @@ auto_drop(who) {
  *
  */
 static void
-auto_bandit(int who) {
+auto_bandit(int who)
+{
   int where = subloc(who);
   int i;
   int victim = 0;
@@ -523,7 +536,8 @@ auto_bandit(int who) {
  *
  */
 static int
-grab_subloc(int who) {
+grab_subloc(int who)
+{
   int where = subloc(who), i;
 
   if (npc_program(who) == PROG_subloc_monster)
@@ -568,7 +582,8 @@ grab_subloc(int who) {
  * 
  */
 static int
-merge_stacks(int who) {
+merge_stacks(int who)
+{
   int where = subloc(who), i;
 
   /*
@@ -601,12 +616,14 @@ merge_stacks(int who) {
  *
  */
 static long
-dumb_estimate(int i) {
+dumb_estimate(int i)
+{
   return (long) count_stack_any(i);
 };
 
 static long
-estimate_strength(int who, int i, long (*strength_function) (int)) {
+estimate_strength(int who, int i, long (*strength_function) (int))
+{
   /*
    *  If there's a subloc here, we'll assume the first character
    *  there will defend it alone.  Probably suicidal, but hey.
@@ -643,7 +660,8 @@ estimate_strength(int who, int i, long (*strength_function) (int)) {
  *
  */
 static int
-find_weakest(int who, int where, long (*strength_function) (int)) {
+find_weakest(int who, int where, long (*strength_function) (int))
+{
   long strength, victim_strength;
   int victim = 0, i;
 
@@ -690,7 +708,8 @@ find_weakest(int who, int where, long (*strength_function) (int)) {
  *
  */
 static int
-find_weak_garrison(int who, long (*strength_function) (int)) {
+find_weak_garrison(int who, long (*strength_function) (int))
+{
   struct exit_view **l;
   int where = subloc(who);
   int i;
@@ -725,7 +744,8 @@ find_weak_garrison(int who, long (*strength_function) (int)) {
  *
  */
 static void
-auto_dumb(int who) {
+auto_dumb(int who)
+{
   int where = subloc(who);
   int i;
   int first, victim;
@@ -843,7 +863,8 @@ auto_dumb(int who) {
  *
  */
 static long
-smart_estimate(int who) {
+smart_estimate(int who)
+{
   int i;
   struct item_ent *e;
   long combat_total = 0;
@@ -893,7 +914,8 @@ smart_estimate(int who) {
  *
  */
 static void
-study_skill(int who, int sk) {
+study_skill(int who, int sk)
+{
   struct skill_ent *p;
   char buf[80];
 
@@ -917,7 +939,8 @@ study_skill(int who, int sk) {
 };
 
 static void
-use_skill(int who, int skill) {
+use_skill(int who, int skill)
+{
   char buf[80];
 
   if (!has_skill(who, skill)) {
@@ -929,7 +952,8 @@ use_skill(int who, int skill) {
 };
 
 static int
-need_to_study(int who, int skill) {
+need_to_study(int who, int skill)
+{
   struct skill_ent *p;
 
   p = rp_skill_ent(who, skill);
@@ -947,7 +971,8 @@ need_to_study(int who, int skill) {
  *
  */
 static int
-raze_structures(int who) {
+raze_structures(int who)
+{
   int where = subloc(who), i;
 
   if (savage_hates(where) && building_owner(where) == who) {
@@ -973,7 +998,8 @@ raze_structures(int who) {
  *
  */
 static void
-auto_smart(int who) {
+auto_smart(int who)
+{
   int where = subloc(who);
   int i, target;
   int victim = 0;
@@ -1108,7 +1134,8 @@ auto_smart(int who) {
  *
  */
 static void
-auto_orc(int who) {
+auto_orc(int who)
+{
   int found = 0, i, victim;
   int real_orc_loc_okay(int who, int where);
   int where = subloc(who);
@@ -1190,7 +1217,8 @@ auto_orc(int who) {
  *
  */
 static int
-elf_attack(int who, int where) {
+elf_attack(int who, int where)
+{
   int j, i;
   int victim;
   struct entity_misc *p = p_misc(faery_player);
@@ -1258,7 +1286,8 @@ elf_attack(int who, int where) {
  *
  */
 static void
-auto_elf(int who) {
+auto_elf(int who)
+{
   int found = 0, i, j;
   int where = subloc(who);
 
@@ -1347,7 +1376,8 @@ auto_elf(int who) {
  *
  */
 static void
-auto_balrog(int who) {
+auto_balrog(int who)
+{
   int where = subloc(who);
   int i;
   int pris;
@@ -1397,7 +1427,8 @@ auto_balrog(int who) {
  *
  */
 static void
-auto_daemon(int who) {
+auto_daemon(int who)
+{
   int where = subloc(who);
   int i;
   int pris;
@@ -1445,7 +1476,8 @@ auto_daemon(int who) {
  * 
  */
 static int
-is_sub_artifact(int item) {
+is_sub_artifact(int item)
+{
   if (valid_box(item) && subkind(item) == sub_magic_artifact)
     return 1;
   return 0;
@@ -1454,7 +1486,8 @@ is_sub_artifact(int item) {
 int count_generic(int who, int stack, int (*func) (int));
 
 static void
-auto_subloc(int who) {
+auto_subloc(int who)
+{
   int where = subloc(who);
   int i, target;
   int item;
@@ -1565,7 +1598,8 @@ auto_subloc(int who) {
 
 #define	PROV_OR_CITY	-1
 
-struct cookie_monster_tbl {
+struct cookie_monster_tbl
+{
   int cookie;
   int kind, sk, ni;
   int terrain;
@@ -1610,7 +1644,8 @@ cookie_monster[] = {
 
 
 static struct cookie_monster_tbl *
-find_cookie(int k) {
+find_cookie(int k)
+{
   int i;
 
   assert(kind(k) == T_item);
@@ -1624,7 +1659,8 @@ find_cookie(int k) {
 
 
 int
-may_cookie_npc(int who, int where, int cookie) {
+may_cookie_npc(int who, int where, int cookie)
+{
   struct cookie_monster_tbl *t;
   int bad_place = FALSE;
 
@@ -1655,7 +1691,8 @@ may_cookie_npc(int who, int where, int cookie) {
 
 
 int
-do_cookie_npc(int who, int where, int cookie, int place) {
+do_cookie_npc(int who, int where, int cookie, int place)
+{
   struct cookie_monster_tbl *t;
   struct entity_misc *p;
   int new;
@@ -1698,7 +1735,8 @@ do_cookie_npc(int who, int where, int cookie, int place) {
 
 
 int
-create_peasant_mob(int where) {
+create_peasant_mob(int where)
+{
   int new;
 
   new = do_cookie_npc(0, where, item_mob_cookie, where);
@@ -1715,7 +1753,8 @@ create_peasant_mob(int where) {
 }
 
 void
-do_npc_orders(int who, int flush, int queue_orders) {
+do_npc_orders(int who, int flush, int queue_orders)
+{
   if (loyal_kind(who) == LOY_summon)
     return;
 
@@ -1810,7 +1849,8 @@ do_npc_orders(int who, int flush, int queue_orders) {
 
 
 void
-queue_npc_orders() {
+queue_npc_orders()
+{
   int who;
 
   stage("queue_npc_orders()");
@@ -1836,7 +1876,8 @@ queue_npc_orders() {
  *
  */
 int
-create_monster_stack(int selection, int total, int where) {
+create_monster_stack(int selection, int total, int where)
+{
   char name[80];
   int new;
 
@@ -1854,7 +1895,8 @@ create_monster_stack(int selection, int total, int where) {
 };
 
 int
-create_new_beasts(int where, int sk) {
+create_new_beasts(int where, int sk)
+{
   int total = 0, selection = 0, new, item;
   long chance;
   char name[256];
@@ -1900,7 +1942,8 @@ create_new_beasts(int where, int sk) {
  *
  */
 int
-d_npc_breed(struct command *c) {
+d_npc_breed(struct command *c)
+{
   int item, num, breed_chance;
   int season;
 
@@ -2044,7 +2087,8 @@ d_npc_breed(struct command *c) {
  *
  */
 int
-v_think(struct command *c) {
+v_think(struct command *c)
+{
   int item;
   if (!is_real_npc(c->who))
     return FALSE;

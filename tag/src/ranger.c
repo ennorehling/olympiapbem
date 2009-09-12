@@ -10,7 +10,8 @@
  *
  */
 int
-v_find_food(struct command *c) {
+v_find_food(struct command *c)
+{
   if (has_item(province(c->who), item_peasant) >= 100) {
     wout(c->who, "You may only search for food in wilderness provinces.");
     return FALSE;
@@ -21,7 +22,8 @@ v_find_food(struct command *c) {
 
 
 int
-d_find_food(struct command *c) {
+d_find_food(struct command *c)
+{
   int food_found = 10;
 
   if (has_item(province(c->who), item_peasant) >= 100) {

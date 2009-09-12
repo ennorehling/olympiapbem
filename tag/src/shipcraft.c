@@ -16,7 +16,8 @@
  *
  */
 int
-d_add_sails(struct command *c) {
+d_add_sails(struct command *c)
+{
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -63,7 +64,8 @@ d_add_sails(struct command *c) {
 
 
 int
-v_add_sails(struct command *c) {
+v_add_sails(struct command *c)
+{
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -99,7 +101,8 @@ v_add_sails(struct command *c) {
 }
 
 int
-d_remove_sails(struct command *c) {
+d_remove_sails(struct command *c)
+{
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -129,7 +132,8 @@ d_remove_sails(struct command *c) {
 
 
 int
-v_remove_sails(struct command *c) {
+v_remove_sails(struct command *c)
+{
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -161,7 +165,8 @@ v_remove_sails(struct command *c) {
  *
  */
 int
-d_add_forts(struct command *c) {
+d_add_forts(struct command *c)
+{
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -209,7 +214,8 @@ d_add_forts(struct command *c) {
 
 
 int
-v_add_forts(struct command *c) {
+v_add_forts(struct command *c)
+{
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -237,7 +243,8 @@ v_add_forts(struct command *c) {
 }
 
 int
-d_remove_forts(struct command *c) {
+d_remove_forts(struct command *c)
+{
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -277,7 +284,8 @@ d_remove_forts(struct command *c) {
 
 
 int
-v_remove_forts(struct command *c) {
+v_remove_forts(struct command *c)
+{
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -309,7 +317,8 @@ v_remove_forts(struct command *c) {
  *
  */
 int
-d_add_keels(struct command *c) {
+d_add_keels(struct command *c)
+{
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -355,7 +364,8 @@ d_add_keels(struct command *c) {
 
 
 int
-v_add_keels(struct command *c) {
+v_add_keels(struct command *c)
+{
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -390,7 +400,8 @@ v_add_keels(struct command *c) {
 }
 
 int
-d_remove_keels(struct command *c) {
+d_remove_keels(struct command *c)
+{
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -420,7 +431,8 @@ d_remove_keels(struct command *c) {
 
 
 int
-v_remove_keels(struct command *c) {
+v_remove_keels(struct command *c)
+{
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -452,7 +464,8 @@ v_remove_keels(struct command *c) {
  *
  */
 int
-d_add_ports(struct command *c) {
+d_add_ports(struct command *c)
+{
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -488,7 +501,8 @@ d_add_ports(struct command *c) {
 
 
 int
-v_add_ports(struct command *c) {
+v_add_ports(struct command *c)
+{
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -514,7 +528,8 @@ v_add_ports(struct command *c) {
 }
 
 int
-d_remove_ports(struct command *c) {
+d_remove_ports(struct command *c)
+{
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -545,7 +560,8 @@ d_remove_ports(struct command *c) {
 
 
 int
-v_remove_ports(struct command *c) {
+v_remove_ports(struct command *c)
+{
   int where = subloc(c->who);
   struct entity_ship *ship = rp_ship(where);
 
@@ -578,7 +594,8 @@ v_remove_ports(struct command *c) {
  *
  */
 void
-ship_summary(int pl) {
+ship_summary(int pl)
+{
   int first = 0, sc, sw, i;
 
   loop_known(p_player(pl)->locs, i) {
@@ -637,7 +654,8 @@ ship_summary(int pl) {
  *
  */
 void
-ship_storm_check(int ship) {
+ship_storm_check(int ship)
+{
   int where = province(ship), coastal, damage_chance = 15;
   int storm_strength = weather_here(where, sub_rain);
   struct entity_ship *s;
@@ -704,7 +722,8 @@ ship_storm_check(int ship) {
  */
 
 int
-v_add_ram(struct command *c) {
+v_add_ram(struct command *c)
+{
   int ship = subloc(c->who);
 
   /*
@@ -726,7 +745,8 @@ v_add_ram(struct command *c) {
 
 
 int
-d_add_ram(struct command *c) {
+d_add_ram(struct command *c)
+{
   int ship = subloc(c->who);
 
   /*
@@ -754,7 +774,8 @@ d_add_ram(struct command *c) {
 
 
 int
-v_remove_ram(struct command *c) {
+v_remove_ram(struct command *c)
+{
   int ship = subloc(c->who);
 
   /*
@@ -776,7 +797,8 @@ v_remove_ram(struct command *c) {
 
 
 int
-d_remove_ram(struct command *c) {
+d_remove_ram(struct command *c)
+{
   int ship = subloc(c->who);
 
   /*

@@ -6,7 +6,8 @@
 
 
 int
-v_bind_storm(struct command *c) {
+v_bind_storm(struct command *c)
+{
   int storm = c->a;
   int ship = subloc(c->who);
 
@@ -30,7 +31,8 @@ v_bind_storm(struct command *c) {
 
 
 int
-d_bind_storm(struct command *c) {
+d_bind_storm(struct command *c)
+{
   int storm = c->a;
   int ship = subloc(c->who);
   int old;
@@ -67,7 +69,8 @@ d_bind_storm(struct command *c) {
 
 
 static void
-move_storm(int storm, int dest) {
+move_storm(int storm, int dest)
+{
   int orig = subloc(storm);
   int sk = subkind(storm);
   int before;
@@ -124,7 +127,8 @@ move_storm(int storm, int dest) {
 
 
 void
-move_bound_storms(int ship, int where) {
+move_bound_storms(int ship, int where)
+{
   struct entity_subloc *p;
   int i;
   int storm;
@@ -147,7 +151,8 @@ move_bound_storms(int ship, int where) {
 
 
 static int
-new_storm(int new, int sk, int aura, int where) {
+new_storm(int new, int sk, int aura, int where)
+{
   int before;
 
   assert(sk == sub_rain || sk == sub_wind || sk == sub_fog);
@@ -226,7 +231,8 @@ storm_report(pl)
 
 
 void
-dissipate_storm(int storm, int show) {
+dissipate_storm(int storm, int show)
+{
   int owner;
   struct entity_misc *p;
   int where = subloc(storm);
@@ -284,7 +290,8 @@ dissipate_storm(int storm, int show) {
 
 
 int
-weather_here(int where, int sk) {
+weather_here(int where, int sk)
+{
   int i;
   int sum = 0;
 
@@ -304,7 +311,8 @@ weather_here(int where, int sk) {
 
 
 int
-v_summon_rain(struct command *c) {
+v_summon_rain(struct command *c)
+{
   int aura = c->a;
   int where;
 
@@ -325,7 +333,8 @@ v_summon_rain(struct command *c) {
 
 
 int
-d_summon_rain(struct command *c) {
+d_summon_rain(struct command *c)
+{
   int aura = c->a;
   int where = c->d;
   int new;
@@ -358,7 +367,8 @@ d_summon_rain(struct command *c) {
 
 
 int
-v_summon_wind(struct command *c) {
+v_summon_wind(struct command *c)
+{
   int aura = c->a;
   int where;
 
@@ -379,7 +389,8 @@ v_summon_wind(struct command *c) {
 
 
 int
-d_summon_wind(struct command *c) {
+d_summon_wind(struct command *c)
+{
   int aura = c->a;
   char *name = 0;
   int where = c->d;
@@ -415,7 +426,8 @@ d_summon_wind(struct command *c) {
 
 
 int
-v_summon_fog(struct command *c) {
+v_summon_fog(struct command *c)
+{
   int aura = c->a;
   int where;
 
@@ -436,7 +448,8 @@ v_summon_fog(struct command *c) {
 
 
 int
-d_summon_fog(struct command *c) {
+d_summon_fog(struct command *c)
+{
   int aura = c->a;
   char *name = c->parse[2];
   int where = c->d;
@@ -469,7 +482,8 @@ d_summon_fog(struct command *c) {
 
 
 static struct exit_view *
-parse_storm_dir(struct command *c, int storm) {
+parse_storm_dir(struct command *c, int storm)
+{
   int where = subloc(storm);
   struct exit_view **l;
   int i;
@@ -525,7 +539,8 @@ parse_storm_dir(struct command *c, int storm) {
 
 
 int
-v_direct_storm(struct command *c) {
+v_direct_storm(struct command *c)
+{
   int storm = c->a;
   struct exit_view *v;
   int dest;
@@ -559,7 +574,8 @@ v_direct_storm(struct command *c) {
 
 
 int
-v_dissipate(struct command *c) {
+v_dissipate(struct command *c)
+{
   int storm = c->a;
   int where;
   char here_s[LEN];
@@ -588,7 +604,8 @@ v_dissipate(struct command *c) {
 
 
 int
-d_dissipate(struct command *c) {
+d_dissipate(struct command *c)
+{
   int storm = c->a;
   int where = c->d;
   char here_s[LEN];
@@ -625,7 +642,8 @@ d_dissipate(struct command *c) {
 
 
 int
-v_renew_storm(struct command *c) {
+v_renew_storm(struct command *c)
+{
   int storm = c->a;
   int aura = c->b;
   int where;
@@ -661,7 +679,8 @@ v_renew_storm(struct command *c) {
 
 
 int
-d_renew_storm(struct command *c) {
+d_renew_storm(struct command *c)
+{
   int storm = c->a;
   int aura = c->b;
   int where = c->d;
@@ -697,7 +716,8 @@ d_renew_storm(struct command *c) {
 
 
 int
-v_lightning(struct command *c) {
+v_lightning(struct command *c)
+{
   int storm = c->a;
   int target = c->b;
   int where;
@@ -740,7 +760,8 @@ v_lightning(struct command *c) {
 
 
 int
-d_lightning(struct command *c) {
+d_lightning(struct command *c)
+{
   int storm = c->a;
   int target = c->b;
   int aura = c->c;
@@ -812,7 +833,8 @@ d_lightning(struct command *c) {
 
 #if 0
 int
-v_list_storms(struct command *c) {
+v_list_storms(struct command *c)
+{
 
   if (!check_aura(c->who, 1))
     return FALSE;
@@ -822,7 +844,8 @@ v_list_storms(struct command *c) {
 
 
 int
-d_list_storms(struct command *c) {
+d_list_storms(struct command *c)
+{
   int where;
   int i;
   int first = TRUE;
@@ -863,7 +886,8 @@ d_list_storms(struct command *c) {
 
 
 int
-v_seize_storm(struct command *c) {
+v_seize_storm(struct command *c)
+{
   int storm = c->a;
   int where;
   char here_s[LEN];
@@ -900,7 +924,8 @@ v_seize_storm(struct command *c) {
 
 
 int
-d_seize_storm(struct command *c) {
+d_seize_storm(struct command *c)
+{
   int storm = c->a;
   int where = c->d;
   char here_s[LEN];
@@ -945,7 +970,8 @@ d_seize_storm(struct command *c) {
 
 
 int
-v_death_fog(struct command *c) {
+v_death_fog(struct command *c)
+{
   int storm = c->a;
   int target = c->b;
   int where;
@@ -983,7 +1009,8 @@ v_death_fog(struct command *c) {
 
 
 static char *
-fog_excuse() {
+fog_excuse()
+{
 
   switch (rnd(1, 3)) {
   case 1:
@@ -1000,7 +1027,8 @@ fog_excuse() {
 
 
 int
-d_death_fog(struct command *c) {
+d_death_fog(struct command *c)
+{
   int storm = c->a;
   int target = c->b;
   int aura = c->c;
@@ -1125,7 +1153,8 @@ d_death_fog(struct command *c) {
 
 
 int
-v_banish_corpses(struct command *c) {
+v_banish_corpses(struct command *c)
+{
   int where = cast_where(c->who);
   int i;
   int sum = 0;
@@ -1145,7 +1174,8 @@ v_banish_corpses(struct command *c) {
 
 
 int
-d_banish_corpses(struct command *c) {
+d_banish_corpses(struct command *c)
+{
   int where = cast_where(c->who);
   int i;
   int sum = 0;
@@ -1187,7 +1217,8 @@ d_banish_corpses(struct command *c) {
 
 
 int
-v_fierce_wind(struct command *c) {
+v_fierce_wind(struct command *c)
+{
   int storm = c->a;
   int target = c->b;
   int where;
@@ -1220,7 +1251,8 @@ v_fierce_wind(struct command *c) {
 
 
 int
-d_fierce_wind(struct command *c) {
+d_fierce_wind(struct command *c)
+{
   int storm = c->a;
   int target = c->b;
   int aura = c->c;
@@ -1276,7 +1308,8 @@ d_fierce_wind(struct command *c) {
 
 
 static void
-create_some_storms(int num, int kind) {
+create_some_storms(int num, int kind)
+{
   static ilist l = NULL;
   int i;
 
@@ -1301,7 +1334,8 @@ create_some_storms(int num, int kind) {
 
 
 void
-natural_weather() {
+natural_weather()
+{
   int nprov = nprovinces();
   int n;
 
@@ -1357,7 +1391,8 @@ natural_weather() {
 
 
 static void
-update_weather_view_loc_sup(int who, int where) {
+update_weather_view_loc_sup(int who, int where)
+{
   int pl;
 
   pl = player(who);
@@ -1368,7 +1403,8 @@ update_weather_view_loc_sup(int who, int where) {
 
 
 void
-update_weather_view_locs(int stack, int where) {
+update_weather_view_locs(int stack, int where)
+{
   int i;
 
   where = province(where);
@@ -1385,7 +1421,8 @@ update_weather_view_locs(int stack, int where) {
 
 
 void
-init_weather_views() {
+init_weather_views()
+{
   int who;
 
   loop_char(who) {
@@ -1397,7 +1434,8 @@ init_weather_views() {
 
 
 int
-can_see_weather_here(int who, int where) {
+can_see_weather_here(int who, int where)
+{
   int pl = player(who);
   struct entity_player *p;
 

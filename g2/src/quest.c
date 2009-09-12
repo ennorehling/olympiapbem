@@ -11,7 +11,8 @@ int nowhere_loc = 0;
 
 
 void
-create_nowhere() {
+create_nowhere()
+{
 
   nowhere_region = new_ent(T_loc, sub_region);
   set_name(nowhere_region, "Nowhere");
@@ -26,7 +27,8 @@ create_nowhere() {
 
 
 static void
-create_a_relic(int n, char *name, int use, int weight) {
+create_a_relic(int n, char *name, int use, int weight)
+{
 
   if (bx[n] != NULL)
     return;
@@ -42,7 +44,8 @@ create_a_relic(int n, char *name, int use, int weight) {
 
 
 void
-create_relics() {
+create_relics()
+{
   create_a_relic(RELIC_THRONE, "Imperial Throne", 0, 500);
   create_a_relic(RELIC_CROWN, "Crown of Prosperity", 0, 10);
   create_a_relic(RELIC_BTA_SKULL, "Skull of Bastrestric", use_bta_skull, 10);
@@ -57,7 +60,8 @@ create_relics() {
 
 
 int
-random_unassigned_relic() {
+random_unassigned_relic()
+{
   struct item_ent *e;
   int sum = 0;
   int choice;
@@ -129,7 +133,8 @@ static char *of_names[] = {
  */
 
 static void
-make_teach_book(int who, int questor) {
+make_teach_book(int who, int questor)
+{
   int i;
   int sk;
   ilist candidate = NULL;       /* categories we know */
@@ -192,7 +197,8 @@ make_teach_book(int who, int questor) {
  */
 
 static int
-free_artifact(int where) {
+free_artifact(int where)
+{
   int reg = region(where);
   int i;
   int owner;
@@ -232,7 +238,8 @@ free_artifact(int where) {
 
 
 static int
-new_artifact(int who) {
+new_artifact(int who)
+{
   int new;
   char *s;
 
@@ -282,7 +289,8 @@ new_artifact(int who) {
 }
 
 
-struct quest_monster {
+struct quest_monster
+{
   int terr;
   int item;
   int low, high;
@@ -348,7 +356,8 @@ struct quest_monster {
 
 
 int
-choose_quest_monster(int where) {
+choose_quest_monster(int where)
+{
   int terr = subkind(where);
   int level = tunnel_depth(where);
   int sum = 0, choice;
@@ -375,7 +384,8 @@ choose_quest_monster(int where) {
 
 
 static int
-new_monster(int where) {
+new_monster(int where)
+{
   int i;
   int new;
 
@@ -398,7 +408,8 @@ new_monster(int where) {
 
 
 int
-make_subloc_monster(int where, int questor) {
+make_subloc_monster(int where, int questor)
+{
   int monster;
   int relic = 0;
   int low = 2;
@@ -527,7 +538,8 @@ make_subloc_monster(int where, int questor) {
 
 
 int
-v_quest(struct command *c) {
+v_quest(struct command *c)
+{
   int where = subloc(c->who);
   int terr = subkind(where);
   int i;
@@ -556,7 +568,8 @@ v_quest(struct command *c) {
 
 
 int
-d_quest(struct command *c) {
+d_quest(struct command *c)
+{
   int where = subloc(c->who);
   int monster;
   int terr = subkind(where);
@@ -612,7 +625,8 @@ d_quest(struct command *c) {
 
 
 int
-v_use_bta_skull(struct command *c) {
+v_use_bta_skull(struct command *c)
+{
   int item = c->a;
 
   assert(item == RELIC_BTA_SKULL);

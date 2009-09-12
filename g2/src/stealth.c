@@ -6,7 +6,8 @@
 
 
 int
-v_spy_inv(struct command *c) {
+v_spy_inv(struct command *c)
+{
   int target = c->a;
 
   if (!check_char_here(c->who, target))
@@ -17,7 +18,8 @@ v_spy_inv(struct command *c) {
 
 
 int
-d_spy_inv(struct command *c) {
+d_spy_inv(struct command *c)
+{
   int target = c->a;
 
   if (!check_still_here(c->who, target))
@@ -31,7 +33,8 @@ d_spy_inv(struct command *c) {
 
 
 int
-v_spy_skills(struct command *c) {
+v_spy_skills(struct command *c)
+{
   int target = c->a;
 
   if (!check_char_here(c->who, target))
@@ -42,7 +45,8 @@ v_spy_skills(struct command *c) {
 
 
 int
-d_spy_skills(struct command *c) {
+d_spy_skills(struct command *c)
+{
   int target = c->a;
 
   if (!check_still_here(c->who, target))
@@ -56,7 +60,8 @@ d_spy_skills(struct command *c) {
 
 
 int
-v_spy_lord(struct command *c) {
+v_spy_lord(struct command *c)
+{
   int target = c->a;
 
   if (!check_char_here(c->who, target))
@@ -67,7 +72,8 @@ v_spy_lord(struct command *c) {
 
 
 int
-d_spy_lord(struct command *c) {
+d_spy_lord(struct command *c)
+{
   int target = c->a;
   int parent;
 
@@ -90,7 +96,8 @@ d_spy_lord(struct command *c) {
 
 
 int
-v_hide(struct command *c) {
+v_hide(struct command *c)
+{
   int flag = c->a;
 
   if (!check_skill(c->who, sk_hide_self))
@@ -115,7 +122,8 @@ v_hide(struct command *c) {
 
 
 int
-d_hide(struct command *c) {
+d_hide(struct command *c)
+{
 
   if (!char_alone(c->who)) {
     wout(c->who, "Must be alone to hide.");
@@ -130,7 +138,8 @@ d_hide(struct command *c) {
 
 
 int
-v_sneak(struct command *c) {
+v_sneak(struct command *c)
+{
   struct exit_view *v;
   int where = subloc(c->who);
   int outside = subloc(where);
@@ -187,7 +196,8 @@ v_sneak(struct command *c) {
 
 
 int
-d_sneak(struct command *c) {
+d_sneak(struct command *c)
+{
   struct exit_view *v;
   int where = subloc(c->who);
   int outside = subloc(where);
@@ -251,7 +261,8 @@ d_sneak(struct command *c) {
 
 
 void
-clear_contacts(int stack) {
+clear_contacts(int stack)
+{
   int i;
 
   if (kind(stack) == T_char) {
@@ -264,7 +275,8 @@ clear_contacts(int stack) {
 
 
 static void
-add_contact(int a, int b) {
+add_contact(int a, int b)
+{
 
   assert(kind(a) == T_char);
 
@@ -273,7 +285,8 @@ add_contact(int a, int b) {
 
 
 int
-v_contact(struct command *c) {
+v_contact(struct command *c)
+{
 
   while (numargs(c) > 0) {
     if (kind(c->a) != T_char && kind(c->a) != T_player) {
@@ -290,7 +303,8 @@ v_contact(struct command *c) {
 
 
 int
-v_seek(struct command *c) {
+v_seek(struct command *c)
+{
   int target = c->a;
 
   if (target) {                 /* target specified */
@@ -314,7 +328,8 @@ v_seek(struct command *c) {
 
 
 int
-d_seek(struct command *c) {
+d_seek(struct command *c)
+{
   int target = c->a;
   int i;
 
@@ -367,7 +382,8 @@ d_seek(struct command *c) {
 
 
 static void
-add_fill(int where, ilist * l, int max_depth, int depth) {
+add_fill(int where, ilist * l, int max_depth, int depth)
+{
   int i;
   struct entity_loc *p;
 
@@ -392,7 +408,8 @@ add_fill(int where, ilist * l, int max_depth, int depth) {
 
 
 int
-v_find_rich(struct command *c) {
+v_find_rich(struct command *c)
+{
   int where = subloc(c->who);
 
   if (subkind(where) != sub_inn) {
@@ -405,7 +422,8 @@ v_find_rich(struct command *c) {
 
 
 int
-d_find_rich(struct command *c) {
+d_find_rich(struct command *c)
+{
   static ilist l = NULL;
   int pl = player(c->who);
   int max_gold = 500;
@@ -456,7 +474,8 @@ d_find_rich(struct command *c) {
 
 
 int
-v_torture(struct command *c) {
+v_torture(struct command *c)
+{
   int target = c->a;
 
   if (!has_skill(c->who, sk_torture)) {
@@ -481,7 +500,8 @@ v_torture(struct command *c) {
 
 
 int
-d_torture(struct command *c) {
+d_torture(struct command *c)
+{
   int target = c->a;
   int chance;
 
@@ -539,14 +559,16 @@ d_torture(struct command *c) {
 
 
 int
-cloak_lord(int n) {
+cloak_lord(int n)
+{
 
   return has_skill(n, sk_hide_lord);
 }
 
 
 int
-v_petty_thief(struct command *c) {
+v_petty_thief(struct command *c)
+{
   int where = subloc(c->who);
 
   if (subkind(where) != sub_city) {
@@ -575,7 +597,8 @@ v_petty_thief(struct command *c) {
 
 
 int
-d_petty_thief(struct command *c) {
+d_petty_thief(struct command *c)
+{
   int where = subloc(c->who);
   int amount;
   char *self, *third;

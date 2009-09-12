@@ -11,7 +11,8 @@ int under_region = 0;
 #define SUB_SZ	10              /* SZ x SZ is size of Subworld */
 
 static void
-create_subworld() {
+create_subworld()
+{
   int r, c;
   int map[SUB_SZ + 1][SUB_SZ + 1];
   int n;
@@ -95,7 +96,8 @@ create_subworld() {
 
 
 int
-random_subworld_loc() {
+random_subworld_loc()
+{
   ilist l = NULL;
   int i;
   int ret;
@@ -128,7 +130,8 @@ static int tun_total_locs;
 
 
 void
-print_map(int map[SZ + 2][SZ + 2][MAX_LEVELS], int l) {
+print_map(int map[SZ + 2][SZ + 2][MAX_LEVELS], int l)
+{
   int r, c;
 
   printf("level %d", l);
@@ -147,7 +150,8 @@ print_map(int map[SZ + 2][SZ + 2][MAX_LEVELS], int l) {
 
 
 void
-fill_dir_exits(int where) {
+fill_dir_exits(int where)
+{
   struct entity_loc *p;
 
   p = p_loc(where);
@@ -157,7 +161,8 @@ fill_dir_exits(int where) {
 }
 
 static int
-new_tunnel() {
+new_tunnel()
+{
   int n;
 
   n = new_ent(T_loc, sub_tunnel);
@@ -171,7 +176,8 @@ new_tunnel() {
 
 
 static void
-tun_links(int map[SZ + 2][SZ + 2][MAX_LEVELS], int r, int c, int l) {
+tun_links(int map[SZ + 2][SZ + 2][MAX_LEVELS], int r, int c, int l)
+{
 
   if (map[r + 1][c][l]) {
     p_loc(map[r][c][l])->prov_dest[DIR_S - 1] = map[r + 1][c][l];
@@ -196,7 +202,8 @@ tun_links(int map[SZ + 2][SZ + 2][MAX_LEVELS], int r, int c, int l) {
 
 
 static int
-filled_locs(int map[SZ + 2][SZ + 2][MAX_LEVELS], int l, int dir) {
+filled_locs(int map[SZ + 2][SZ + 2][MAX_LEVELS], int l, int dir)
+{
   int r, c;
   ilist sq = NULL;
   int square;
@@ -226,7 +233,8 @@ filled_locs(int map[SZ + 2][SZ + 2][MAX_LEVELS], int l, int dir) {
 
 
 static int
-fill_out_level(int map[SZ + 2][SZ + 2][MAX_LEVELS], int l) {
+fill_out_level(int map[SZ + 2][SZ + 2][MAX_LEVELS], int l)
+{
   int r, c;
   int n;
   int sum;
@@ -258,7 +266,8 @@ fill_out_level(int map[SZ + 2][SZ + 2][MAX_LEVELS], int l) {
 
 
 static int
-add_chamber(int map[SZ + 2][SZ + 2][MAX_LEVELS], int l) {
+add_chamber(int map[SZ + 2][SZ + 2][MAX_LEVELS], int l)
+{
   int dir = rnd(1, 4);
   int new;
   int square;
@@ -285,7 +294,8 @@ add_chamber(int map[SZ + 2][SZ + 2][MAX_LEVELS], int l) {
 static int subworld_city;
 
 int
-create_tunnel_set(int city, int subworld_link) {
+create_tunnel_set(int city, int subworld_link)
+{
   int map[SZ + 2][SZ + 2][MAX_LEVELS];
   int r, c, l;
   int n;
@@ -425,7 +435,8 @@ create_tunnel_set(int city, int subworld_link) {
 
 
 void
-create_tunnels() {
+create_tunnels()
+{
   int city;
   int sum = 0;
   int link;

@@ -7,7 +7,8 @@
 
 
 int
-list_gates_here(int who, int where, int show_dest) {
+list_gates_here(int who, int where, int show_dest)
+{
   int gate;
   int first = TRUE;
   char *sealed;
@@ -46,7 +47,8 @@ list_gates_here(int who, int where, int show_dest) {
 
 
 int
-province_gate_here(int where) {
+province_gate_here(int where)
+{
   int i;
   int gate = 0;
 
@@ -64,7 +66,8 @@ province_gate_here(int where) {
 
 
 static int
-list_province_gates(int who, int where) {
+list_province_gates(int who, int where)
+{
   int gate;
 
   gate = province_gate_here(where);
@@ -77,7 +80,8 @@ list_province_gates(int who, int where) {
 
 
 static void
-list_nearby_gates(int who, int where) {
+list_nearby_gates(int who, int where)
+{
   int dist = gate_dist(where);
 
   if (dist == 0)
@@ -89,7 +93,8 @@ list_nearby_gates(int who, int where) {
 
 
 static int
-check_gate_here(int who, int gate) {
+check_gate_here(int who, int gate)
+{
 
   if (kind(gate) != T_gate || subloc(gate) != subloc(who)) {
     wout(who, "There is no gate %s here.", box_code(gate));
@@ -101,7 +106,8 @@ check_gate_here(int who, int gate) {
 
 
 int
-v_detect_gates(struct command *c) {
+v_detect_gates(struct command *c)
+{
 
   if (!check_aura(c->who, 1))
     return FALSE;
@@ -111,7 +117,8 @@ v_detect_gates(struct command *c) {
 
 
 int
-d_detect_gates(struct command *c) {
+d_detect_gates(struct command *c)
+{
   int ret;
 
   if (!charge_aura(c->who, 1))
@@ -140,7 +147,8 @@ d_detect_gates(struct command *c) {
 
 
 void
-do_jump(int who, int dest, int gate, int backwards) {
+do_jump(int who, int dest, int gate, int backwards)
+{
   struct entity_gate *p;
 
   leave_stack(who);
@@ -164,7 +172,8 @@ do_jump(int who, int dest, int gate, int backwards) {
 
 
 int
-v_jump_gate(struct command *c) {
+v_jump_gate(struct command *c)
+{
   int gate = c->a;
   int key = c->b;
   int sealed;
@@ -208,7 +217,8 @@ v_jump_gate(struct command *c) {
 
 
 int
-v_reverse_jump(struct command *c) {
+v_reverse_jump(struct command *c)
+{
   int gate = c->a;
   int key = c->b;
   int sealed;
@@ -252,7 +262,8 @@ v_reverse_jump(struct command *c) {
 
 
 int
-v_reveal_key(struct command *c) {
+v_reveal_key(struct command *c)
+{
   if (!check_aura(c->who, 10))
     return FALSE;
 
@@ -262,7 +273,8 @@ v_reveal_key(struct command *c) {
 
 
 int
-d_reveal_key(struct command *c) {
+d_reveal_key(struct command *c)
+{
   int gate = c->a;
   int sealed;
   int where = cast_where(c->who);
@@ -291,7 +303,8 @@ d_reveal_key(struct command *c) {
 
 
 int
-v_seal_gate(struct command *c) {
+v_seal_gate(struct command *c)
+{
   int gate = c->a;
   int key = c->b;
   int sealed;
@@ -314,7 +327,8 @@ v_seal_gate(struct command *c) {
 
 
 int
-d_seal_gate(struct command *c) {
+d_seal_gate(struct command *c)
+{
   int gate = c->a;
   int key = c->b;
   int sealed;
@@ -346,7 +360,8 @@ d_seal_gate(struct command *c) {
 
 
 static void
-unseal_gate(int who, int gate) {
+unseal_gate(int who, int gate)
+{
   struct entity_gate *p;
 
   assert(kind(gate) == T_gate);
@@ -363,7 +378,8 @@ unseal_gate(int who, int gate) {
 
 
 int
-v_unseal_gate(struct command *c) {
+v_unseal_gate(struct command *c)
+{
   if (!check_aura(c->who, 3))
     return FALSE;
 
@@ -377,7 +393,8 @@ v_unseal_gate(struct command *c) {
 
 
 int
-d_unseal_gate(struct command *c) {
+d_unseal_gate(struct command *c)
+{
   int gate = c->a;
   int key = c->b;
   int sealed;
@@ -415,7 +432,8 @@ d_unseal_gate(struct command *c) {
 
 
 int
-v_notify_unseal(struct command *c) {
+v_notify_unseal(struct command *c)
+{
   if (c->b == 0) {
     wout(c->who, "Must specify the gate seal.");
     return FALSE;
@@ -429,7 +447,8 @@ v_notify_unseal(struct command *c) {
 
 
 int
-d_notify_unseal(struct command *c) {
+d_notify_unseal(struct command *c)
+{
   int gate = c->a;
   int key = c->b;
   int sealed;
@@ -467,7 +486,8 @@ d_notify_unseal(struct command *c) {
 
 
 int
-v_rem_seal(struct command *c) {
+v_rem_seal(struct command *c)
+{
   if (!check_aura(c->who, 8))
     return FALSE;
 
@@ -476,7 +496,8 @@ v_rem_seal(struct command *c) {
 
 
 int
-d_rem_seal(struct command *c) {
+d_rem_seal(struct command *c)
+{
   int gate = c->a;
   int sealed;
   int where = cast_where(c->who);
@@ -508,7 +529,8 @@ d_rem_seal(struct command *c) {
 
 
 int
-v_notify_jump(struct command *c) {
+v_notify_jump(struct command *c)
+{
   if (!check_aura(c->who, 6))
     return FALSE;
 
@@ -517,7 +539,8 @@ v_notify_jump(struct command *c) {
 
 
 int
-d_notify_jump(struct command *c) {
+d_notify_jump(struct command *c)
+{
   int gate = c->a;
   int where = cast_where(c->who);
 
@@ -540,7 +563,8 @@ d_notify_jump(struct command *c) {
 
 
 int
-v_teleport(struct command *c) {
+v_teleport(struct command *c)
+{
   int dest = c->a;
   int cost;
   struct weights w;

@@ -13,7 +13,8 @@
  */
 
 static int
-choose_city_prominence(int city) {
+choose_city_prominence(int city)
+{
   int n;
 
   if (safe_haven(city) || major_city(city))
@@ -35,7 +36,8 @@ choose_city_prominence(int city) {
 
 
 static void
-add_near_city(int where, int city) {
+add_near_city(int where, int city)
+{
   struct entity_subloc *p;
 
   p = p_subloc(where);
@@ -45,7 +47,8 @@ add_near_city(int where, int city) {
 
 
 void
-prop_city_near_list(int city) {
+prop_city_near_list(int city)
+{
   int prom;
   int m;
   int i;
@@ -87,7 +90,8 @@ prop_city_near_list(int city) {
 
 
 void
-seed_city_near_lists() {
+seed_city_near_lists()
+{
   int city;
 
   stage("INIT: seed_city_near_lists()");
@@ -105,7 +109,8 @@ seed_city_near_lists() {
 
 
 void
-seed_mob_cookies() {
+seed_mob_cookies()
+{
   int i;
 
   loop_loc(i) {
@@ -122,7 +127,8 @@ seed_mob_cookies() {
 
 
 void
-seed_undead_cookies() {
+seed_undead_cookies()
+{
   int i;
 
   loop_loc(i) {
@@ -136,7 +142,8 @@ seed_undead_cookies() {
 
 
 void
-seed_weather_cookies() {
+seed_weather_cookies()
+{
   int i;
 
   loop_loc(i) {
@@ -169,7 +176,8 @@ seed_weather_cookies() {
 
 
 void
-seed_cookies() {
+seed_cookies()
+{
 
   stage("INIT: seed_cookies()");
 
@@ -186,7 +194,8 @@ seed_cookies() {
  */
 
 void
-compute_dist_gate() {
+compute_dist_gate()
+{
   int where;
   struct exit_view **l;
   int set_one;
@@ -252,7 +261,8 @@ compute_dist_gate() {
 
 
 void
-compute_dist() {
+compute_dist()
+{
   int i;
 
   stage("INIT: compute_dist()");
@@ -267,14 +277,15 @@ compute_dist() {
 
 
 int
-int_comp(void * a, void * b)
+int_comp(void *a, void *b)
 {
-  return *(int *)a - *(int *)b;
+  return *(int *) a - *(int *) b;
 }
 
 
 static void
-seed_city_skill(int where) {
+seed_city_skill(int where)
+{
   int terr = subkind(province(where));
   struct entity_subloc *p;
 
@@ -354,7 +365,8 @@ seed_city_skill(int where) {
 
 
 void
-seed_city_trade(int where) {
+seed_city_trade(int where)
+{
   int prov = province(where);
   int prov_kind = subkind(prov);
   struct entity_subloc *p = rp_subloc(where);
@@ -426,7 +438,8 @@ seed_city_trade(int where) {
 
 
 void
-seed_city(int where) {
+seed_city(int where)
+{
 
   seed_city_skill(where);
   seed_city_trade(where);
@@ -434,7 +447,8 @@ seed_city(int where) {
 
 
 void
-seed_initial_locations() {
+seed_initial_locations()
+{
 
   int i;
 
@@ -451,7 +465,8 @@ seed_initial_locations() {
 
 
 static void
-add_city_garrisons() {
+add_city_garrisons()
+{
   int where;
   int garr;
 
@@ -467,7 +482,8 @@ add_city_garrisons() {
 
 
 void
-seed_phase_two() {
+seed_phase_two()
+{
   compute_dist();
   seed_city_near_lists();
   seed_cookies();
@@ -476,7 +492,8 @@ seed_phase_two() {
 
 
 void
-seed_taxes() {
+seed_taxes()
+{
   int where;
   int base;
   int pil;

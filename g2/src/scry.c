@@ -5,7 +5,8 @@
 
 
 void
-scry_show_where(int who, int target) {
+scry_show_where(int who, int target)
+{
 
   if (region(who) != region(target)) {
     out(who, "%s is in %s.", just_name(region(target)));
@@ -17,7 +18,8 @@ scry_show_where(int who, int target) {
 
 
 int
-cast_where(int who) {
+cast_where(int who)
+{
   int where;
 
   where = char_proj_cast(who);
@@ -31,7 +33,8 @@ cast_where(int who) {
 
 
 int
-reset_cast_where(int who) {
+reset_cast_where(int who)
+{
   int where;
 
   where = char_proj_cast(who);
@@ -46,7 +49,8 @@ reset_cast_where(int who) {
 
 
 int
-cast_check_char_here(int who, int target) {
+cast_check_char_here(int who, int target)
+{
   int where;
   int basic;
   int pl;
@@ -89,7 +93,8 @@ cast_check_char_here(int who, int target) {
 
 
 int
-v_scry_region(struct command *c) {
+v_scry_region(struct command *c)
+{
   int targ_loc = c->a;
   int aura = c->b;
 
@@ -110,7 +115,8 @@ v_scry_region(struct command *c) {
 
 
 static void
-alert_scry_attempt(int who, int where, char *t) {
+alert_scry_attempt(int who, int where, char *t)
+{
   int n;
   int has_detect;
   char *source;
@@ -141,7 +147,8 @@ alert_scry_attempt(int who, int where, char *t) {
 
 
 void
-alert_palantir_scry(int who, int where) {
+alert_palantir_scry(int who, int where)
+{
   int n;
   int has_detect;
 
@@ -161,7 +168,8 @@ alert_palantir_scry(int who, int where) {
 
 
 void
-alert_scry_generic(int who, int where) {
+alert_scry_generic(int who, int where)
+{
   int n;
   int has_detect;
 
@@ -177,7 +185,8 @@ alert_scry_generic(int who, int where) {
 
 
 int
-d_scry_region(struct command *c) {
+d_scry_region(struct command *c)
+{
   int targ_loc = c->a;
   int aura = c->b;
 
@@ -213,7 +222,8 @@ d_scry_region(struct command *c) {
 
 
 int
-v_shroud_region(struct command *c) {
+v_shroud_region(struct command *c)
+{
   int aura;
   int where = cast_where(c->who);
 
@@ -235,7 +245,8 @@ v_shroud_region(struct command *c) {
 
 
 int
-d_shroud_region(struct command *c) {
+d_shroud_region(struct command *c)
+{
   int aura = c->a;
   struct entity_loc *p;
   int where = c->b;
@@ -274,7 +285,8 @@ d_shroud_region(struct command *c) {
 
 
 int
-v_detect_scry(struct command *c) {
+v_detect_scry(struct command *c)
+{
 
   if (!check_aura(c->who, 1))
     return FALSE;
@@ -285,7 +297,8 @@ v_detect_scry(struct command *c) {
 
 
 int
-d_detect_scry(struct command *c) {
+d_detect_scry(struct command *c)
+{
 
   if (!charge_aura(c->who, 1))
     return FALSE;
@@ -295,7 +308,8 @@ d_detect_scry(struct command *c) {
 
 
 void
-notify_loc_shroud(int where) {
+notify_loc_shroud(int where)
+{
   int who;
   struct entity_loc *p;
 
@@ -322,7 +336,8 @@ notify_loc_shroud(int where) {
 
 
 int
-v_dispel_region(struct command *c) {
+v_dispel_region(struct command *c)
+{
   int targ_loc = province(c->a);
 
   if (!is_loc_or_ship(targ_loc)) {
@@ -341,7 +356,8 @@ v_dispel_region(struct command *c) {
 
 
 int
-d_dispel_region(struct command *c) {
+d_dispel_region(struct command *c)
+{
   int targ_loc = province(c->a);
   struct entity_loc *p;
 
@@ -370,7 +386,8 @@ d_dispel_region(struct command *c) {
 
 
 void
-show_item_where(int who, int target) {
+show_item_where(int who, int target)
+{
   int owner;
   int prov;
 
@@ -398,7 +415,8 @@ show_item_where(int who, int target) {
 
 
 int
-v_locate_char(struct command *c) {
+v_locate_char(struct command *c)
+{
   int target = c->a;
   int aura = c->b;
 
@@ -421,7 +439,8 @@ v_locate_char(struct command *c) {
 
 
 int
-d_locate_char(struct command *c) {
+d_locate_char(struct command *c)
+{
   int target = c->a;
   int aura = c->b;
   int chance;
@@ -471,7 +490,8 @@ d_locate_char(struct command *c) {
 
 
 int
-v_bar_loc(struct command *c) {
+v_bar_loc(struct command *c)
+{
   int aura;
   int where;
 
@@ -515,7 +535,8 @@ v_bar_loc(struct command *c) {
 
 
 int
-d_bar_loc(struct command *c) {
+d_bar_loc(struct command *c)
+{
   int aura = c->a;
   int where = c->d;
   struct entity_loc *p;
@@ -570,7 +591,8 @@ d_bar_loc(struct command *c) {
 
 
 int
-v_unbar_loc(struct command *c) {
+v_unbar_loc(struct command *c)
+{
   int aura;
   int where;
   struct exit_view *v;
@@ -608,7 +630,8 @@ v_unbar_loc(struct command *c) {
 
 
 int
-d_unbar_loc(struct command *c) {
+d_unbar_loc(struct command *c)
+{
   int aura = c->b;
   int where = c->d;
   struct entity_loc *p;
@@ -674,7 +697,8 @@ d_unbar_loc(struct command *c) {
 
 
 int
-v_proj_cast(struct command *c) {
+v_proj_cast(struct command *c)
+{
   int to_where;
   int aura;
 
@@ -720,7 +744,8 @@ v_proj_cast(struct command *c) {
 
 
 int
-d_proj_cast(struct command *c) {
+d_proj_cast(struct command *c)
+{
   int to_where = c->a;
   int aura = c->d;
   struct char_magic *p;
@@ -750,7 +775,8 @@ d_proj_cast(struct command *c) {
 
 
 int
-v_save_proj(struct command *c) {
+v_save_proj(struct command *c)
+{
 
   if (!valid_box(char_proj_cast(c->who))) {
     wout(c->who, "No projected cast state is active.");
@@ -766,7 +792,8 @@ v_save_proj(struct command *c) {
 
 
 int
-d_save_proj(struct command *c) {
+d_save_proj(struct command *c)
+{
   int new;
   struct char_magic *p;
   struct item_magic *im;
@@ -789,7 +816,8 @@ d_save_proj(struct command *c) {
 
 
 int
-v_use_proj_cast(struct command *c) {
+v_use_proj_cast(struct command *c)
+{
   int item = c->a;
   struct item_magic *im;
 

@@ -37,7 +37,8 @@ int realloc_size = 0;
  */
 
 void *
-my_malloc(unsigned size) {
+my_malloc(unsigned size)
+{
   char *p;
 
   size += sizeof (int) * 2;
@@ -61,7 +62,8 @@ my_malloc(unsigned size) {
 
 
 void *
-my_realloc(void *ptr, unsigned size) {
+my_realloc(void *ptr, unsigned size)
+{
   char *p = ptr;
 
   if (p == NULL)
@@ -95,7 +97,8 @@ my_realloc(void *ptr, unsigned size) {
 
 
 void
-my_free(void *ptr) {
+my_free(void *ptr)
+{
   char *p = ptr;
 
   p -= sizeof (int) * 2;
@@ -110,7 +113,8 @@ my_free(void *ptr) {
 
 
 char *
-str_save(char *s) {
+str_save(char *s)
+{
   char *p;
 
   p = my_malloc(strlen(s) + 1);
@@ -121,7 +125,8 @@ str_save(char *s) {
 
 
 void
-asfail(char *file, int line, char *cond) {
+asfail(char *file, int line, char *cond)
+{
   fprintf(stderr, "assertion failure: %s (%d): %s\n", file, line, cond);
   abort();
   exit(1);
@@ -148,7 +153,8 @@ lcase(s)
 #define GETLIN_ALLOC	4096
 
 char *
-getlin(FILE * fp) {
+getlin(FILE * fp)
+{
   static char *buf = NULL;
   static unsigned int size = 0;
   unsigned int len;
@@ -184,7 +190,8 @@ getlin(FILE * fp) {
 
 
 char *
-eat_leading_trailing_whitespace(char *s) {
+eat_leading_trailing_whitespace(char *s)
+{
   char *t;
 
   while (*s && iswhite(*s))
@@ -207,7 +214,8 @@ eat_leading_trailing_whitespace(char *s) {
  */
 
 char *
-getlin_ew(FILE * fp) {
+getlin_ew(FILE * fp)
+{
   char *line;
   char *p;
 
@@ -239,7 +247,8 @@ static char *point;
 
 
 int
-readfile(char *path) {
+readfile(char *path)
+{
 
   if (line_fd >= 0)
     close(line_fd);
@@ -260,7 +269,8 @@ readfile(char *path) {
 
 
 char *
-readlin() {
+readlin()
+{
   static char *buf = NULL;
   static unsigned int size = 0;
   unsigned int len;
@@ -310,7 +320,8 @@ readlin() {
 
 
 char *
-readlin_ew() {
+readlin_ew()
+{
   char *line;
   char *p;
 
@@ -353,7 +364,8 @@ char lower_array[256];
 
 
 void
-init_lower() {
+init_lower()
+{
   int i;
 
   for (i = 0; i < 256; i++)
@@ -365,7 +377,8 @@ init_lower() {
 
 
 int
-i_strcmp(char *s, char *t) {
+i_strcmp(char *s, char *t)
+{
   char a, b;
 
   do {
@@ -382,7 +395,8 @@ i_strcmp(char *s, char *t) {
 
 
 int
-i_strncmp(char *s, char *t, int n) {
+i_strncmp(char *s, char *t, int n)
+{
   char a, b;
 
   do {
@@ -400,7 +414,8 @@ i_strncmp(char *s, char *t, int n) {
 
 
 static int
-fuzzy_transpose(char *one, char *two, int l1, int l2) {
+fuzzy_transpose(char *one, char *two, int l1, int l2)
+{
   int i;
   char buf[LEN];
   char tmp;
@@ -428,7 +443,8 @@ fuzzy_transpose(char *one, char *two, int l1, int l2) {
 
 
 static int
-fuzzy_one_less(char *one, char *two, int l1, int l2) {
+fuzzy_one_less(char *one, char *two, int l1, int l2)
+{
   int count = 0;
   int i, j;
 
@@ -448,7 +464,8 @@ fuzzy_one_less(char *one, char *two, int l1, int l2) {
 
 
 static int
-fuzzy_one_extra(char *one, char *two, int l1, int l2) {
+fuzzy_one_extra(char *one, char *two, int l1, int l2)
+{
   int count = 0;
   int i, j;
 
@@ -468,7 +485,8 @@ fuzzy_one_extra(char *one, char *two, int l1, int l2) {
 
 
 static int
-fuzzy_one_bad(char *one, char *two, int l1, int l2) {
+fuzzy_one_bad(char *one, char *two, int l1, int l2)
+{
   int count = 0;
   int i;
 
@@ -484,7 +502,8 @@ fuzzy_one_bad(char *one, char *two, int l1, int l2) {
 
 
 int
-fuzzy_strcmp(char *one, char *two) {
+fuzzy_strcmp(char *one, char *two)
+{
   int l1 = strlen(one);
   int l2 = strlen(two);
 
@@ -505,7 +524,8 @@ fuzzy_strcmp(char *one, char *two) {
 
 
 void
-test_random() {
+test_random()
+{
   int i;
 
   if (isatty(1))
@@ -554,7 +574,8 @@ test_random() {
  */
 
 void
-ilist_append(ilist * l, int n) {
+ilist_append(ilist * l, int n)
+{
   int *base;
 
   if (*l == NULL) {
@@ -580,7 +601,8 @@ ilist_append(ilist * l, int n) {
 
 
 void
-ilist_prepend(ilist * l, int n) {
+ilist_prepend(ilist * l, int n)
+{
   int *base;
   int i;
 
@@ -613,7 +635,8 @@ ilist_prepend(ilist * l, int n) {
 /*  not tested  */
 
 void
-ilist_insert(ilist * l, int pos, int n) {
+ilist_insert(ilist * l, int pos, int n)
+{
   int *base;
   int i;
 
@@ -647,7 +670,8 @@ ilist_insert(ilist * l, int pos, int n) {
 
 
 void
-ilist_delete(ilist * l, int i) {
+ilist_delete(ilist * l, int i)
+{
   int *base;
   int j;
 
@@ -662,7 +686,8 @@ ilist_delete(ilist * l, int i) {
 
 
 void
-ilist_clear(ilist * l) {
+ilist_clear(ilist * l)
+{
   int *base;
 
   if (*l != NULL) {
@@ -673,7 +698,8 @@ ilist_clear(ilist * l) {
 
 
 void
-ilist_reclaim(ilist * l) {
+ilist_reclaim(ilist * l)
+{
   int *base;
 
   if (*l != NULL) {
@@ -685,7 +711,8 @@ ilist_reclaim(ilist * l) {
 
 
 int
-ilist_lookup(ilist l, int n) {
+ilist_lookup(ilist l, int n)
+{
   int i;
 
   if (l == NULL)
@@ -700,7 +727,8 @@ ilist_lookup(ilist l, int n) {
 
 
 void
-ilist_rem_value(ilist * l, int n) {
+ilist_rem_value(ilist * l, int n)
+{
   int i;
 
   for (i = ilist_len(*l) - 1; i >= 0; i--)
@@ -710,7 +738,8 @@ ilist_rem_value(ilist * l, int n) {
 
 
 void
-ilist_rem_value_uniq(ilist * l, int n) {
+ilist_rem_value_uniq(ilist * l, int n)
+{
   int i;
 
   for (i = ilist_len(*l) - 1; i >= 0; i--)
@@ -724,7 +753,8 @@ ilist_rem_value_uniq(ilist * l, int n) {
 #if 1
 
 ilist
-ilist_copy(ilist l) {
+ilist_copy(ilist l)
+{
   int *base;
   int *copy_base;
 
@@ -743,7 +773,8 @@ ilist_copy(ilist l) {
 #else
 
 ilist
-ilist_copy(ilist l) {
+ilist_copy(ilist l)
+{
   ilist new = NULL;
   int i;
 
@@ -767,7 +798,8 @@ ilist_copy(ilist l) {
  */
 
 void
-ilist_scramble(ilist l) {
+ilist_scramble(ilist l)
+{
   int i;
   int tmp;
   int r;
@@ -785,7 +817,8 @@ ilist_scramble(ilist l) {
 
 
 void
-ilist_test() {
+ilist_test()
+{
   int i;
   ilist x;
   ilist y;

@@ -13,7 +13,8 @@
  */
 
 int
-near_rocky_coast(int where) {
+near_rocky_coast(int where)
+{
   struct exit_view **l;
   int i;
   int ret = 3;
@@ -35,7 +36,8 @@ near_rocky_coast(int where) {
 
 
 static void
-ship_coastal_damage() {
+ship_coastal_damage()
+{
   int ship;
   int n;
   int damage, reduction;
@@ -118,7 +120,8 @@ ship_coastal_damage() {
 }
 
 static void
-give_stack_losses(int who, int evac_levels) {
+give_stack_losses(int who, int evac_levels)
+{
   struct item_ent *e;
   int i, j;
   int loss_pct = 0, losses;
@@ -183,7 +186,8 @@ give_stack_losses(int who, int evac_levels) {
 };
 
 static void
-evacuate(int where, int exit, int evac_levels) {
+evacuate(int where, int exit, int evac_levels)
+{
   int i;
   struct item_ent *e;
 
@@ -263,7 +267,8 @@ evacuate(int where, int exit, int evac_levels) {
 };
 
 static void
-collapse_mine(int where) {
+collapse_mine(int where)
+{
   int evac_levels = 1;
   int exit = location_direction(where, DIR_UP);
   int i, next, prev;
@@ -313,7 +318,8 @@ collapse_mine(int where) {
 };
 
 static void
-check_mine_calamity(int mine) {
+check_mine_calamity(int mine)
+{
   int where = mine, i, depth = 0, prev = 0;
   int found, collapsing = 0, collapse;
 
@@ -353,7 +359,8 @@ check_mine_calamity(int mine) {
 }
 
 static void
-inn_calamity(int where) {
+inn_calamity(int where)
+{
   int own;
   int dam;
   char buf[LEN];
@@ -435,7 +442,8 @@ inn_calamity(int where) {
 static int mine_collapse_day;
 
 static void
-random_loc_damage() {
+random_loc_damage()
+{
   int where;
   int depth;
 
@@ -470,7 +478,8 @@ random_loc_damage() {
 
 
 static void
-heal_char_sup(int who) {
+heal_char_sup(int who)
+{
   int h;
   int inn = FALSE;
   int chance;
@@ -542,7 +551,8 @@ heal_char_sup(int who) {
 
 
 static void
-heal_characters() {
+heal_characters()
+{
   int who;
   int n;
 
@@ -557,7 +567,8 @@ heal_characters() {
 
 
 static void
-add_noble_points() {
+add_noble_points()
+{
   int pl;
 
   loop_player(pl) {
@@ -572,7 +583,8 @@ add_noble_points() {
 }
 
 static void
-add_claim_gold() {
+add_claim_gold()
+{
   int pl;
 
   loop_player(pl) {
@@ -588,7 +600,8 @@ add_claim_gold() {
 
 
 void
-add_unformed_sup(int pl) {
+add_unformed_sup(int pl)
+{
   struct entity_player *p;
   int new;
   extern int new_ent_prime;     /* allocate short numbers */
@@ -612,7 +625,8 @@ add_unformed_sup(int pl) {
 
 
 static void
-add_unformed() {
+add_unformed()
+{
   int pl;
 
   loop_player(pl) {
@@ -624,7 +638,8 @@ add_unformed() {
 
 
 static void
-increment_current_aura() {
+increment_current_aura()
+{
   int who;
   struct char_magic *p;
   int ac;                       /* auraculum */
@@ -715,7 +730,8 @@ increment_current_aura() {
  *
  */
 static void
-lose_monsters(int mtype, char *msg, int max_loss, int chance) {
+lose_monsters(int mtype, char *msg, int max_loss, int chance)
+{
   int who, num, i, loss;
 
   loop_char(who) {
@@ -763,7 +779,8 @@ lose_monsters(int mtype, char *msg, int max_loss, int chance) {
 }
 
 static void
-reseed_monster_provinces() {
+reseed_monster_provinces()
+{
   int where, who, found, item;
   int provinces = 0, monsters = 0;
   int create_new_beasts(int where, int sk);
@@ -843,13 +860,15 @@ reseed_monster_provinces() {
  *
  */
 static void
-reseed_monsters() {
+reseed_monsters()
+{
   reseed_monster_provinces();
   reseed_monster_sublocs();
 };
 
 int
-place_here(int where, int who) {
+place_here(int where, int who)
+{
   int i;
   int first = 0;
 
@@ -876,7 +895,8 @@ place_here(int where, int who) {
  *
  */
 static void
-weaken_monsters() {
+weaken_monsters()
+{
   int i, place;
   loop_units(indep_player, i) {
     /*
@@ -924,7 +944,8 @@ weaken_monsters() {
  *
  */
 static void
-adjust_monsters() {
+adjust_monsters()
+{
   reseed_monsters();
   weaken_monsters();
   lose_monsters(item_elf, "%s %s wander%s off into the wilderness.", 100, 25);
@@ -970,7 +991,8 @@ followers_comp(a, b)
  *
  */
 static void
-increment_current_piety() {
+increment_current_piety()
+{
   int who, religion, i, staff_bonus;
   ilist priests = NULL;
   struct item_ent *e;
@@ -1125,7 +1147,8 @@ increment_current_piety() {
  *
  */
 static void
-do_pen_crown() {
+do_pen_crown()
+{
   int pl, top_pen = 0, top_money = 0;
   int i, pen_nation = 0, pen_crown = 0, pen_noble = 0;
 
@@ -1206,7 +1229,8 @@ do_pen_crown() {
 };
 
 static void
-increment_stone_ring_aura() {
+increment_stone_ring_aura()
+{
   int who;
   struct char_magic *p;
   int ma;                       /* max aura */
@@ -1229,7 +1253,8 @@ increment_stone_ring_aura() {
 
 
 static void
-decrement_ability_shroud() {
+decrement_ability_shroud()
+{
   int who;
   struct char_magic *p;
 
@@ -1245,7 +1270,8 @@ decrement_ability_shroud() {
 
 #if 0
 static void
-decrement_loc_barrier() {
+decrement_loc_barrier()
+{
   int where;
   struct entity_loc *p;
 
@@ -1274,7 +1300,8 @@ decrement_loc_barrier() {
 #endif
 
 static void
-decrement_region_shroud() {
+decrement_region_shroud()
+{
   int where;
   struct entity_loc *p;
 
@@ -1291,7 +1318,8 @@ decrement_region_shroud() {
 
 
 static void
-decrement_meditation_hinder() {
+decrement_meditation_hinder()
+{
   int who;
   struct char_magic *p;
 
@@ -1306,7 +1334,8 @@ decrement_meditation_hinder() {
 
 
 static void
-noncreator_curse_erode() {
+noncreator_curse_erode()
+{
   int who;
   struct item_ent *e;
   struct item_magic *im;
@@ -1328,8 +1357,8 @@ noncreator_curse_erode() {
 #if 0
       if (kind(im->creator) != T_char) {        /* lazy cleanup */
         log_write(LOG_CODE, "noncreator_curse_erode: "
-                   "lazy cleanup (creat=%d,item=%d,"
-                   "curse=%d)", im->creator, e->item, im->curse_loyalty);
+                  "lazy cleanup (creat=%d,item=%d,"
+                  "curse=%d)", im->creator, e->item, im->curse_loyalty);
 
         im->creator = 0;
         im->curse_loyalty = 0;
@@ -1349,8 +1378,8 @@ noncreator_curse_erode() {
       delta_loyalty(who, -(im->curse_loyalty), TRUE);
 
       log_write(LOG_SPECIAL, "%s loses %d loyalty from a "
-                 "curse on %s.",
-                 box_name(who), im->curse_loyalty, box_name(e->item));
+                "curse on %s.",
+                box_name(who), im->curse_loyalty, box_name(e->item));
 #endif
     }
     next_inv;
@@ -1370,7 +1399,8 @@ noncreator_curse_erode() {
  */
 
 static void
-announce_month_end(char *msg) {
+announce_month_end(char *msg)
+{
   int i;
 
   loop_loc_or_ship(i) {
@@ -1397,7 +1427,8 @@ announce_month_end(char *msg) {
  */
 
 static void
-loyalty_decay() {
+loyalty_decay()
+{
   int who;
   int amount;
   struct entity_char *p;
@@ -1483,7 +1514,8 @@ loyalty_decay() {
 
 
 static void
-pillage_decay() {
+pillage_decay()
+{
   int where;
 
   loop_loc(where) {
@@ -1496,7 +1528,8 @@ pillage_decay() {
 }
 
 static void
-auto_drop() {
+auto_drop()
+{
   int pl;
   struct entity_player *p;
 
@@ -1524,7 +1557,8 @@ auto_drop() {
 }
 
 static void
-turn_limit_drop(int turns) {
+turn_limit_drop(int turns)
+{
   int pl;
   struct entity_player *p;
 
@@ -1556,7 +1590,8 @@ turn_limit_drop(int turns) {
 }
 
 static int
-maint_cost(int item, int who) {
+maint_cost(int item, int who)
+{
   return rp_item(item) ? rp_item(item)->maintenance : 0;
 
   /*
@@ -1596,7 +1631,8 @@ maint_cost(int item, int who) {
 
 
 static void
-men_starve(int who, int have) {
+men_starve(int who, int have)
+{
   static ilist item = NULL;
   static ilist qty = NULL;
   static ilist cost = NULL;
@@ -1697,7 +1733,8 @@ men_starve(int who, int have) {
  *
  */
 int
-unit_maint_cost(int who, int towho) {
+unit_maint_cost(int who, int towho)
+{
   struct item_ent *e;
   int a;
   int cost = 0;
@@ -1768,7 +1805,8 @@ unit_maint_cost(int who, int towho) {
 
 
 void
-charge_maint_sup(int who) {
+charge_maint_sup(int who)
+{
   int cost;
   int have;
 
@@ -1792,7 +1830,8 @@ charge_maint_sup(int who) {
 
 
 static void
-charge_maint_costs() {
+charge_maint_costs()
+{
   int who;
   int garr;
 
@@ -1846,7 +1885,8 @@ charge_maint_costs() {
  *
  */
 static void
-update_all_effects() {
+update_all_effects()
+{
   int who;
 
   loop_boxes(who) {
@@ -1855,7 +1895,8 @@ update_all_effects() {
 }
 
 static void
-inn_income() {
+inn_income()
+{
   int i;                        /* variable to iterate over inns */
   int owner;                    /* owner of inn */
   int n_inns;                   /* number of inns sharing this province */
@@ -1922,7 +1963,8 @@ inn_income() {
 
 
 static void
-temple_income() {
+temple_income()
+{
   int i, j;                     /* variable to iterate over temples */
   int owner;                    /* owner of inn */
   extern int gold_temple;
@@ -1980,7 +2022,8 @@ temple_income() {
 
 
 static void
-collapsed_mine_decay() {
+collapsed_mine_decay()
+{
   int i;
   struct entity_misc *p;
 
@@ -2003,7 +2046,8 @@ collapsed_mine_decay() {
  */
 
 static void
-ghost_warrior_decay() {
+ghost_warrior_decay()
+{
   int i;
   int has;
 
@@ -2031,7 +2075,8 @@ ghost_warrior_decay() {
  */
 
 static void
-corpse_decay() {
+corpse_decay()
+{
   int i;
   int has;
 
@@ -2069,7 +2114,8 @@ corpse_decay() {
  */
 
 static void
-dead_body_rot() {
+dead_body_rot()
+{
   int i;
   int owner;
   int t;
@@ -2117,7 +2163,8 @@ dead_body_rot() {
 
 
 static void
-storm_decay() {
+storm_decay()
+{
   int i;
   struct entity_misc *p;
 
@@ -2137,7 +2184,8 @@ storm_decay() {
 
 
 static void
-storm_owner_touch_loc() {
+storm_owner_touch_loc()
+{
   int i;
   int owner;
   int where;
@@ -2158,7 +2206,8 @@ storm_owner_touch_loc() {
 
 
 static void
-storm_move() {
+storm_move()
+{
   int i;
   struct entity_misc *p;
   int owner;
@@ -2193,7 +2242,8 @@ storm_move() {
 
 #if 0
 static void
-collect_taxes() {
+collect_taxes()
+{
   int fort;
   int prov;
   int amount;
@@ -2226,7 +2276,8 @@ collect_taxes() {
 #endif
 
 int
-has_city(int where) {
+has_city(int where)
+{
   int enclosed;
   loop_here(where, enclosed) {
     if (subkind(enclosed) == sub_city) {
@@ -2255,7 +2306,8 @@ has_city(int where) {
  *
  */
 static void
-collect_taxes() {
+collect_taxes()
+{
   int where, garr, amount, city, treasury;
   extern int gold_taxes;
 
@@ -2331,7 +2383,8 @@ collect_taxes() {
 
 #if 0
 void
-compute_civ_levels() {
+compute_civ_levels()
+{
   int where;
   int flag;
   int i;
@@ -2416,7 +2469,8 @@ compute_civ_levels() {
 struct trade *new_trade(int who, int kind, int item);
 
 static void
-add_bounty(int where) {
+add_bounty(int where)
+{
   int i, sum = 0, choice = 0, found, count = 0, qty;
   struct trade *t;
   /*
@@ -2488,7 +2542,8 @@ add_bounty(int where) {
  *
  */
 void
-update_bounties() {
+update_bounties()
+{
   struct trade *t, *new;
   int where, count = 0;
 
@@ -2525,7 +2580,8 @@ update_bounties() {
 };
 
 void
-post_production() {
+post_production()
+{
 
 #if 0
   compute_civ_levels();
@@ -2553,7 +2609,8 @@ post_production() {
 
 
 static void
-hide_mage_decay() {
+hide_mage_decay()
+{
   int i;
   struct char_magic *p;
 
@@ -2575,7 +2632,8 @@ hide_mage_decay() {
    *
    */
 static void
-link_decay() {
+link_decay()
+{
   int i;
   struct entity_subloc *p;
 
@@ -2605,7 +2663,8 @@ link_decay() {
  *
  */
 void
-close_faery_hill(int where) {
+close_faery_hill(int where)
+{
   int i, dest;
   struct entity_subloc *sl;
 
@@ -2642,7 +2701,8 @@ close_faery_hill(int where) {
  *
  */
 void
-open_faery_hill(int where) {
+open_faery_hill(int where)
+{
   int i, dest = 0, sum = 0, dest2 = 0;
   struct entity_subloc *sl;
 
@@ -2730,7 +2790,8 @@ open_faery_hill(int where) {
  *
  */
 static void
-change_faery_hills() {
+change_faery_hills()
+{
   int i;
   int closed = 0, opened = 0, total_open = 0, total_closed = 0;
   struct exit_view **l;
@@ -2781,7 +2842,8 @@ change_faery_hills() {
  */
 
 static void
-move_city_gold() {
+move_city_gold()
+{
   int i;
   int prov;
   int has;
@@ -2818,7 +2880,8 @@ move_city_gold() {
  */
 
 static void
-special_locs_open() {
+special_locs_open()
+{
   int i;
 
   loop_province(i) {
@@ -2846,7 +2909,8 @@ special_locs_open() {
 
 
 static void
-special_locs_close() {
+special_locs_close()
+{
   int i;
 
   loop_province(i) {
@@ -2876,7 +2940,8 @@ special_locs_close() {
 #endif
 
 static void
-clear_orders_sent() {
+clear_orders_sent()
+{
   int pl;
   struct entity_player *p;
 
@@ -2896,7 +2961,8 @@ clear_orders_sent() {
  *
  */
 void
-reset_recruited() {
+reset_recruited()
+{
   int where;
 
   loop_loc(where) {
@@ -2915,7 +2981,8 @@ reset_recruited() {
  *
  */
 static int
-add_staff_piece() {
+add_staff_piece()
+{
   int sum, dest2, i, beasts, piece;
 
   sum = 0;
@@ -2949,7 +3016,8 @@ add_staff_piece() {
 };
 
 static void
-destroy_all_priests() {
+destroy_all_priests()
+{
   int i;
   loop_char(i) {
     if (is_priest(i)) {
@@ -2966,7 +3034,8 @@ destroy_all_priests() {
 };
 
 static void
-destroy_all_mus() {
+destroy_all_mus()
+{
   int i;
   loop_char(i) {
     if (is_magician(i)) {
@@ -2983,7 +3052,8 @@ destroy_all_mus() {
 };
 
 static void
-destroy_staff() {
+destroy_staff()
+{
   int i;
   loop_subkind(sub_special_staff, i) {
     destroy_unique_item(item_unique(i), i);
@@ -3004,7 +3074,8 @@ destroy_staff() {
 #define STAFF_INITIAL_TURN 4
 #define STAFF_PERIOD 4
 static void
-do_staff() {
+do_staff()
+{
   int i, num_pieces = 0, next_piece, priests = 0, mus = 0, n = 0;
 
   /*
@@ -3051,7 +3122,8 @@ do_staff() {
  *
  */
 void
-update_loc_fees() {
+update_loc_fees()
+{
   int i;
 
   loop_loc(i) {
@@ -3133,7 +3205,8 @@ update_loc_fees() {
  *
  */
 void
-initialize_loc_fees() {
+initialize_loc_fees()
+{
   int i;
 
   loop_loc(i) {
@@ -3170,7 +3243,8 @@ initialize_loc_fees() {
  *  Should get experience only by practice.
  */
 void
-pre_month() {
+pre_month()
+{
   int target;
 
   /* temp fix */
@@ -3183,7 +3257,8 @@ pre_month() {
 };
 
 void
-post_month() {
+post_month()
+{
   stage("post_month()");
   clear_orders_sent();
   update_loc_fees();
@@ -3286,7 +3361,8 @@ post_month() {
  *
  */
 static void
-hades_corruption() {
+hades_corruption()
+{
   int where, i, loss;
 
   loop_loc(where) {
@@ -3334,7 +3410,8 @@ hades_corruption() {
 };
 
 void
-daily_events() {
+daily_events()
+{
   static int curse_erode_day = 0;
   static ilist weather_days = NULL;
   static int wday_index = 0;
@@ -3402,7 +3479,8 @@ daily_events() {
 
 
 void
-touch_loc_pl(int pl, int where) {
+touch_loc_pl(int pl, int where)
+{
   struct entity_player *p;
   int inside;
 
@@ -3437,7 +3515,8 @@ touch_loc_pl(int pl, int where) {
 
 
 void
-touch_loc(int who) {
+touch_loc(int who)
+{
   int where = subloc(who);
 
   touch_loc_pl(player(who), where);
@@ -3445,7 +3524,8 @@ touch_loc(int who) {
 
 
 void
-init_locs_touched() {
+init_locs_touched()
+{
   int who;
 
   loop_char(who) {

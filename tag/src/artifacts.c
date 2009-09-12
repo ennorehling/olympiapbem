@@ -64,7 +64,8 @@ char *artifact_names[] = {
   NULL
 };
 
-struct artifact_ent {
+struct artifact_ent
+{
   int what;                     /* The ART_ number */
 
   int rarity;                   /* How rare is this? */
@@ -357,7 +358,8 @@ artifact_tbl[] = {
  *
  */
 int
-get_random_artifact() {
+get_random_artifact()
+{
   int i, choice = 0;
   int sum = 0;
 
@@ -378,7 +380,8 @@ get_random_artifact() {
  *
  */
 static int
-random_soldier() {
+random_soldier()
+{
   int i, choice = 0;
   int sum = 0;
 
@@ -404,7 +407,8 @@ random_soldier() {
  *
  */
 static int
-random_skill() {
+random_skill()
+{
   int i, choice = 0;
   int sum = 0;
 
@@ -428,7 +432,8 @@ random_skill() {
  *
  */
 static int
-random_use() {
+random_use()
+{
   int i, choice = 0;
   int sum = 0;
 
@@ -453,7 +458,8 @@ random_use() {
  *
  */
 int
-random_beast(int sk) {
+random_beast(int sk)
+{
   int i, choice = 0;
   int sum = 0, val;
 
@@ -484,7 +490,8 @@ random_beast(int sk) {
  *
  */
 static void
-create_combat_artifact(int piece) {
+create_combat_artifact(int piece)
+{
   /*
    *  Set some number of the flags.  Usually just one,
    *  but a chance for more.
@@ -506,7 +513,8 @@ create_combat_artifact(int piece) {
  *
  */
 int
-create_random_artifact(int monster) {
+create_random_artifact(int monster)
+{
   int select;
   int piece = create_unique_item(monster, sub_magic_artifact);
 
@@ -601,7 +609,8 @@ create_random_artifact(int monster) {
 };
 
 int
-v_make_artifact(struct command *c) {
+v_make_artifact(struct command *c)
+{
 
   create_random_artifact(c->who);
   return TRUE;
@@ -614,7 +623,8 @@ v_make_artifact(struct command *c) {
  *
  */
 int
-best_artifact(int who, int type, int param2, int uses) {
+best_artifact(int who, int type, int param2, int uses)
+{
   struct item_ent *e;
   int best = 0;
   int best_val = 0;
@@ -642,7 +652,8 @@ best_artifact(int who, int type, int param2, int uses) {
  *
  */
 int
-has_artifact(int who, int type, int p1, int p2, int charges) {
+has_artifact(int who, int type, int p1, int p2, int charges)
+{
   struct item_ent *e;
 
   loop_inv(who, e) {
@@ -666,7 +677,8 @@ has_artifact(int who, int type, int p1, int p2, int charges) {
  *
  */
 int
-combat_artifact_bonus(int who, int part) {
+combat_artifact_bonus(int who, int part)
+{
   struct item_ent *e;
   int best = 0;
 
@@ -691,7 +703,8 @@ combat_artifact_bonus(int who, int part) {
  *
  */
 int
-effective_workers(int who) {
+effective_workers(int who)
+{
   int w = has_item(who, item_worker);
   int a = best_artifact(who, ART_WORKERS, 0, 0);
 
@@ -710,7 +723,8 @@ effective_workers(int who) {
  *
  */
 int
-v_art_destroy(struct command *c) {
+v_art_destroy(struct command *c)
+{
   int item = c->use_skill;
   int where = province(subloc(c->who));
   int num;
@@ -728,7 +742,7 @@ v_art_destroy(struct command *c) {
   };
 
   log_write(LOG_SPECIAL, "Destroy monster artifact %s used by %s",
-             box_code_less(item), box_code_less(player(c->who)));
+            box_code_less(item), box_code_less(player(c->who)));
 
   wout(c->who, "A golden glow suffuses the province.");
   wout(where, "A golden glow suffuses the province.");
@@ -766,7 +780,8 @@ v_art_destroy(struct command *c) {
  *
  */
 int
-v_power_jewel(struct command *c) {
+v_power_jewel(struct command *c)
+{
   int item = c->use_skill;
   int kind;
 
@@ -781,7 +796,7 @@ v_power_jewel(struct command *c) {
   };
 
   log_write(LOG_SPECIAL, "Power jewel %s used by %s",
-             box_code_less(item), box_code_less(player(c->who)));
+            box_code_less(item), box_code_less(player(c->who)));
 
   wout(c->who, "A golden glow suffuses your being.");
 
@@ -819,7 +834,8 @@ v_power_jewel(struct command *c) {
  *
  */
 int
-v_summon_aid(struct command *c) {
+v_summon_aid(struct command *c)
+{
   int item = c->use_skill;
   int kind, num;
 
@@ -836,7 +852,7 @@ v_summon_aid(struct command *c) {
   };
 
   log_write(LOG_SPECIAL, "Summon aid %s used by %s",
-             box_code_less(item), box_code_less(player(c->who)));
+            box_code_less(item), box_code_less(player(c->who)));
 
   wout(loc(c->who), "There is a momentary flash of yellow light.");
   wout(c->who, "A bright yellow light momentarily blinds you.");
@@ -860,7 +876,8 @@ v_summon_aid(struct command *c) {
  */
 void do_jump(int who, int dest, int gate, int backwards);
 int
-v_art_teleport(struct command *c) {
+v_art_teleport(struct command *c)
+{
   int item = c->use_skill;
   int dest = c->b;
   struct weights w;
@@ -891,7 +908,7 @@ v_art_teleport(struct command *c) {
   do_jump(c->who, dest, 0, FALSE);
 
   log_write(LOG_SPECIAL, "Teleport artifact %s used by %s",
-             box_code_less(item), box_code_less(player(c->who)));
+            box_code_less(item), box_code_less(player(c->who)));
 
   rp_item_artifact(item)->uses--;
   if (!rp_item_artifact(item)->uses) {
@@ -909,7 +926,8 @@ v_art_teleport(struct command *c) {
  *
  */
 int
-v_art_orb(struct command *c) {
+v_art_orb(struct command *c)
+{
   int item = c->use_skill;
   int target = c->b;
   int owner, where = 0;
@@ -952,7 +970,7 @@ v_art_orb(struct command *c) {
   };
 
   log_write(LOG_SPECIAL, "Scry artifact %s used by %s",
-             box_code_less(item), box_code_less(player(c->who)));
+            box_code_less(item), box_code_less(player(c->who)));
 
   rp_item_artifact(item)->uses--;
   if (!rp_item_artifact(item)->uses) {
@@ -970,7 +988,8 @@ v_art_orb(struct command *c) {
  *
  */
 int
-v_art_crown(struct command *c) {
+v_art_crown(struct command *c)
+{
   int item = c->use_skill;
   int target = c->b;
 
@@ -1011,7 +1030,7 @@ v_art_crown(struct command *c) {
   };
 
   log_write(LOG_SPECIAL, "Crown artifact %s used by %s",
-             box_code_less(item), box_code_less(player(c->who)));
+            box_code_less(item), box_code_less(player(c->who)));
 
   rp_item_artifact(item)->uses--;
   if (!rp_item_artifact(item)->uses) {
@@ -1029,7 +1048,8 @@ v_art_crown(struct command *c) {
  *
  */
 static void
-describe_combat_artifact(int who, int target, char *header) {
+describe_combat_artifact(int who, int target, char *header)
+{
   int first = 1, i, val;
   char *buf = 0, *total = 0;
 
@@ -1110,7 +1130,8 @@ describe_combat_artifact(int who, int target, char *header) {
  *
  */
 int
-artifact_identify(char *header, struct command *c) {
+artifact_identify(char *header, struct command *c)
+{
   int target = c->a;
   char *f;
   int type;
@@ -1223,7 +1244,8 @@ artifact_identify(char *header, struct command *c) {
 }
 
 int
-v_identify(struct command *c) {
+v_identify(struct command *c)
+{
   int target = c->a;
 
   if (!valid_box(target) ||
@@ -1241,7 +1263,8 @@ v_identify(struct command *c) {
 
 
 void
-fix_quests(int old, int new) {
+fix_quests(int old, int new)
+{
   int i;
   loop_char(i) {
     if (only_defeatable(i) == old) {
@@ -1259,7 +1282,8 @@ fix_quests(int old, int new) {
  *
  */
 void
-artifact_fixer() {
+artifact_fixer()
+{
   int i, new;
   loop_subkind(sub_npc_token, i) {
     new = create_specific_artifact(item_unique(i), ART_CROWN);
@@ -1326,7 +1350,8 @@ artifact_fixer() {
  *  Create and return a specific artifact.
  */
 int
-create_specific_artifact(int monster, int t) {
+create_specific_artifact(int monster, int t)
+{
   int piece;
   int select;
 

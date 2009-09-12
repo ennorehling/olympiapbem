@@ -17,7 +17,8 @@ int cloud_region = 0;
  *	*%%%	*=Stratos
  */
 void
-create_cloudlands() {
+create_cloudlands()
+{
   int r, c;
   int map[SZ + 1][SZ + 1];
   int n;
@@ -191,7 +192,8 @@ create_cloudlands() {
  *
  */
 static void
-disconnect(int here, int there) {
+disconnect(int here, int there)
+{
   int i;
   struct entity_loc *p1 = p_loc(here);
   assert(p1);
@@ -212,7 +214,8 @@ disconnect(int here, int there) {
  *
  */
 void
-float_cloudlands() {
+float_cloudlands()
+{
   int map[SZ + 1][SZ + 1];
   int i, row = 0, col = 0, x, y, x_off, y_off, r, where, nx, ny;
 

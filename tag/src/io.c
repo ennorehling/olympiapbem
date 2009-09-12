@@ -21,7 +21,8 @@ int population_init = FALSE;
  *
  */
 int
-convert_skill(int skill) {
+convert_skill(int skill)
+{
   if (skill == 120)
     return 1000;
   if (skill == 9502)
@@ -753,7 +754,8 @@ static int ext_boxnum;
  */
 
 static int
-zero_check(void *ptr, unsigned size) {
+zero_check(void *ptr, unsigned size)
+{
   char *p = ptr;
   int sum = 0;
 
@@ -771,7 +773,8 @@ zero_check(void *ptr, unsigned size) {
  */
 
 static char *
-if_name(int num) {              /* to make the data files easier to read */
+if_name(int num)
+{                               /* to make the data files easier to read */
   char *s;
   extern int pretty_data_files;
 
@@ -791,7 +794,8 @@ if_name(int num) {              /* to make the data files easier to read */
 
 
 static int
-box_scan(char *t) {
+box_scan(char *t)
+{
   int n;
 
   n = atoi(t);
@@ -812,7 +816,8 @@ box_scan(char *t) {
 
 
 static void
-box_print(FILE * fp, char *header, int n) {
+box_print(FILE * fp, char *header, int n)
+{
   /* assert(!n || valid_box(n)); */
 
   if (valid_box(n))
@@ -827,7 +832,8 @@ box_print(FILE * fp, char *header, int n) {
  */
 
 static void
-boxlist0_scan(char *s, int box_num, ilist * l) {
+boxlist0_scan(char *s, int box_num, ilist * l)
+{
   int n;
 
   while (1) {
@@ -860,7 +866,8 @@ boxlist0_scan(char *s, int box_num, ilist * l) {
 
 
 static void
-boxlist0_print(FILE * fp, char *header, ilist l) {
+boxlist0_print(FILE * fp, char *header, ilist l)
+{
   int i;
   int count = 0;
 
@@ -883,7 +890,8 @@ boxlist0_print(FILE * fp, char *header, ilist l) {
 
 
 static void
-boxlist_scan(char *s, int box_num, ilist * l) {
+boxlist_scan(char *s, int box_num, ilist * l)
+{
   int n;
 
   while (1) {
@@ -916,7 +924,8 @@ boxlist_scan(char *s, int box_num, ilist * l) {
 
 
 static void
-boxlist_print(FILE * fp, char *header, ilist l) {
+boxlist_print(FILE * fp, char *header, ilist l)
+{
   int i;
   int count = 0;
 
@@ -941,7 +950,8 @@ boxlist_print(FILE * fp, char *header, ilist l) {
 
 
 static void
-admit_print_sup(FILE * fp, struct admit *p) {
+admit_print_sup(FILE * fp, struct admit *p)
+{
   int i;
   int count = 2;
 
@@ -969,7 +979,8 @@ admit_print_sup(FILE * fp, struct admit *p) {
 
 
 static void
-admit_print(FILE * fp, struct entity_player *p) {
+admit_print(FILE * fp, struct entity_player *p)
+{
   int i;
 
   for (i = 0; i < ilist_len(p->admits); i++)
@@ -978,7 +989,8 @@ admit_print(FILE * fp, struct entity_player *p) {
 
 
 static void
-admit_scan(char *s, int box_num, struct entity_player *pp) {
+admit_scan(char *s, int box_num, struct entity_player *pp)
+{
   int n;
   int count = 0;
   struct admit *p;
@@ -1034,7 +1046,8 @@ admit_scan(char *s, int box_num, struct entity_player *pp) {
 
 
 static void
-ilist_print(FILE * fp, char *header, ilist l) {
+ilist_print(FILE * fp, char *header, ilist l)
+{
   int i;
 
   if (ilist_len(l) > 0) {
@@ -1053,7 +1066,8 @@ ilist_print(FILE * fp, char *header, ilist l) {
 
 
 static void
-ilist_scan(char *s, ilist * l) {
+ilist_scan(char *s, ilist * l)
+{
 
   while (1) {
     while (*s && isspace(*s))
@@ -1074,7 +1088,8 @@ ilist_scan(char *s, ilist * l) {
 
 
 static void
-known_print(FILE * fp, char *header, sparse kn) {
+known_print(FILE * fp, char *header, sparse kn)
+{
   int i;
   int count = 0;
   int first = TRUE;
@@ -1101,7 +1116,8 @@ known_print(FILE * fp, char *header, sparse kn) {
 
 
 static void
-known_scan(char *s, sparse * kn, int box_num) {
+known_scan(char *s, sparse * kn, int box_num)
+{
   int n;
 
   while (1) {
@@ -1134,7 +1150,8 @@ known_scan(char *s, sparse * kn, int box_num) {
 
 
 static void
-skill_list_print(FILE * fp, char *header, struct skill_ent **l) {
+skill_list_print(FILE * fp, char *header, struct skill_ent **l)
+{
   int i;
   int count = 0;
 
@@ -1157,7 +1174,8 @@ skill_list_print(FILE * fp, char *header, struct skill_ent **l) {
 
 
 static void
-skill_list_scan(char *s, struct skill_ent ***l, int box_num) {
+skill_list_scan(char *s, struct skill_ent ***l, int box_num)
+{
   struct skill_ent *new;
   int dummy;
   int know, experience;
@@ -1193,7 +1211,8 @@ skill_list_scan(char *s, struct skill_ent ***l, int box_num) {
  *
  */
 static void
-effect_list_print(FILE * fp, char *header, struct effect **l) {
+effect_list_print(FILE * fp, char *header, struct effect **l)
+{
   int i;
   int count = 0;
 
@@ -1214,7 +1233,8 @@ effect_list_print(FILE * fp, char *header, struct effect **l) {
 }
 
 static void
-effect_list_scan(char *s, struct effect ***l) {
+effect_list_scan(char *s, struct effect ***l)
+{
   struct effect *new;
 
   while (1) {
@@ -1237,7 +1257,8 @@ effect_list_scan(char *s, struct effect ***l) {
  *
  */
 static void
-build_list_print(FILE * fp, char *header, struct entity_build **l) {
+build_list_print(FILE * fp, char *header, struct entity_build **l)
+{
   int i;
   int count = 0;
 
@@ -1259,7 +1280,8 @@ build_list_print(FILE * fp, char *header, struct entity_build **l) {
 }
 
 static void
-build_list_scan(char *s, struct entity_build ***l) {
+build_list_scan(char *s, struct entity_build ***l)
+{
   struct entity_build *new;
 
   while (1) {
@@ -1278,7 +1300,8 @@ build_list_scan(char *s, struct entity_build ***l) {
 }
 
 static int
-item_list_print(FILE * fp, char *header, struct item_ent **l) {
+item_list_print(FILE * fp, char *header, struct item_ent **l)
+{
   int i;
   int count = 0;
 
@@ -1302,7 +1325,8 @@ item_list_print(FILE * fp, char *header, struct item_ent **l) {
 
 
 static void
-item_list_scan(char *s, struct item_ent ***l, int box_num) {
+item_list_scan(char *s, struct item_ent ***l, int box_num)
+{
   struct item_ent *new;
 
   while (1) {
@@ -1328,7 +1352,8 @@ item_list_scan(char *s, struct item_ent ***l, int box_num) {
 
 
 static void
-trade_list_print(FILE * fp, char *header, struct trade **l) {
+trade_list_print(FILE * fp, char *header, struct trade **l)
+{
   int i;
   int count = 0;
 
@@ -1372,7 +1397,8 @@ trade_list_print(FILE * fp, char *header, struct trade **l) {
 
 
 static void
-trade_list_scan(char *s, struct trade ***l, int box_num) {
+trade_list_scan(char *s, struct trade ***l, int box_num)
+{
   struct trade *new;
 
   while (1) {
@@ -1405,7 +1431,8 @@ trade_list_scan(char *s, struct trade ***l, int box_num) {
 
 
 static void
-req_list_print(FILE * fp, char *header, struct req_ent **l) {
+req_list_print(FILE * fp, char *header, struct req_ent **l)
+{
   int i;
   int count = 0;
 
@@ -1427,7 +1454,8 @@ req_list_print(FILE * fp, char *header, struct req_ent **l) {
 
 
 static void
-req_list_scan(char *s, struct req_ent ***l, int box_num) {
+req_list_scan(char *s, struct req_ent ***l, int box_num)
+{
   struct req_ent *new;
   int consume;
 
@@ -1453,14 +1481,16 @@ req_list_scan(char *s, struct req_ent ***l, int box_num) {
 
 
 void
-olytime_scan(char *s, olytime * p) {
+olytime_scan(char *s, olytime * p)
+{
 
   sscanf(s, "%hd %hd %d", &p->turn, &p->day, &p->days_since_epoch);
 }
 
 
 void
-olytime_print(FILE * fp, char *header, olytime * p) {
+olytime_print(FILE * fp, char *header, olytime * p)
+{
 
   if (p->turn || p->day || p->days_since_epoch)
     fprintf(fp, "%s%d %d %d\n", header, p->turn, p->day, p->days_since_epoch);
@@ -1468,7 +1498,8 @@ olytime_print(FILE * fp, char *header, olytime * p) {
 
 
 static void
-print_loc_info(FILE * fp, struct loc_info *p) {
+print_loc_info(FILE * fp, struct loc_info *p)
+{
 
   if (zero_check(p, sizeof (*p)))
     return;
@@ -1480,7 +1511,8 @@ print_loc_info(FILE * fp, struct loc_info *p) {
 
 
 static void
-scan_loc_info(struct loc_info *p, int box_num) {
+scan_loc_info(struct loc_info *p, int box_num)
+{
   char *t;
   int c;
 
@@ -1512,7 +1544,8 @@ scan_loc_info(struct loc_info *p, int box_num) {
 
 
 static void
-print_magic(FILE * fp, struct char_magic *p) {
+print_magic(FILE * fp, struct char_magic *p)
+{
 
   if (zero_check(p, sizeof (*p)))
     return;
@@ -1566,7 +1599,8 @@ print_magic(FILE * fp, struct char_magic *p) {
 
 
 static void
-scan_magic(struct char_magic *p, int box_num) {
+scan_magic(struct char_magic *p, int box_num)
+{
   char *t;
   int c;
 
@@ -1641,7 +1675,8 @@ scan_magic(struct char_magic *p, int box_num) {
 }
 
 static void
-print_artifact(FILE * fp, struct entity_artifact *p) {
+print_artifact(FILE * fp, struct entity_artifact *p)
+{
   if (zero_check(p, sizeof (*p)))
     return;
 
@@ -1661,7 +1696,8 @@ print_artifact(FILE * fp, struct entity_artifact *p) {
 };
 
 static void
-scan_artifact(struct entity_artifact *p, int box_num) {
+scan_artifact(struct entity_artifact *p, int box_num)
+{
   char *t;
   int c;
 
@@ -1696,7 +1732,8 @@ scan_artifact(struct entity_artifact *p, int box_num) {
 };
 
 static void
-accept_print_sup(FILE * fp, struct accept_ent *p) {
+accept_print_sup(FILE * fp, struct accept_ent *p)
+{
   /*
    *  Trim out obviously bad "accepts".
    *
@@ -1709,7 +1746,8 @@ accept_print_sup(FILE * fp, struct accept_ent *p) {
 
 
 static void
-accept_print(FILE * fp, struct entity_char *p) {
+accept_print(FILE * fp, struct entity_char *p)
+{
   int i;
 
   for (i = 0; i < ilist_len(p->accept); i++)
@@ -1718,7 +1756,8 @@ accept_print(FILE * fp, struct entity_char *p) {
 
 
 static void
-print_char(FILE * fp, struct entity_char *p) {
+print_char(FILE * fp, struct entity_char *p)
+{
 
   fprintf(fp, "CH\n");
 
@@ -1806,7 +1845,8 @@ print_char(FILE * fp, struct entity_char *p) {
 
 
 static void
-accept_scan(char *s, struct entity_char *pp) {
+accept_scan(char *s, struct entity_char *pp)
+{
   struct accept_ent *p;
 
   p = my_malloc(sizeof (*p));
@@ -1817,7 +1857,8 @@ accept_scan(char *s, struct entity_char *pp) {
 }
 
 static void
-scan_char(struct entity_char *p, int box_num) {
+scan_char(struct entity_char *p, int box_num)
+{
   char *t;
   int c;
 
@@ -1939,7 +1980,8 @@ scan_char(struct entity_char *p, int box_num) {
  *
  */
 static void
-mine_info_print(FILE * fp, char *header, struct entity_mine *m) {
+mine_info_print(FILE * fp, char *header, struct entity_mine *m)
+{
   int i;
   int count = 0;
 
@@ -1954,7 +1996,8 @@ mine_info_print(FILE * fp, char *header, struct entity_mine *m) {
 };
 
 static void
-mine_info_scan(char *s, struct entity_mine **l, int bn) {
+mine_info_scan(char *s, struct entity_mine **l, int bn)
+{
   int i = 0;
   struct entity_mine *m;
 
@@ -1975,7 +2018,8 @@ mine_info_scan(char *s, struct entity_mine **l, int bn) {
 }
 
 static void
-print_loc(FILE * fp, struct entity_loc *p) {
+print_loc(FILE * fp, struct entity_loc *p)
+{
 
   if (zero_check(p, sizeof (*p)))
     return;
@@ -2033,7 +2077,8 @@ print_loc(FILE * fp, struct entity_loc *p) {
 
 
 static void
-scan_loc(struct entity_loc *p, int box_num) {
+scan_loc(struct entity_loc *p, int box_num)
+{
   char *t;
   int c;
 
@@ -2112,7 +2157,8 @@ scan_loc(struct entity_loc *p, int box_num) {
 }
 
 static void
-print_ship(FILE * fp, struct entity_ship *p) {
+print_ship(FILE * fp, struct entity_ship *p)
+{
   fprintf(fp, "SP\n");
 
   if (p->hulls)
@@ -2135,7 +2181,8 @@ print_ship(FILE * fp, struct entity_ship *p) {
 };
 
 static void
-scan_ship(struct entity_ship *p, int box_num) {
+scan_ship(struct entity_ship *p, int box_num)
+{
   char *t;
   int c;
 
@@ -2174,7 +2221,8 @@ scan_ship(struct entity_ship *p, int box_num) {
 };
 
 static void
-print_subloc(FILE * fp, struct entity_subloc *p) {
+print_subloc(FILE * fp, struct entity_subloc *p)
+{
 
   fprintf(fp, "SL\n");
 
@@ -2279,7 +2327,8 @@ print_subloc(FILE * fp, struct entity_subloc *p) {
 }
 
 static void
-scan_subloc(struct entity_subloc *p, int box_num) {
+scan_subloc(struct entity_subloc *p, int box_num)
+{
   char *t;
   int c;
 
@@ -2413,7 +2462,8 @@ scan_subloc(struct entity_subloc *p, int box_num) {
 
 
 static void
-print_item(FILE * fp, struct entity_item *p) {
+print_item(FILE * fp, struct entity_item *p)
+{
 
   if (zero_check(p, sizeof (*p)))
     return;
@@ -2482,7 +2532,8 @@ print_item(FILE * fp, struct entity_item *p) {
 
 
 static void
-scan_item(struct entity_item *p, int box_num) {
+scan_item(struct entity_item *p, int box_num)
+{
   char *t;
   int c;
 
@@ -2567,7 +2618,8 @@ scan_item(struct entity_item *p, int box_num) {
 
 
 static void
-print_item_magic(FILE * fp, struct item_magic *p) {
+print_item_magic(FILE * fp, struct item_magic *p)
+{
 
   if (zero_check(p, sizeof (*p)))
     return;
@@ -2630,7 +2682,8 @@ print_item_magic(FILE * fp, struct item_magic *p) {
 
 
 static void
-scan_item_magic(struct item_magic *p, int box_num) {
+scan_item_magic(struct item_magic *p, int box_num)
+{
   char *t;
   int c;
 
@@ -2717,7 +2770,8 @@ scan_item_magic(struct item_magic *p, int box_num) {
 
 
 static void
-print_player(FILE * fp, struct entity_player *p) {
+print_player(FILE * fp, struct entity_player *p)
+{
 
   fprintf(fp, "PL\n");
 
@@ -2792,7 +2846,8 @@ print_player(FILE * fp, struct entity_player *p) {
 
 
 static void
-scan_player(struct entity_player *p, int box_num) {
+scan_player(struct entity_player *p, int box_num)
+{
   char *t;
   int c;
 
@@ -2902,7 +2957,8 @@ scan_player(struct entity_player *p, int box_num) {
 }
 
 static void
-print_religion(FILE * fp, struct entity_religion_skill *p) {
+print_religion(FILE * fp, struct entity_religion_skill *p)
+{
   fprintf(fp, " RL\n");
   fprintf(fp, " na %s\n", p->name);
   fprintf(fp, " st %d\n", p->strength);
@@ -2917,7 +2973,8 @@ print_religion(FILE * fp, struct entity_religion_skill *p) {
 };
 
 static struct entity_religion_skill *
-scan_religion(int box_num) {
+scan_religion(int box_num)
+{
   char *t;
   int c;
   struct entity_religion_skill *new =
@@ -2972,7 +3029,8 @@ scan_religion(int box_num) {
 };
 
 static void
-print_skill(FILE * fp, struct entity_skill *p) {
+print_skill(FILE * fp, struct entity_skill *p)
+{
   int i;
 
   fprintf(fp, "SK\n");
@@ -3029,7 +3087,8 @@ print_skill(FILE * fp, struct entity_skill *p) {
 
 
 static void
-scan_skill(struct entity_skill *p, int box_num) {
+scan_skill(struct entity_skill *p, int box_num)
+{
   char *t;
   int c;
 
@@ -3121,7 +3180,8 @@ scan_skill(struct entity_skill *p, int box_num) {
 
 
 static void
-print_command(FILE * fp, struct command *p) {
+print_command(FILE * fp, struct command *p)
+{
 
   if (p->cmd == 0)
     return;
@@ -3182,7 +3242,8 @@ print_command(FILE * fp, struct command *p) {
 
 
 static void
-scan_command(struct command *p, int box_num) {
+scan_command(struct command *p, int box_num)
+{
   char *t;
   int c;
 
@@ -3265,7 +3326,8 @@ scan_command(struct command *p, int box_num) {
 
 
 static void
-print_gate(FILE * fp, struct entity_gate *p) {
+print_gate(FILE * fp, struct entity_gate *p)
+{
 
   fprintf(fp, "GA\n");
 
@@ -3286,7 +3348,8 @@ print_gate(FILE * fp, struct entity_gate *p) {
 
 
 static void
-scan_gate(struct entity_gate *p, int box_num) {
+scan_gate(struct entity_gate *p, int box_num)
+{
   char *t;
   int c;
 
@@ -3326,7 +3389,8 @@ scan_gate(struct entity_gate *p, int box_num) {
 
 
 static void
-print_misc(FILE * fp, struct entity_misc *p) {
+print_misc(FILE * fp, struct entity_misc *p)
+{
 
   if (zero_check(p, sizeof (*p)))
     return;
@@ -3370,7 +3434,8 @@ print_misc(FILE * fp, struct entity_misc *p) {
 
 
 static void
-scan_misc(struct entity_misc *p, int box_num) {
+scan_misc(struct entity_misc *p, int box_num)
+{
   char *t;
   int c;
 
@@ -3446,7 +3511,8 @@ scan_misc(struct entity_misc *p, int box_num) {
  *
  */
 static void
-scan_nation2(struct entity_nation *n, int num) {
+scan_nation2(struct entity_nation *n, int num)
+{
   char *t;
   int c;
 
@@ -3494,7 +3560,8 @@ scan_nation2(struct entity_nation *n, int num) {
 }
 
 static void
-load_box(int n) {
+load_box(int n)
+{
   int c;
   char *t;
   struct box *p;
@@ -3626,7 +3693,8 @@ load_box(int n) {
 }
 
 static void
-print_nation(FILE * fp, struct entity_nation *n) {
+print_nation(FILE * fp, struct entity_nation *n)
+{
   fprintf(fp, "NA\n");
 
   if (n->name)
@@ -3650,7 +3718,8 @@ print_nation(FILE * fp, struct entity_nation *n) {
 
 
 void
-save_box(FILE * fp, int n) {
+save_box(FILE * fp, int n)
+{
   struct box *p;
   struct att_ent *pd;
   void *vp;
@@ -3730,7 +3799,8 @@ save_box(FILE * fp, int n) {
 
 
 static FILE *
-open_write_fp(char *fnam) {
+open_write_fp(char *fnam)
+{
   char *path;
   FILE *fp;
 
@@ -3748,7 +3818,8 @@ open_write_fp(char *fnam) {
 
 
 static void
-write_kind(int box_kind, char *fnam) {
+write_kind(int box_kind, char *fnam)
+{
   FILE *fp;
   int i;
 
@@ -3766,7 +3837,8 @@ write_kind(int box_kind, char *fnam) {
 
 
 void
-write_player(int pl) {
+write_player(int pl)
+{
   int who;
   FILE *fp;
 
@@ -3789,7 +3861,8 @@ write_player(int pl) {
 
 
 static void
-write_chars() {
+write_chars()
+{
   int i;
 
   loop_player(i) {
@@ -3800,7 +3873,8 @@ write_chars() {
 
 
 static void
-write_leftovers() {
+write_leftovers()
+{
   FILE *fp;
   int i;
 
@@ -3819,7 +3893,8 @@ write_leftovers() {
 
 
 static void
-read_boxes(char *fnam) {
+read_boxes(char *fnam)
+{
   int box_num;
   char *path;
 
@@ -3847,7 +3922,8 @@ read_boxes(char *fnam) {
 
 
 static void
-read_chars() {
+read_chars()
+{
   DIR *d;
   struct dirent *e;
   char *fnam;
@@ -3874,7 +3950,8 @@ read_chars() {
 
 
 static int
-fast_scan() {
+fast_scan()
+{
   char *path;
   char *s, *p, *q;
   int num;
@@ -3909,7 +3986,8 @@ fast_scan() {
 
 
 static void
-scan_boxes(char *fnam) {
+scan_boxes(char *fnam)
+{
   int box_num;
   char *path;
   char *s, *t;
@@ -3980,7 +4058,8 @@ scan_boxes(char *fnam) {
 
 
 static void
-scan_chars() {
+scan_chars()
+{
   DIR *d;
   struct dirent *e;
   char *fnam;
@@ -4013,7 +4092,8 @@ scan_chars() {
  */
 
 static void
-scan_all_boxes() {
+scan_all_boxes()
+{
 
   stage("fast_scan failed, scan_all_boxes()");
 
@@ -4032,7 +4112,8 @@ scan_all_boxes() {
 
 
 static void
-read_all_boxes() {
+read_all_boxes()
+{
 
   read_boxes("loc");
   read_boxes("item");
@@ -4049,7 +4130,8 @@ read_all_boxes() {
 
 
 static void
-write_all_boxes() {
+write_all_boxes()
+{
   int i;
 
   for (i = 0; i < MAX_BOXES; i++)
@@ -4074,7 +4156,8 @@ write_all_boxes() {
 
 
 static void
-write_master() {
+write_master()
+{
   FILE *fp;
   char *fnam;
   int i;
@@ -4137,7 +4220,8 @@ write_master() {
 
 #if 0
 static void
-scan_nation(struct entity_nation *n) {
+scan_nation(struct entity_nation *n)
+{
   char *t;
   int c;
 
@@ -4191,7 +4275,8 @@ scan_nation(struct entity_nation *n) {
  *
  */
 static void
-scan_nations() {
+scan_nations()
+{
   char *s;
   char *fname;
   int i;
@@ -4230,7 +4315,8 @@ scan_nations() {
  *
  */
 static void
-save_nations() {
+save_nations()
+{
   FILE *fp;
   int i;
 
@@ -4253,7 +4339,8 @@ save_nations() {
  */
 
 static void
-load_system() {
+load_system()
+{
   FILE *fp;
   char *s;
   char *fname;
@@ -4464,7 +4551,8 @@ load_system() {
 
 
 static void
-save_system() {
+save_system()
+{
   FILE *fp;
   char *fname;
   extern short seed[3];
@@ -4541,7 +4629,8 @@ save_system() {
 
 
 static void
-delete_deadchars() {
+delete_deadchars()
+{
   int i;
 
   loop_kind(T_deadchar, i) {
@@ -4558,7 +4647,8 @@ delete_deadchars() {
 
 
 void
-load_db() {
+load_db()
+{
 
   stage("load_db()");
 
@@ -4661,7 +4751,8 @@ load_db() {
 
 
 void
-cleanup_posts() {
+cleanup_posts()
+{
   int i;
 
   loop_post(i) {
@@ -4673,7 +4764,8 @@ cleanup_posts() {
 
 
 void
-save_logdir() {
+save_logdir()
+{
   int ret;
   char *s, *t;
 
@@ -4705,7 +4797,8 @@ save_logdir() {
 
 
 void
-save_db() {
+save_db()
+{
 
   stage("save_db()");
   cleanup_posts();

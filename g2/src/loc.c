@@ -9,7 +9,8 @@
  */
 
 int
-somewhere_inside(int a, int b) {
+somewhere_inside(int a, int b)
+{
 
   if (a == b)
     return FALSE;
@@ -25,7 +26,8 @@ somewhere_inside(int a, int b) {
 
 
 static void
-add_here(int who, ilist * l) {
+add_here(int who, ilist * l)
+{
   int i;
   struct loc_info *p;
 
@@ -42,7 +44,8 @@ add_here(int who, ilist * l) {
 
 
 void
-all_here(int who, ilist * l) {
+all_here(int who, ilist * l)
+{
   int i;
   struct loc_info *p;
 
@@ -61,7 +64,8 @@ all_here(int who, ilist * l) {
 
 
 static void
-add_char_here(int who, ilist * l) {
+add_char_here(int who, ilist * l)
+{
   int i;
   struct loc_info *p;
 
@@ -79,7 +83,8 @@ add_char_here(int who, ilist * l) {
 
 
 void
-all_char_here(int who, ilist * l) {
+all_char_here(int who, ilist * l)
+{
   int i;
   struct loc_info *p;
 
@@ -99,7 +104,8 @@ all_char_here(int who, ilist * l) {
 
 
 void
-all_stack(int who, ilist * l) {
+all_stack(int who, ilist * l)
+{
   int i;
   struct loc_info *p;
 
@@ -124,7 +130,8 @@ all_stack(int who, ilist * l) {
  */
 
 int
-region(int who) {
+region(int who)
+{
 
   while (who > 0 && (kind(who) != T_loc || loc_depth(who) != LOC_region))
     who = loc(who);
@@ -138,7 +145,8 @@ region(int who) {
  */
 
 int
-province(int who) {
+province(int who)
+{
 
   while (who > 0 && (kind(who) != T_loc || loc_depth(who) != LOC_province))
     who = loc(who);
@@ -154,7 +162,8 @@ province(int who) {
  */
 
 int
-subloc(int who) {
+subloc(int who)
+{
 
   do {
     who = loc(who);
@@ -177,7 +186,8 @@ subloc(int who) {
  */
 
 int
-viewloc(int who) {
+viewloc(int who)
+{
 
   while (who > 0 &&
          loc_depth(who) != LOC_province &&
@@ -192,7 +202,8 @@ viewloc(int who) {
 
 
 int
-in_safe_now(int who) {
+in_safe_now(int who)
+{
 
   do {
     if (safe_haven(who))
@@ -207,7 +218,8 @@ in_safe_now(int who) {
 
 
 void
-add_to_here_list(int loc, int who) {
+add_to_here_list(int loc, int who)
+{
 
   assert(!in_here_list(loc, who));
   ilist_append(&(p_loc_info(loc)->here_list), who);
@@ -216,7 +228,8 @@ add_to_here_list(int loc, int who) {
 
 
 void
-remove_from_here_list(int loc, int who) {
+remove_from_here_list(int loc, int who)
+{
 
   assert(in_here_list(loc, who));
   ilist_rem_value(&(rp_loc_info(loc)->here_list), who);
@@ -225,7 +238,8 @@ remove_from_here_list(int loc, int who) {
 
 
 void
-set_where(int who, int new_loc) {
+set_where(int who, int new_loc)
+{
   int old_loc;
 
 /*
@@ -258,7 +272,8 @@ set_where(int who, int new_loc) {
  */
 
 void
-mark_loc_stack_known(int stack, int where) {
+mark_loc_stack_known(int stack, int where)
+{
   int i;
 
   if (kind(stack) == T_char)
@@ -273,7 +288,8 @@ mark_loc_stack_known(int stack, int where) {
 
 
 int
-in_here_list(int loc, int who) {
+in_here_list(int loc, int who)
+{
   struct loc_info *p;
 
   p = rp_loc_info(loc);
@@ -286,7 +302,8 @@ in_here_list(int loc, int who) {
 
 
 int
-first_character(int where) {
+first_character(int where)
+{
   int ret = 0;
   int i;
 
@@ -303,7 +320,8 @@ first_character(int where) {
 
 
 int
-subloc_here(int where, int sk) {
+subloc_here(int where, int sk)
+{
   int i;
   int ret = 0;
 
@@ -320,7 +338,8 @@ subloc_here(int where, int sk) {
 
 
 int
-count_loc_structures(int where, int a, int b) {
+count_loc_structures(int where, int a, int b)
+{
   int sum = 0;
   int i;
 
@@ -336,7 +355,8 @@ count_loc_structures(int where, int a, int b) {
 
 #if 0
 static int
-province_owner(int where) {
+province_owner(int where)
+{
   int prov = province(where);
   int city;
   int castle;
@@ -356,7 +376,8 @@ province_owner(int where) {
 
 
 int
-building_owner(int where) {
+building_owner(int where)
+{
 
   assert(loc_depth(where) == LOC_build);
   return first_character(where);

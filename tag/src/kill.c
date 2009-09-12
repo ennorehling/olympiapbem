@@ -15,7 +15,8 @@
 int dead_body_np = TRUE;
 
 int
-nearby_grave(int where) {
+nearby_grave(int where)
+{
   struct entity_loc *p;
   int i;
   static ilist l = NULL;
@@ -42,7 +43,8 @@ nearby_grave(int where) {
 }
 
 void
-remove_follower(int who) {
+remove_follower(int who)
+{
   /*
    *  Wed Jun 11 15:32:10 1997 -- Scott Turner
    *
@@ -67,8 +69,8 @@ remove_follower(int who) {
            "An angel informs you that your follower %s~%s has passed on.",
            rp_misc(who)->save_name, box_code(who));
       ilist_rem_value(&
-                      (rp_char(rp_char(who)->religion.priest)->
-                       religion.followers), who);
+                      (rp_char(rp_char(who)->religion.priest)->religion.
+                       followers), who);
     };
   };
 };
@@ -80,7 +82,8 @@ remove_follower(int who) {
  *
  */
 static void
-convert_to_nothing(int cur_pl, int who) {
+convert_to_nothing(int cur_pl, int who)
+{
   char *name;
   /*
    *  If it has an old lord, and can receive the old NPs, then
@@ -167,7 +170,8 @@ convert_to_nothing(int cur_pl, int who) {
  *  un-bodify-it :-)
  */
 static void
-convert_to_soul(int pl, int who) {
+convert_to_soul(int pl, int who)
+{
   char new_name[120];
   int dest = 0, i, sum = 0;
 
@@ -262,7 +266,8 @@ convert_to_soul(int pl, int who) {
  *
  */
 static void
-convert_to_body(int pl, int who) {
+convert_to_body(int pl, int who)
+{
   int where = province(who);
 #if 0
   int grave = nearby_grave(where);
@@ -355,7 +360,8 @@ static char *verbs[] =
   { "", "died", "transmigrated", "permanently ascended" };
 
 void
-kill_char(int who, int inherit, int status) {
+kill_char(int who, int inherit, int status)
+{
   int where = subloc(who);
   int pl = player(who);
   int a;
@@ -449,7 +455,7 @@ kill_char(int who, int inherit, int status) {
    *
    */
   log_write(LOG_DEATH, "%s %s in %s.",
-             box_name(who), verbs[status], char_rep_location(who));
+            box_name(who), verbs[status], char_rep_location(who));
 
   /*
    *  If the dying thing has any possessions, inherit them out.
@@ -505,7 +511,7 @@ kill_char(int who, int inherit, int status) {
   if (!char_melt_me(who) && has_skill(who, sk_transcend_death)) {
     log_write(LOG_SPECIAL, "%s transcends death", box_name(who));
     log_write(LOG_SPECIAL, "...%s moved to %s",
-               box_name(who), box_name(hades_pit));
+              box_name(who), box_name(hades_pit));
     p_char(who)->prisoner = FALSE;
     p_char(who)->sick = FALSE;
     p_char(who)->health = 100;
@@ -521,9 +527,9 @@ kill_char(int who, int inherit, int status) {
   if (!char_melt_me(who) && (a = has_artifact(who, ART_RESTORE, 0, 0, 1))) {
     int where = pick_starting_city(nation(who), 0);
     log_write(LOG_SPECIAL, "%s uses a Restore Life artifact %s.",
-               box_name(who), box_name(a));
+              box_name(who), box_name(a));
     log_write(LOG_SPECIAL, "Transferring %s to %s.", box_name(who),
-               box_name(where));
+              box_name(where));
     p_char(who)->prisoner = FALSE;
     p_char(who)->sick = FALSE;
     p_char(who)->health = 100;
@@ -604,15 +610,16 @@ kill_char(int who, int inherit, int status) {
 }
 
 void
-restore_dead_body(int owner, int who) {
+restore_dead_body(int owner, int who)
+{
   struct entity_misc *pm;
   struct entity_item *pi;
   struct entity_char *pc;
   int sub_item();
 
   log_write(LOG_CODE, "dead body revived: who=%s, owner=%s, player=%s",
-             box_code_less(who),
-             box_code_less(owner), box_code_less(player(owner)));
+            box_code_less(who),
+            box_code_less(owner), box_code_less(player(owner)));
 
   /*
    *  If it's an item (body), remove it...

@@ -14,7 +14,8 @@ int faery_player = 0;
 
 
 void
-create_faery() {
+create_faery()
+{
   int r, c;
   int map[SZ + 1][SZ + 1];
   int n;
@@ -239,7 +240,8 @@ create_faery() {
    */
 
 void
-link_opener(int who, int where, int sk) {
+link_opener(int who, int where, int sk)
+{
   struct entity_subloc *p, *pp;
   int i;
   int set_something = FALSE;
@@ -290,7 +292,8 @@ link_opener(int who, int where, int sk) {
  *
  */
 void
-do_wild_hunt(int where) {
+do_wild_hunt(int where)
+{
   int i, who = 0, count = 0, dest, someone = 0, j;
   struct item_ent *e;
   struct loc_info *p;
@@ -413,7 +416,8 @@ do_wild_hunt(int where) {
  *
  */
 void
-link_opener(int who, int where, int sk) {
+link_opener(int who, int where, int sk)
+{
   struct entity_subloc *p;
   int i, hill = 0, sum = 0, dest = 0;
   struct exit_view **l;
@@ -504,7 +508,8 @@ link_opener(int who, int where, int sk) {
  *
  */
 int
-v_use_faery_stone(struct command *c) {
+v_use_faery_stone(struct command *c)
+{
   struct exit_view **l;
 
   if (rp_item_magic(c->a)->orb_use_count < 1) {
@@ -550,7 +555,8 @@ v_use_faery_stone(struct command *c) {
  *
  */
 int
-v_use_faery_artifact(struct command *c) {
+v_use_faery_artifact(struct command *c)
+{
   struct exit_view **l;
   struct entity_artifact *a = is_artifact(c->a);
 
@@ -593,7 +599,8 @@ v_use_faery_artifact(struct command *c) {
 }
 
 static void
-create_elven_hunt() {
+create_elven_hunt()
+{
   int new, new2, num;
   struct loc_info *p;
   int where;
@@ -643,7 +650,8 @@ create_elven_hunt() {
 
 
 void
-update_faery() {
+update_faery()
+{
   int i;
   int n_faery = 0;
   struct entity_misc *p = NULL;
@@ -698,7 +706,8 @@ update_faery() {
 
 #if 0
 void
-swap_region_locs(int reg) {
+swap_region_locs(int reg)
+{
   ilist l = NULL;
   int i;
   int j;
@@ -767,6 +776,6 @@ swap_region_locs(int reg) {
   }
 
   log_write(LOG_CODE, "Swapped %s and %s in %s", box_name(l[0]),
-             box_name(l[1]), box_name(reg));
+            box_name(l[1]), box_name(reg));
 }
 #endif

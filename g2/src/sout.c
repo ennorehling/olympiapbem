@@ -23,7 +23,8 @@ char *spaces;
 int spaces_len;
 
 
-init_spaces() {
+init_spaces()
+{
   int i;
 
   spaces_len = 150;
@@ -41,7 +42,8 @@ int out_alt_who = 0;
 
 
 void
-initialize_buffer() {
+initialize_buffer()
+{
   int i;
 
   for (i = 0; i < MAX_BUFFER; i++)
@@ -87,7 +89,8 @@ sout(format, a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac)
 
 
 char *
-comma_append(char *s, char *t) {
+comma_append(char *s, char *t)
+{
 
   if (s && *s)
     return sout("%s, %s", s, t);
@@ -103,7 +106,8 @@ comma_append(char *s, char *t) {
 
 #define MAX_FP		(FOPEN_MAX - 10)
 
-struct fp_ent {
+struct fp_ent
+{
   FILE *fp;
   int player;
   struct fp_ent *next;
@@ -114,7 +118,8 @@ static int num_fp_open = 0;
 
 
 static void
-open_fp(struct fp_ent *p, int player) {
+open_fp(struct fp_ent *p, int player)
+{
   char fnam[LEN];
   extern int flush_always;
 
@@ -135,7 +140,8 @@ open_fp(struct fp_ent *p, int player) {
 
 
 static struct fp_ent *
-alloc_fp(int player) {
+alloc_fp(int player)
+{
   struct fp_ent *new;
 
   new = my_malloc(sizeof (*new));
@@ -148,7 +154,8 @@ alloc_fp(int player) {
 
 
 static FILE *
-grab_fp(int player) {
+grab_fp(int player)
+{
   struct fp_ent *p, *pp, *ppp;
 
   for (ppp = NULL, pp = NULL, p = head; p; ppp = pp, pp = p, p = p->next)
@@ -181,13 +188,15 @@ grab_fp(int player) {
 
 
 void
-open_logfile_nondestruct() {
+open_logfile_nondestruct()
+{
   mkdir(sout("%s/LOG", libdir), 0755);
 }
 
 
 void
-open_logfile() {
+open_logfile()
+{
 
   if (immediate)
     return;
@@ -198,7 +207,8 @@ open_logfile() {
 
 
 void
-close_logfile() {
+close_logfile()
+{
   struct fp_ent *p;
   struct fp_ent *next;
 
@@ -228,7 +238,8 @@ static int style_html = 0;
 static int prev_style = 0;
 
 void
-style(int n) {
+style(int n)
+{
   if (n == STYLE_PREV)
     style_html = prev_style;
   else {
@@ -241,7 +252,8 @@ ilist out_vector = NULL;
 
 
 static void
-bottom_out(int pl, int who, int unit, char *s) {
+bottom_out(int pl, int who, int unit, char *s)
+{
   FILE *fp;
   int bits = 0;
 
@@ -325,7 +337,8 @@ int show_to_garrison = FALSE;
  */
 
 static int
-can_view_loc(int pl, struct entity_player *p, int where, int outer) {
+can_view_loc(int pl, struct entity_player *p, int where, int outer)
+{
   ilist l = NULL;
 
   if (show_to_garrison && loc_depth(outer) == LOC_province)
@@ -353,7 +366,8 @@ can_view_loc(int pl, struct entity_player *p, int where, int outer) {
 
 
 static void
-out_location(int where, char *s) {
+out_location(int where, char *s)
+{
   int pl;
   struct entity_player *p;
   int outer = viewloc(where);
@@ -375,7 +389,8 @@ out_location(int where, char *s) {
 
 
 static void
-out_garrison(int garr, char *s) {
+out_garrison(int garr, char *s)
+{
   ilist l;
   int i;
 
@@ -389,7 +404,8 @@ out_garrison(int garr, char *s) {
 
 
 static void
-out_sup(int who, char *s) {
+out_sup(int who, char *s)
+{
   int i;
 
   if (who == VECT) {
@@ -419,7 +435,8 @@ out_sup(int who, char *s) {
 
 
 void
-vout(int who, const char *format, va_list vargs) {
+vout(int who, const char *format, va_list vargs)
+{
   char buf[LEN];
 
   vsnprintf(buf, LEN, format, vargs);
@@ -427,9 +444,10 @@ vout(int who, const char *format, va_list vargs) {
 }
 
 void
-out(int who, const char *format, ...) {
+out(int who, const char *format, ...)
+{
   va_list ap;
-  
+
   va_start(ap, format);
   vout(who, format, ap);
   va_end(ap);
@@ -466,7 +484,8 @@ html(who, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, aa, ab, ac)
 
 
 ilist
-save_output_vector() {
+save_output_vector()
+{
   ilist tmp;
 
   tmp = out_vector;
@@ -477,7 +496,8 @@ save_output_vector() {
 
 
 void
-restore_output_vector(ilist t) {
+restore_output_vector(ilist t)
+{
 
   ilist_reclaim(&out_vector);
   out_vector = t;
@@ -485,14 +505,16 @@ restore_output_vector(ilist t) {
 
 
 void
-vector_clear() {
+vector_clear()
+{
 
   ilist_clear(&out_vector);
 }
 
 
 void
-vector_players() {
+vector_players()
+{
   int pl;
 
   ilist_clear(&out_vector);
@@ -507,7 +529,8 @@ vector_players() {
 
 
 void
-vector_stack(int who, int clear) {
+vector_stack(int who, int clear)
+{
   int i;
 
   if (clear)
@@ -525,7 +548,8 @@ vector_stack(int who, int clear) {
 
 
 void
-vector_char_here(int where) {
+vector_char_here(int where)
+{
   int i;
 
   ilist_clear(&out_vector);
@@ -538,14 +562,16 @@ vector_char_here(int where) {
 
 
 void
-vector_add(int who) {
+vector_add(int who)
+{
 
   ilist_append(&out_vector, who);
 }
 
 
 void
-lines(int who, char *s) {
+lines(int who, char *s)
+{
 
   style(STYLE_HTML);
 
@@ -596,7 +622,8 @@ lines(int who, char *s) {
 
 
 void
-match_lines(int who, char *s) {
+match_lines(int who, char *s)
+{
   char *p;
   char buf[LEN];
 

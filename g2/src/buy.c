@@ -34,7 +34,8 @@
  */
 
 static int
-market_here(int who) {
+market_here(int who)
+{
 
   while (who > 0 && subkind(who) != sub_city) {
     if (is_ship(who))
@@ -48,7 +49,8 @@ market_here(int who) {
 
 
 void
-clear_all_trades(int who) {
+clear_all_trades(int who)
+{
   struct trade *t;
 
   loop_trade(who, t) {
@@ -74,7 +76,8 @@ seller_comp(a, b)
 
 
 static struct trade **
-seller_list(int where, int except) {
+seller_list(int where, int except)
+{
   static struct trade **l = NULL;
   int i;
   struct trade *t;
@@ -113,7 +116,8 @@ seller_list(int where, int except) {
 
 
 static struct trade **
-buyer_list(int where, int except) {
+buyer_list(int where, int except)
+{
   static struct trade **l = NULL;
   int i;
   struct trade *t;
@@ -154,7 +158,8 @@ buyer_list(int where, int except) {
  */
 
 static int
-reduce_qty(struct trade *t, int cost) {
+reduce_qty(struct trade *t, int cost)
+{
   int has;
 
   if (kind(t->who) == T_loc)
@@ -181,7 +186,8 @@ reduce_qty(struct trade *t, int cost) {
 
 
 static void
-attempt_trade(struct trade *buyer, struct trade *seller) {
+attempt_trade(struct trade *buyer, struct trade *seller)
+{
   int item = buyer->item;
   int qty;
   int cost;
@@ -227,7 +233,7 @@ attempt_trade(struct trade *buyer, struct trade *seller) {
       gold_pot_basket += cost;
     else if (item == item_opium) {
       log_write(LOG_SPECIAL, "%s earned %s selling opium.",
-          box_name(seller->who), gold_s(cost));
+                box_name(seller->who), gold_s(cost));
       gold_opium += cost;
     }
     else
@@ -292,7 +298,8 @@ attempt_trade(struct trade *buyer, struct trade *seller) {
 
 
 static void
-scan_trades(struct trade *t, struct trade **l) {
+scan_trades(struct trade *t, struct trade **l)
+{
   int i;
 
   for (i = 0; i < ilist_len(l) && t->qty > 0; i++) {
@@ -311,7 +318,8 @@ scan_trades(struct trade *t, struct trade **l) {
 
 
 void
-match_trades(int who) {
+match_trades(int who)
+{
   struct trade *t;
   int where = subloc(who);
   int first_buy = TRUE;
@@ -347,7 +355,8 @@ match_trades(int who) {
 
 
 void
-match_all_trades() {
+match_all_trades()
+{
   int where;
   struct trade **sellers;
   struct trade **buyers;
@@ -374,7 +383,8 @@ ilist trades_to_check = NULL;
 
 
 void
-check_validated_trades() {
+check_validated_trades()
+{
   int i;
 
   for (i = 0; i < ilist_len(trades_to_check); i++) {
@@ -400,7 +410,8 @@ check_validated_trades() {
  */
 
 void
-investigate_possible_trade(int who, int item, int old_has) {
+investigate_possible_trade(int who, int item, int old_has)
+{
   struct trade *t;
   int check = FALSE;
 
@@ -439,7 +450,8 @@ investigate_possible_trade(int who, int item, int old_has) {
 
 
 static struct trade *
-find_trade(int who, int kind, int item) {
+find_trade(int who, int kind, int item)
+{
   struct trade *t;
   struct trade *ret = NULL;
 
@@ -456,7 +468,8 @@ find_trade(int who, int kind, int item) {
 
 
 static struct trade *
-find_trade_city(int *where, int kind, int item) {
+find_trade_city(int *where, int kind, int item)
+{
   struct trade *ret;
   int city;
 
@@ -476,7 +489,8 @@ find_trade_city(int *where, int kind, int item) {
 
 
 static struct trade *
-new_trade(int who, int kind, int item) {
+new_trade(int who, int kind, int item)
+{
   struct trade *ret;
 
   ret = find_trade(who, kind, item);
@@ -496,7 +510,8 @@ new_trade(int who, int kind, int item) {
 
 
 static char *
-gold_each(int cost, int qty) {
+gold_each(int cost, int qty)
+{
 
   if (qty == 1)
     return gold_s(cost);
@@ -506,7 +521,8 @@ gold_each(int cost, int qty) {
 
 
 int
-v_buy(struct command *c) {
+v_buy(struct command *c)
+{
   int where = subloc(c->who);
   int item = c->a;
   int qty = c->b;
@@ -566,7 +582,8 @@ v_buy(struct command *c) {
 
 
 int
-v_sell(struct command *c) {
+v_sell(struct command *c)
+{
   int where = subloc(c->who);
   int item = c->a;
   int qty = c->b;
@@ -626,7 +643,8 @@ v_sell(struct command *c) {
 
 
 static int
-list_market_items(int who, struct trade **l, int first) {
+list_market_items(int who, struct trade **l, int first)
+{
   int i;
   int qty;
 
@@ -664,7 +682,8 @@ list_market_items(int who, struct trade **l, int first) {
 
 
 void
-market_report(int who, int where) {
+market_report(int who, int where)
+{
   struct trade **l;
   int first = TRUE;
 
@@ -710,7 +729,8 @@ market_report(int who, int where) {
 
 
 void
-list_pending_trades(int who, int num) {
+list_pending_trades(int who, int num)
+{
   int first = TRUE;
   struct trade *t;
 
@@ -741,7 +761,8 @@ list_pending_trades(int who, int num) {
 
 
 struct trade *
-add_city_trade(int where, int kind, int item, int qty, int cost, int month) {
+add_city_trade(int where, int kind, int item, int qty, int cost, int month)
+{
   struct trade *t;
 
   t = new_trade(where, kind, item);
@@ -773,7 +794,8 @@ add_city_trade(int where, int kind, int item, int qty, int cost, int month) {
  *   1	 100	 15	  7
  */
 
-struct {
+struct
+{
   int qty;
   int cost;
 }
@@ -792,7 +814,8 @@ opium_data[] = {
 
 
 static void
-opium_market_delta(int where) {
+opium_market_delta(int where)
+{
   struct entity_subloc *p;
   struct trade *t;
 
@@ -827,7 +850,8 @@ opium_market_delta(int where) {
 }
 
 void
-expire_trades(int where) {
+expire_trades(int where)
+{
   struct trade *t;
   int i;
 
@@ -855,7 +879,8 @@ expire_trades(int where) {
  */
 
 void
-loc_trade_sup(int where, int override) {
+loc_trade_sup(int where, int override)
+{
   struct trade *t;
   struct trade *new;
 
@@ -897,7 +922,8 @@ loc_trade_sup(int where, int override) {
 
 
 void
-trade_suffuse_ring(int where) {
+trade_suffuse_ring(int where)
+{
   struct trade *t;
   struct trade *new;
   int found = FALSE;
@@ -923,7 +949,8 @@ trade_suffuse_ring(int where) {
 
 
 void
-location_trades() {
+location_trades()
+{
   int where;
 
   stage("location_trades()");
@@ -940,7 +967,8 @@ location_trades() {
 
 
 static ilist
-tradegoods_for_sale(int where) {
+tradegoods_for_sale(int where)
+{
   struct trade *t;
   int sum = 0;
   ilist ret = NULL;
@@ -958,7 +986,8 @@ tradegoods_for_sale(int where) {
 
 
 static ilist
-tradegoods_bought(int where) {
+tradegoods_bought(int where)
+{
   struct trade *t;
   int sum = 0;
   ilist ret = NULL;
@@ -975,7 +1004,8 @@ tradegoods_bought(int where) {
 }
 
 
-struct tradegood_ent {
+struct tradegood_ent
+{
   char *name;                   /* name of tradegood */
   char *namep;                  /* plural name */
   int weight;
@@ -1019,7 +1049,8 @@ struct tradegood_ent {
 };
 
 int
-is_tradegood(int item) {
+is_tradegood(int item)
+{
   return (subkind(item) == sub_tradegood);
 
 #if 0
@@ -1036,7 +1067,8 @@ is_tradegood(int item) {
 }
 
 int
-new_tradegood(int where) {
+new_tradegood(int where)
+{
   int new;
   struct entity_item *p;
   ilist l;
@@ -1076,7 +1108,8 @@ new_tradegood(int where) {
 
 
 int
-v_find_sell(struct command *c) {
+v_find_sell(struct command *c)
+{
   int where = subloc(c->who);
 
   if (subkind(where) != sub_city) {
@@ -1094,7 +1127,8 @@ v_find_sell(struct command *c) {
 
 
 int
-d_find_sell(struct command *c) {
+d_find_sell(struct command *c)
+{
   int where = subloc(c->who);
   int item;
   int qty;
@@ -1143,7 +1177,8 @@ d_find_sell(struct command *c) {
 
 
 int
-v_find_buy(struct command *c) {
+v_find_buy(struct command *c)
+{
   int where = subloc(c->who);
   int item = c->a;
 
@@ -1172,7 +1207,8 @@ v_find_buy(struct command *c) {
 
 
 int
-d_find_buy(struct command *c) {
+d_find_buy(struct command *c)
+{
   int where = subloc(c->who);
   int item = c->a;
   int qty;

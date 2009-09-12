@@ -25,7 +25,8 @@
  */
 
 static void
-check_here() {
+check_here()
+{
   int i;
   int j;
   int where;
@@ -72,7 +73,8 @@ check_here() {
  */
 
 static void
-check_swear() {
+check_swear()
+{
   int i;
   int j;
   int over;
@@ -108,7 +110,8 @@ check_swear() {
 
 
 static void
-check_indep() {
+check_indep()
+{
   int i;
 
   if (bx[indep_player] == NULL) {
@@ -136,7 +139,8 @@ check_indep() {
 
 
 static void
-check_gm() {
+check_gm()
+{
 
   if (bx[gm_player] == NULL) {
     fprintf(stderr, "\tcheck_gm: creating gm " "player [%d]\n", gm_player);
@@ -152,7 +156,8 @@ check_gm() {
 
 
 static void
-check_skill_player() {
+check_skill_player()
+{
 
   if (bx[skill_player] == NULL) {
     fprintf(stderr, "\tcheck_skill_player: creating skill "
@@ -169,7 +174,8 @@ check_skill_player() {
 
 
 static void
-check_eat_player() {
+check_eat_player()
+{
 
   if (bx[eat_pl] == NULL) {
     fprintf(stderr, "\tcheck_eat_player: creating eat "
@@ -186,7 +192,8 @@ check_eat_player() {
 
 
 static void
-check_npc_player() {
+check_npc_player()
+{
 
   if (bx[npc_pl] == NULL) {
     fprintf(stderr, "\tcheck_npc_player: creating npc "
@@ -203,7 +210,8 @@ check_npc_player() {
 
 
 static void
-check_garr_player() {
+check_garr_player()
+{
 
   if (bx[garr_pl] == NULL) {
     fprintf(stderr, "\tcheck_garr_player: creating garrison "
@@ -225,7 +233,8 @@ check_garr_player() {
  */
 
 static void
-check_glob() {
+check_glob()
+{
   int i;
 
   for (i = 1; kind_s[i] != NULL; i++);
@@ -237,7 +246,8 @@ check_glob() {
 
 
 static void
-check_nowhere() {
+check_nowhere()
+{
   int i;
 
 /*
@@ -262,7 +272,8 @@ check_nowhere() {
 
 
 static void
-check_skills() {
+check_skills()
+{
   int sk;
   struct entity_skill *p;
   int i;
@@ -333,7 +344,8 @@ check_skills() {
 
 
 static void
-check_item_counts() {
+check_item_counts()
+{
   int i;
   struct item_ent *e;
 
@@ -380,7 +392,8 @@ check_item_counts() {
 
 
 static void
-check_loc_name_lengths() {
+check_loc_name_lengths()
+{
   int i;
   int len;
 
@@ -394,7 +407,8 @@ check_loc_name_lengths() {
 
 
 static void
-check_moving() {
+check_moving()
+{
   int i;
   struct command *c;
   int leader;
@@ -427,7 +441,8 @@ check_moving() {
 
 
 static void
-check_prisoner() {
+check_prisoner()
+{
   int who;
 
   loop_char(who) {
@@ -448,7 +463,8 @@ check_prisoner() {
  *  Always notes a database correction with a message to strerr.
  */
 
-check_db() {
+check_db()
+{
 
   stage("check_db()");
 

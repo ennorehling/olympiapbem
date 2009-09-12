@@ -12,7 +12,8 @@
 
 
 static struct order_list *
-p_order_head(int pl, int who) {
+p_order_head(int pl, int who)
+{
   struct entity_player *p;
   struct order_list *new;
   int i;
@@ -33,7 +34,8 @@ p_order_head(int pl, int who) {
 
 
 static struct order_list *
-rp_order_head(int pl, int who) {
+rp_order_head(int pl, int who)
+{
   struct entity_player *p;
   int i;
 
@@ -51,7 +53,8 @@ rp_order_head(int pl, int who) {
 
 
 char *
-top_order(int pl, int who) {
+top_order(int pl, int who)
+{
   struct order_list *p;
 
   p = rp_order_head(pl, who);
@@ -64,7 +67,8 @@ top_order(int pl, int who) {
 
 
 static int
-is_stop_order(char *s) {
+is_stop_order(char *s)
+{
   char buf[LEN];
   char *p;
 
@@ -93,7 +97,8 @@ is_stop_order(char *s) {
  */
 
 int
-stop_order(int pl, int who) {
+stop_order(int pl, int who)
+{
   char *s;
 
   s = top_order(pl, who);
@@ -109,7 +114,8 @@ stop_order(int pl, int who) {
 
 
 void
-pop_order(int pl, int who) {
+pop_order(int pl, int who)
+{
   struct order_list *p;
 
   p = rp_order_head(pl, who);
@@ -125,7 +131,8 @@ pop_order(int pl, int who) {
 
 
 void
-flush_unit_orders(int pl, int who) {
+flush_unit_orders(int pl, int who)
+{
   struct command *c;
 
   while (top_order(pl, who))
@@ -140,7 +147,8 @@ flush_unit_orders(int pl, int who) {
 
 
 void
-queue_order(int pl, int who, char *s) {
+queue_order(int pl, int who, char *s)
+{
   struct order_list *p;
 
   p = p_order_head(pl, who);
@@ -149,7 +157,8 @@ queue_order(int pl, int who, char *s) {
 
 
 void
-prepend_order(int pl, int who, char *s) {
+prepend_order(int pl, int who, char *s)
+{
   struct order_list *p;
 
   p = p_order_head(pl, who);
@@ -158,7 +167,8 @@ prepend_order(int pl, int who, char *s) {
 
 
 void
-queue_stop(int pl, int who) {
+queue_stop(int pl, int who)
+{
 
   if (stop_order(pl, who))
     return;
@@ -184,7 +194,8 @@ queue(who, s, a1, a2, a3, a4, a5, a6, a7, a8, a9)
 
 
 void
-save_player_orders(int pl) {
+save_player_orders(int pl)
+{
   struct entity_player *p;
   FILE *fp = NULL;
   int i, j;
@@ -224,7 +235,8 @@ save_player_orders(int pl) {
 
 
 static void
-load_player_orders(int pl) {
+load_player_orders(int pl)
+{
   char *fnam;
   char *line;
 
@@ -252,7 +264,8 @@ load_player_orders(int pl) {
 
 
 void
-load_orders() {
+load_orders()
+{
   DIR *d;
   struct dirent *e;
   char *fnam;
@@ -287,7 +300,8 @@ load_orders() {
 
 
 void
-save_orders() {
+save_orders()
+{
   int i;
 
   system(sout("rm -rf %s/orders", libdir));
@@ -302,7 +316,8 @@ save_orders() {
 char *default_comment(struct command *c);
 
 static char *
-autocomment(int who, char *line) {
+autocomment(int who, char *line)
+{
   static struct command dummy;
   static struct command *c = &dummy;
   int i;
@@ -341,7 +356,8 @@ autocomment(int who, char *line) {
 };
 
 static void
-orders_template_sup(int who, int num, int pl) {
+orders_template_sup(int who, int num, int pl)
+{
   struct order_list *l;
   int i;
   int some = FALSE;
@@ -432,7 +448,8 @@ orders_template_sup(int who, int num, int pl) {
 
 
 static void
-orders_other(int who, int pl) {
+orders_other(int who, int pl)
+{
   struct entity_player *p;
   int first = TRUE;
   int i;
@@ -478,7 +495,8 @@ orders_other(int who, int pl) {
 
 
 void
-orders_template(int who, int pl) {
+orders_template(int who, int pl)
+{
   int i;
   char *pass = "";
   struct entity_player *p;
@@ -523,7 +541,8 @@ orders_template(int who, int pl) {
 
 
 void
-list_order_templates() {
+list_order_templates()
+{
   int pl;
 
   out_path = MASTER;

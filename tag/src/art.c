@@ -28,7 +28,8 @@
 
 
 int
-has_auraculum(int who) {
+has_auraculum(int who)
+{
   int ac;
 
   ac = char_auraculum(who);
@@ -45,7 +46,8 @@ has_auraculum(int who) {
  */
 
 int
-max_eff_aura(int who) {
+max_eff_aura(int who)
+{
   int a;                        /* aura */
   int ac;                       /* auraculum */
 
@@ -75,7 +77,8 @@ max_eff_aura(int who) {
  *
  */
 int
-v_forge_palantir(struct command *c) {
+v_forge_palantir(struct command *c)
+{
   if (!check_aura(c->who, skill_aura(c->use_skill))) {
     return FALSE;
   };
@@ -85,7 +88,8 @@ v_forge_palantir(struct command *c) {
 }
 
 int
-d_forge_palantir(struct command *c) {
+d_forge_palantir(struct command *c)
+{
   int new;
   struct entity_item *p;
   struct item_magic *pm;
@@ -122,7 +126,8 @@ d_forge_palantir(struct command *c) {
  *
  */
 int
-v_use_palantir(struct command *c) {
+v_use_palantir(struct command *c)
+{
   int item = c->a;
   int target = c->b;
   struct item_magic *p;
@@ -149,7 +154,8 @@ v_use_palantir(struct command *c) {
 
 
 int
-d_use_palantir(struct command *c) {
+d_use_palantir(struct command *c)
+{
   int item = c->a;
   int target = c->b;
 
@@ -160,14 +166,14 @@ d_use_palantir(struct command *c) {
 
   if (loc_shroud(target)) {
     log_write(LOG_CODE, "Murky palantir result, who=%s, targ=%s",
-               box_code_less(c->who), box_code_less(target));
+              box_code_less(c->who), box_code_less(target));
     wout(c->who, "Only murky, indistinct images are seen in "
          "the palantir.");
     return FALSE;
   }
 
   log_write(LOG_CODE, "Palantir scry, who=%s, targ=%s",
-             box_code_less(c->who), box_code_less(target));
+            box_code_less(c->who), box_code_less(target));
 
   p_item_magic(item)->one_turn_use++;
 
@@ -181,7 +187,8 @@ d_use_palantir(struct command *c) {
 }
 
 int
-v_destroy_art(struct command *c) {
+v_destroy_art(struct command *c)
+{
   int item = c->a;
 
   if (has_item(c->who, item) < 1) {
@@ -203,7 +210,8 @@ v_destroy_art(struct command *c) {
 }
 
 int
-d_destroy_art(struct command *c) {
+d_destroy_art(struct command *c)
+{
   int item = c->a;
   int aura;
 
@@ -252,13 +260,14 @@ d_destroy_art(struct command *c) {
        nice_num(char_cur_aura(c->who)));
 
   log_write(LOG_SPECIAL, "%s destroyed %s.",
-             box_name(c->who), box_name(item));
+            box_name(c->who), box_name(item));
 
   destroy_unique_item(c->who, item);
 };
 
 int
-v_mutate_art(struct command *c) {
+v_mutate_art(struct command *c)
+{
   int item = c->a;
 
   if (has_item(c->who, item) < 1) {
@@ -286,7 +295,8 @@ v_mutate_art(struct command *c) {
 }
 
 int
-d_mutate_art(struct command *c) {
+d_mutate_art(struct command *c)
+{
   int item = c->a;
   int aura, new;
 
@@ -326,7 +336,8 @@ d_mutate_art(struct command *c) {
  *
  */
 int
-v_conceal_arts(struct command *c) {
+v_conceal_arts(struct command *c)
+{
   int target = c->a;
 
   if (!cast_check_char_here(c->who, target)) {
@@ -342,7 +353,8 @@ v_conceal_arts(struct command *c) {
 }
 
 int
-d_conceal_arts(struct command *c) {
+d_conceal_arts(struct command *c)
+{
   int target = c->a;
 
   if (!cast_check_char_here(c->who, target)) {
@@ -374,7 +386,8 @@ d_conceal_arts(struct command *c) {
  *
  */
 int
-v_reveal_arts(struct command *c) {
+v_reveal_arts(struct command *c)
+{
   int target = c->a;
 
   if (!cast_check_char_here(c->who, target)) {
@@ -390,7 +403,8 @@ v_reveal_arts(struct command *c) {
 }
 
 int
-d_reveal_arts(struct command *c) {
+d_reveal_arts(struct command *c)
+{
   int target = c->a;
   int num = 0;
   struct item_ent *e;
@@ -436,7 +450,8 @@ d_reveal_arts(struct command *c) {
  *
  */
 int
-v_deep_identify(struct command *c) {
+v_deep_identify(struct command *c)
+{
   int target = c->a;
 
   if (!charge_aura(c->who, skill_aura(c->use_skill))) {
@@ -464,7 +479,8 @@ v_deep_identify(struct command *c) {
  *
  */
 int
-v_obscure_art(struct command *c) {
+v_obscure_art(struct command *c)
+{
   int target = c->a;
 
   if (!has_item(c->who, target)) {
@@ -480,7 +496,8 @@ v_obscure_art(struct command *c) {
 }
 
 int
-d_obscure_art(struct command *c) {
+d_obscure_art(struct command *c)
+{
   int target = c->a;
 
   if (!has_item(c->who, target)) {
@@ -511,7 +528,8 @@ d_obscure_art(struct command *c) {
  *
  */
 int
-v_unobscure_art(struct command *c) {
+v_unobscure_art(struct command *c)
+{
   int target = c->a;
 
   if (!has_item(c->who, target)) {
@@ -527,7 +545,8 @@ v_unobscure_art(struct command *c) {
 }
 
 int
-d_unobscure_art(struct command *c) {
+d_unobscure_art(struct command *c)
+{
   int target = c->a;
 
   if (!has_item(c->who, target)) {
@@ -555,7 +574,8 @@ d_unobscure_art(struct command *c) {
  *  Ignore concealed artifacts.
  */
 int
-find_nearest_artifact(int who) {
+find_nearest_artifact(int who)
+{
   int distance = 9999, d, i;
   int where = province(who);
 
@@ -592,7 +612,8 @@ find_nearest_artifact(int who) {
  *
  */
 int
-v_detect_arts(struct command *c) {
+v_detect_arts(struct command *c)
+{
   if (region(c->who) == faery_region ||
       region(c->who) == hades_region || region(c->who) == cloud_region) {
     wout(c->who, "Your magic does not work in this place.");
@@ -607,7 +628,8 @@ v_detect_arts(struct command *c) {
 }
 
 int
-d_detect_arts(struct command *c) {
+d_detect_arts(struct command *c)
+{
   int distance;
 
   if (region(c->who) == faery_region ||
@@ -635,7 +657,8 @@ d_detect_arts(struct command *c) {
 };
 
 int
-v_forge_aura(struct command *c) {
+v_forge_aura(struct command *c)
+{
   int aura;
 
   if (char_auraculum(c->who)) {
@@ -661,7 +684,8 @@ v_forge_aura(struct command *c) {
 }
 
 static void
-notify_others_auraculum(int who, int item) {
+notify_others_auraculum(int who, int item)
+{
   int n;
 
   loop_char(n) {
@@ -671,7 +695,7 @@ notify_others_auraculum(int who, int item) {
   next_char;
 
   log_write(LOG_SPECIAL, "%s created %s, %s.",
-             box_name(who), box_name(item), subkind_s[subkind(item)]);
+            box_name(who), box_name(item), subkind_s[subkind(item)]);
 }
 
 /*
@@ -681,7 +705,8 @@ notify_others_auraculum(int who, int item) {
  *
  */
 int
-d_forge_aura(struct command *c) {
+d_forge_aura(struct command *c)
+{
   int aura = c->a;
   char *new_name;
   int new;
@@ -745,7 +770,8 @@ d_forge_aura(struct command *c) {
 }
 
 int
-v_forge_art_x(struct command *c) {
+v_forge_art_x(struct command *c)
+{
   int aura = c->a;
   int rare_item;
 
@@ -787,7 +813,8 @@ v_forge_art_x(struct command *c) {
 
 
 int
-d_forge_art_x(struct command *c) {
+d_forge_art_x(struct command *c)
+{
   int new;
   int aura = c->a;
   int rare_item = c->d;
@@ -849,7 +876,8 @@ d_forge_art_x(struct command *c) {
 }
 
 int
-new_suffuse_ring(int who) {
+new_suffuse_ring(int who)
+{
   int new;
   int ni;
   int lore;
@@ -868,7 +896,8 @@ new_suffuse_ring(int who) {
 static ilist orb_used_this_month = NULL;
 
 int
-v_use_orb(struct command *c) {
+v_use_orb(struct command *c)
+{
   int item = c->a;
   int target = c->b;
   int where = 0;

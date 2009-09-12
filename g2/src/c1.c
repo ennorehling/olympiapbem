@@ -7,7 +7,8 @@
 
 
 int
-v_look(struct command *c) {
+v_look(struct command *c)
+{
 
   if (kind(c->who) != T_char) {
     wout(c->who, "%s is not a character.", box_name(c->who));
@@ -21,13 +22,15 @@ v_look(struct command *c) {
 
 
 int
-v_explore(struct command *c) {
+v_explore(struct command *c)
+{
   return TRUE;
 }
 
 
 static int
-find_lost_items(int who, int where) {
+find_lost_items(int who, int where)
+{
   struct item_ent *e;
   int item = 0;
   int chance;
@@ -65,7 +68,7 @@ find_lost_items(int who, int where) {
   wout(who, "%s found one %s.", box_name(who), box_name(item));
 
   log_write(LOG_MISC, "%s found %s in %s.",
-      box_name(who), box_name(item), char_rep_location(where));
+            box_name(who), box_name(item), char_rep_location(where));
 
   return TRUE;
 }
@@ -80,7 +83,8 @@ find_lost_items(int who, int where) {
  */
 
 int
-d_explore(struct command *c) {
+d_explore(struct command *c)
+{
   int hidden_exits;
   struct exit_view **l;
   int where = subloc(c->who);
@@ -166,7 +170,8 @@ d_explore(struct command *c) {
 
 
 static int
-may_name(int who, int target) {
+may_name(int who, int target)
+{
 
   switch (kind(target)) {
   case T_char:
@@ -211,7 +216,8 @@ may_name(int who, int target) {
 
 
 int
-v_name(struct command *c) {
+v_name(struct command *c)
+{
   int target = c->who;
   char *new_name;
   char old_name[LEN];
@@ -261,7 +267,8 @@ v_name(struct command *c) {
 
 
 int
-v_times(struct command *c) {
+v_times(struct command *c)
+{
   struct entity_player *p;
 
   if (c->a == 1)
@@ -282,7 +289,8 @@ v_times(struct command *c) {
 
 
 int
-v_fullname(struct command *c) {
+v_fullname(struct command *c)
+{
   char *new_name;
   struct entity_player *p;
 
@@ -308,7 +316,8 @@ v_fullname(struct command *c) {
 
 
 int
-v_banner(struct command *c) {
+v_banner(struct command *c)
+{
   int target = c->who;
   char *new_name;
 
@@ -356,7 +365,8 @@ v_banner(struct command *c) {
 
 
 int
-v_accept(struct command *c) {
+v_accept(struct command *c)
+{
   int from_who = c->a;
   int item = c->b;
   int qty = c->c;
@@ -378,7 +388,8 @@ v_accept(struct command *c) {
 
 
 int
-will_accept_sup(int who, int item, int from, int qty) {
+will_accept_sup(int who, int item, int from, int qty)
+{
   struct entity_char *p;
   int i;
 
@@ -406,7 +417,8 @@ will_accept_sup(int who, int item, int from, int qty) {
 
 
 int
-will_accept(int who, int item, int from, int qty) {
+will_accept(int who, int item, int from, int qty)
+{
 
   if (item == item_gold)
     return TRUE;
@@ -436,7 +448,8 @@ will_accept(int who, int item, int from, int qty) {
 
 
 int
-how_many(int who, int from_who, int item, int qty, int have_left) {
+how_many(int who, int from_who, int item, int qty, int have_left)
+{
   int num_has;
 
   num_has = has_item(from_who, item);
@@ -469,7 +482,8 @@ how_many(int who, int from_who, int item, int qty, int have_left) {
  */
 
 int
-v_give(struct command *c) {
+v_give(struct command *c)
+{
   int target = c->a;
   int item = c->b;
   int qty = c->c;
@@ -562,7 +576,8 @@ v_give(struct command *c) {
 
 
 int
-v_pay(struct command *c) {
+v_pay(struct command *c)
+{
   int target = c->a;
   int qty = c->b;
   int have_left = c->c;
@@ -576,7 +591,8 @@ v_pay(struct command *c) {
 
 
 static int
-may_take(int who, int target) {
+may_take(int who, int target)
+{
 
   if (!check_char_here(who, target))
     return FALSE;
@@ -605,7 +621,8 @@ may_take(int who, int target) {
  */
 
 int
-v_get(struct command *c) {
+v_get(struct command *c)
+{
   int target = c->a;
   int item = c->b;
   int qty = c->c;
@@ -666,7 +683,8 @@ v_get(struct command *c) {
 
 
 int
-next_np_turn(int pl) {
+next_np_turn(int pl)
+{
   struct entity_player *p;
   int ft, ct;
   int n;
@@ -683,7 +701,8 @@ next_np_turn(int pl) {
 
 
 void
-print_hiring_status(int pl) {
+print_hiring_status(int pl)
+{
   int n;
 
   assert(kind(pl) == T_player);
@@ -702,7 +721,8 @@ print_hiring_status(int pl) {
 
 
 void
-print_unformed(int pl) {
+print_unformed(int pl)
+{
   struct entity_player *p = rp_player(pl);
   int n;
   char buf[LEN];
@@ -730,7 +750,8 @@ print_unformed(int pl) {
  */
 
 static void
-equip_new_noble(int who, int new) {
+equip_new_noble(int who, int new)
+{
   int where = subloc(who);
   int n;
   int qty;
@@ -803,7 +824,8 @@ equip_new_noble(int who, int new) {
 
 
 static void
-form_new_noble(int who, char *name, int new) {
+form_new_noble(int who, char *name, int new)
+{
   struct entity_char *p;
   struct entity_char *op;
 
@@ -836,7 +858,8 @@ form_new_noble(int who, char *name, int new) {
 
 
 int
-v_form(struct command *c) {
+v_form(struct command *c)
+{
   int pl;
   int cost;
 
@@ -859,7 +882,8 @@ v_form(struct command *c) {
 
 
 int
-d_form(struct command *c) {
+d_form(struct command *c)
+{
   char *new_name;
   int pl;
   int cost;
@@ -919,7 +943,8 @@ d_form(struct command *c) {
 
 
 int
-v_add_ram(struct command *c) {
+v_add_ram(struct command *c)
+{
   int ship = subloc(c->who);
 
   if (subkind(ship) == sub_galley_notdone) {
@@ -943,7 +968,8 @@ v_add_ram(struct command *c) {
 
 
 int
-d_add_ram(struct command *c) {
+d_add_ram(struct command *c)
+{
   int ship = subloc(c->who);
 
   if (subkind(ship) != sub_galley) {
@@ -965,7 +991,8 @@ d_add_ram(struct command *c) {
 }
 
 
-struct flag_ent {
+struct flag_ent
+{
   int who;
   char *flag;
 };
@@ -974,7 +1001,8 @@ static struct flag_ent **flags = NULL;
 
 
 static int
-flag_raised(int who, char *flag) {
+flag_raised(int who, char *flag)
+{
   int i;
 
   for (i = 0; i < ilist_len(flags); i++) {
@@ -989,7 +1017,8 @@ flag_raised(int who, char *flag) {
 }
 
 
-v_flag(struct command * c) {
+v_flag(struct command * c)
+{
   struct flag_ent *new;
   char *flag;
 
@@ -1048,7 +1077,8 @@ static char *wait_tags[] = {
 
 
 void
-clear_wait_parse(struct command *c) {
+clear_wait_parse(struct command *c)
+{
   int i;
 
   for (i = 0; i < ilist_len(c->wait_parse); i++) {
@@ -1061,7 +1091,8 @@ clear_wait_parse(struct command *c) {
 
 
 char *
-parse_wait_args(struct command *c) {
+parse_wait_args(struct command *c)
+{
   int tag;
   int i;
   char *tag_s;
@@ -1162,7 +1193,8 @@ parse_wait_args(struct command *c) {
 
 
 static char *
-check_wait_conditions(struct command *c) {
+check_wait_conditions(struct command *c)
+{
   int i;
   struct wait_arg *p;
   char *ret;
@@ -1422,7 +1454,8 @@ ilist wait_list = NULL;
 
 
 int
-v_wait(struct command *c) {
+v_wait(struct command *c)
+{
   char *s;
 
   if (numargs(c) < 1) {
@@ -1446,7 +1479,8 @@ v_wait(struct command *c) {
 
 
 int
-d_wait(struct command *c) {
+d_wait(struct command *c)
+{
   char *s;
 
   if (s = check_wait_conditions(c)) {
@@ -1463,7 +1497,8 @@ d_wait(struct command *c) {
 
 
 int
-i_wait(struct command *c) {
+i_wait(struct command *c)
+{
 
   ilist_rem_value(&wait_list, c->who);
   return TRUE;
@@ -1471,7 +1506,8 @@ i_wait(struct command *c) {
 
 
 int
-v_split(struct command *c) {
+v_split(struct command *c)
+{
   int lines = c->a;
   int bytes = c->b;
   struct entity_player *p;
@@ -1508,7 +1544,8 @@ v_split(struct command *c) {
 
 
 int
-v_emote(struct command *c) {
+v_emote(struct command *c)
+{
   int target = c->a;
 
   if (numargs(c) < 2) {

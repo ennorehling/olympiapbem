@@ -8,7 +8,8 @@ static char *liner_desc_char(int n);
 
 #if 0
 char *
-loc_inside_string(int where) {
+loc_inside_string(int where)
+{
   char *reg_name;
 
   if (loc_depth(where) == LOC_build) {
@@ -46,7 +47,8 @@ loc_inside_string(int where) {
 }
 #endif
 char *
-loc_inside_string(int where) {
+loc_inside_string(int where)
+{
   char *name = NULL;
   char *trail = NULL;
 
@@ -75,7 +77,8 @@ loc_inside_string(int where) {
 };
 
 static int
-show_loc_barrier(int who, int where) {
+show_loc_barrier(int who, int where)
+{
 
   if (loc_barrier(where)) {
     tagout(who, "<tag type=loc_barrier id=%d>", where);
@@ -89,7 +92,8 @@ show_loc_barrier(int who, int where) {
 
 
 static char *
-safe_haven_s(int n) {
+safe_haven_s(int n)
+{
 
   if (safe_haven(n))
     return ", safe haven";
@@ -99,7 +103,8 @@ safe_haven_s(int n) {
 
 
 static char *
-ship_cap_s(int n) {
+ship_cap_s(int n)
+{
   int sc, sw;
 
   if (sc = ship_cap(n)) {
@@ -112,7 +117,8 @@ ship_cap_s(int n) {
 
 
 static void
-show_loc_stats(int who, int where) {
+show_loc_stats(int who, int where)
+{
   int sc, sw, n;
   int first = TRUE;
 
@@ -146,7 +152,8 @@ show_loc_stats(int who, int where) {
 
 
 char *
-loc_civ_s(int where) {
+loc_civ_s(int where)
+{
   int n;
 
   if (loc_depth(where) != LOC_province ||
@@ -170,7 +177,8 @@ loc_civ_s(int where) {
  *
  */
 char *
-show_loc_header(int where) {
+show_loc_header(int where)
+{
   char buf[LEN];
 
   strcpy(buf, box_name_kind(where));
@@ -207,7 +215,8 @@ show_loc_header(int where) {
 
 
 static char *
-with_inventory_string(int who) {
+with_inventory_string(int who)
+{
   char with[LEN];
   struct item_ent *e;
   int mk;
@@ -233,7 +242,8 @@ with_inventory_string(int who) {
 
 
 char *
-display_with(int who) {
+display_with(int who)
+{
 
   if (rp_loc_info(who) && ilist_len(rp_loc_info(who)->here_list) > 0)
     return ", accompanied~by:";
@@ -243,7 +253,8 @@ display_with(int who) {
 
 
 char *
-display_owner(int who) {
+display_owner(int who)
+{
 
   if (first_character(who) <= 0)
     return "";
@@ -253,7 +264,8 @@ display_owner(int who) {
 
 
 static char *
-incomplete_string(int n) {
+incomplete_string(int n)
+{
   struct entity_subloc *p;
   struct entity_build *b;
 
@@ -271,7 +283,8 @@ incomplete_string(int n) {
 
 
 static char *
-liner_desc_ship(int n) {
+liner_desc_ship(int n)
+{
   char buf[LEN];
   struct entity_ship *ship = rp_ship(n);
 
@@ -349,7 +362,8 @@ liner_desc_ship(int n) {
 
 
 static char *
-liner_desc_loc(int n) {
+liner_desc_loc(int n)
+{
   char buf[LEN];
 
   sprintf(buf, "%s%s%s",
@@ -458,7 +472,8 @@ liner_desc_loc(int n) {
 
 
 static char *
-mage_s(int n) {
+mage_s(int n)
+{
   int a;
 
   if (!is_magician(n) || char_hide_mage(n))
@@ -491,7 +506,8 @@ mage_s(int n) {
 }
 
 char *
-nation_s(int n) {
+nation_s(int n)
+{
   static char nation_title[80];
   static char neutral_title[80];
 
@@ -533,7 +549,8 @@ nation_s(int n) {
 };
 
 char *
-deserted_s(int n) {
+deserted_s(int n)
+{
   static char deserted[80];
   int pl = player(n);
 
@@ -553,7 +570,8 @@ deserted_s(int n) {
 };
 
 static char *
-priest_s(int n) {
+priest_s(int n)
+{
   static char priest_title[80];
   struct entity_religion_skill *e;
 
@@ -582,7 +600,8 @@ char *combat_ally = "";
 
 
 static char *
-liner_desc_char(int n) {
+liner_desc_char(int n)
+{
   char buf[LEN];
   extern int show_combat_flag;
   char *s;
@@ -664,7 +683,8 @@ liner_desc_char(int n) {
 
 
 static char *
-liner_desc_road(int n) {
+liner_desc_road(int n)
+{
   int dest;
   char *hid = "";
   int dist;
@@ -682,7 +702,8 @@ liner_desc_road(int n) {
 
 
 static char *
-liner_desc_storm(int n) {
+liner_desc_storm(int n)
+{
   char buf[LEN];
   int owner;
   struct entity_misc *p;
@@ -709,7 +730,8 @@ liner_desc_storm(int n) {
  */
 
 char *
-liner_desc(int n) {
+liner_desc(int n)
+{
 
   switch (kind(n)) {
   case T_ship:
@@ -730,7 +752,8 @@ liner_desc(int n) {
 
 
 char *
-highlight_units(int who, int n, int depth) {
+highlight_units(int who, int n, int depth)
+{
 
   assert(depth >= 3);
   assert(indent == 0);
@@ -743,7 +766,8 @@ highlight_units(int who, int n, int depth) {
 
 
 void
-show_chars_below(int who, int n) {
+show_chars_below(int who, int n)
+{
   int i;
 
   assert(valid_box(who));
@@ -759,7 +783,8 @@ show_chars_below(int who, int n) {
 
 
 static void
-show_chars_below_highlight(int who, int n, int depth, int where) {
+show_chars_below_highlight(int who, int n, int depth, int where)
+{
   int i;
 
   depth += 3;
@@ -774,7 +799,8 @@ show_chars_below_highlight(int who, int n, int depth, int where) {
 
 
 void
-show_owner_stack(int who, int n) {
+show_owner_stack(int who, int n)
+{
   int i;
   int depth;
   int first = TRUE;
@@ -802,7 +828,8 @@ show_owner_stack(int who, int n) {
 
 
 static void
-show_chars_here(int who, int where) {
+show_chars_here(int who, int where)
+{
   int first = TRUE;
   int i;
   int depth;
@@ -862,7 +889,8 @@ show_chars_here(int who, int where) {
 
 
 static void
-show_inner_locs(int who, int where) {
+show_inner_locs(int who, int where)
+{
   int first = TRUE;
   int i;
 
@@ -891,7 +919,8 @@ show_inner_locs(int who, int where) {
 
 
 static void
-show_sublocs_here(int who, int where) {
+show_sublocs_here(int who, int where)
+{
   int first = TRUE;
   int i;
   struct entity_subloc *p;
@@ -965,7 +994,8 @@ show_sublocs_here(int who, int where) {
 
 
 static void
-show_ships_here(int who, int where) {
+show_ships_here(int who, int where)
+{
   int first = TRUE;
   int i;
 
@@ -1007,7 +1037,8 @@ show_ships_here(int who, int where) {
 
 
 static void
-show_nearby_cities(int who, int where) {
+show_nearby_cities(int who, int where)
+{
   struct entity_subloc *p;
   int i;
   char *s;
@@ -1044,7 +1075,8 @@ show_nearby_cities(int who, int where) {
 
 
 static void
-show_loc_skills(int who, int where) {
+show_loc_skills(int who, int where)
+{
   int i;
   char *s = "";
 
@@ -1069,7 +1101,8 @@ show_loc_skills(int who, int where) {
 
 
 void
-show_loc_posts(int who, int where, int show_full_loc) {
+show_loc_posts(int who, int where, int show_full_loc)
+{
   int post;
   int i;
   int flag = TRUE;
@@ -1131,7 +1164,8 @@ show_loc_posts(int who, int where, int show_full_loc) {
 
 
 static void
-show_weather(who, where) {
+show_weather(who, where)
+{
   int rain, wind, fog, mist;
 
   rain = weather_here(where, sub_rain);
@@ -1186,7 +1220,8 @@ show_weather(who, where) {
 
 
 static void
-show_loc_ruler(int who, int where) {
+show_loc_ruler(int who, int where)
+{
   int garr;
   int castle;
   int ruler;
@@ -1268,7 +1303,8 @@ show_loc_ruler(int who, int where) {
 int show_loc_no_header = FALSE;
 
 void
-show_loc(int who, int where) {
+show_loc(int who, int where)
+{
   int pil;
 
   assert(valid_box(where));

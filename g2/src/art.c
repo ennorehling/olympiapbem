@@ -5,7 +5,8 @@
 
 
 int
-has_auraculum(int who) {
+has_auraculum(int who)
+{
   int ac;
 
   ac = char_auraculum(who);
@@ -22,7 +23,8 @@ has_auraculum(int who) {
  */
 
 int
-max_eff_aura(int who) {
+max_eff_aura(int who)
+{
   int a;                        /* aura */
   int ac;                       /* auraculum */
 
@@ -46,14 +48,16 @@ max_eff_aura(int who) {
 
 
 void
-limit_cur_aura(int who) {
+limit_cur_aura(int who)
+{
   if (char_cur_aura(who) > MAX_CURRENT_AURA(who))
     p_magic(who)->cur_aura = MAX_CURRENT_AURA(who);
 }
 
 
 int
-v_forge_palantir(struct command *c) {
+v_forge_palantir(struct command *c)
+{
 
   if (!check_aura(c->who, 8))
     return FALSE;
@@ -64,7 +68,8 @@ v_forge_palantir(struct command *c) {
 
 
 int
-d_forge_palantir(struct command *c) {
+d_forge_palantir(struct command *c)
+{
   int new;
   struct entity_item *p;
   struct item_magic *pm;
@@ -98,7 +103,8 @@ d_forge_palantir(struct command *c) {
 
 
 int
-v_use_palantir(struct command *c) {
+v_use_palantir(struct command *c)
+{
   int item = c->a;
   int target = c->b;
   struct item_magic *p;
@@ -125,7 +131,8 @@ v_use_palantir(struct command *c) {
 
 
 int
-d_use_palantir(struct command *c) {
+d_use_palantir(struct command *c)
+{
   int item = c->a;
   int target = c->b;
 
@@ -136,14 +143,14 @@ d_use_palantir(struct command *c) {
 
   if (loc_shroud(target) || diff_region(c->who, target)) {
     log_write(LOG_CODE, "Murky palantir result, who=%s, targ=%s",
-        box_code_less(c->who), box_code_less(target));
+              box_code_less(c->who), box_code_less(target));
     wout(c->who, "Only murky, indistinct images are seen in "
          "the palantir.");
     return FALSE;
   }
 
   log_write(LOG_CODE, "Palantir scry, who=%s, targ=%s",
-      box_code_less(c->who), box_code_less(target));
+            box_code_less(c->who), box_code_less(target));
 
   p_item_magic(item)->one_turn_use++;
 
@@ -158,7 +165,8 @@ d_use_palantir(struct command *c) {
 
 
 static int
-destroyable_item(int item) {
+destroyable_item(int item)
+{
 
   switch (subkind(item)) {
   case sub_palantir:
@@ -171,7 +179,8 @@ destroyable_item(int item) {
 
 
 int
-v_destroy_art(struct command *c) {
+v_destroy_art(struct command *c)
+{
   int item = c->a;
 
   if (!valid_box(item) || (has_item(c->who, item) < 1)) {
@@ -193,7 +202,8 @@ v_destroy_art(struct command *c) {
 
 
 static int
-destroy_palantir(struct command *c, int item) {
+destroy_palantir(struct command *c, int item)
+{
 
   wout(c->who, "Destroyed %s.", box_name(item));
 
@@ -207,7 +217,8 @@ destroy_palantir(struct command *c, int item) {
 
 
 static int
-destroy_auraculum(struct command *c, int item) {
+destroy_auraculum(struct command *c, int item)
+{
   int creator;
   int reg_created;
 
@@ -252,7 +263,8 @@ destroy_auraculum(struct command *c, int item) {
 
 
 static int
-destroy_item(struct command *c, int item) {
+destroy_item(struct command *c, int item)
+{
   int ret;
   int aura;
 
@@ -278,8 +290,8 @@ destroy_item(struct command *c, int item) {
     }
 
     log_write(LOG_SPECIAL, "%s destroyed %s (%s, creator=%s)",
-        box_name(c->who), box_name(item),
-        subkind_s[subkind(item)], box_name(item_creator(item)));
+              box_name(c->who), box_name(item),
+              subkind_s[subkind(item)], box_name(item_creator(item)));
 
     destroy_unique_item(c->who, item);
     return TRUE;
@@ -290,7 +302,8 @@ destroy_item(struct command *c, int item) {
 
 
 int
-d_destroy_art(struct command *c) {
+d_destroy_art(struct command *c)
+{
   int item = c->a;
 
   if (has_item(c->who, item) < 0) {
@@ -311,7 +324,8 @@ d_destroy_art(struct command *c) {
 
 
 int
-v_show_art_creat(struct command *c) {
+v_show_art_creat(struct command *c)
+{
   int item = c->a;
   int aura;
 
@@ -334,7 +348,8 @@ v_show_art_creat(struct command *c) {
 
 
 int
-d_show_art_creat(struct command *c) {
+d_show_art_creat(struct command *c)
+{
   int item = c->a;
   int aura = c->b;
   int n;
@@ -368,7 +383,8 @@ d_show_art_creat(struct command *c) {
 
 
 int
-v_show_art_reg(struct command *c) {
+v_show_art_reg(struct command *c)
+{
   int item = c->a;
   int aura;
 
@@ -391,7 +407,8 @@ v_show_art_reg(struct command *c) {
 
 
 int
-d_show_art_reg(struct command *c) {
+d_show_art_reg(struct command *c)
+{
   int item = c->a;
   int aura = c->b;
   int n;
@@ -424,7 +441,8 @@ d_show_art_reg(struct command *c) {
 
 
 int
-v_rem_art_cloak(struct command *c) {
+v_rem_art_cloak(struct command *c)
+{
   int item = c->a;
 
   if (has_item(c->who, item) < 1) {
@@ -442,7 +460,8 @@ v_rem_art_cloak(struct command *c) {
 
 
 int
-d_rem_art_cloak(struct command *c) {
+d_rem_art_cloak(struct command *c)
+{
   int item = c->a;
   struct item_magic *im;
 
@@ -471,7 +490,8 @@ d_rem_art_cloak(struct command *c) {
 
 
 int
-v_cloak_creat(struct command *c) {
+v_cloak_creat(struct command *c)
+{
   int item = c->a;
   int aura;
 
@@ -492,7 +512,8 @@ v_cloak_creat(struct command *c) {
 
 
 int
-d_cloak_creat(struct command *c) {
+d_cloak_creat(struct command *c)
+{
   int item = c->a;
   int aura = c->b;
   struct item_magic *im;
@@ -516,7 +537,8 @@ d_cloak_creat(struct command *c) {
 
 
 int
-v_cloak_reg(struct command *c) {
+v_cloak_reg(struct command *c)
+{
   int item = c->a;
   int aura;
 
@@ -537,7 +559,8 @@ v_cloak_reg(struct command *c) {
 
 
 int
-d_cloak_reg(struct command *c) {
+d_cloak_reg(struct command *c)
+{
   int item = c->a;
   int aura = c->b;
   struct item_magic *im;
@@ -561,7 +584,8 @@ d_cloak_reg(struct command *c) {
 
 
 int
-v_curse_noncreat(struct command *c) {
+v_curse_noncreat(struct command *c)
+{
   int item = c->a;
   int aura;
 
@@ -591,7 +615,8 @@ v_curse_noncreat(struct command *c) {
 
 
 int
-d_curse_noncreat(struct command *c) {
+d_curse_noncreat(struct command *c)
+{
   int item = c->a;
   int aura = c->b;
   struct item_magic *im;
@@ -615,7 +640,8 @@ d_curse_noncreat(struct command *c) {
 
 
 int
-v_forge_aura(struct command *c) {
+v_forge_aura(struct command *c)
+{
   int aura;
 
   if (char_auraculum(c->who)) {
@@ -643,7 +669,8 @@ v_forge_aura(struct command *c) {
 
 
 static void
-notify_others_auraculum(int who, int item) {
+notify_others_auraculum(int who, int item)
+{
   int n;
 
   loop_char(n) {
@@ -653,12 +680,13 @@ notify_others_auraculum(int who, int item) {
   next_char;
 
   log_write(LOG_SPECIAL, "%s created %s, %s.",
-      box_name(who), box_name(item), subkind_s[subkind(item)]);
+            box_name(who), box_name(item), subkind_s[subkind(item)]);
 }
 
 
 int
-d_forge_aura(struct command *c) {
+d_forge_aura(struct command *c)
+{
   int aura = c->a;
   char *new_name;
   int new;
@@ -726,7 +754,8 @@ d_forge_aura(struct command *c) {
 
 
 int
-new_orb(int who) {
+new_orb(int who)
+{
   int new;
 
   new = create_unique_item(who, 0);
@@ -751,7 +780,8 @@ static ilist orb_used_this_month = NULL;
 
 
 int
-v_use_orb(struct command *c) {
+v_use_orb(struct command *c)
+{
   int item = c->a;
   int target = c->b;
   int where = 0;
@@ -840,7 +870,8 @@ v_use_orb(struct command *c) {
 
 
 int
-token_player(int owner) {
+token_player(int owner)
+{
   int pl;
 
   if (kind(owner) != T_char)
@@ -855,10 +886,12 @@ token_player(int owner) {
 
 
 static void
-swear_token_units(int item, int target) {
+swear_token_units(int item, int target)
+{
   int i;
 
-  log_write(LOG_MISC, "%s got npc token %s", box_name(target), box_name(item));
+  log_write(LOG_MISC, "%s got npc token %s", box_name(target),
+            box_name(item));
 
   assert(subkind(item) == sub_npc_token);
 
@@ -873,7 +906,8 @@ swear_token_units(int item, int target) {
 
 
 static void
-melt_token_units(int item) {
+melt_token_units(int item)
+{
   int who;
   int first = TRUE;
 
@@ -900,7 +934,8 @@ melt_token_units(int item) {
 
 
 static void
-add_token_unit_sup(int item) {
+add_token_unit_sup(int item)
+{
   int new;
   int owner;
   int where;
@@ -918,7 +953,8 @@ add_token_unit_sup(int item) {
                  token_player(owner), LOY_npc, 0, NULL);
 
   if (new < 0) {
-    log_write(LOG_CODE, "  FAILed to add unit to token %s", box_code_less(item));
+    log_write(LOG_CODE, "  FAILed to add unit to token %s",
+              box_code_less(item));
     return;
   }
 
@@ -940,7 +976,8 @@ add_token_unit_sup(int item) {
 
 
 static void
-add_token_units(int item) {
+add_token_units(int item)
+{
   int l;
   struct entity_player *p;
 
@@ -968,18 +1005,19 @@ add_token_units(int item) {
  */
 
 void
-move_token(int item, int from, int to) {
+move_token(int item, int from, int to)
+{
   int to_pl = token_player(to);
 
   log_write(LOG_MISC, "Token %s moved from %s (%s) to %s (%s)",
-      box_name(item),
-      box_name(from),
-      box_name(token_player(from)), box_name(to), box_name(to_pl));
+            box_name(item),
+            box_name(from),
+            box_name(token_player(from)), box_name(to), box_name(to_pl));
 
   if (token_player(from) == indep_player &&
       ilist_len(p_player(item)->units) == 0) {
     log_write(LOG_SPECIAL, "token %s from %d to 1.",
-        box_code_less(item), item_token_num(item));
+              box_code_less(item), item_token_num(item));
     p_item_magic(item)->token_num = 1;
   }
 
@@ -1006,7 +1044,8 @@ move_token(int item, int from, int to) {
 
 
 void
-check_token_units() {
+check_token_units()
+{
   int item;
   int owner, pl;
   int unit;
@@ -1031,9 +1070,9 @@ check_token_units() {
     loop_units(item, unit) {
       if (kind(unit) != T_char) {
         log_write(LOG_CODE,
-            "%s holds unit %s which is %s, player(unit) = %s, owner = %s",
-            box_code(unit), box_code(unit), kind_s[kind(unit)],
-            box_code_less(player(unit)), box_code_less(owner));
+                  "%s holds unit %s which is %s, player(unit) = %s, owner = %s",
+                  box_code(unit), box_code(unit), kind_s[kind(unit)],
+                  box_code_less(player(unit)), box_code_less(owner));
         continue;
       }
 
@@ -1055,7 +1094,8 @@ check_token_units() {
 
 
 int
-create_npc_token(int who) {
+create_npc_token(int who)
+{
   int new;
   int ni;
   char *name;
@@ -1113,7 +1153,8 @@ create_npc_token(int who) {
 
 
 int
-v_forge_art_x(struct command *c) {
+v_forge_art_x(struct command *c)
+{
   int aura = c->a;
   int rare_item;
 
@@ -1155,7 +1196,8 @@ v_forge_art_x(struct command *c) {
 
 
 int
-d_forge_art_x(struct command *c) {
+d_forge_art_x(struct command *c)
+{
   int new;
   int aura = c->a;
   int rare_item = c->d;
@@ -1217,7 +1259,8 @@ d_forge_art_x(struct command *c) {
 
 
 int
-new_suffuse_ring(int who) {
+new_suffuse_ring(int who)
+{
   int new;
   int ni;
   int lore;
@@ -1264,14 +1307,15 @@ new_suffuse_ring(int who) {
 
 
 int
-v_suffuse_ring(struct command *c, int kind) {
+v_suffuse_ring(struct command *c, int kind)
+{
   int item = c->use_skill;
   int where = province(subloc(c->who));
   int num;
   struct item_ent *t;
 
   log_write(LOG_SPECIAL, "Golden ring %s used by %s",
-      box_code_less(item), box_code_less(player(c->who)));
+            box_code_less(item), box_code_less(player(c->who)));
 
   if (rnd(1, 3) == 1) {
     wout(c->who, "Nothing happens.");

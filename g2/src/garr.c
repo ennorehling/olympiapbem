@@ -39,7 +39,8 @@
  */
 
 int
-garrison_here(int where) {
+garrison_here(int where)
+{
   int n;
 
   n = first_character(where);
@@ -52,7 +53,8 @@ garrison_here(int where) {
 
 
 int
-province_admin(int n) {
+province_admin(int n)
+{
   int garr;
   int castle;
 
@@ -77,7 +79,8 @@ province_admin(int n) {
 
 
 int
-top_ruler(int n) {
+top_ruler(int n)
+{
   int i;
   int ret = 0;
 
@@ -95,7 +98,8 @@ top_ruler(int n) {
  */
 
 static int
-pledged_beneath(int a, int b) {
+pledged_beneath(int a, int b)
+{
 
   assert(kind(a) == T_char);
   assert(kind(b) == T_char);
@@ -114,7 +118,8 @@ pledged_beneath(int a, int b) {
 
 
 int
-may_rule_here(int who, int where) {
+may_rule_here(int who, int where)
+{
   int pl = player(who);
   int i;
   int ret = FALSE;
@@ -137,7 +142,8 @@ may_rule_here(int who, int where) {
 
 
 ilist
-players_who_rule_here(int where) {
+players_who_rule_here(int where)
+{
   static ilist l = NULL;
   int i;
   int pl;
@@ -171,7 +177,8 @@ players_who_rule_here(int where) {
 
 #if 0
 void
-touch_garrison_locs() {
+touch_garrison_locs()
+{
   int garr;
   int where;
   int owner;
@@ -190,7 +197,8 @@ touch_garrison_locs() {
 
 
 int
-new_province_garrison(int where, int castle, int item, int qty) {
+new_province_garrison(int where, int castle, int item, int qty)
+{
   int new;
 
   new = new_char(sub_garrison, 0, where, -1, garr_pl, LOY_npc, 0, NULL);
@@ -213,7 +221,8 @@ new_province_garrison(int where, int castle, int item, int qty) {
 
 
 static int
-garrison_allowed_here(int who, int where, int castle) {
+garrison_allowed_here(int who, int where, int castle)
+{
   struct exit_view **l;
   int i;
   int here;
@@ -246,7 +255,8 @@ garrison_allowed_here(int who, int where, int castle) {
 
 
 int
-v_garrison(struct command *c) {
+v_garrison(struct command *c)
+{
   int castle = c->a;
   int where = subloc(c->who);
   int new;
@@ -330,7 +340,8 @@ v_garrison(struct command *c) {
 
 
 int
-v_pledge(struct command *c) {
+v_pledge(struct command *c)
+{
   int target = c->a;
   int n;
 
@@ -383,7 +394,8 @@ v_pledge(struct command *c) {
 
 
 void
-garrison_gold() {
+garrison_gold()
+{
   int garr;
   int where;
   int base, remain, spent, has_before, has_now;
@@ -471,7 +483,8 @@ garrison_gold() {
 
 
 int
-count_castle_garrisons(int castle) {
+count_castle_garrisons(int castle)
+{
   int garr;
   int sum = 0;
 
@@ -486,7 +499,8 @@ count_castle_garrisons(int castle) {
 
 
 int
-allowed_garrisons(int level) {
+allowed_garrisons(int level)
+{
 
   switch (level) {
   case 0:
@@ -509,7 +523,8 @@ allowed_garrisons(int level) {
 
 
 static int
-nprovs_to_rank(int n) {
+nprovs_to_rank(int n)
+{
 
   if (n == 0)
     return 0;
@@ -531,7 +546,8 @@ nprovs_to_rank(int n) {
 
 
 char *
-rank_s(int who) {
+rank_s(int who)
+{
   int n = char_rank(who);
 
   switch (n) {
@@ -562,7 +578,8 @@ rank_s(int who) {
 
 
 static void
-find_kings() {
+find_kings()
+{
   int reg;
   int where;
   int ruler;
@@ -609,7 +626,8 @@ find_kings() {
  */
 
 static int
-det_noble_rank_sup(int who) {
+det_noble_rank_sup(int who)
+{
   int own_rank;
   int pledged_to;
 
@@ -624,7 +642,8 @@ det_noble_rank_sup(int who) {
 
 
 void
-determine_noble_ranks() {
+determine_noble_ranks()
+{
   int garr;
   int owner;
   int who;
@@ -657,7 +676,8 @@ determine_noble_ranks() {
 
 
 int
-garrison_notices(int garr, int target) {
+garrison_notices(int garr, int target)
+{
   struct entity_misc *p;
 
   if (is_npc(target) ||
@@ -674,7 +694,8 @@ garrison_notices(int garr, int target) {
 
 
 int
-garrison_spot_check(int garr, int target) {
+garrison_spot_check(int garr, int target)
+{
   int i;
   int found = FALSE;
   struct entity_misc *p;
@@ -701,7 +722,8 @@ garrison_spot_check(int garr, int target) {
 
 
 static char *
-garr_own_s(int garr) {
+garr_own_s(int garr)
+{
   int owner;
   int count = 0;
   int l[5];
@@ -744,7 +766,8 @@ garr_own_s(int garr) {
 
 
 void
-garrison_summary(int pl) {
+garrison_summary(int pl)
+{
   int garr;
   static ilist l = NULL;
   int i;
@@ -789,7 +812,8 @@ garrison_summary(int pl) {
 
 
 int
-v_decree_watch(struct command *c) {
+v_decree_watch(struct command *c)
+{
   int garr;
   int target = c->a;
   struct entity_misc *p;
@@ -837,7 +861,8 @@ v_decree_watch(struct command *c) {
 
 
 int
-v_decree_hostile(struct command *c) {
+v_decree_hostile(struct command *c)
+{
   int garr;
   int target = c->a;
   struct entity_misc *p;
@@ -891,7 +916,8 @@ static char *decree_tags[] = {
 
 
 int
-v_decree(struct command *c) {
+v_decree(struct command *c)
+{
   int tag;
 
   if (numargs(c) < 1) {
@@ -922,7 +948,8 @@ v_decree(struct command *c) {
 
 
 void
-ping_garrisons() {
+ping_garrisons()
+{
   int garr;
   int where;
 
@@ -946,7 +973,8 @@ ping_garrisons() {
 
 
 int
-v_ungarrison(struct command *c) {
+v_ungarrison(struct command *c)
+{
   int garr = c->a;
   int where = subloc(c->who);
   struct item_ent *e;

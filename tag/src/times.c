@@ -22,7 +22,8 @@ int line_length_check(char **l);
 //
 //
 void
-copy_file_slow(FILE * inf, FILE * out) {
+copy_file_slow(FILE * inf, FILE * out)
+{
   char buf[1024];
 
   if (inf == NULL || out == NULL)
@@ -35,7 +36,8 @@ copy_file_slow(FILE * inf, FILE * out) {
 };
 
 void
-copy_file(char *file1, char *file2) {
+copy_file(char *file1, char *file2)
+{
   FILE *inf, *outf;
   inf = fopen(file1, "r");
   if (inf == NULL) {
@@ -63,7 +65,8 @@ char *months[] = {
 
 
 void
-open_times() {
+open_times()
+{
   char *fnam;
 
   if (press_fp == NULL) {
@@ -99,7 +102,8 @@ open_times() {
 }
 
 void
-times_masthead() {
+times_masthead()
+{
   char *fnam;
   time_t l;
   struct tm *tm;
@@ -174,7 +178,8 @@ times_masthead() {
  */
 int starting_gold(int nation);
 void
-times_goal_info() {
+times_goal_info()
+{
   char *fnam;
   int i, j, priests = 0, mus = 0, others = 0, n = 0, unfound = 0, total1 = 0;
   FILE *fp;
@@ -347,7 +352,8 @@ times_goal_info() {
 };
 
 void
-close_times() {
+close_times()
+{
 
   if (press_fp != NULL) {
     fclose(press_fp);
@@ -361,7 +367,8 @@ close_times() {
 }
 
 static int
-times_credit(struct command *c) {
+times_credit(struct command *c)
+{
   int pl;
   extern int gold_times;
 
@@ -386,7 +393,8 @@ times_credit(struct command *c) {
 }
 
 int
-v_rumor(struct command *c) {
+v_rumor(struct command *c)
+{
   char **l = NULL;
   int i;
 
@@ -423,7 +431,8 @@ v_rumor(struct command *c) {
 
 
 int
-v_press(struct command *c) {
+v_press(struct command *c)
+{
   char **l = NULL;
   int i;
   char attrib[100];
@@ -472,7 +481,8 @@ v_press(struct command *c) {
 }
 
 void
-times_index() {
+times_index()
+{
   char *fnam;
   FILE *fp;
   int i;
@@ -499,7 +509,8 @@ times_index() {
 };
 
 void
-do_times() {
+do_times()
+{
   char *cmd;
   int ret;
 

@@ -25,7 +25,8 @@ static char *letters = "abcdefghijklmnopqrstuvwxyz";
 
 
 char *
-int_to_code(int l) {
+int_to_code(int l)
+{
   int n, a, b, c;
 
   if (l < 10000) {
@@ -98,7 +99,8 @@ int_to_code(int l) {
 
 
 int
-code_to_int(char *s) {
+code_to_int(char *s)
+{
   char a, b, c, d;
 
   if (s == NULL)
@@ -167,7 +169,8 @@ code_to_int(char *s) {
 
 
 int
-scode(char *s) {
+scode(char *s)
+{
   int n;
 
   if (*s == '[' || *s == '(')
@@ -178,7 +181,8 @@ scode(char *s) {
 
 
 char *
-name(int n) {
+name(int n)
+{
 
   assert(valid_box(n));
 
@@ -190,7 +194,8 @@ name(int n) {
 
 
 void
-set_name(int n, char *s) {
+set_name(int n, char *s)
+{
 
   assert(valid_box(n));
 
@@ -217,7 +222,8 @@ set_name(int n, char *s) {
 }
 
 void
-set_banner(int n, char *s) {
+set_banner(int n, char *s)
+{
   struct entity_misc *p;
 
   p = p_misc(n);
@@ -236,7 +242,8 @@ set_banner(int n, char *s) {
 
 
 char *
-display_name(int n) {
+display_name(int n)
+{
   char *s;
   int i;
 
@@ -265,7 +272,8 @@ display_name(int n) {
 
 
 char *
-display_kind(int n) {
+display_kind(int n)
+{
   char *s;
 
   switch (subkind(n)) {
@@ -303,14 +311,16 @@ display_kind(int n) {
  */
 
 char *
-box_code_less(int n) {
+box_code_less(int n)
+{
 
   return int_to_code(n);
 }
 
 
 char *
-box_code(int n) {
+box_code(int n)
+{
   char *s;
 
   if (n == garrison_magic)
@@ -321,7 +331,8 @@ box_code(int n) {
 
 
 char *
-box_name(int n) {
+box_name(int n)
+{
   char *s;
 
   if (n == garrison_magic)
@@ -343,7 +354,8 @@ box_name(int n) {
 
 
 char *
-just_name(int n) {
+just_name(int n)
+{
   char *s;
 
   if (n == garrison_magic)
@@ -360,7 +372,8 @@ just_name(int n) {
 
 
 char *
-plural_item_name(int item, int qty) {
+plural_item_name(int item, int qty)
+{
   char *s;
 
   if (qty == 1)
@@ -379,7 +392,8 @@ plural_item_name(int item, int qty) {
 
 
 char *
-plural_item_box(int item, int qty) {
+plural_item_box(int item, int qty)
+{
   char *s;
 
   if (qty == 1)
@@ -396,21 +410,24 @@ plural_item_box(int item, int qty) {
 
 
 char *
-just_name_qty(int item, int qty) {
+just_name_qty(int item, int qty)
+{
 
   return sout("%s~%s", nice_num(qty), plural_item_name(item, qty));
 }
 
 
 char *
-box_name_qty(int item, int qty) {
+box_name_qty(int item, int qty)
+{
 
   return sout("%s~%s", nice_num(qty), plural_item_box(item, qty));
 }
 
 
 char *
-box_name_kind(int n) {
+box_name_kind(int n)
+{
 
   return sout("%s, %s", box_name(n), display_kind(n));
 }
@@ -423,7 +440,8 @@ box_name_kind(int n) {
  */
 
 static void
-add_next_chain(int n) {
+add_next_chain(int n)
+{
   int kind;
   int i;
   static int cache_last = 0;
@@ -470,7 +488,8 @@ add_next_chain(int n) {
 
 
 static void
-remove_next_chain(int n) {
+remove_next_chain(int n)
+{
   int i;
 
   assert(bx[n] != NULL);
@@ -494,7 +513,8 @@ remove_next_chain(int n) {
 
 
 static void
-add_sub_chain(int n) {
+add_sub_chain(int n)
+{
   int kind;
   int i;
   static int cache_last = 0;
@@ -537,7 +557,8 @@ add_sub_chain(int n) {
 
 
 static void
-remove_sub_chain(int n) {
+remove_sub_chain(int n)
+{
   int i;
 
   assert(bx[n] != NULL);
@@ -561,7 +582,8 @@ remove_sub_chain(int n) {
 
 
 void
-delete_box(int n) {
+delete_box(int n)
+{
 
   remove_next_chain(n);
   remove_sub_chain(n);
@@ -575,7 +597,8 @@ delete_box(int n) {
 
 
 void
-change_box_kind(int n, int kind) {
+change_box_kind(int n, int kind)
+{
 
   remove_next_chain(n);
   bx[n]->kind = kind;
@@ -584,7 +607,8 @@ change_box_kind(int n, int kind) {
 
 
 void
-change_box_subkind(int n, int sk) {
+change_box_subkind(int n, int sk)
+{
 
   if (subkind(n) == sk)
     return;
@@ -596,7 +620,8 @@ change_box_subkind(int n, int sk) {
 
 
 void
-alloc_box(int n, int kind, int sk) {
+alloc_box(int n, int kind, int sk)
+{
 
   assert(n > 0 && n < MAX_BOXES);
 
@@ -614,7 +639,8 @@ alloc_box(int n, int kind, int sk) {
 
 
 static int
-rnd_alloc_num(int low, int high) {
+rnd_alloc_num(int low, int high)
+{
   int n;
   int i;
 
@@ -652,7 +678,8 @@ rnd_alloc_num(int low, int high) {
 int new_ent_prime = FALSE;      /* allocate from prime real estate? */
 
 int
-new_ent(int kind, int sk) {
+new_ent(int kind, int sk)
+{
   int n = -1;
 
   switch (kind) {

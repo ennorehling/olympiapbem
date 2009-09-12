@@ -35,7 +35,8 @@
 typedef unsigned long word32;
 typedef unsigned char byte;
 
-struct xMD5Context {
+struct xMD5Context
+{
   word32 buf[4];
   word32 bytes[2];
   word32 in[16];
@@ -52,7 +53,8 @@ void xMD5Transform(word32 buf[4], word32 const in[16]);
  * MD5 spec.  Note: this code works regardless of the byte order.
  */
 void
-byteSwap(word32 * buf, unsigned words) {
+byteSwap(word32 * buf, unsigned words)
+{
   byte *p = (byte *) buf;
 
   do {
@@ -67,7 +69,8 @@ byteSwap(word32 * buf, unsigned words) {
  * initialization constants.
  */
 void
-xMD5Init(struct xMD5Context *ctx) {
+xMD5Init(struct xMD5Context *ctx)
+{
   ctx->buf[0] = 0x67452301;
   ctx->buf[1] = 0xefcdab89;
   ctx->buf[2] = 0x98badcfe;
@@ -82,7 +85,8 @@ xMD5Init(struct xMD5Context *ctx) {
  * of bytes.
  */
 void
-xMD5Update(struct xMD5Context *ctx, byte const *buf, int len) {
+xMD5Update(struct xMD5Context *ctx, byte const *buf, int len)
+{
   word32 t;
 
   /* Update byte count */
@@ -121,7 +125,8 @@ xMD5Update(struct xMD5Context *ctx, byte const *buf, int len) {
  * 1 0* (64-bit count of bits processed, MSB-first)
  */
 void
-xMD5Final(byte digest[16], struct xMD5Context *ctx) {
+xMD5Final(byte digest[16], struct xMD5Context *ctx)
+{
   int count = (int) (ctx->bytes[0] & 0x3f);     /* Bytes in ctx->in */
   byte *p = (byte *) ctx->in + count;   /* First unused byte */
 
@@ -170,7 +175,8 @@ xMD5Final(byte digest[16], struct xMD5Context *ctx) {
  * the data and converts bytes into longwords for this routine.
  */
 void
-xMD5Transform(word32 buf[4], word32 const in[16]) {
+xMD5Transform(word32 buf[4], word32 const in[16])
+{
   register word32 a, b, c, d;
 
   a = buf[0];
@@ -254,7 +260,8 @@ xMD5Transform(word32 buf[4], word32 const in[16]) {
 
 
 void
-MD5(void *dest, void *orig, int len) {
+MD5(void *dest, void *orig, int len)
+{
   struct xMD5Context context;
 
   xMD5Init(&context);
@@ -268,7 +275,8 @@ MD5(void *dest, void *orig, int len) {
 static unsigned long digest[4];
 
 void
-load_seed(char *fnam) {
+load_seed(char *fnam)
+{
   FILE *fd;
 
   fd = fopen(fnam, "rb");
@@ -279,7 +287,8 @@ load_seed(char *fnam) {
 }
 
 void
-save_seed(char *fnam) {
+save_seed(char *fnam)
+{
   FILE *fd;
 
   fd = fopen(fnam, "wb+");
@@ -290,7 +299,8 @@ save_seed(char *fnam) {
 }
 
 int
-rnd(int low, int high) {
+rnd(int low, int high)
+{
   unsigned int range = high - low;
   unsigned int mask = 0;
   unsigned int num;
@@ -308,7 +318,8 @@ rnd(int low, int high) {
 }
 
 int
-md5_int(int a, int b, int c, int d) {
+md5_int(int a, int b, int c, int d)
+{
   unsigned long buf[4];
 
   buf[0] = (unsigned long) a;

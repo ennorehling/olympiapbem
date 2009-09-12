@@ -28,7 +28,8 @@ static ilist new_chars = NULL;
 
 
 static char *
-fetch_inp(FILE * fp) {
+fetch_inp(FILE * fp)
+{
   char *s;
 
   while ((s = getlin_ew(fp)) && *s == '\0');
@@ -41,7 +42,8 @@ fetch_inp(FILE * fp) {
 
 
 static int
-pick_starting_city(char *start_city) {
+pick_starting_city(char *start_city)
+{
   int n = atoi(start_city);
 
   if (n == 0)
@@ -69,7 +71,8 @@ pick_starting_city(char *start_city) {
 
 static int
 add_new_player(int pl, char *faction, char *character, char *start_city,
-               char *full_name, char *email) {
+               char *full_name, char *email)
+{
   int who;
   struct entity_char *cp;
   struct entity_player *pp;
@@ -123,7 +126,8 @@ add_new_player(int pl, char *faction, char *character, char *start_city,
 
 
 static int
-make_new_players_sup(char *acct, FILE * fp) {
+make_new_players_sup(char *acct, FILE * fp)
+{
   char *faction;
   char *character;
   char *start_city;
@@ -155,7 +159,8 @@ make_new_players_sup(char *acct, FILE * fp) {
 
 
 static void
-make_new_players() {
+make_new_players()
+{
   DIR *d;
   struct dirent *e;
   char *acct_dir = "/u/oly/act";
@@ -196,7 +201,8 @@ make_new_players() {
 
 
 void
-rename_act_join_files() {
+rename_act_join_files()
+{
   int i;
   int pl;
   char acct[LEN];
@@ -220,7 +226,8 @@ rename_act_join_files() {
 
 
 static void
-new_player_banners() {
+new_player_banners()
+{
   int pl;
   int i;
   struct entity_player *p;
@@ -291,7 +298,8 @@ new_player_banners() {
 
 
 static void
-show_new_char_locs() {
+show_new_char_locs()
+{
   int i;
   int where;
   int who;
@@ -321,7 +329,8 @@ show_new_char_locs() {
 
 
 static void
-new_player_report() {
+new_player_report()
+{
   int i;
 
   out_path = MASTER;
@@ -339,7 +348,8 @@ new_player_report() {
 
 
 static void
-new_char_report() {
+new_char_report()
+{
   int i;
 
   indent += 3;
@@ -352,7 +362,8 @@ new_char_report() {
 
 
 static void
-mail_initial_reports() {
+mail_initial_reports()
+{
   int i;
   char *s, *t;
   int pl;
@@ -377,7 +388,8 @@ mail_initial_reports() {
 
 
 static void
-new_order_templates() {
+new_order_templates()
+{
   int pl, i;
 
   out_path = MASTER;
@@ -394,7 +406,8 @@ new_order_templates() {
 
 
 static void
-new_player_list_sup(int who, int pl) {
+new_player_list_sup(int who, int pl)
+{
   struct entity_player *p;
   char *s;
   char *t;
@@ -433,7 +446,8 @@ new_player_list_sup(int who, int pl) {
 
 
 void
-new_player_list() {
+new_player_list()
+{
   int pl;
   int i;
 
@@ -462,7 +476,8 @@ new_player_list() {
 
 
 void
-new_player_top(int mail) {
+new_player_top(int mail)
+{
 
   stage("new_player_top()");
 
@@ -482,7 +497,8 @@ new_player_top(int mail) {
 
 
 void
-add_new_players() {
+add_new_players()
+{
 
   stage("add_new_players()");
 

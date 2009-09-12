@@ -35,7 +35,8 @@ int max_map_init = FALSE;
  */
 
 static int
-region_row(int where) {
+region_row(int where)
+{
   int row;
 
   row = (where / 100) % 100;
@@ -45,7 +46,8 @@ region_row(int where) {
 
 
 static int
-region_col(int where) {
+region_col(int where)
+{
   int col;
 
   col = where % 100;
@@ -55,7 +57,8 @@ region_col(int where) {
 
 
 void
-determine_map_edges() {
+determine_map_edges()
+{
   int i;
   int row, col;
 
@@ -82,7 +85,8 @@ determine_map_edges() {
 
 
 int
-los_province_distance(int a, int b) {
+los_province_distance(int a, int b)
+{
   int ra, rb, r1, r2;
   int ca, cb, c1, c2;
   int d1, d2;
@@ -132,7 +136,8 @@ los_province_distance(int a, int b) {
  */
 
 int
-location_direction(int where, int dir) {
+location_direction(int where, int dir)
+{
   struct entity_loc *p;
 
   dir--;
@@ -146,7 +151,8 @@ location_direction(int where, int dir) {
 
 
 int
-exit_distance(int loc1, int loc2) {
+exit_distance(int loc1, int loc2)
+{
   int dist;
   int w_d;                      /* where depth */
   int d_d;                      /* dest depth */
@@ -257,7 +263,8 @@ exit_distance(int loc1, int loc2) {
 
 
 int
-is_port_city(int where) {
+is_port_city(int where)
+{
   int p;
   int n, s, e, w;
 
@@ -307,7 +314,8 @@ province_has_port_city(where)
 
 
 static int
-summer_uldim_open_now() {
+summer_uldim_open_now()
+{
   extern int month_done;
 
   if (oly_month(sysclock) >= 3 && oly_month(sysclock) <= 6)
@@ -322,7 +330,8 @@ summer_uldim_open_now() {
 
 static void
 add_province_exit(int who, int where, int dest, int dir,
-                  struct exit_view ***l) {
+                  struct exit_view ***l)
+{
   struct exit_view *v;
   int n;
 
@@ -455,7 +464,8 @@ add_province_exit(int who, int where, int dest, int dir,
 
 
 static void
-extra_routes(int who, int where, struct exit_view ***l) {
+extra_routes(int who, int where, struct exit_view ***l)
+{
   int i;
   int dest;
   struct exit_view *v;
@@ -509,7 +519,8 @@ extra_routes(int who, int where, struct exit_view ***l) {
  */
 
 static void
-province_exits(int who, int where, struct exit_view ***l) {
+province_exits(int who, int where, struct exit_view ***l)
+{
   int dir;
   int n;
 
@@ -522,7 +533,8 @@ province_exits(int who, int where, struct exit_view ***l) {
 
 
 static void
-province_sub_exits(int who, int where, struct exit_view ***l) {
+province_sub_exits(int who, int where, struct exit_view ***l)
+{
   int i;
   struct entity_subloc *p;
 
@@ -545,7 +557,8 @@ province_sub_exits(int who, int where, struct exit_view ***l) {
 
 
 static void
-subloc_exits(int who, int where, struct exit_view ***l) {
+subloc_exits(int who, int where, struct exit_view ***l)
+{
   int dir;
   int n;
   int i;
@@ -587,7 +600,8 @@ subloc_exits(int who, int where, struct exit_view ***l) {
  */
 
 static void
-ship_exits(int who, int ship, struct exit_view ***l) {
+ship_exits(int who, int ship, struct exit_view ***l)
+{
   int i;
   int outer_loc;
 
@@ -622,7 +636,8 @@ ship_exits(int who, int ship, struct exit_view ***l) {
 
 
 static void
-building_exits(int who, int where, struct exit_view ***l) {
+building_exits(int who, int where, struct exit_view ***l)
+{
   int i;
 
   if (is_ship_either(where))
@@ -639,7 +654,8 @@ building_exits(int who, int where, struct exit_view ***l) {
 
 
 struct exit_view **
-exits_from_loc(int who, int where) {
+exits_from_loc(int who, int where)
+{
   static struct exit_view **l = NULL;
   int i;
 
@@ -677,7 +693,8 @@ exits_from_loc(int who, int where) {
 
 
 struct exit_view **
-exits_from_loc_nsew(int who, int where) {
+exits_from_loc_nsew(int who, int where)
+{
   static struct exit_view **l = NULL;
   int i;
 
@@ -696,7 +713,8 @@ exits_from_loc_nsew(int who, int where) {
 
 
 struct exit_view **
-exits_from_loc_nsew_select(int who, int where, int land, int rand) {
+exits_from_loc_nsew_select(int who, int where, int land, int rand)
+{
   struct exit_view **l;
   static struct exit_view **ret = NULL;
   int i;
@@ -728,7 +746,8 @@ exits_from_loc_nsew_select(int who, int where, int land, int rand) {
  */
 
 int
-has_ocean_access(int where) {
+has_ocean_access(int where)
+{
   struct exit_view **l;
   int i;
   int ret = 0;
@@ -750,7 +769,8 @@ has_ocean_access(int where) {
 
 
 static void
-list_exit_extras(int who, struct exit_view *v) {
+list_exit_extras(int who, struct exit_view *v)
+{
 
   if (v->magic_barrier) {
     indent += 3;
@@ -786,7 +806,8 @@ list_exit_extras(int who, struct exit_view *v) {
  */
 
 static void
-list_exits_sup(int who, int where, struct exit_view *v, char *first) {
+list_exits_sup(int who, int where, struct exit_view *v, char *first)
+{
   char *ret = "";
   char *s;
 
@@ -837,7 +858,8 @@ list_exits_sup(int who, int where, struct exit_view *v, char *first) {
 
 
 static void
-list_road_sup(int who, int where, struct exit_view *v, char *first) {
+list_road_sup(int who, int where, struct exit_view *v, char *first)
+{
   char *dist;
   char *hid = "";
 
@@ -872,7 +894,8 @@ list_road_sup(int who, int where, struct exit_view *v, char *first) {
 
 
 void
-list_exits(int who, int where) {
+list_exits(int who, int where)
+{
   struct exit_view **l;
   int i;
   char first[LEN];
@@ -929,7 +952,8 @@ list_exits(int who, int where) {
 
 
 void
-list_sailable_routes(int who, int ship) {
+list_sailable_routes(int who, int ship)
+{
   char first[LEN];
   int outer_loc;
   struct exit_view **l;
@@ -965,7 +989,8 @@ list_sailable_routes(int who, int ship) {
 
 
 int
-count_hidden_exits(struct exit_view **l) {
+count_hidden_exits(struct exit_view **l)
+{
   int sum = 0;
   int i;
 
@@ -978,7 +1003,8 @@ count_hidden_exits(struct exit_view **l) {
 
 
 int
-hidden_count_to_index(int which, struct exit_view **l) {
+hidden_count_to_index(int which, struct exit_view **l)
+{
   int i;
 
   for (i = 0; i < ilist_len(l); i++) {
@@ -997,7 +1023,8 @@ hidden_count_to_index(int which, struct exit_view **l) {
 
 
 void
-find_hidden_exit(int who, struct exit_view **l, int which) {
+find_hidden_exit(int who, struct exit_view **l, int which)
+{
   int where = subloc(who);
 
   if (is_ship(where))

@@ -16,7 +16,8 @@
  * 
  */
 int
-is_holy_terrain(int n, int where) {
+is_holy_terrain(int n, int where)
+{
   int relig = is_priest(n);
   int ht = rp_relig_skill(relig)->terrain;
 
@@ -47,7 +48,8 @@ is_holy_terrain(int n, int where) {
  *
  */
 int
-has_holy_symbol(int who) {
+has_holy_symbol(int who)
+{
   struct item_ent *e;
   int found = 0;
 
@@ -76,7 +78,8 @@ has_holy_symbol(int who) {
  *  
  */
 int
-has_holy_plant(int who) {
+has_holy_plant(int who)
+{
   int found = FALSE;
   struct item_ent *e;
 
@@ -104,7 +107,8 @@ has_holy_plant(int who) {
  *
  */
 int
-is_member(int who, int relig) {
+is_member(int who, int relig)
+{
   if (!rp_char(who))
     return FALSE;
 
@@ -127,7 +131,8 @@ is_member(int who, int relig) {
  *
  */
 int
-has_piety(int who, int amount) {
+has_piety(int who, int amount)
+{
   if (!is_priest(who))
     return FALSE;
   return (rp_char(who)->religion.piety >= amount);
@@ -141,7 +146,8 @@ has_piety(int who, int amount) {
  *
  */
 int
-add_piety(int who, int amount, int use_limit) {
+add_piety(int who, int amount, int use_limit)
+{
   int religion = is_priest(who);
   int limit;
 
@@ -182,7 +188,8 @@ add_piety(int who, int amount, int use_limit) {
  *
  */
 int
-use_piety(int who, int amount) {
+use_piety(int who, int amount)
+{
   if (!is_priest(who))
     return FALSE;
   if (rp_char(who)->religion.piety < amount)
@@ -192,7 +199,8 @@ use_piety(int who, int amount) {
 };
 
 static int
-check_vision_target(struct command *c, int target) {
+check_vision_target(struct command *c, int target)
+{
 
   switch (kind(target)) {
   case T_char:
@@ -217,7 +225,8 @@ check_vision_target(struct command *c, int target) {
 
 
 int
-v_reveal_vision(struct command *c) {
+v_reveal_vision(struct command *c)
+{
   int target = c->a;
   struct char_magic *p;
 
@@ -234,7 +243,8 @@ v_reveal_vision(struct command *c) {
 
 
 int
-d_reveal_vision(struct command *c) {
+d_reveal_vision(struct command *c)
+{
   int target = c->a;
   struct char_magic *p;
 
@@ -278,7 +288,8 @@ d_reveal_vision(struct command *c) {
 
 
 int
-v_resurrect(struct command *c) {
+v_resurrect(struct command *c)
+{
   int body = c->a;
 
   if (is_temple(subloc(c->who)) != is_priest(c->who)) {
@@ -327,7 +338,8 @@ v_resurrect(struct command *c) {
 
 
 int
-d_resurrect(struct command *c) {
+d_resurrect(struct command *c)
+{
   int body = c->a;
 
   if (is_temple(subloc(c->who)) != is_priest(c->who)) {
@@ -383,7 +395,8 @@ d_resurrect(struct command *c) {
 
 
 int
-v_prep_ritual(struct command *c) {
+v_prep_ritual(struct command *c)
+{
 
   if (is_temple(subloc(c->who)) != is_priest(c->who)) {
     wout(c->who, "You must be in a temple to pray.");
@@ -395,7 +408,8 @@ v_prep_ritual(struct command *c) {
 
 
 int
-d_prep_ritual(struct command *c) {
+d_prep_ritual(struct command *c)
+{
   int chance;
   struct char_magic *p;
 
@@ -420,7 +434,8 @@ d_prep_ritual(struct command *c) {
 
 
 int
-v_last_rites(struct command *c) {
+v_last_rites(struct command *c)
+{
   int body = c->a;
   int follower;
 
@@ -468,7 +483,8 @@ v_last_rites(struct command *c) {
 
 
 int
-d_last_rites(struct command *c) {
+d_last_rites(struct command *c)
+{
   int body = c->a;
   int owner;
   char *old_name;
@@ -553,7 +569,8 @@ d_last_rites(struct command *c) {
 
 
 int
-v_remove_bless(struct command *c) {
+v_remove_bless(struct command *c)
+{
   int target = c->a;
 
   if (target == 0)
@@ -567,7 +584,8 @@ v_remove_bless(struct command *c) {
 
 
 int
-d_remove_bless(struct command *c) {
+d_remove_bless(struct command *c)
+{
   int has;
   int target = c->a;
 
@@ -600,7 +618,8 @@ d_remove_bless(struct command *c) {
  *
  */
 int
-v_heal(struct command *c) {
+v_heal(struct command *c)
+{
   int target = c->a;
 
   if (!check_char_here(c->who, target))
@@ -620,7 +639,8 @@ v_heal(struct command *c) {
 }
 
 int
-d_heal(struct command *c) {
+d_heal(struct command *c)
+{
   int target = c->a;
 
   if (!check_char_here(c->who, target))
@@ -662,7 +682,8 @@ d_heal(struct command *c) {
  *
  */
 int
-v_bless_follower(struct command *c) {
+v_bless_follower(struct command *c)
+{
   int target = c->a;
 
   if (!check_char_here(c->who, target)) {
@@ -719,7 +740,8 @@ v_bless_follower(struct command *c) {
  *
  */
 int
-v_proselytise(struct command *c) {
+v_proselytise(struct command *c)
+{
   int ret;
 
   ret = oly_parse(c, sout("collect %d %d %d", item_postulant, c->a, c->b));
@@ -735,7 +757,8 @@ v_proselytise(struct command *c) {
  *
  */
 int
-v_create_holy_symbol(struct command *c) {
+v_create_holy_symbol(struct command *c)
+{
   if (is_temple(subloc(c->who)) != is_priest(c->who)) {
     wout(c->who, "You must be in a temple to create a holy symbol.");
     return FALSE;
@@ -746,7 +769,8 @@ v_create_holy_symbol(struct command *c) {
 
 
 int
-d_create_holy_symbol(struct command *c) {
+d_create_holy_symbol(struct command *c)
+{
   char new_name[80];
   int new;
   struct entity_item *p;
@@ -788,7 +812,8 @@ d_create_holy_symbol(struct command *c) {
  *
  */
 int
-priest_in_stack(int who, int which) {
+priest_in_stack(int who, int which)
+{
   int i, found = 0;
   /*
    *  In case we get passed a 0..
@@ -812,7 +837,8 @@ priest_in_stack(int who, int which) {
  *
  */
 int
-check_loc_for_beasts(int where, int who) {
+check_loc_for_beasts(int where, int who)
+{
   int i, j, found = 0;
 
   loop_here(where, i) {
@@ -836,7 +862,8 @@ check_loc_for_beasts(int where, int who) {
  * 
  */
 int
-d_detect_beasts(struct command *c) {
+d_detect_beasts(struct command *c)
+{
   int where, found, i, j, k;
 
   /*
@@ -860,7 +887,8 @@ d_detect_beasts(struct command *c) {
 }
 
 int
-v_detect_beasts(struct command *c) {
+v_detect_beasts(struct command *c)
+{
   return TRUE;
 }
 
@@ -877,7 +905,8 @@ v_detect_beasts(struct command *c) {
  *
  */
 int
-v_find_mountain_trail(struct command *c) {
+v_find_mountain_trail(struct command *c)
+{
   /*
    *  Hang the effect.
    *
@@ -901,7 +930,8 @@ v_find_mountain_trail(struct command *c) {
  *
  */
 int
-d_obscure_mountain_trail(struct command *c) {
+d_obscure_mountain_trail(struct command *c)
+{
   if (subkind(province(c->who)) != sub_mountain) {
     wout(c->who, "You must be in a mountain province to obscure its trails.");
     return FALSE;
@@ -922,7 +952,8 @@ d_obscure_mountain_trail(struct command *c) {
 }
 
 int
-v_obscure_mountain_trail(struct command *c) {
+v_obscure_mountain_trail(struct command *c)
+{
   if (subkind(province(c->who)) != sub_mountain) {
     wout(c->who, "You must be in a mountain province to obscure its trails.");
     return FALSE;
@@ -939,7 +970,8 @@ v_obscure_mountain_trail(struct command *c) {
  *
  */
 int
-d_improve_mining(struct command *c) {
+d_improve_mining(struct command *c)
+{
   int where = subloc(c->who);
 
   if (subkind(where) != sub_mine_shaft) {
@@ -962,7 +994,8 @@ d_improve_mining(struct command *c) {
 }
 
 int
-v_improve_mining(struct command *c) {
+v_improve_mining(struct command *c)
+{
   int where = subloc(c->who);
 
   if (subkind(where) != sub_mine_shaft) {
@@ -981,7 +1014,8 @@ v_improve_mining(struct command *c) {
  *
  */
 int
-d_conceal_mine(struct command *c) {
+d_conceal_mine(struct command *c)
+{
   int where = subloc(c->who);
 
   if (subkind(where) != sub_mine_shaft) {
@@ -1012,7 +1046,8 @@ d_conceal_mine(struct command *c) {
 
 
 int
-v_conceal_mine(struct command *c) {
+v_conceal_mine(struct command *c)
+{
   int where = subloc(c->who);
 
   if (subkind(where) != sub_mine_shaft) {
@@ -1030,7 +1065,8 @@ v_conceal_mine(struct command *c) {
  *
  */
 int
-d_protect_mine(struct command *c) {
+d_protect_mine(struct command *c)
+{
   int where = subloc(c->who);
 
   if (subkind(where) != sub_mine_shaft) {
@@ -1054,7 +1090,8 @@ d_protect_mine(struct command *c) {
 }
 
 int
-v_protect_mine(struct command *c) {
+v_protect_mine(struct command *c)
+{
   int where = subloc(c->who);
 
   if (subkind(where) != sub_mine_shaft) {
@@ -1071,7 +1108,8 @@ v_protect_mine(struct command *c) {
  *
  */
 int
-d_bless_fort(struct command *c) {
+d_bless_fort(struct command *c)
+{
   int where = subloc(c->who);
 
   if (loc_depth(c->a) != LOC_build) {
@@ -1100,7 +1138,8 @@ d_bless_fort(struct command *c) {
 }
 
 int
-v_bless_fort(struct command *c) {
+v_bless_fort(struct command *c)
+{
   int where = subloc(c->who);
 
   if (loc_depth(c->a) != LOC_build) {
@@ -1123,7 +1162,8 @@ v_bless_fort(struct command *c) {
  *
  */
 int
-d_weaken_fort(struct command *c) {
+d_weaken_fort(struct command *c)
+{
   int where = subloc(c->who);
   int aura = c->b;
 
@@ -1167,7 +1207,8 @@ d_weaken_fort(struct command *c) {
 }
 
 int
-v_weaken_fort(struct command *c) {
+v_weaken_fort(struct command *c)
+{
   int where = subloc(c->who);
   int aura = c->b;
 
@@ -1200,7 +1241,8 @@ v_weaken_fort(struct command *c) {
  *
  */
 int
-d_generic_trap(struct command *c) {
+d_generic_trap(struct command *c)
+{
   int i;
 
   /*
@@ -1247,7 +1289,8 @@ d_generic_trap(struct command *c) {
 }
 
 int
-v_generic_trap(struct command *c) {
+v_generic_trap(struct command *c)
+{
   int i;
 
   /*
@@ -1285,7 +1328,8 @@ v_generic_trap(struct command *c) {
  *
  */
 int
-v_find_forest_trail(struct command *c) {
+v_find_forest_trail(struct command *c)
+{
   /*
    *  Hang the effect.
    *
@@ -1309,7 +1353,8 @@ v_find_forest_trail(struct command *c) {
  *
  */
 int
-d_obscure_forest_trail(struct command *c) {
+d_obscure_forest_trail(struct command *c)
+{
   if (subkind(province(c->who)) != sub_forest) {
     wout(c->who, "You must be in a forest province to obscure its trails.");
     return FALSE;
@@ -1331,7 +1376,8 @@ d_obscure_forest_trail(struct command *c) {
 }
 
 int
-v_obscure_forest_trail(struct command *c) {
+v_obscure_forest_trail(struct command *c)
+{
   if (subkind(province(c->who)) != sub_forest) {
     wout(c->who, "You must be in a forest province to obscure its trails.");
     return FALSE;
@@ -1348,7 +1394,8 @@ v_obscure_forest_trail(struct command *c) {
  *
  */
 int
-d_improve_logging(struct command *c) {
+d_improve_logging(struct command *c)
+{
   int where = subloc(c->who);
   int target;
 
@@ -1391,7 +1438,8 @@ d_improve_logging(struct command *c) {
 }
 
 int
-v_improve_logging(struct command *c) {
+v_improve_logging(struct command *c)
+{
   int where = subloc(c->who), target;
 
   target = c->a | where;
@@ -1419,7 +1467,8 @@ v_improve_logging(struct command *c) {
  *
  */
 int
-d_find_hidden_features(struct command *c) {
+d_find_hidden_features(struct command *c)
+{
   struct exit_view **l;
   int where = subloc(c->who), hidden_exits, i;
 
@@ -1454,7 +1503,8 @@ d_find_hidden_features(struct command *c) {
 }
 
 int
-v_find_hidden_features(struct command *c) {
+v_find_hidden_features(struct command *c)
+{
   if (!is_holy_terrain(c->who, province(c->who))) {
     wout(c->who,
          "You must be in your holy terrain to reveal hidden features.");
@@ -1472,7 +1522,8 @@ v_find_hidden_features(struct command *c) {
  *
  */
 int
-d_improve_fort(struct command *c) {
+d_improve_fort(struct command *c)
+{
   int where = subloc(c->who);
 
   if (loc_depth(c->a) != LOC_build) {
@@ -1501,7 +1552,8 @@ d_improve_fort(struct command *c) {
 }
 
 int
-v_improve_fort(struct command *c) {
+v_improve_fort(struct command *c)
+{
   int where = subloc(c->who);
 
   if (loc_depth(c->a) != LOC_build) {
@@ -1526,7 +1578,8 @@ v_improve_fort(struct command *c) {
  *
  */
 int
-d_recruit_elves(struct command *c) {
+d_recruit_elves(struct command *c)
+{
   int qty;
 
   if (!is_holy_terrain(c->who, province(c->who))) {
@@ -1542,7 +1595,8 @@ d_recruit_elves(struct command *c) {
 }
 
 int
-v_recruit_elves(struct command *c) {
+v_recruit_elves(struct command *c)
+{
   if (!is_holy_terrain(c->who, province(c->who))) {
     wout(c->who, "You must be in your holy terrain to recruit elves.");
     return FALSE;
@@ -1565,7 +1619,8 @@ v_recruit_elves(struct command *c) {
  *
  */
 int
-d_improve_quarrying(struct command *c) {
+d_improve_quarrying(struct command *c)
+{
   int target = province(c->who);
 
   /*
@@ -1583,7 +1638,8 @@ d_improve_quarrying(struct command *c) {
 }
 
 int
-v_improve_quarrying(struct command *c) {
+v_improve_quarrying(struct command *c)
+{
   return TRUE;
 }
 
@@ -1595,7 +1651,8 @@ v_improve_quarrying(struct command *c) {
  *
  */
 int
-d_improve_smithing(struct command *c) {
+d_improve_smithing(struct command *c)
+{
   int target = c->a;
 
   if (!valid_box(target) || !rp_char(target)) {
@@ -1629,7 +1686,8 @@ d_improve_smithing(struct command *c) {
 }
 
 int
-v_improve_smithing(struct command *c) {
+v_improve_smithing(struct command *c)
+{
   int target = c->a;
 
   if (!valid_box(target) || !rp_char(target)) {
@@ -1654,7 +1712,8 @@ v_improve_smithing(struct command *c) {
  *
  */
 int
-d_edge_of_kireus(struct command *c) {
+d_edge_of_kireus(struct command *c)
+{
   /*
    *  Add an effect to the priest.
    *
@@ -1671,7 +1730,8 @@ d_edge_of_kireus(struct command *c) {
 };
 
 int
-v_edge_of_kireus(struct command *c) {
+v_edge_of_kireus(struct command *c)
+{
   return TRUE;
 };
 
@@ -1683,7 +1743,8 @@ v_edge_of_kireus(struct command *c) {
  *
  */
 int
-d_create_mithril(struct command *c) {
+d_create_mithril(struct command *c)
+{
   if (has_item(c->who, item_iron) < 10) {
     wout(c->who, "Creating mithril requires 10 units iron.");
     return FALSE;
@@ -1707,7 +1768,8 @@ d_create_mithril(struct command *c) {
 };
 
 int
-v_create_mithril(struct command *c) {
+v_create_mithril(struct command *c)
+{
   if (has_item(c->who, item_iron) < 10) {
     wout(c->who, "Creating mithril requires 10 units iron.");
     return FALSE;
@@ -1737,7 +1799,8 @@ v_create_mithril(struct command *c) {
  *
  */
 int
-d_enchant_guard(struct command *c) {
+d_enchant_guard(struct command *c)
+{
   int target = c->a;
 
   if (!valid_box(target) || !rp_char(target)) {
@@ -1779,7 +1842,8 @@ d_enchant_guard(struct command *c) {
 };
 
 int
-v_enchant_guard(struct command *c) {
+v_enchant_guard(struct command *c)
+{
   int target = c->a;
 
   if (!valid_box(target) || !rp_char(target)) {
@@ -1805,7 +1869,8 @@ v_enchant_guard(struct command *c) {
  *
  */
 int
-d_urchin_spy(struct command *c) {
+d_urchin_spy(struct command *c)
+{
   int target = c->a;
 
   if (!valid_box(target) || !rp_char(target)) {
@@ -1852,7 +1917,8 @@ d_urchin_spy(struct command *c) {
 };
 
 int
-v_urchin_spy(struct command *c) {
+v_urchin_spy(struct command *c)
+{
   int target = c->a;
 
   if (!valid_box(target) || !rp_char(target)) {
@@ -1879,7 +1945,8 @@ v_urchin_spy(struct command *c) {
 };
 
 int
-d_draw_crowds(struct command *c) {
+d_draw_crowds(struct command *c)
+{
 
   if (!is_holy_terrain(c->who, subloc(c->who))) {
     wout(c->who, "You must be in your holy terrain to use this prayer.");
@@ -1917,7 +1984,8 @@ d_draw_crowds(struct command *c) {
 };
 
 int
-v_draw_crowds(struct command *c) {
+v_draw_crowds(struct command *c)
+{
   if (!is_holy_terrain(c->who, subloc(c->who))) {
     wout(c->who, "You must be in your holy terrain to use this prayer.");
     return FALSE;
@@ -1939,7 +2007,8 @@ v_draw_crowds(struct command *c) {
  *
  */
 int
-d_arrange_mugging(struct command *c) {
+d_arrange_mugging(struct command *c)
+{
   int target = c->a;
   int loss;
 
@@ -1994,7 +2063,8 @@ d_arrange_mugging(struct command *c) {
 };
 
 int
-v_arrange_mugging(struct command *c) {
+v_arrange_mugging(struct command *c)
+{
   int target = c->a;
 
   if (!valid_box(target) || !rp_char(target)) {
@@ -2021,7 +2091,8 @@ v_arrange_mugging(struct command *c) {
  */
 
 int
-d_calm_peasants(struct command *c) {
+d_calm_peasants(struct command *c)
+{
   /*
    *  Go through everyone in this location.  If they're an angry
    *  mob, then disperse them.  If their angry peasants in the
@@ -2078,7 +2149,8 @@ d_calm_peasants(struct command *c) {
  *
  */
 int
-d_improve_charisma(struct command *c) {
+d_improve_charisma(struct command *c)
+{
   int target = c->a;
   int loss;
 
@@ -2115,7 +2187,8 @@ d_improve_charisma(struct command *c) {
 };
 
 int
-v_improve_charisma(struct command *c) {
+v_improve_charisma(struct command *c)
+{
   int target = c->a;
 
   if (!valid_box(target) || !rp_char(target)) {
@@ -2143,7 +2216,8 @@ v_improve_charisma(struct command *c) {
  *
  */
 int
-d_mesmerize_crowd(struct command *c) {
+d_mesmerize_crowd(struct command *c)
+{
   /*
    *  Go through everyone in this location.  If they're not
    *  a priest or wild animals, then give them a 35% chance
@@ -2188,7 +2262,8 @@ d_mesmerize_crowd(struct command *c) {
  *
  */
 int
-d_improve_taxes(struct command *c) {
+d_improve_taxes(struct command *c)
+{
   int where = province(c->who);
 
   if (!add_effect(where, ef_improve_taxes, 0, 30, 1)) {
@@ -2207,7 +2282,8 @@ d_improve_taxes(struct command *c) {
  */
 
 int
-d_guard_loyalty(struct command *c) {
+d_guard_loyalty(struct command *c)
+{
   int target = c->a;
 
   if (!valid_box(target) || !rp_char(target)) {
@@ -2235,7 +2311,8 @@ d_guard_loyalty(struct command *c) {
  *
  */
 int
-d_instill_fanaticism(struct command *c) {
+d_instill_fanaticism(struct command *c)
+{
   int num = c->a;
 
   if (num < 1 || num > 10)
@@ -2258,7 +2335,8 @@ d_instill_fanaticism(struct command *c) {
 };
 
 int
-v_instill_fanaticism(struct command *c) {
+v_instill_fanaticism(struct command *c)
+{
   int num = c->a;
 
   if (num < 1 || num > 10)
@@ -2287,7 +2365,8 @@ v_instill_fanaticism(struct command *c) {
  *
  */
 int
-d_find_all_hidden_features(struct command *c) {
+d_find_all_hidden_features(struct command *c)
+{
   struct exit_view **l;
   int where = subloc(c->who), hidden_exits, i;
 
@@ -2323,7 +2402,8 @@ d_find_all_hidden_features(struct command *c) {
  *
  */
 int
-d_conceal_location(struct command *c) {
+d_conceal_location(struct command *c)
+{
   int where = subloc(c->who);
 
   if ((where != c->a) && (province(c->who) != province(c->a))) {
@@ -2362,7 +2442,8 @@ d_conceal_location(struct command *c) {
 
 
 int
-v_conceal_location(struct command *c) {
+v_conceal_location(struct command *c)
+{
   int where = subloc(c->who);
 
   if ((where != c->a) && (province(c->who) != province(c->a))) {
@@ -2390,7 +2471,8 @@ v_conceal_location(struct command *c) {
  *
  */
 int
-d_create_ninja(struct command *c) {
+d_create_ninja(struct command *c)
+{
   int num = c->a;
 
   if (num < 1 || num > 10)
@@ -2413,7 +2495,8 @@ d_create_ninja(struct command *c) {
 };
 
 int
-v_create_ninja(struct command *c) {
+v_create_ninja(struct command *c)
+{
   int num = c->a;
 
   if (num < 1 || num > 10)
@@ -2433,7 +2516,8 @@ v_create_ninja(struct command *c) {
  *
  */
 int
-d_create_mist(struct command *c) {
+d_create_mist(struct command *c)
+{
   /*
    *  Do it.
    *
@@ -2453,7 +2537,8 @@ d_create_mist(struct command *c) {
  *
  */
 int
-d_gather_holy_plant(struct command *c) {
+d_gather_holy_plant(struct command *c)
+{
   if (!is_holy_terrain(c->who, subloc(c->who))) {
     wout(c->who, "You must be in your holy terrain to use this prayer.");
     return FALSE;
@@ -2472,7 +2557,8 @@ d_gather_holy_plant(struct command *c) {
 };
 
 int
-v_gather_holy_plant(struct command *c) {
+v_gather_holy_plant(struct command *c)
+{
   if (!is_holy_terrain(c->who, subloc(c->who))) {
     wout(c->who, "You must be in your holy terrain to use this prayer.");
     return FALSE;
@@ -2494,7 +2580,8 @@ v_gather_holy_plant(struct command *c) {
  *
  */
 int
-v_dedicate_temple(struct command *c) {
+v_dedicate_temple(struct command *c)
+{
   int where = subloc(c->who);
   int i;
 
@@ -2543,7 +2630,8 @@ v_dedicate_temple(struct command *c) {
 };
 
 int
-d_dedicate_temple(struct command *c) {
+d_dedicate_temple(struct command *c)
+{
   int where = subloc(c->who), i;
   struct entity_subloc *p = rp_subloc(where);
 
@@ -2621,7 +2709,8 @@ d_dedicate_temple(struct command *c) {
  *
  */
 int
-v_hinder_med_b(struct command *c) {
+v_hinder_med_b(struct command *c)
+{
   int target = c->a;
 
   if (crosses_ocean(c->who, target)) {
@@ -2636,7 +2725,8 @@ v_hinder_med_b(struct command *c) {
 };
 
 int
-d_hinder_med_b(struct command *c) {
+d_hinder_med_b(struct command *c)
+{
   int target = c->a;
   struct char_magic *p;
 
@@ -2657,7 +2747,8 @@ d_hinder_med_b(struct command *c) {
 };
 
 int
-v_vision_reg(struct command *c) {
+v_vision_reg(struct command *c)
+{
   int target = c->a;
 
   if (province(target) != target) {
@@ -2674,7 +2765,8 @@ v_vision_reg(struct command *c) {
 };
 
 int
-d_vision_reg(struct command *c) {
+d_vision_reg(struct command *c)
+{
   int target = c->a;
 
   if (province(target) != target) {

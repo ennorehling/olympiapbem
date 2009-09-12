@@ -39,7 +39,8 @@
  */
 
 int
-garrison_here(int where) {
+garrison_here(int where)
+{
   int n;
 
   n = first_character(where);
@@ -52,7 +53,8 @@ garrison_here(int where) {
 
 
 int
-province_admin(int n) {
+province_admin(int n)
+{
   int garr;
   int castle;
 
@@ -77,7 +79,8 @@ province_admin(int n) {
 
 
 int
-top_ruler(int n) {
+top_ruler(int n)
+{
   return province_admin(n);
 }
 
@@ -88,7 +91,8 @@ top_ruler(int n) {
  */
 
 static int
-pledged_beneath(int a, int b) {
+pledged_beneath(int a, int b)
+{
 
   assert(kind(a) == T_char);
   assert(kind(b) == T_char);
@@ -108,7 +112,8 @@ pledged_beneath(int a, int b) {
 
 #if 0
 int
-may_rule_here(int who, int where) {
+may_rule_here(int who, int where)
+{
   int pl = player(who);
   int i;
   int ret = FALSE;
@@ -138,14 +143,16 @@ may_rule_here(int who, int where) {
  *
  */
 int
-may_rule_here(int who, int where) {
+may_rule_here(int who, int where)
+{
   return will_admit(province_admin(province(where)),
                     province_admin(province(where)), who);
 }
 
 #if 0
 ilist
-players_who_rule_here(int where) {
+players_who_rule_here(int where)
+{
   static ilist l = NULL;
   int i;
   int pl;
@@ -175,7 +182,8 @@ players_who_rule_here(int where) {
 
 #if 0
 void
-touch_garrison_locs() {
+touch_garrison_locs()
+{
   int garr;
   int where;
   int owner;
@@ -194,7 +202,8 @@ touch_garrison_locs() {
 
 
 static int
-new_province_garrison(int where, int castle) {
+new_province_garrison(int where, int castle)
+{
   int new;
 
   new = new_char(sub_garrison, 0, where, -1, garr_pl, LOY_npc, 0, "Garrison");
@@ -217,7 +226,8 @@ new_province_garrison(int where, int castle) {
 
 
 int
-v_garrison(struct command *c) {
+v_garrison(struct command *c)
+{
   int castle = c->a;
   int where = subloc(c->who);
   int new;
@@ -299,7 +309,8 @@ v_garrison(struct command *c) {
 
 #if 0
 int
-v_pledge(struct command *c) {
+v_pledge(struct command *c)
+{
   int target = c->a;
 
   if (target == c->who) {
@@ -340,7 +351,8 @@ v_pledge(struct command *c) {
 #endif
 
 static int
-nprovs_to_rank(int n) {
+nprovs_to_rank(int n)
+{
 
   if (n == 0)
     return 0;
@@ -362,7 +374,8 @@ nprovs_to_rank(int n) {
 
 
 char *
-rank_s(int who) {
+rank_s(int who)
+{
   int n = char_rank(who);
 
   switch (n) {
@@ -394,7 +407,8 @@ rank_s(int who) {
 
 
 static void
-find_kings() {
+find_kings()
+{
   int reg;
   int where;
   int ruler;
@@ -447,7 +461,8 @@ find_kings() {
  */
 
 void
-determine_noble_ranks() {
+determine_noble_ranks()
+{
   int garr;
   int owner;
   int who, i, j;
@@ -500,7 +515,8 @@ determine_noble_ranks() {
 
 
 int
-garrison_notices(int garr, int target) {
+garrison_notices(int garr, int target)
+{
   struct entity_misc *p;
 
   if (is_npc(target) ||
@@ -517,7 +533,8 @@ garrison_notices(int garr, int target) {
 
 
 int
-garrison_spot_check(int garr, int target) {
+garrison_spot_check(int garr, int target)
+{
   int i;
   int found = FALSE;
   struct entity_misc *p;
@@ -544,7 +561,8 @@ garrison_spot_check(int garr, int target) {
 
 
 static char *
-garr_own_s(int garr) {
+garr_own_s(int garr)
+{
   static char buf[LEN];
 
   *buf = '\0';
@@ -555,7 +573,8 @@ garr_own_s(int garr) {
 
 
 void
-garrison_summary(int pl) {
+garrison_summary(int pl)
+{
   int garr;
   static ilist l = NULL;
   int i;
@@ -667,7 +686,8 @@ garrison_summary(int pl) {
 
 
 int
-v_decree_watch(struct command *c) {
+v_decree_watch(struct command *c)
+{
   int garr;
   int target = c->a;
   struct entity_misc *p;
@@ -715,7 +735,8 @@ v_decree_watch(struct command *c) {
 
 
 int
-v_decree_hostile(struct command *c) {
+v_decree_hostile(struct command *c)
+{
   int garr;
   int target = c->a;
   struct entity_misc *p;
@@ -769,7 +790,8 @@ static char *decree_tags[] = {
 
 
 int
-v_decree(struct command *c) {
+v_decree(struct command *c)
+{
   int tag;
 
   if (numargs(c) < 1) {
@@ -798,7 +820,8 @@ v_decree(struct command *c) {
 }
 
 void
-ping_garrisons() {
+ping_garrisons()
+{
   int garr;
   int where;
 
@@ -822,7 +845,8 @@ ping_garrisons() {
 
 
 int
-v_ungarrison(struct command *c) {
+v_ungarrison(struct command *c)
+{
   int garr = c->a;
   int where = subloc(c->who);
   struct item_ent *e;

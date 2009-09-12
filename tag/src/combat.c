@@ -38,7 +38,8 @@ static struct fight **defense_side;     /* The side "defending" */
 #define		FK_noble	-2
 
 
-struct fight {
+struct fight
+{
   int unit;                     /* what unit are we in */
   int kind;                     /* item type or FK_xxx */
   int sav_num;                  /* original health or count */
@@ -85,7 +86,8 @@ struct fight {
 };
 
 
-struct wield {
+struct wield
+{
   int attack;
   int defense;
   int missile;
@@ -129,7 +131,8 @@ combat_comp(a, b)
  */
 static int special_attack_banner = 0;
 void
-print_special_banner() {
+print_special_banner()
+{
   if (!special_attack_banner) {
     wout(VECT, "  Special attacks phase:");
     special_attack_banner = 1;
@@ -137,7 +140,8 @@ print_special_banner() {
 };
 
 static int
-cannot_take_prisoners(int who) {
+cannot_take_prisoners(int who)
+{
 
   if (only_defeatable(who))
     return TRUE;
@@ -155,7 +159,8 @@ cannot_take_prisoners(int who) {
 
 
 int
-cannot_take_booty(int who) {
+cannot_take_booty(int who)
+{
 
 #if 0
   if (is_npc(who))
@@ -170,7 +175,8 @@ cannot_take_booty(int who) {
 
 
 int
-v_behind(struct command *c) {
+v_behind(struct command *c)
+{
   int num = c->a;
   char *s = "";
 
@@ -191,7 +197,8 @@ v_behind(struct command *c) {
 
 
 static void
-execute_prisoner(int who, int pris) {
+execute_prisoner(int who, int pris)
+{
 
   vector_stack(who, TRUE);
   wout(VECT, "%s executes %s!", box_name(who), box_name(pris));
@@ -206,7 +213,8 @@ execute_prisoner(int who, int pris) {
 
 
 int
-v_execute(struct command *c) {
+v_execute(struct command *c)
+{
   int pris = c->a;
   int first = TRUE;
 
@@ -234,7 +242,8 @@ v_execute(struct command *c) {
 }
 
 static int
-fort_covers(int n) {
+fort_covers(int n)
+{
   switch (subkind(n)) {
   case sub_castle:
     return 500;
@@ -294,7 +303,8 @@ fort_covers(int n) {
 
 
 static int
-is_siege_engine(int item) {
+is_siege_engine(int item)
+{
 
   switch (item) {
   case item_battering_ram:
@@ -308,7 +318,8 @@ is_siege_engine(int item) {
 
 
 static int
-siege_engine_useful(struct fight **l) {
+siege_engine_useful(struct fight **l)
+{
 
   assert(ilist_len(l) > 0);
 
@@ -320,7 +331,8 @@ siege_engine_useful(struct fight **l) {
 
 
 static int
-lead_char_pos(struct fight **l) {
+lead_char_pos(struct fight **l)
+{
 
   assert(ilist_len(l) > 0);
 
@@ -337,7 +349,8 @@ lead_char_pos(struct fight **l) {
 
 
 static int
-lead_char(struct fight **l) {
+lead_char(struct fight **l)
+{
   int i;
 
   i = lead_char_pos(l);
@@ -362,7 +375,8 @@ lead_char(struct fight **l) {
 
 
 static void
-dump_fighters(struct fight **l) {
+dump_fighters(struct fight **l)
+{
   int i;
   char *s;
 
@@ -388,7 +402,8 @@ dump_fighters(struct fight **l) {
  */
 
 static int
-who_protects(struct fight **l, int pos) {
+who_protects(struct fight **l, int pos)
+{
   int i = pos;
 
   while (i >= 0 && l[i]->kind != FK_noble)
@@ -403,7 +418,8 @@ who_protects(struct fight **l, int pos) {
 
 
 static void
-init_prot(struct fight **l) {
+init_prot(struct fight **l)
+{
   int i;
 
   for (i = 0; i < ilist_len(l); i++) {
@@ -470,7 +486,8 @@ init_prot(struct fight **l) {
  */
 
 int
-find_wield(struct wield *w, int who, struct fight *f) {
+find_wield(struct wield *w, int who, struct fight *f)
+{
   struct item_ent *e;
   int n;
   int attack_max = -1;
@@ -535,7 +552,8 @@ find_wield(struct wield *w, int who, struct fight *f) {
 
 
 char *
-wield_s(int who) {
+wield_s(int who)
+{
   static char buf[LEN];
   struct wield w;
 
@@ -575,7 +593,8 @@ wield_s(int who) {
 
 
 static void
-init_attack_defense(struct fight **l) {
+init_attack_defense(struct fight **l)
+{
   int i;
   struct fight *f;
   int mk;
@@ -668,7 +687,8 @@ init_attack_defense(struct fight **l) {
 
 static void
 add_to_fight_list(struct fight ***l, int unit, int kind, int num,
-                  int ally, int inside) {
+                  int ally, int inside)
+{
   struct fight *new;
 
 /*
@@ -723,7 +743,8 @@ add_to_fight_list(struct fight ***l, int unit, int kind, int num,
    *
    */
 int
-calc_man_limit(int who, int defender) {
+calc_man_limit(int who, int defender)
+{
   struct skill_ent *p;
   int man_limit = 0;
   int art;
@@ -798,7 +819,8 @@ calc_man_limit(int who, int defender) {
  *
  */
 int
-calc_beast_limit(int who, int defender) {
+calc_beast_limit(int who, int defender)
+{
   struct skill_ent *p;
   int beast_limit;
   int art;
@@ -836,7 +858,8 @@ calc_beast_limit(int who, int defender) {
 };
 
 static void
-add_fighters(struct fight ***l, int who, int ally, int inside, int defender) {
+add_fighters(struct fight ***l, int who, int ally, int inside, int defender)
+{
   struct item_ent *e;
   int use_beasts = FALSE;
   int man_limit = 0, beast_limit = 0, num;
@@ -902,7 +925,8 @@ add_fighters(struct fight ***l, int who, int ally, int inside, int defender) {
 
 
 static void
-add_fight_stack(struct fight ***l, int who, int ally, int defender) {
+add_fight_stack(struct fight ***l, int who, int ally, int defender)
+{
   int i;
   int inside = FALSE;
 
@@ -927,7 +951,8 @@ add_fight_stack(struct fight ***l, int who, int ally, int defender) {
  *
  */
 static int
-contains_unit(struct fight **l, int unit) {
+contains_unit(struct fight **l, int unit)
+{
   int i;
 
   for (i = 0; i < ilist_len(l); i++)
@@ -943,7 +968,8 @@ contains_unit(struct fight **l, int unit) {
  */
 static void
 look_for_allies(struct fight ***l, int where, int def1, int def2, int
-                attacker, int defender, struct fight **l_a) {
+                attacker, int defender, struct fight **l_a)
+{
   int i;
   ilist tmp;
 
@@ -981,7 +1007,8 @@ look_for_allies(struct fight ***l, int where, int def1, int def2, int
  *
  */
 int
-loc_target(int target) {
+loc_target(int target)
+{
   int who = 0;
 
   if (subkind(target) == sub_city &&
@@ -1016,7 +1043,8 @@ loc_target(int target) {
  */
 
 static struct fight **
-construct_fight_list(int target, int attacker, int defender) {
+construct_fight_list(int target, int attacker, int defender)
+{
   struct fight **l = NULL;
   int who = 0;
 
@@ -1058,7 +1086,8 @@ construct_fight_list(int target, int attacker, int defender) {
 
 static struct fight **
 construct_guard_fight_list(int target, int attacker, struct fight
-                           **l_a, int defender) {
+                           **l_a, int defender)
+{
   struct fight **l = NULL;
   int i;
   int where = subloc(target);
@@ -1091,7 +1120,8 @@ construct_guard_fight_list(int target, int attacker, struct fight
 
 
 static void
-ready_fight_list(struct fight **l) {
+ready_fight_list(struct fight **l)
+{
 
   init_prot(l);
   init_attack_defense(l);
@@ -1099,7 +1129,8 @@ ready_fight_list(struct fight **l) {
 
 
 static void
-reclaim_fight_list(struct fight ***l) {
+reclaim_fight_list(struct fight ***l)
+{
   int i;
 
   for (i = 0; i < ilist_len(*l); i++)
@@ -1110,7 +1141,8 @@ reclaim_fight_list(struct fight ***l) {
 
 
 static int
-advance_behind(struct fight **l) {
+advance_behind(struct fight **l)
+{
   int i;
   int least = 0;
 
@@ -1138,7 +1170,8 @@ advance_behind(struct fight **l) {
 
 
 static int
-num_targets(struct fight *f, struct fight **enemy) {
+num_targets(struct fight *f, struct fight **enemy)
+{
 
   if (f->kind == FK_fort && f->num > 0)
     return 1;
@@ -1151,7 +1184,8 @@ num_targets(struct fight *f, struct fight **enemy) {
 
 
 static int
-num_valid_targets(struct fight *f, struct fight **enemy) {
+num_valid_targets(struct fight *f, struct fight **enemy)
+{
 
   if (f->nprot > 0 || f->behind)
     return 0;
@@ -1160,7 +1194,8 @@ num_valid_targets(struct fight *f, struct fight **enemy) {
 }
 
 static int
-num_non_damage(struct fight *f) {
+num_non_damage(struct fight *f)
+{
 
   if (f->kind == FK_fort)
     return 0;
@@ -1170,7 +1205,8 @@ num_non_damage(struct fight *f) {
 
 
 static int
-total_non_damage(struct fight **l) {
+total_non_damage(struct fight **l)
+{
   int i;
   int sum = 0;
 
@@ -1182,7 +1218,8 @@ total_non_damage(struct fight **l) {
 
 
 static int
-combat_sum(struct fight *f) {
+combat_sum(struct fight *f)
+{
 
   if (f->kind == FK_fort || is_siege_engine(f->kind))
     return 0;
@@ -1194,7 +1231,8 @@ combat_sum(struct fight *f) {
 
 
 static int
-total_combat_sum(struct fight **l) {
+total_combat_sum(struct fight **l)
+{
   int i;
   int sum = 0;
 
@@ -1218,7 +1256,8 @@ total_combat_sum(struct fight **l) {
  *
  */
 static int
-special_combat_sum(struct fight *f) {
+special_combat_sum(struct fight *f)
+{
 
   if (f->kind == FK_fort || is_siege_engine(f->kind))
     return 0;
@@ -1232,7 +1271,8 @@ special_combat_sum(struct fight *f) {
 }
 
 static int
-special_total_combat_sum(struct fight **l) {
+special_total_combat_sum(struct fight **l)
+{
   int i;
   int sum = 0;
 
@@ -1258,7 +1298,8 @@ special_total_combat_sum(struct fight **l) {
  */
 
 static void
-decrement_num(struct fight **l, struct fight *attacker, struct fight *g) {
+decrement_num(struct fight **l, struct fight *attacker, struct fight *g)
+{
   int hit;
 
   /*
@@ -1319,7 +1360,8 @@ decrement_num(struct fight **l, struct fight *attacker, struct fight *g) {
  *
  */
 static int
-contains_priest(struct fight **l) {
+contains_priest(struct fight **l)
+{
   int i;
 
   for (i = 0; i < ilist_len(l); i++)
@@ -1336,7 +1378,8 @@ contains_priest(struct fight **l) {
  *
  */
 static int
-contains_mu_or_undead(struct fight **l) {
+contains_mu_or_undead(struct fight **l)
+{
   int i;
 
   for (i = 0; i < ilist_len(l); i++) {
@@ -1363,7 +1406,8 @@ contains_mu_or_undead(struct fight **l) {
  *
  */
 static int
-num_defenders(struct fight *f, struct fight **enemy, int type) {
+num_defenders(struct fight *f, struct fight **enemy, int type)
+{
   /*
    *  Protected don't defend.
    *
@@ -1409,7 +1453,8 @@ num_defenders(struct fight *f, struct fight **enemy, int type) {
  *
  */
 static int
-total_defenders(struct fight **l, struct fight **enemy, int type) {
+total_defenders(struct fight **l, struct fight **enemy, int type)
+{
   int i, sum = 0;
 
   for (i = 0; i < ilist_len(l); i++)
@@ -1439,7 +1484,8 @@ total_defenders(struct fight **l, struct fight **enemy, int type) {
  *
  */
 static int
-has_magic_combat_attack(int who) {
+has_magic_combat_attack(int who)
+{
   int num_attacks = 0;
 
   struct skill_ent *e;
@@ -1458,7 +1504,8 @@ has_magic_combat_attack(int who) {
  *
  */
 static struct fight *
-toughest_defender(struct fight **l, struct fight **enemy, int type) {
+toughest_defender(struct fight **l, struct fight **enemy, int type)
+{
   int i;
   int toughest = 0, best_attack = 0;
   struct fight *ret = NULL;
@@ -1486,7 +1533,8 @@ toughest_defender(struct fight **l, struct fight **enemy, int type) {
  *
  */
 static struct fight *
-find_defender(struct fight **l, int man, struct fight **enemy, int type) {
+find_defender(struct fight **l, int man, struct fight **enemy, int type)
+{
   int i;
 
   for (i = 0; i < ilist_len(l); i++) {
@@ -1518,7 +1566,8 @@ resolve_hit(struct fight **l_a, struct fight *f,
  */
 static int
 do_magic_combat_attack(struct fight **l_a, struct fight *f,
-                       struct fight **l_b, int skill) {
+                       struct fight **l_b, int skill)
+{
   struct fight *g;
   int man, sum = 0, i, num_defend;
   int max_raise = 10;
@@ -1653,7 +1702,8 @@ do_magic_combat_attack(struct fight **l_a, struct fight *f,
  */
 static int
 do_magic_combat_attacks(struct fight **l_a, struct fight *f,
-                        struct fight **l_b) {
+                        struct fight **l_b)
+{
   int sum = 0;
 
   struct skill_ent *e;
@@ -1675,7 +1725,8 @@ do_magic_combat_attacks(struct fight **l_a, struct fight *f,
  *
  */
 static int
-do_fiery_attack(struct fight **l_a, struct fight *f, struct fight **l_b) {
+do_fiery_attack(struct fight **l_a, struct fight *f, struct fight **l_b)
+{
   struct item_ent *e;
   struct fight *g;
   int i, sum = 0, man, num_defend, j;
@@ -1716,7 +1767,8 @@ do_fiery_attack(struct fight **l_a, struct fight *f, struct fight **l_b) {
  *
  */
 static int
-num_attackers(struct fight *f, struct fight **enemy, int type) {
+num_attackers(struct fight *f, struct fight **enemy, int type)
+{
   /*
    *  Forts never attack
    *
@@ -1769,7 +1821,8 @@ num_attackers(struct fight *f, struct fight **enemy, int type) {
  *
  */
 static int
-total_attackers(struct fight **l, struct fight **enemy, int type) {
+total_attackers(struct fight **l, struct fight **enemy, int type)
+{
   int i, sum = 0;
 
   for (i = 0; i < ilist_len(l); i++)
@@ -1795,7 +1848,8 @@ total_attackers(struct fight **l, struct fight **enemy, int type) {
  *
  */
 static struct fight *
-find_attacker(struct fight **l, int man, struct fight **enemy, int type) {
+find_attacker(struct fight **l, int man, struct fight **enemy, int type)
+{
   int i;
 
   for (i = 0; i < ilist_len(l); i++) {
@@ -1812,7 +1866,8 @@ find_attacker(struct fight **l, int man, struct fight **enemy, int type) {
  *
  */
 static int
-count_siege_towers(struct fight **l) {
+count_siege_towers(struct fight **l)
+{
   int i, num = 0;
 
   for (i = 0; i < ilist_len(l); i++) {
@@ -1824,7 +1879,8 @@ count_siege_towers(struct fight **l) {
 };
 
 static int
-siege_tower_factor(struct fight *l) {
+siege_tower_factor(struct fight *l)
+{
   switch (subkind(l->unit)) {
   case sub_castle:
     return 1;
@@ -1851,7 +1907,8 @@ siege_tower_factor(struct fight *l) {
 static int
 real_resolve_hit(struct fight **l_a, struct fight *f,
                  struct fight **l_b, struct fight *g, int man, int type,
-                 int attack, int defense) {
+                 int attack, int defense)
+{
   int n;
   struct skill_ent *p;
   int art;
@@ -2133,7 +2190,8 @@ real_resolve_hit(struct fight **l_a, struct fight *f,
 
 static int
 resolve_hit(struct fight **l_a, struct fight *f,
-            struct fight **l_b, struct fight *g, int man, int type) {
+            struct fight **l_b, struct fight *g, int man, int type)
+{
   int defense = g->defense;
   int attack;
 
@@ -2161,7 +2219,8 @@ resolve_hit(struct fight **l_a, struct fight *f,
  *
  */
 static int
-num_attacks(struct fight *f, int type) {
+num_attacks(struct fight *f, int type)
+{
   int sk;
   struct skill_ent *p;
 
@@ -2195,7 +2254,8 @@ num_attacks(struct fight *f, int type) {
  *  
  */
 static int
-do_attack(int attacker, struct fight **l_a, struct fight **l_b, int type) {
+do_attack(int attacker, struct fight **l_a, struct fight **l_b, int type)
+{
   int num_defend;
   struct fight *f;
   struct fight *g;
@@ -2276,7 +2336,8 @@ do_attack(int attacker, struct fight **l_a, struct fight **l_b, int type) {
  *
  */
 static int
-attack_round(struct fight **l_a, struct fight **l_b, int type) {
+attack_round(struct fight **l_a, struct fight **l_b, int type)
+{
   int num_defend_b, num_defend_a;
   int num_defend_special;
   int total_attacks;
@@ -2399,7 +2460,8 @@ attack_round(struct fight **l_a, struct fight **l_b, int type) {
  */
 
 static int
-do_special_attack(struct fight **l_a, struct fight *f, struct fight **l_b) {
+do_special_attack(struct fight **l_a, struct fight *f, struct fight **l_b)
+{
   int i, sum = 0, man, num_defend, j;
   struct fight *g;
 
@@ -2435,7 +2497,8 @@ do_special_attack(struct fight **l_a, struct fight *f, struct fight **l_b) {
  *
  */
 static int
-special_attack(struct fight **l_a, int i, struct fight **l_b, int type) {
+special_attack(struct fight **l_a, int i, struct fight **l_b, int type)
+{
   struct fight *f = l_a[i];
 
   /*
@@ -2486,7 +2549,8 @@ special_attack(struct fight **l_a, int i, struct fight **l_b, int type) {
 
 
 static int
-special_attacks(struct fight **l_a, struct fight **l_b, int type) {
+special_attacks(struct fight **l_a, struct fight **l_b, int type)
+{
   int i, total_attacks = 0;
 
   for (i = 0; i < ilist_len(l_a); i++)
@@ -2507,7 +2571,8 @@ special_attacks(struct fight **l_a, struct fight **l_b, int type) {
  *
  */
 static void
-resolve_dead(struct fight **l_a) {
+resolve_dead(struct fight **l_a)
+{
   int i;
   int damage;
   struct fight *g;
@@ -2614,7 +2679,8 @@ resolve_dead(struct fight **l_a) {
 };
 
 static int
-side_has_skill(struct fight **l, int sk) {
+side_has_skill(struct fight **l, int sk)
+{
   int i;
 
   for (i = 0; i < ilist_len(l); i++)
@@ -2631,7 +2697,8 @@ side_has_skill(struct fight **l, int sk) {
  *
  */
 static void
-generate_animal_parts(int who, int what, int how_many) {
+generate_animal_parts(int who, int what, int how_many)
+{
   int half, total;
   /*
    *  Maybe this doesn't generate an animal part?
@@ -2679,7 +2746,8 @@ generate_animal_parts(int who, int what, int how_many) {
  *
  */
 static void
-deduct_dead(struct fight **l_a, struct fight **l_b, int inherit) {
+deduct_dead(struct fight **l_a, struct fight **l_b, int inherit)
+{
   int i;
   int unit, item;
   int amount;
@@ -2819,7 +2887,8 @@ deduct_dead(struct fight **l_a, struct fight **l_b, int inherit) {
  */
 
 static void
-determine_noble_wounds(struct fight **l) {
+determine_noble_wounds(struct fight **l)
+{
   int i;
 
 #ifdef HERO
@@ -2854,7 +2923,8 @@ determine_noble_wounds(struct fight **l) {
  */
 
 static void
-check_fatal_survive(struct fight **l) {
+check_fatal_survive(struct fight **l)
+{
   int i;
 
   for (i = 0; i < ilist_len(l); i++) {
@@ -2876,7 +2946,8 @@ check_fatal_survive(struct fight **l) {
  */
 
 static void
-structure_damage(struct fight **l) {
+structure_damage(struct fight **l)
+{
   int unit;
 
 
@@ -2913,7 +2984,8 @@ structure_damage(struct fight **l) {
 
 
 static void
-determine_prisoners(struct fight **l_a, struct fight **l_b) {
+determine_prisoners(struct fight **l_a, struct fight **l_b)
+{
   int num_a, num_b;
   int chance;                   /* chance that a unit is taken prisoner */
   int i;
@@ -3027,7 +3099,8 @@ determine_prisoners(struct fight **l_a, struct fight **l_b) {
 
 
 static void
-take_prisoners(int winner, struct fight **l) {
+take_prisoners(int winner, struct fight **l)
+{
   int i;
 
   /*
@@ -3052,7 +3125,8 @@ take_prisoners(int winner, struct fight **l) {
  *
  */
 static void
-seize_position(int winner, int loser_where, int loser_pos) {
+seize_position(int winner, int loser_where, int loser_pos)
+{
 
 /*
  *  If loser is in a better spot than the winner, take it.
@@ -3070,7 +3144,8 @@ seize_position(int winner, int loser_where, int loser_pos) {
 
 
 static void
-stack_flee(int who, int winner) {
+stack_flee(int who, int winner)
+{
   int where;
   int to_where;
 
@@ -3137,7 +3212,8 @@ stack_flee(int who, int winner) {
 
 
 static void
-demote_units(int winner, struct fight **l) {
+demote_units(int winner, struct fight **l)
+{
   int i;
 
   for (i = 0; i < ilist_len(l); i++) {
@@ -3153,7 +3229,8 @@ demote_units(int winner, struct fight **l) {
 
 
 static char *
-combat_display_with(struct fight **l) {
+combat_display_with(struct fight **l)
+{
   int i;
 
   for (i = 1; i < ilist_len(l); i++)
@@ -3170,7 +3247,8 @@ combat_display_with(struct fight **l) {
 int show_combat_flag = FALSE;
 
 static void
-show_side_units(struct fight **l) {
+show_side_units(struct fight **l)
+{
   int i;
   extern char *combat_ally;
 
@@ -3199,7 +3277,8 @@ show_side_units(struct fight **l) {
 
 
 static void
-out_side(struct fight **l, char *s) {
+out_side(struct fight **l, char *s)
+{
   int i;
 
   for (i = 0; i < ilist_len(l); i++)
@@ -3216,7 +3295,8 @@ out_side(struct fight **l, char *s) {
  */
 
 static void
-combat_banner(struct fight **l_a, struct fight **l_b) {
+combat_banner(struct fight **l_a, struct fight **l_b)
+{
   int i;
 
   assert(ilist_len(l_a) > 0);
@@ -3272,7 +3352,8 @@ combat_banner(struct fight **l_a, struct fight **l_b) {
  */
 
 static char *
-tally_side_losses(struct fight **l) {
+tally_side_losses(struct fight **l)
+{
   int i;
   char *s = NULL;
 
@@ -3293,7 +3374,8 @@ tally_side_losses(struct fight **l) {
 
 
 static char *
-tally_personal_losses(struct fight **l, int pos) {
+tally_personal_losses(struct fight **l, int pos)
+{
   int i;
   char *s = NULL;
 
@@ -3310,7 +3392,8 @@ tally_personal_losses(struct fight **l, int pos) {
 
 
 static char *
-what_happened_to_noble(struct fight **l, int pos) {
+what_happened_to_noble(struct fight **l, int pos)
+{
   char *s = NULL;
 
   if (l[pos]->prisoner && l[pos]->new_health) {
@@ -3351,7 +3434,8 @@ what_happened_to_noble(struct fight **l, int pos) {
 
 
 static void
-show_side_results(struct fight **l) {
+show_side_results(struct fight **l)
+{
   int lead;
   char *tally;
   int i;
@@ -3393,7 +3477,8 @@ show_side_results(struct fight **l) {
 
 
 static int
-best_here_pos(struct fight **l, int where) {
+best_here_pos(struct fight **l, int where)
+{
   int i;
   int best = 99999;
   int n;
@@ -3421,7 +3506,8 @@ best_here_pos(struct fight **l, int where) {
 
 
 static void
-combat_stop_movement(int who, struct fight **l) {
+combat_stop_movement(int who, struct fight **l)
+{
   ilist tmp;
   int ship;
   int i;
@@ -3461,7 +3547,8 @@ combat_stop_movement(int who, struct fight **l) {
 
 
 static void
-reconcile(int winner, struct fight **l_a, struct fight **l_b) {
+reconcile(int winner, struct fight **l_a, struct fight **l_b)
+{
   int loser;
   int loser_where, loser_pos;
 
@@ -3555,7 +3642,8 @@ reconcile(int winner, struct fight **l_a, struct fight **l_b) {
 
 #if 0
 static void
-increase_attack(struct fight **l) {
+increase_attack(struct fight **l)
+{
   int i;
 
   for (i = 0; i < ilist_len(l); i++)
@@ -3565,7 +3653,8 @@ increase_attack(struct fight **l) {
 
 
 static void
-increase_defense(struct fight **l) {
+increase_defense(struct fight **l)
+{
   int i;
 
   for (i = 0; i < ilist_len(l); i++)
@@ -3599,7 +3688,8 @@ increase_defense(struct fight **l) {
  *
  */
 static int
-run_combat(struct fight ***lap, struct fight ***lbp) {
+run_combat(struct fight ***lap, struct fight ***lbp)
+{
   struct fight **l_a = *lap, **l_b = *lbp;
   int num_a, num_b;
   int thresh_a, thresh_b;
@@ -3852,7 +3942,8 @@ run_combat(struct fight ***lap, struct fight ***lbp) {
 }
 
 static int
-combat_top(struct fight ***lap, struct fight ***lbp) {
+combat_top(struct fight ***lap, struct fight ***lbp)
+{
   struct fight **l_a = *lap, **l_b = *lbp;
   int result;
 
@@ -3916,7 +4007,8 @@ combat_top(struct fight ***lap, struct fight ***lbp) {
 }
 
 static int
-fail_defeat_check(int a, struct fight **l_b) {
+fail_defeat_check(int a, struct fight **l_b)
+{
   int lead_b = lead_char(l_b);
   int n;
 
@@ -3945,7 +4037,8 @@ fail_defeat_check(int a, struct fight **l_b) {
 static ilist second_wait_list = NULL;
 
 void
-clear_second_waits() {
+clear_second_waits()
+{
   int i;
   ilist ll_l = ilist_copy(second_wait_list);
 
@@ -3961,7 +4054,8 @@ clear_second_waits() {
 }
 
 static void
-set_second_waits(struct fight **l, int already_waiting) {
+set_second_waits(struct fight **l, int already_waiting)
+{
   int i;
   struct command *c;
 
@@ -3984,7 +4078,8 @@ set_second_waits(struct fight **l, int already_waiting) {
 }
 
 static void
-set_weather(int where, int where2) {
+set_weather(int where, int where2)
+{
   if (weather_here(where, sub_rain))
     combat_rain = TRUE;
   else
@@ -4005,7 +4100,8 @@ set_weather(int where, int where2) {
 };
 
 int
-regular_combat(int a, int b, int seize_slot, int already_waiting) {
+regular_combat(int a, int b, int seize_slot, int already_waiting)
+{
   struct fight **l_a;
   struct fight **l_b;
   int result;
@@ -4095,7 +4191,8 @@ done:
  */
 
 int
-select_target(struct command *c) {
+select_target(struct command *c)
+{
   int target = c->a;
   int where = subloc(c->who);
   struct exit_view *v;
@@ -4161,7 +4258,8 @@ select_target(struct command *c) {
 
 
 int
-select_attacker(int who, int target) {
+select_attacker(int who, int target)
+{
   int where = subloc(who);
 
   if (loc_depth(where) == LOC_build &&
@@ -4182,7 +4280,8 @@ select_attacker(int who, int target) {
 
 #if 0
 int
-v_attack(struct command *c) {
+v_attack(struct command *c)
+{
   int attacker;
   int target;
   int targ_who;
@@ -4233,7 +4332,8 @@ v_attack(struct command *c) {
 #endif
 
 static int
-loc_guarded(int where, int except) {
+loc_guarded(int where, int except)
+{
   int i;
   int ret = FALSE;
 
@@ -4250,7 +4350,8 @@ loc_guarded(int where, int except) {
 
 
 static int
-attack_guard_units(int a, int b) {
+attack_guard_units(int a, int b)
+{
   struct fight **l_a;
   struct fight **l_b;
   int result;
@@ -4277,7 +4378,8 @@ attack_guard_units(int a, int b) {
 
 
 int
-v_pillage(struct command *c) {
+v_pillage(struct command *c)
+{
   int where = subloc(c->who);
   int has = has_item(where, item_peasant);
   int men = count_fighters(c->who, item_attack(item_skirmisher));
@@ -4316,7 +4418,8 @@ v_pillage(struct command *c) {
 }
 
 void
-end_pillage(struct command *c) {
+end_pillage(struct command *c)
+{
   int where = province(subloc(c->who));
   int mob = 0;
   wout(c->who, "Pillaging yielded %s.", gold_s(c->h));
@@ -4339,7 +4442,8 @@ end_pillage(struct command *c) {
 }
 
 int
-d_pillage(struct command *c) {
+d_pillage(struct command *c)
+{
   int where = province(subloc(c->who));
   int flag = c->a;
   int guard;
@@ -4407,7 +4511,8 @@ d_pillage(struct command *c) {
 
 
 int
-v_guard(struct command *c) {
+v_guard(struct command *c)
+{
   int flag = c->a;
   int where = subloc(c->who);
 
@@ -4425,7 +4530,8 @@ v_guard(struct command *c) {
 
 
 static void
-auto_attack(int who, int target) {
+auto_attack(int who, int target)
+{
 
   out(who, "> [auto-attack %s]", box_code_less(target));
   regular_combat(who, target, FALSE, 0);
@@ -4433,7 +4539,8 @@ auto_attack(int who, int target) {
 
 
 static void
-check_auto_attack_sup(int who) {
+check_auto_attack_sup(int who)
+{
   int i;
   int where = subloc(who);
   int okay = TRUE;
@@ -4525,7 +4632,8 @@ check_auto_attack_sup(int who) {
 
 
 void
-check_all_auto_attacks() {
+check_all_auto_attacks()
+{
   int i;
   struct command *c;
 
@@ -4552,7 +4660,8 @@ check_all_auto_attacks() {
  *
  */
 int
-v_prac_control(struct command *c) {
+v_prac_control(struct command *c)
+{
   int ret = oly_parse(c,
                       sout("practice %d", sk_control_battle));
   assert(ret);
@@ -4602,7 +4711,8 @@ v_prac_control(struct command *c) {
  *
  */
 int
-v_attack_tactics(struct command *c) {
+v_attack_tactics(struct command *c)
+{
   int ret;
   struct skill_ent *p;
   p = rp_skill_ent(c->who, sk_attack_tactics);
@@ -4625,7 +4735,8 @@ v_attack_tactics(struct command *c) {
 
 #if 0
 int
-d_attack_tactics(struct command *c) {
+d_attack_tactics(struct command *c)
+{
   struct skill_ent *p;
 
   /*
@@ -4671,7 +4782,8 @@ d_attack_tactics(struct command *c) {
  */
 #if 0
 int
-v_defense_tactics(struct command *c) {
+v_defense_tactics(struct command *c)
+{
   struct skill_ent *p;
   p = rp_skill_ent(c->who, sk_defense_tactics);
 
@@ -4690,7 +4802,8 @@ v_defense_tactics(struct command *c) {
 #endif
 
 int
-v_defense_tactics(struct command *c) {
+v_defense_tactics(struct command *c)
+{
   int ret;
   struct skill_ent *p;
   p = rp_skill_ent(c->who, sk_defense_tactics);
@@ -4752,7 +4865,8 @@ v_defense_tactics(struct command *c) {
  *
  */
 int
-do_trap_attack(int who, int num_attacks, int chance) {
+do_trap_attack(int who, int num_attacks, int chance)
+{
   int i, lost = 0, num_defend, man;
   struct fight **l_a;
   struct fight *g;
@@ -4791,7 +4905,8 @@ do_trap_attack(int who, int num_attacks, int chance) {
  *
  */
 int
-v_use_beasts(struct command *c) {
+v_use_beasts(struct command *c)
+{
   int ret;
 
   ret = oly_parse(c, sout("practice %d", sk_use_beasts));
@@ -4840,7 +4955,8 @@ v_use_beasts(struct command *c) {
  *
  */
 int
-v_prac_protect(struct command *c) {
+v_prac_protect(struct command *c)
+{
   int ret = oly_parse(c,
                       sout("practice %d", sk_protect_noble));
   assert(ret);

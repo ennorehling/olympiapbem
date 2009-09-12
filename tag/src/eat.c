@@ -47,7 +47,8 @@ static int line_count = 0;
 
 
 static void
-find_meta_commands() {
+find_meta_commands()
+{
   extern int fuzzy_find;
 
   cmd_begin = find_command("begin");
@@ -137,7 +138,8 @@ find_meta_commands() {
 
 
 static void
-init_eat_vars() {
+init_eat_vars()
+{
 
   if (cmd_begin < 0)
     find_meta_commands();
@@ -163,7 +165,8 @@ init_eat_vars() {
  */
 
 static char *
-crack_address_sup(char *s) {
+crack_address_sup(char *s)
+{
   char *t;
 
   if (t = strchr(s, '<')) {
@@ -192,7 +195,8 @@ crack_address_sup(char *s) {
  */
 
 static char *
-local_kludge(char *s) {
+local_kludge(char *s)
+{
   int l = strlen(s);
   char *t;
 
@@ -210,7 +214,8 @@ local_kludge(char *s) {
 
 
 static char *
-crack_address(char *s) {
+crack_address(char *s)
+{
 
   s = crack_address_sup(s);
 
@@ -226,7 +231,8 @@ crack_address(char *s) {
 
 
 static char *
-parse_reply(FILE * fp, int *cpp) {
+parse_reply(FILE * fp, int *cpp)
+{
   static char *from_space = NULL;
   static char *from_colon = NULL;
   static char *reply_to = NULL;
@@ -290,7 +296,8 @@ parse_reply(FILE * fp, int *cpp) {
 
 
 static char *
-eat_line_2(FILE * fp, int eat_white) {
+eat_line_2(FILE * fp, int eat_white)
+{
   char *line;
 
   if (eat_white)
@@ -319,7 +326,8 @@ eat_line_2(FILE * fp, int eat_white) {
 
 
 static char *
-eat_next_line_sup(FILE * fp) {
+eat_next_line_sup(FILE * fp)
+{
   char *line;
 
   line = getlin_ew(fp);
@@ -345,7 +353,8 @@ eat_next_line_sup(FILE * fp) {
 
 
 static char *
-eat_next_line(FILE * fp) {
+eat_next_line(FILE * fp)
+{
   char *line;
 
   do {
@@ -358,7 +367,8 @@ eat_next_line(FILE * fp) {
 
 static int last_line = -1;
 static void
-err(int k, char *s) {
+err(int k, char *s)
+{
 
   out_alt_who = k;
 
@@ -380,7 +390,8 @@ err(int k, char *s) {
 
 
 static void
-next_cmd(FILE * fp, struct command *c) {
+next_cmd(FILE * fp, struct command *c)
+{
   char *line;
 
   c->cmd = 0;
@@ -419,7 +430,8 @@ next_cmd(FILE * fp, struct command *c) {
  *
  */
 char *
-turn_charge(int pl) {
+turn_charge(int pl)
+{
   int i, nps = 0;
   loop_units(pl, i) {
     nps += nps_invested(i);
@@ -436,7 +448,8 @@ turn_charge(int pl) {
 
 
 static int
-do_begin(struct command *c) {
+do_begin(struct command *c)
+{
   char *pl_pass;
 
   if (numargs(c) < 1) {
@@ -526,7 +539,8 @@ do_begin(struct command *c) {
 
 
 static int
-valid_char_or_player(int who) {
+valid_char_or_player(int who)
+{
 
   if (kind(who) == T_char || kind(who) == T_player)
     return TRUE;
@@ -539,7 +553,8 @@ valid_char_or_player(int who) {
 
 
 static int
-do_unit(struct command *c) {
+do_unit(struct command *c)
+{
 
   unit = -1;                    /* ignore following unit commands */
 
@@ -569,7 +584,8 @@ do_unit(struct command *c) {
 
 
 static int
-do_email(struct command *c) {
+do_email(struct command *c)
+{
 
   if (cc_addr) {
     err(EAT_ERR, "no more than one EMAIL order per message");
@@ -597,7 +613,8 @@ do_email(struct command *c) {
 
 
 static int
-do_vis_email(struct command *c) {
+do_vis_email(struct command *c)
+{
 
   if (pl == 0) {
     err(EAT_ERR, "BEGIN must come before VIS_EMAIL");
@@ -617,7 +634,8 @@ do_vis_email(struct command *c) {
 
 
 static int
-do_lore(struct command *c) {
+do_lore(struct command *c)
+{
   int sheet = c->a;
 
   if (pl == 0) {
@@ -646,7 +664,8 @@ do_lore(struct command *c) {
 
 
 static int
-do_players(struct command *c) {
+do_players(struct command *c)
+{
   FILE *fp;
   char *fnam;
   char *s;
@@ -672,7 +691,8 @@ do_players(struct command *c) {
 
 
 static int
-do_resend(struct command *c) {
+do_resend(struct command *c)
+{
   int turn;
 
   if (pl == 0) {
@@ -698,7 +718,8 @@ do_resend(struct command *c) {
 
 
 static int
-do_format(struct command *c) {
+do_format(struct command *c)
+{
   if (pl == 0) {
     err(EAT_ERR, "BEGIN must appear before FORMAT");
     return TRUE;
@@ -713,7 +734,8 @@ do_format(struct command *c) {
 
 
 static int
-do_split(struct command *c) {
+do_split(struct command *c)
+{
   int lines = c->a;
   int bytes = c->b;
 
@@ -753,7 +775,8 @@ do_split(struct command *c) {
 
 
 static int
-do_notab(struct command *c) {
+do_notab(struct command *c)
+{
 
   if (pl == 0) {
     err(EAT_ERR, "BEGIN must appear before NOTAB");
@@ -773,7 +796,8 @@ do_notab(struct command *c) {
 
 
 static int
-do_password(struct command *c) {
+do_password(struct command *c)
+{
 
   if (pl == 0) {
     err(EAT_ERR, "BEGIN must appear before PASSWORD");
@@ -800,7 +824,8 @@ do_password(struct command *c) {
 #define DASH_LINE "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
 
 static void
-show_post(char **l, int cmd) {
+show_post(char **l, int cmd)
+{
   int i;
   char attrib[100];
   char *t;
@@ -850,7 +875,8 @@ show_post(char **l, int cmd) {
  *
  */
 int
-do_set(struct command *c) {
+do_set(struct command *c)
+{
   char *cmd = c->parse[1];
 
   /*
@@ -904,7 +930,8 @@ do_set(struct command *c) {
  *
  */
 int
-is_safe(int who, int n) {
+is_safe(int who, int n)
+{
   /*
    *  Might not be something.
    *
@@ -947,7 +974,8 @@ is_safe(int who, int n) {
 
 
 char *
-safe_name_qty(int who, int n, int qty, char *str) {
+safe_name_qty(int who, int n, int qty, char *str)
+{
   if (n == 0)
     return str;
 
@@ -965,7 +993,8 @@ safe_name_qty(int who, int n, int qty, char *str) {
 };
 
 char *
-safe_name(int who, int n, char *str) {
+safe_name(int who, int n, char *str)
+{
   if (n == 0)
     return str;
 
@@ -978,7 +1007,8 @@ safe_name(int who, int n, char *str) {
 };
 
 char *
-buy_comment(struct command *c) {
+buy_comment(struct command *c)
+{
   if (numargs(c) < 1) {
     return sout("probably incorrect");
   }
@@ -1006,7 +1036,8 @@ buy_comment(struct command *c) {
 };
 
 char *
-drop_comment(struct command *c) {
+drop_comment(struct command *c)
+{
   if (numargs(c) < 2) {
     return sout("probably incorrect");
   }
@@ -1029,7 +1060,8 @@ drop_comment(struct command *c) {
 };
 
 char *
-collect_comment(struct command *c) {
+collect_comment(struct command *c)
+{
   if (numargs(c) < 1) {
     return sout("probably incorrect");
   }
@@ -1054,7 +1086,8 @@ collect_comment(struct command *c) {
 static struct command d_cmd;
 
 char *
-catch_comment(struct command *c) {
+catch_comment(struct command *c)
+{
   struct command *cp = &d_cmd;
   char *s;
   int ret;
@@ -1065,7 +1098,8 @@ catch_comment(struct command *c) {
 };
 
 char *
-give_comment(struct command *c) {
+give_comment(struct command *c)
+{
   if (numargs(c) < 2) {
     return sout("probably incorrect");
   }
@@ -1102,7 +1136,8 @@ give_comment(struct command *c) {
 };
 
 char *
-get_comment(struct command *c) {
+get_comment(struct command *c)
+{
   if (numargs(c) < 2) {
     return sout("probably incorrect");
   }
@@ -1138,7 +1173,8 @@ get_comment(struct command *c) {
 };
 
 char *
-study_comment(struct command *c) {
+study_comment(struct command *c)
+{
   if (numargs(c) < 1) {
     return sout("probably incorrect");
   }
@@ -1148,7 +1184,8 @@ study_comment(struct command *c) {
 };
 
 char *
-admit_comment(struct command *c) {
+admit_comment(struct command *c)
+{
   if (numargs(c) < 1) {
     return sout("probably incorrect");
   }
@@ -1177,7 +1214,8 @@ admit_comment(struct command *c) {
 
 static first_admit_check = 1;
 void
-admit_check(struct command *c) {
+admit_check(struct command *c)
+{
   if (numargs(c) < 1) {
     return;
   }
@@ -1216,7 +1254,8 @@ admit_check(struct command *c) {
 };
 
 void
-quit_check(struct command *c) {
+quit_check(struct command *c)
+{
   err(EAT_WARN, "This command will drop you from the game.");
   err(EAT_WARN, "If you are quitting, please send srt@pbm.com a quick "
       "email to indicate why you are dropping.  Your feedback is important "
@@ -1224,7 +1263,8 @@ quit_check(struct command *c) {
 };
 
 char *
-accept_comment(struct command *c) {
+accept_comment(struct command *c)
+{
   char *s1, *s2;
 
   if (numargs(c) < 1) {
@@ -1262,7 +1302,8 @@ accept_comment(struct command *c) {
 };
 
 static char *
-destination_name(struct command *c, int i, int num) {
+destination_name(struct command *c, int i, int num)
+{
   int dir;
 
   dir = lookup(full_dir_s, c->parse[i]);
@@ -1280,7 +1321,8 @@ destination_name(struct command *c, int i, int num) {
 };
 
 char *
-move_comment(struct command *c) {
+move_comment(struct command *c)
+{
   int dir, i;
   int args[6];
   char *arg = "";
@@ -1313,7 +1355,8 @@ move_comment(struct command *c) {
 };
 
 char *
-attack_comment(struct command *c) {
+attack_comment(struct command *c)
+{
   int dir, i;
   int args[6];
   char *arg = "";
@@ -1360,7 +1403,8 @@ attack_comment(struct command *c) {
 };
 
 char *
-default_comment(struct command *c) {
+default_comment(struct command *c)
+{
   if (numargs(c) != 1) {
     return "";
   }
@@ -1371,7 +1415,8 @@ default_comment(struct command *c) {
 };
 
 char *
-attitude_comment(struct command *c) {
+attitude_comment(struct command *c)
+{
   char *arg;
   int i;
 
@@ -1394,7 +1439,8 @@ attitude_comment(struct command *c) {
  *
  */
 static void
-check_arg(struct command *c, int i, int t) {
+check_arg(struct command *c, int i, int t)
+{
   int args[6];
 
   if (i < 1 || i > 5)
@@ -1543,7 +1589,8 @@ check_arg(struct command *c, int i, int t) {
  *
  */
 static void
-check_cmd(struct command *c) {
+check_cmd(struct command *c)
+{
   int i;
   char t;
   /*
@@ -1622,7 +1669,8 @@ check_cmd(struct command *c) {
 };
 
 static int
-do_eat_command(struct command *c, FILE * fp) {
+do_eat_command(struct command *c, FILE * fp)
+{
 
   assert(c->cmd != cmd_end);
 
@@ -1752,7 +1800,8 @@ static struct command dummy_cmd;
 
 
 static void
-parse_and_munch(FILE * fp) {
+parse_and_munch(FILE * fp)
+{
   struct command *c;
 
   c = &dummy_cmd;
@@ -1767,7 +1816,8 @@ parse_and_munch(FILE * fp) {
 }
 
 static char *
-no_spaces(char *str) {
+no_spaces(char *str)
+{
   int i;
   char *buf = sout("");
 
@@ -1790,7 +1840,8 @@ no_spaces(char *str) {
  *
  */
 static void
-eat_banner() {
+eat_banner()
+{
   char *to;
   char *full_name = "";
 
@@ -1887,7 +1938,8 @@ eat_banner() {
 
 
 static void
-include_orig(FILE * fp) {
+include_orig(FILE * fp)
+{
   char *s, *c;
 
   out_alt_who = EAT_HEADERS;
@@ -1932,7 +1984,8 @@ include_orig(FILE * fp) {
 
 
 static void
-show_pending() {
+show_pending()
+{
 
   out_alt_who = EAT_QUEUE;
   orders_template(eat_pl, pl);
@@ -1943,7 +1996,8 @@ int eat_queue_mode = 0;
 
 
 static void
-eat(char *fnam, int mail_now) {
+eat(char *fnam, int mail_now)
+{
   FILE *fp;
   int ret = 0;
   int cpp = 0;
@@ -2076,7 +2130,8 @@ eat(char *fnam, int mail_now) {
 
 
 static void
-write_remind_list() {
+write_remind_list()
+{
   FILE *fp;
   char *fnam;
   int pl;
@@ -2112,7 +2167,8 @@ write_remind_list() {
 
 
 int
-read_spool(int mail_now) {
+read_spool(int mail_now)
+{
   DIR *d;
   struct dirent *e;
   char fnam[LEN];
@@ -2159,7 +2215,8 @@ read_spool(int mail_now) {
 
 
 void
-eat_loop(int mail_now) {
+eat_loop(int mail_now)
+{
 
   setbuf(stdout, NULL);
   mkdir(sout("%s/orders", libdir), 0755);
@@ -2174,7 +2231,8 @@ eat_loop(int mail_now) {
 }
 
 int
-v_format(struct command *c) {
+v_format(struct command *c)
+{
   int i;
   int plyr;
 
@@ -2236,7 +2294,8 @@ v_format(struct command *c) {
 }
 
 int
-do_rules_url(struct command *c) {
+do_rules_url(struct command *c)
+{
   char *cmd = c->parse[1];
   int plyr;
 
@@ -2282,7 +2341,8 @@ do_rules_url(struct command *c) {
 };
 
 int
-do_db_url(struct command *c) {
+do_db_url(struct command *c)
+{
   char *cmd = c->parse[1];
   int plyr;
 
@@ -2328,7 +2388,8 @@ do_db_url(struct command *c) {
 };
 
 int
-v_notab(struct command *c) {
+v_notab(struct command *c)
+{
   int plyr;
 
   /*

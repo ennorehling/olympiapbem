@@ -5,7 +5,8 @@
 #include "oly.h"
 
 
-struct use_tbl_ent {
+struct use_tbl_ent
+{
   char *allow;                  /* who may execute the command */
   int skill;
 
@@ -578,7 +579,8 @@ allow  skill             start             finish            intr    time poll
 
 
 int
-v_implicit(struct command *c) {
+v_implicit(struct command *c)
+{
 
   wout(c->who, "Use of this skill is automatic when appropriate.");
   wout(c->who, "No direct USE function exists.");
@@ -586,7 +588,8 @@ v_implicit(struct command *c) {
 }
 
 int
-v_use_cs(struct command *c) {
+v_use_cs(struct command *c)
+{
   int sk = c->use_skill;
   int i, arg, num;
   char *rounds = "";
@@ -621,7 +624,8 @@ v_use_cs(struct command *c) {
 }
 
 int
-v_shipbuild(struct command *c) {
+v_shipbuild(struct command *c)
+{
 
   wout(c->who, "Use the BUILD order to build ships.");
   return FALSE;
@@ -629,7 +633,8 @@ v_shipbuild(struct command *c) {
 
 
 int
-find_use_entry(int skill) {
+find_use_entry(int skill)
+{
   int i;
 
   for (i = 1; use_tbl[i].skill; i++)
@@ -651,7 +656,8 @@ find_use_entry(int skill) {
  */
 
 static int
-may_use_skill(int who, int sk) {
+may_use_skill(int who, int sk)
+{
   struct item_ent *e;
   struct item_magic *p;
   int ret = 0;
@@ -686,7 +692,8 @@ may_use_skill(int who, int sk) {
 
 
 static void
-magically_speed_casting(struct command *c, int sk) {
+magically_speed_casting(struct command *c, int sk)
+{
   struct char_magic *p;
   int n;                        /* amount speeded by */
 
@@ -722,7 +729,8 @@ magically_speed_casting(struct command *c, int sk) {
  */
 
 static int
-correct_use_item(struct command *c) {
+correct_use_item(struct command *c)
+{
   int item = c->a;
   struct item_magic *p;
 
@@ -740,7 +748,8 @@ correct_use_item(struct command *c) {
 
 
 static int
-meets_requirements(int who, int skill) {
+meets_requirements(int who, int skill)
+{
   int i;
   struct entity_skill *p;
   struct req_ent **l;
@@ -782,7 +791,8 @@ meets_requirements(int who, int skill) {
 
 
 static void
-consume_requirements(int who, int skill) {
+consume_requirements(int who, int skill)
+{
   int i;
   struct entity_skill *p;
   struct req_ent **l;
@@ -825,7 +835,8 @@ consume_requirements(int who, int skill) {
 
 
 static void
-consume_scroll(int who, int basis, int amount) {
+consume_scroll(int who, int basis, int amount)
+{
   if (kind(basis) == T_item && p_item_magic(basis)) {
     /*
      *  Use up some days.
@@ -848,7 +859,8 @@ consume_scroll(int who, int basis, int amount) {
 };
 
 void
-experience_use_speedup(struct command *c) {
+experience_use_speedup(struct command *c)
+{
   int exp;
 
   exp = max(c->use_exp - 1, 0);
@@ -874,7 +886,8 @@ experience_use_speedup(struct command *c) {
  *
  */
 void
-religion_use_speedup(struct command *c) {
+religion_use_speedup(struct command *c)
+{
   if (is_follower(c->who) &&
       rp_relig_skill(is_priest(is_follower(c->who)))->strength ==
       skill_school(c->use_skill) && c->wait >= 5) {
@@ -895,7 +908,8 @@ religion_use_speedup(struct command *c) {
  *
  */
 void
-artifact_use_speedup(struct command *c) {
+artifact_use_speedup(struct command *c)
+{
   int art;
   if (art = best_artifact(c->who, ART_SPEED_USE, c->use_skill, 0)) {
     c->wait -= rp_item_artifact(art)->param1;
@@ -908,7 +922,8 @@ artifact_use_speedup(struct command *c) {
 }
 
 int
-v_use(struct command *c) {
+v_use(struct command *c)
+{
   int sk = c->a;
   int ent;
   int n;
@@ -1092,7 +1107,8 @@ v_use(struct command *c) {
  */
 
 void
-add_skill_experience(int who, int sk) {
+add_skill_experience(int who, int sk)
+{
   struct skill_ent *p;
 
   p = rp_skill_ent(who, sk);
@@ -1115,7 +1131,8 @@ add_skill_experience(int who, int sk) {
 
 
 int
-d_use(struct command *c) {
+d_use(struct command *c)
+{
   int sk = c->use_skill;
   int ent = c->use_ent;
   int n;
@@ -1296,7 +1313,8 @@ d_use(struct command *c) {
 
 
 int
-i_use(struct command *c) {
+i_use(struct command *c)
+{
   int sk = c->use_skill;
   int ent = c->use_ent;
 
@@ -1317,7 +1335,8 @@ i_use(struct command *c) {
  *
  */
 int
-v_use_special_staff(struct command *c) {
+v_use_special_staff(struct command *c)
+{
   int i, where = province(c->who), reg = region(c->who), dist;
   int flag = FALSE;
 
@@ -1353,7 +1372,8 @@ v_use_special_staff(struct command *c) {
 };
 
 int
-v_use_item(struct command *c) {
+v_use_item(struct command *c)
+{
   int item = c->a;
   int n;
   int ret;
@@ -1538,7 +1558,8 @@ v_use_item(struct command *c) {
 
 
 int
-d_use_item(struct command *c) {
+d_use_item(struct command *c)
+{
   int item = c->a;
   int n;
 
@@ -1572,7 +1593,8 @@ d_use_item(struct command *c) {
 
 
 static int
-exp_level(int exp) {
+exp_level(int exp)
+{
 
   switch (exp) {
   case 0:
@@ -1596,7 +1618,8 @@ exp_level(int exp) {
 
 
 char *
-exp_s(int level) {
+exp_s(int level)
+{
 
   switch (level) {
   case exp_novice:
@@ -1617,7 +1640,8 @@ exp_s(int level) {
 
 
 struct skill_ent *
-rp_skill_ent(int who, int skill) {
+rp_skill_ent(int who, int skill)
+{
   struct entity_char *p;
   int i;
 
@@ -1635,7 +1659,8 @@ rp_skill_ent(int who, int skill) {
 
 
 struct skill_ent *
-p_skill_ent(int who, int skill) {
+p_skill_ent(int who, int skill)
+{
   struct entity_char *p;
   struct skill_ent *new;
   int i;
@@ -1662,7 +1687,8 @@ p_skill_ent(int who, int skill) {
  *
  */
 int
-forget_skill(int who, int skill) {
+forget_skill(int who, int skill)
+{
   struct entity_char *p;
   struct skill_ent *t;
   struct char_magic *ch;
@@ -1704,7 +1730,8 @@ forget_skill(int who, int skill) {
 
 
 int
-v_forget(struct command *c) {
+v_forget(struct command *c)
+{
   int skill = c->a;
   int i;
 
@@ -1742,7 +1769,8 @@ v_forget(struct command *c) {
  *
  */
 int
-has_subskill(int who, int subskill) {
+has_subskill(int who, int subskill)
+{
   struct skill_ent *e;
   struct item_ent *i;
 
@@ -1777,7 +1805,8 @@ has_subskill(int who, int subskill) {
  *
  */
 int
-has_skill(int who, int skill) {
+has_skill(int who, int skill)
+{
   struct skill_ent *p;
 
   p = rp_skill_ent(who, skill);
@@ -1798,7 +1827,8 @@ has_skill(int who, int skill) {
  */
 
 void
-set_skill(int who, int skill, int know) {
+set_skill(int who, int skill, int know)
+{
   struct skill_ent *p;
 
   p = p_skill_ent(who, skill);
@@ -1808,7 +1838,8 @@ set_skill(int who, int skill, int know) {
 
 
 int
-skill_school(int sk) {
+skill_school(int sk)
+{
   int n;
   int count = 0;
 
@@ -1876,7 +1907,8 @@ flat_skill_comp(a, b)
 
 #if 0
 void
-list_skill_sup(int who, struct skill_ent *e) {
+list_skill_sup(int who, struct skill_ent *e)
+{
   char *exp;
 
   if (skill_no_exp(e->skill) || skill_school(e->skill) == e->skill)
@@ -1892,7 +1924,8 @@ list_skill_sup(int who, struct skill_ent *e) {
 
 #else
 void
-list_skill_sup(int who, struct skill_ent *e, char *prefix) {
+list_skill_sup(int who, struct skill_ent *e, char *prefix)
+{
 
   if (!prefix[0])
     tagout(who, "<tag type=skill id=%d skill=%d exp=%d>",
@@ -1934,7 +1967,8 @@ list_skill_sup(int who, struct skill_ent *e, char *prefix) {
 
 
 void
-list_skills(int who, int num, char *prefix) {
+list_skills(int who, int num, char *prefix)
+{
   int i;
   struct skill_ent **l;
   int flag = TRUE;
@@ -1999,7 +2033,8 @@ list_skills_end:
  */
 
 static char *
-fractional_skill_qualifier(struct skill_ent *p) {
+fractional_skill_qualifier(struct skill_ent *p)
+{
   int frac;
   char *explanation = "";
 
@@ -2027,7 +2062,8 @@ fractional_skill_qualifier(struct skill_ent *p) {
 
 
 void
-list_partial_skills(int who, int num, char *prefix) {
+list_partial_skills(int who, int num, char *prefix)
+{
   int i;
   struct skill_ent **l;
   int flag = TRUE;
@@ -2068,7 +2104,8 @@ list_partial_skills(int who, int num, char *prefix) {
 
 
 int
-skill_cost(int sk) {
+skill_cost(int sk)
+{
 
   return 100;
 }
@@ -2081,7 +2118,8 @@ skill_cost(int sk) {
  *
  */
 static int
-teachable_place(int where, int sk) {
+teachable_place(int where, int sk)
+{
   return (subkind(where) == sub_tower || is_guild(where) == skill_school(sk));
 };
 
@@ -2100,7 +2138,8 @@ teachable_place(int where, int sk) {
  *
  */
 int
-being_taught(int who, int sk, int *item, int *teach_bonus) {
+being_taught(int who, int sk, int *item, int *teach_bonus)
+{
   int school = skill_school(sk);
   int where = subloc(who);
   struct entity_subloc *p = rp_subloc(where);
@@ -2261,7 +2300,8 @@ being_taught(int who, int sk, int *item, int *teach_bonus) {
  */
 
 static int
-may_study(int who, int sk) {
+may_study(int who, int sk)
+{
   int where = subloc(who);
 
 /*
@@ -2336,7 +2376,8 @@ may_study(int who, int sk) {
 #endif
 
 static int
-begin_study(struct command *c, int sk) {
+begin_study(struct command *c, int sk)
+{
   int cost;
   struct skill_ent *p;
   int np_req, num_base_skills = 0;
@@ -2385,7 +2426,8 @@ begin_study(struct command *c, int sk) {
 }
 
 static int
-end_study(struct command *c, int sk) {
+end_study(struct command *c, int sk)
+{
   int num_base_skills = 0;
   struct skill_ent *e;
   int np_req = skill_np_req(sk);
@@ -2434,7 +2476,8 @@ end_study(struct command *c, int sk) {
  *  guess which skill they meant to learn from within the scroll.
  */
 static int
-correct_study_item(struct command *c) {
+correct_study_item(struct command *c)
+{
   int item = c->a;
   struct item_magic *p;
 
@@ -2456,7 +2499,8 @@ correct_study_item(struct command *c) {
  *
  */
 static int
-check_study(struct command *c, int requires_instruction) {
+check_study(struct command *c, int requires_instruction)
+{
   struct skill_ent *p;
   struct entity_skill *q;
   int sk = c->a;
@@ -2713,7 +2757,8 @@ check_study(struct command *c, int requires_instruction) {
  *
  */
 int
-v_study(struct command *c) {
+v_study(struct command *c)
+{
   struct skill_ent *p;
   int sk = c->a;
   int where;
@@ -2773,7 +2818,8 @@ v_study(struct command *c) {
  */
 
 int
-learn_skill(int who, int sk) {
+learn_skill(int who, int sk)
+{
   struct skill_ent *p;
   struct char_magic *ch;
 
@@ -2829,8 +2875,8 @@ learn_skill(int who, int sk) {
            "An angel informs you that your follower %s has become a heretic.",
            box_name(who));
       ilist_rem_value(&
-                      (rp_char(rp_char(who)->religion.priest)->
-                       religion.followers), who);
+                      (rp_char(rp_char(who)->religion.priest)->religion.
+                       followers), who);
       rp_char(who)->religion.priest = 0;
     };
   }
@@ -2851,8 +2897,8 @@ learn_skill(int who, int sk) {
            "An angel informs you that your follower %s has become a priest of %s.",
            box_name(who), god_name(sk));
       ilist_rem_value(&
-                      (rp_char(rp_char(who)->religion.priest)->
-                       religion.followers), who);
+                      (rp_char(rp_char(who)->religion.priest)->religion.
+                       followers), who);
       rp_char(who)->religion.priest = 0;
     };
 
@@ -2925,7 +2971,8 @@ learn_skill(int who, int sk) {
  *
  */
 void
-use_studypoint(int who) {
+use_studypoint(int who)
+{
   int pl = player(who);
   if (pl) {
     rp_player(pl)->jump_start--;
@@ -2942,7 +2989,8 @@ use_studypoint(int who) {
  *
  */
 int
-alone_here(int who) {
+alone_here(int who)
+{
   ilist ll = NULL;
   int alone = 0;
 
@@ -2957,7 +3005,8 @@ alone_here(int who) {
  */
 
 int
-d_study(struct command *c) {
+d_study(struct command *c)
+{
   struct skill_ent *p;
   int sk = c->a;
   struct entity_char *ch;
@@ -3130,7 +3179,8 @@ d_study(struct command *c) {
 
 #if 0
 int
-v_acquire(struct command *c) {
+v_acquire(struct command *c)
+{
   struct skill_ent *p;
   int sk = c->a;
 
@@ -3162,7 +3212,8 @@ v_acquire(struct command *c) {
  *
  */
 int
-v_practice(struct command *c) {
+v_practice(struct command *c)
+{
   struct skill_ent *p;
   struct entity_skill *q;
   int sk = c->a, days = c->b;
@@ -3236,7 +3287,8 @@ v_practice(struct command *c) {
  *
  */
 int
-d_practice(struct command *c) {
+d_practice(struct command *c)
+{
   struct skill_ent *p;
   int sk = c->a;
 
@@ -3282,7 +3334,8 @@ d_practice(struct command *c) {
 
 #if 0
 static int
-research_notknown(int who, int sk) {
+research_notknown(int who, int sk)
+{
   static ilist l = NULL;
   int i;
   struct entity_skill *p;
@@ -3314,7 +3367,8 @@ research_notknown(int who, int sk) {
 
 
 int
-v_research(struct command *c) {
+v_research(struct command *c)
+{
   int sk = c->a;
   int where = subloc(c->who);
   int parent, category = 0, teachable = 0, unteachable = 0;
@@ -3422,7 +3476,8 @@ v_research(struct command *c) {
 
 
 int
-d_research(struct command *c) {
+d_research(struct command *c)
+{
   int sk = c->a;
   int new_skill;
   int chance = 20;
@@ -3477,7 +3532,8 @@ d_research(struct command *c) {
 #endif
 
 void
-check_skill_times() {
+check_skill_times()
+{
   int sk, entry;
 
   loop_skill(sk) {
@@ -3506,7 +3562,8 @@ check_skill_times() {
  *
  */
 int
-v_teach(struct command *c) {
+v_teach(struct command *c)
+{
   struct skill_ent *p;
   int sk = c->a;
   int days = c->b;

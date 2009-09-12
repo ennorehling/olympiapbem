@@ -21,7 +21,8 @@ static char map[MAX_X][MAX_Y];
  *
  */
 int
-load_cmap() {
+load_cmap()
+{
   int i, x, y;
 
   if (xsize >= MAX_X)
@@ -75,7 +76,8 @@ load_cmap() {
 };
 
 void
-print_map(FILE * fp) {
+print_map(FILE * fp)
+{
   int x, y;
 
   if (xsize >= MAX_X)
@@ -98,7 +100,8 @@ print_map(FILE * fp) {
  *
  */
 int
-load_cmap_players() {
+load_cmap_players()
+{
   int i, x, y, count, j;
 
   if (xsize >= MAX_X)

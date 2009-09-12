@@ -9,7 +9,8 @@
 
 
 int
-v_trance(struct command *c) {
+v_trance(struct command *c)
+{
 
   if (has_skill(c->who, sk_trance) < 1) {
     wout(c->who, "Requires knowledge of %s.", box_name(sk_trance));
@@ -21,7 +22,8 @@ v_trance(struct command *c) {
 
 
 int
-d_trance(struct command *c) {
+d_trance(struct command *c)
+{
   struct char_magic *p;
 
   p = p_magic(c->who);
@@ -42,7 +44,8 @@ d_trance(struct command *c) {
 
 
 int
-v_teleport_item(struct command *c) {
+v_teleport_item(struct command *c)
+{
 
   return TRUE;
 }
@@ -53,7 +56,8 @@ v_teleport_item(struct command *c) {
  */
 
 int
-d_teleport_item(struct command *c) {
+d_teleport_item(struct command *c)
+{
   int target = c->a;
   int item = c->b;
   int qty = c->c;

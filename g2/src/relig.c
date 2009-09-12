@@ -5,7 +5,8 @@
 
 
 static int
-check_vision_target(struct command *c, int target) {
+check_vision_target(struct command *c, int target)
+{
 
   switch (kind(target)) {
   case T_char:
@@ -30,7 +31,8 @@ check_vision_target(struct command *c, int target) {
 
 
 int
-v_reveal_vision(struct command *c) {
+v_reveal_vision(struct command *c)
+{
   int target = c->a;
   struct char_magic *p;
 
@@ -50,7 +52,8 @@ v_reveal_vision(struct command *c) {
 
 
 int
-d_reveal_vision(struct command *c) {
+d_reveal_vision(struct command *c)
+{
   int target = c->a;
   struct char_magic *p;
   int chance = 50;
@@ -113,7 +116,8 @@ d_reveal_vision(struct command *c) {
 
 
 int
-v_resurrect(struct command *c) {
+v_resurrect(struct command *c)
+{
   int body = c->a;
 
   if (!valid_box(body) || has_item(c->who, body) < 1) {
@@ -133,7 +137,8 @@ v_resurrect(struct command *c) {
 
 
 int
-d_resurrect(struct command *c) {
+d_resurrect(struct command *c)
+{
   int body = c->a;
   int chance = 50;
   int nps;
@@ -187,7 +192,8 @@ d_resurrect(struct command *c) {
 
 
 int
-v_prep_ritual(struct command *c) {
+v_prep_ritual(struct command *c)
+{
 
   if (!check_skill(c->who, sk_pray))
     return FALSE;
@@ -202,7 +208,8 @@ v_prep_ritual(struct command *c) {
 
 
 int
-d_prep_ritual(struct command *c) {
+d_prep_ritual(struct command *c)
+{
 
   wout(c->who, "The next religious act will surely succeed.");
   p_magic(c->who)->pray = 1;
@@ -211,7 +218,8 @@ d_prep_ritual(struct command *c) {
 
 
 int
-v_last_rites(struct command *c) {
+v_last_rites(struct command *c)
+{
   int body = c->a;
   int where = subloc(c->who);
 
@@ -237,7 +245,8 @@ v_last_rites(struct command *c) {
 
 
 int
-d_last_rites(struct command *c) {
+d_last_rites(struct command *c)
+{
   int body = c->a;
   int owner;
   char *old_name;
@@ -276,7 +285,8 @@ d_last_rites(struct command *c) {
 
 
 int
-v_remove_bless(struct command *c) {
+v_remove_bless(struct command *c)
+{
   int target = c->a;
 
   if (target == 0)
@@ -290,7 +300,8 @@ v_remove_bless(struct command *c) {
 
 
 int
-d_remove_bless(struct command *c) {
+d_remove_bless(struct command *c)
+{
   int has;
   int target = c->a;
   int chance = 50;
@@ -328,12 +339,14 @@ d_remove_bless(struct command *c) {
 }
 
 int
-v_vision_protect(struct command *c) {
+v_vision_protect(struct command *c)
+{
   return TRUE;
 }
 
 int
-d_vision_protect(struct command *c) {
+d_vision_protect(struct command *c)
+{
   int target = c->a;
 
   if (numargs(c) < 1)

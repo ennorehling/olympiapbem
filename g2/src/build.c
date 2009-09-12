@@ -6,7 +6,8 @@
 
 
 int
-fort_default_defense(int sk) {
+fort_default_defense(int sk)
+{
 
   switch (sk) {
   case sub_castle:
@@ -30,7 +31,8 @@ fort_default_defense(int sk) {
 
 
 static int
-ship_loc_okay(struct command *c, int where) {
+ship_loc_okay(struct command *c, int where)
+{
 
   if (!has_ocean_access(where)) {
     wout(c->who, "%s is not an ocean port location.", box_name(where));
@@ -47,7 +49,8 @@ ship_loc_okay(struct command *c, int where) {
 
 
 static int
-temple_loc_okay(struct command *c, int where) {
+temple_loc_okay(struct command *c, int where)
+{
 
   if (safe_haven(where)) {
     wout(c->who, "Building is not permitted in safe havens.");
@@ -64,7 +67,8 @@ temple_loc_okay(struct command *c, int where) {
 
 
 static int
-tower_loc_okay(struct command *c, int where) {
+tower_loc_okay(struct command *c, int where)
+{
   int ld = loc_depth(where);
 
 #if 0
@@ -93,7 +97,8 @@ tower_loc_okay(struct command *c, int where) {
 
 
 static int
-mine_loc_okay(struct command *c, int where) {
+mine_loc_okay(struct command *c, int where)
+{
 
   if (subkind(where) != sub_mountain && subkind(where) != sub_rocky_hill) {
     wout(c->who, "Mines may only be built in mountain provinces "
@@ -122,7 +127,8 @@ mine_loc_okay(struct command *c, int where) {
 
 
 static int
-inn_loc_okay(struct command *c, int where) {
+inn_loc_okay(struct command *c, int where)
+{
 
   if (safe_haven(where)) {
     wout(c->who, "Building is not permitted in safe havens.");
@@ -144,7 +150,8 @@ inn_loc_okay(struct command *c, int where) {
  */
 
 int
-province_subloc(int where, int sk) {
+province_subloc(int where, int sk)
+{
   int city;
   int prov;
   int n;
@@ -163,7 +170,8 @@ province_subloc(int where, int sk) {
 
 
 static int
-castle_loc_okay(struct command *c, int where) {
+castle_loc_okay(struct command *c, int where)
+{
 
   if (safe_haven(where)) {
     wout(c->who, "Building is not permitted in safe havens.");
@@ -186,7 +194,8 @@ castle_loc_okay(struct command *c, int where) {
 }
 
 
-struct build_ent {
+struct build_ent
+{
   char *what;                   /* what are we building? */
   int skill_req, skill2;        /* one or the other */
   int kind;
@@ -284,7 +293,8 @@ static int fuzzy_build_match;
 
 
 static struct build_ent *
-find_build(char *s) {
+find_build(char *s)
+{
   int i;
 
   fuzzy_build_match = FALSE;
@@ -304,7 +314,8 @@ find_build(char *s) {
 
 
 static int
-build_materials_check(struct command *c, struct build_ent *bi) {
+build_materials_check(struct command *c, struct build_ent *bi)
+{
 
   if (bi->skill_req) {          /* if a skill is required... */
     if (bi->skill2) {           /* either one of two skills */
@@ -354,7 +365,8 @@ build_materials_check(struct command *c, struct build_ent *bi) {
 
 
 static void
-create_new_building(struct command *c, struct build_ent *bi, int where) {
+create_new_building(struct command *c, struct build_ent *bi, int where)
+{
   struct entity_subloc *p;
 
   change_box_subkind(where, bi->finished_subkind);
@@ -382,7 +394,8 @@ create_new_building(struct command *c, struct build_ent *bi, int where) {
 
 
 int
-start_build(struct command *c, struct build_ent *bi, int new) {
+start_build(struct command *c, struct build_ent *bi, int new)
+{
   char *new_name;
   struct entity_subloc *p;
   int pl = player(c->who);
@@ -463,7 +476,8 @@ start_build(struct command *c, struct build_ent *bi, int new) {
 
 
 int
-daily_build(struct command *c, struct build_ent *bi) {
+daily_build(struct command *c, struct build_ent *bi)
+{
   int nworkers;
   int inside = subloc(c->who);
   struct entity_subloc *p;
@@ -546,7 +560,8 @@ daily_build(struct command *c, struct build_ent *bi) {
 
 
 int
-build_structure(struct command *c, struct build_ent *bi, int new) {
+build_structure(struct command *c, struct build_ent *bi, int new)
+{
   int who = c->who;
   int where = subloc(who);
 
@@ -580,7 +595,8 @@ build_structure(struct command *c, struct build_ent *bi, int new) {
 
 
 static char *
-unfinished_building(int who) {
+unfinished_building(int who)
+{
   int where = subloc(who);
 
   switch (subkind(where)) {
@@ -605,7 +621,8 @@ unfinished_building(int who) {
 
 
 int
-v_build(struct command *c) {
+v_build(struct command *c)
+{
   struct build_ent *t;
   int days = c->c;
   char *s;
@@ -672,7 +689,8 @@ v_build(struct command *c) {
 
 
 int
-d_build(struct command *c) {
+d_build(struct command *c)
+{
   struct build_ent *t;
 
   t = find_build(c->parse[1]);
@@ -692,7 +710,8 @@ d_build(struct command *c) {
  */
 
 static int
-repair_points(int k) {
+repair_points(int k)
+{
 
   switch (k) {
   case sub_castle:
@@ -733,7 +752,8 @@ repair_points(int k) {
 
 
 int
-v_repair(struct command *c) {
+v_repair(struct command *c)
+{
   int days = c->a;
   int where = subloc(c->who);
   int workers;
@@ -788,7 +808,8 @@ v_repair(struct command *c) {
 
 
 int
-d_repair(struct command *c) {
+d_repair(struct command *c)
+{
   int where = subloc(c->who);
   int workers;
   int per_point;
@@ -861,7 +882,8 @@ d_repair(struct command *c) {
 
 
 int
-i_repair(struct command *c) {
+i_repair(struct command *c)
+{
   int where = subloc(c->who);
 
   vector_char_here(where);
@@ -879,7 +901,8 @@ i_repair(struct command *c) {
 
 
 int
-v_raze(struct command *c) {
+v_raze(struct command *c)
+{
   int target = c->a;
   int where = subloc(c->who);
   int men;
@@ -923,7 +946,8 @@ v_raze(struct command *c) {
 
 
 int
-d_raze(struct command *c) {
+d_raze(struct command *c)
+{
   int target = c->a;
   int where = subloc(c->who);
   int men;
@@ -986,7 +1010,8 @@ static int improve_stone[] = { 50, 60, 70, 80, 90, 100 };
 static int improve_work[] = { 1000, 1250, 1500, 1750, 2000, 2500 };
 
 int
-v_improve(struct command *c) {
+v_improve(struct command *c)
+{
   int where = subloc(c->who);
   int days = c->a;
   struct entity_subloc *p;
@@ -1034,7 +1059,8 @@ v_improve(struct command *c) {
 
 
 int
-d_improve(struct command *c) {
+d_improve(struct command *c)
+{
   int where = subloc(c->who);
   int workers;
   struct entity_subloc *p;

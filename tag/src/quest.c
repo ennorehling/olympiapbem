@@ -58,14 +58,16 @@ static char *of_names[] = {
  */
 long MAX_MM = 1000l;
 long
-MM(int item) {
+MM(int item)
+{
   if (kind(item) == T_char && noble_item(item))
     item = noble_item(item);
   return (item_attack(item) + item_defense(item));
 };
 
 long
-monstermark(int unit) {
+monstermark(int unit)
+{
   long val = 0;
   struct item_ent *e;
 
@@ -88,7 +90,8 @@ static int new_artifact(int who);
  *
  */
 void
-generate_one_treasure(int monster) {
+generate_one_treasure(int monster)
+{
   /*
    *  Tue Oct 13 17:58:12 1998 -- Scott Turner
    *
@@ -186,7 +189,8 @@ generate_one_treasure(int monster) {
  *
  */
 void
-generate_treasure(int unit, int divisor) {
+generate_treasure(int unit, int divisor)
+{
   int unit_mm = monstermark(unit) / divisor;
   int one_treasure = 25 * MM(item_orc);
   int count = 0, i;
@@ -270,7 +274,8 @@ generate_treasure(int unit, int divisor) {
  */
 
 int
-make_teach_book(int who, int rare, int category, int subkind) {
+make_teach_book(int who, int rare, int category, int subkind)
+{
   int new, count = 0;
   char s[80];
   struct item_magic *p;
@@ -536,7 +541,8 @@ make_teach_book(int who, int rare, int category, int subkind) {
  */
 
 static int
-free_artifact(int where) {
+free_artifact(int where)
+{
   int reg = region(where);
   int i;
   int owner;
@@ -576,7 +582,8 @@ free_artifact(int where) {
 
 #if 0
 static int
-new_artifact(int who) {
+new_artifact(int who)
+{
   int new;
   char *s;
 
@@ -627,7 +634,8 @@ new_artifact(int who) {
 #endif
 
 static int
-new_monster(int where) {
+new_monster(int where)
+{
   int new;
   int item = 0;
 
@@ -697,7 +705,8 @@ new_monster(int where) {
 }
 
 int
-seed_subloc_with_monster(int where, int limit) {
+seed_subloc_with_monster(int where, int limit)
+{
   int monster;
 
   monster = new_monster(where);
@@ -749,7 +758,8 @@ seed_subloc_with_monster(int where, int limit) {
 
 
 void
-seed_monster_sublocs(int all) {
+seed_monster_sublocs(int all)
+{
   int where;
   int i;
   stage("seed_monster_sublocs()");
@@ -787,7 +797,8 @@ seed_monster_sublocs(int all) {
  *
  */
 void
-add_lair_monster() {
+add_lair_monster()
+{
   int sum = 0, choice, owner, where;
 
   loop_loc(where) {
@@ -834,7 +845,8 @@ add_lair_monster() {
  *
  */
 void
-reseed_monster_sublocs() {
+reseed_monster_sublocs()
+{
   int where;
   int num_sublocs = 0;
   int num_laired = 0;

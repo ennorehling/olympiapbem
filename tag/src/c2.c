@@ -9,7 +9,8 @@
 
 
 int
-v_discard(struct command *c) {
+v_discard(struct command *c)
+{
   int item = c->a;
   int qty = c->b;
   int have_left = c->c;
@@ -41,7 +42,8 @@ v_discard(struct command *c) {
 
 
 void
-drop_player(int pl) {
+drop_player(int pl)
+{
   int who;
   char *s = "";
   char *email = "";
@@ -151,7 +153,8 @@ drop_player(int pl) {
 
 
 int
-v_quit(struct command *c) {
+v_quit(struct command *c)
+{
   int target = c->a;
 
   if (target == 0)
@@ -176,7 +179,8 @@ v_quit(struct command *c) {
 
 
 void
-text_list_free(char **l) {
+text_list_free(char **l)
+{
   int i;
 
   for (i = 0; i < ilist_len(l); i++)
@@ -185,7 +189,8 @@ text_list_free(char **l) {
 
 
 int
-line_length_check(char **l) {
+line_length_check(char **l)
+{
   int i;
   int len = 0;
 
@@ -197,7 +202,8 @@ line_length_check(char **l) {
 
 
 char **
-parse_text_list(struct command *c) {
+parse_text_list(struct command *c)
+{
   int lines = c->a;
   char **l = NULL;
   char *order;
@@ -246,7 +252,8 @@ parse_text_list(struct command *c) {
 
 
 int
-v_post(struct command *c) {
+v_post(struct command *c)
+{
   char **l = NULL;
   int new;
 
@@ -274,7 +281,8 @@ v_post(struct command *c) {
 
 
 int
-v_message(struct command *c) {
+v_message(struct command *c)
+{
   int targ = c->b;
   char **l = NULL;
   int first;
@@ -333,7 +341,8 @@ v_message(struct command *c) {
 
 
 int
-v_improve_opium(struct command *c) {
+v_improve_opium(struct command *c)
+{
   int where = subloc(c->who);
 
   if (subkind(where) != sub_poppy_field) {
@@ -346,7 +355,8 @@ v_improve_opium(struct command *c) {
 
 
 int
-d_improve_opium(struct command *c) {
+d_improve_opium(struct command *c)
+{
   int where = subloc(c->who);
 
   if (subkind(where) != sub_poppy_field) {
@@ -361,7 +371,8 @@ d_improve_opium(struct command *c) {
 
 
 int
-v_die(struct command *c) {
+v_die(struct command *c)
+{
   kill_char(c->who, MATES, S_body);
   return TRUE;
 }
@@ -369,7 +380,8 @@ v_die(struct command *c) {
 
 #if 0
 int
-v_format(struct command *c) {
+v_format(struct command *c)
+{
   int pl;
 
   pl = player(c->who);
@@ -384,21 +396,24 @@ v_format(struct command *c) {
 
 
 int
-v_stop(struct command *c) {
+v_stop(struct command *c)
+{
 
   return TRUE;
 }
 
 
 int
-v_archery(struct command *c) {
+v_archery(struct command *c)
+{
 
   return TRUE;
 }
 
 
 int
-d_archery(struct command *c) {
+d_archery(struct command *c)
+{
   struct entity_char *p;
 
   p = p_char(c->who);
@@ -411,14 +426,16 @@ d_archery(struct command *c) {
 
 
 int
-v_defense(struct command *c) {
+v_defense(struct command *c)
+{
 
   return TRUE;
 }
 
 
 int
-d_defense(struct command *c) {
+d_defense(struct command *c)
+{
   struct entity_char *p;
 
   p = p_char(c->who);
@@ -431,14 +448,16 @@ d_defense(struct command *c) {
 
 
 int
-v_swordplay(struct command *c) {
+v_swordplay(struct command *c)
+{
 
   return TRUE;
 }
 
 
 int
-d_swordplay(struct command *c) {
+d_swordplay(struct command *c)
+{
   struct entity_char *p;
 
   p = p_char(c->who);
@@ -451,7 +470,8 @@ d_swordplay(struct command *c) {
 
 
 int
-v_claim(struct command *c) {
+v_claim(struct command *c)
+{
   int item = c->a;
   int qty = c->b;
   int have_left = c->c;
@@ -467,7 +487,7 @@ v_claim(struct command *c) {
   if (numargs(c) < 2 &&
       (kind(item) != T_item || has_item(pl, item) < 1) && qty == 0) {
     log_write(LOG_CODE, "correcting CLAIM for %s:  %s",
-               box_code_less(player(c->who)), c->line);
+              box_code_less(player(c->who)), c->line);
 
     wout(c->who, "(assuming you meant CLAIM %d %d)", item_gold, item);
     qty = item;
@@ -507,7 +527,8 @@ v_claim(struct command *c) {
 
 
 int
-v_fight_to_death(struct command *c) {
+v_fight_to_death(struct command *c)
+{
   int flag = c->a;
 
   if (flag < 0)
@@ -524,7 +545,8 @@ v_fight_to_death(struct command *c) {
 
 
 int
-v_fee(struct command *c) {
+v_fee(struct command *c)
+{
   int where = c->c;
   char *type = c->parse[1];
   int amount = c->b;
@@ -599,7 +621,8 @@ v_fee(struct command *c) {
  */
 
 int
-v_border(struct command *c) {
+v_border(struct command *c)
+{
   int where = c->a;
   int *closed = NULL;
 
@@ -645,7 +668,8 @@ v_border(struct command *c) {
 }
 
 static void
-board_message(int who, int ship) {
+board_message(int who, int ship)
+{
   char *with;
   char *desc;
   char *comma = "";
@@ -672,7 +696,8 @@ board_message(int who, int ship) {
 
 
 int
-v_board(struct command *c) {
+v_board(struct command *c)
+{
   int ship = c->a;
   int max_fee = will_pay(c->who);
   struct exit_view *v;
@@ -769,7 +794,8 @@ v_board(struct command *c) {
 
 
 static void
-unboard_message(int who, int ship) {
+unboard_message(int who, int ship)
+{
   char *with;
   char *desc;
   char *comma = "";
@@ -801,7 +827,8 @@ unboard_message(int who, int ship) {
  */
 
 int
-v_unload(struct command *c) {
+v_unload(struct command *c)
+{
   int ship = subloc(c->who);
   int where;
   int i;
@@ -855,7 +882,8 @@ v_unload(struct command *c) {
  */
 
 int
-v_ferry(struct command *c) {
+v_ferry(struct command *c)
+{
   int ship = subloc(c->who);
   int where;
 
@@ -876,7 +904,8 @@ v_ferry(struct command *c) {
 
 
 int
-v_tell(struct command *c) {
+v_tell(struct command *c)
+{
   int target = c->a;
   int what = c->b;
 
@@ -930,7 +959,8 @@ v_tell(struct command *c) {
  *
  */
 int
-v_dedicate(struct command *c) {
+v_dedicate(struct command *c)
+{
   /*
    *  Priests can't dedicate themselves.
    *
@@ -983,7 +1013,8 @@ v_dedicate(struct command *c) {
 
 
 int
-d_dedicate(struct command *c) {
+d_dedicate(struct command *c)
+{
   /*
    *  Priests can't dedicate themselves.
    *
@@ -1038,7 +1069,8 @@ d_dedicate(struct command *c) {
  *
  */
 int
-do_market_tax(struct command *c) {
+do_market_tax(struct command *c)
+{
   int city = c->a;
   int rate = c->c;
 
@@ -1080,7 +1112,8 @@ do_market_tax(struct command *c) {
  *
  */
 int
-do_province_tax(struct command *c) {
+do_province_tax(struct command *c)
+{
   int province = c->a;
   int rate = c->c;
 
@@ -1127,7 +1160,8 @@ do_province_tax(struct command *c) {
  *
  */
 int
-v_tax(struct command *c) {
+v_tax(struct command *c)
+{
   int where = c->a;
 
   if (subkind(where) != sub_city &&

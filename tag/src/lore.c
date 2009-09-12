@@ -6,7 +6,8 @@
 
 
 static void
-lore_function(int who, char *func) {
+lore_function(int who, char *func)
+{
   int i;
 
   if (strcmp(func, "capturable_animals") == 0) {
@@ -36,7 +37,8 @@ lore_function(int who, char *func) {
 }
 
 static void
-do_skill_header(int who, int num, int use_texi) {
+do_skill_header(int who, int num, int use_texi)
+{
   struct req_ent **l;
   int i, first;
   char *consume_string;
@@ -129,7 +131,8 @@ do_skill_header(int who, int num, int use_texi) {
 };
 
 static void
-deliver_lore_sheet(int who, int num, int display_num, int use_texi) {
+deliver_lore_sheet(int who, int num, int display_num, int use_texi)
+{
   FILE *fp;
   char *fnam;
   char *line;
@@ -228,7 +231,8 @@ deliver_lore_sheet(int who, int num, int display_num, int use_texi) {
 
 
 char *
-np_req_s(int skill) {
+np_req_s(int skill)
+{
   int np;
 
   np = skill_np_req(skill);
@@ -244,7 +248,8 @@ np_req_s(int skill) {
 
 
 static void
-out_skill_line(int who, int sk) {
+out_skill_line(int who, int sk)
+{
 
   out(who, "%-*s  %-34s %s%s",
       CHAR_FIELD, box_code_less(sk),
@@ -253,7 +258,8 @@ out_skill_line(int who, int sk) {
 
 
 static void
-deliver_skill_lore(int who, int sk, int show_research, int use_texi) {
+deliver_skill_lore(int who, int sk, int show_research, int use_texi)
+{
   struct entity_skill *p;
   int i;
 
@@ -343,7 +349,8 @@ deliver_skill_lore(int who, int sk, int show_research, int use_texi) {
 
 
 void
-deliver_lore(int who, int num) {
+deliver_lore(int who, int num)
+{
 
   switch (kind(num)) {
   case T_skill:
@@ -376,7 +383,8 @@ deliver_lore(int who, int num) {
  */
 
 void
-queue_lore(int who, int num, int anyway) {
+queue_lore(int who, int num, int anyway)
+{
   int pl = player(who);
   struct entity_player *p;
 
@@ -403,7 +411,8 @@ lore_comp(a, b)
 
 
 void
-show_lore_sheets() {
+show_lore_sheets()
+{
   int pl;
   struct entity_player *p;
   int i;
@@ -439,7 +448,8 @@ show_lore_sheets() {
 
 
 void
-gm_show_all_skills(int pl, int use_texi) {
+gm_show_all_skills(int pl, int use_texi)
+{
   int sk, subsk;
   int i;
 
@@ -537,7 +547,8 @@ gm_show_all_skills(int pl, int use_texi) {
 
 
 void
-scan_char_skill_lore() {
+scan_char_skill_lore()
+{
   int who;
   struct skill_ent *e;
 
@@ -552,7 +563,8 @@ scan_char_skill_lore() {
 
 
 void
-scan_char_item_lore() {
+scan_char_item_lore()
+{
   int who;
   struct item_ent *e;
   int lore;

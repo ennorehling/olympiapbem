@@ -26,7 +26,8 @@
  *
  */
 int
-crosses_ocean(int a, int b) {
+crosses_ocean(int a, int b)
+{
   if (region(a) != region(b))
     return TRUE;
   return FALSE;
@@ -34,7 +35,8 @@ crosses_ocean(int a, int b) {
 
 
 void
-kill_stack_ocean(int who) {
+kill_stack_ocean(int who)
+{
   static ilist l = NULL;
   int i;
   int where;
@@ -56,7 +58,7 @@ kill_stack_ocean(int who) {
       out(l[i], "%s washed ashore at %s.", box_name(l[i]), box_name(where));
 
       log_write(LOG_SPECIAL, "kill_stack_ocean, swam "
-                 "ashore, who=%s", box_code_less(l[i]));
+                "ashore, who=%s", box_code_less(l[i]));
       move_stack(l[i], where);
     }
   }
@@ -64,7 +66,8 @@ kill_stack_ocean(int who) {
 
 
 int
-survive_fatal(int who) {
+survive_fatal(int who)
+{
 
   if (forget_skill(who, sk_survive_fatal) ||
       forget_skill(who, sk_survive_fatal2)) {
@@ -90,7 +93,8 @@ survive_fatal(int who) {
 
 
 void
-char_reclaim(int who) {
+char_reclaim(int who)
+{
 
   p_char(who)->melt_me = TRUE;
 #if 0
@@ -102,7 +106,8 @@ char_reclaim(int who) {
 
 
 int
-v_reclaim(struct command *c) {
+v_reclaim(struct command *c)
+{
   char *what;
 
   if (numargs(c) < 1 || c->parse[1] == NULL || *(c->parse[1]) == '\0')
@@ -118,7 +123,8 @@ v_reclaim(struct command *c) {
 
 int
 new_char(int sk, int ni, int where, int health, int pl,
-         int loy_kind, int loy_lev, char *name) {
+         int loy_kind, int loy_lev, char *name)
+{
   int new;
   struct entity_char *p;
 
@@ -173,7 +179,8 @@ new_char(int sk, int ni, int where, int health, int pl,
 
 
 int
-loc_depth(n) {
+loc_depth(n)
+{
 
   switch (subkind(n)) {
   case sub_region:
@@ -251,7 +258,8 @@ loc_depth(n) {
  */
 
 int
-stackmate_inheritor(int who) {
+stackmate_inheritor(int who)
+{
   int i;
   int target = 0;
 
@@ -271,7 +279,8 @@ stackmate_inheritor(int who) {
 
 
 void
-take_unit_items(int from, int inherit, int how_many) {
+take_unit_items(int from, int inherit, int how_many)
+{
   int to;
   struct item_ent *e;
   int first = TRUE;
@@ -442,7 +451,8 @@ take_unit_items(int from, int inherit, int how_many) {
 
 
 void
-add_char_damage(int who, int amount, int inherit) {
+add_char_damage(int who, int amount, int inherit)
+{
   struct entity_char *p;
 
   if (amount <= 0)
@@ -487,7 +497,8 @@ add_char_damage(int who, int amount, int inherit) {
 
 
 void
-put_back_cookie(int who) {
+put_back_cookie(int who)
+{
   struct entity_misc *p;
 
   p = rp_misc(who);
@@ -505,7 +516,8 @@ put_back_cookie(int who) {
  */
 
 int
-contacted(int a, int b) {
+contacted(int a, int b)
+{
   struct entity_char *p;
 
   p = p_char(a);
@@ -521,7 +533,8 @@ contacted(int a, int b) {
 
 
 int
-char_here(int who, int target) {
+char_here(int who, int target)
+{
   int where = subloc(who);
   int pl;
 
@@ -544,7 +557,8 @@ char_here(int who, int target) {
 
 
 int
-check_char_here(int who, int target) {
+check_char_here(int who, int target)
+{
 
   if (target == garrison_magic) {
     wout(who, "There is no garrison here.");
@@ -561,7 +575,8 @@ check_char_here(int who, int target) {
 
 
 int
-check_char_gone(int who, int target) {
+check_char_gone(int who, int target)
+{
 
   if (target == garrison_magic) {
     wout(who, "There is no garrison here.");
@@ -588,7 +603,8 @@ check_char_gone(int who, int target) {
 
 
 int
-check_still_here(int who, int target) {
+check_still_here(int who, int target)
+{
 
   if (target == garrison_magic) {
     wout(who, "There is no garrison here.");
@@ -617,7 +633,8 @@ check_still_here(int who, int target) {
 
 
 int
-check_skill(int who, int skill) {
+check_skill(int who, int skill)
+{
 
   if (has_skill(who, skill) < 1) {
     wout(who, "Requires %s.", box_name(skill));
@@ -629,7 +646,8 @@ check_skill(int who, int skill) {
 
 
 static void
-sink_ship(int ship) {
+sink_ship(int ship)
+{
   int who;
   struct entity_subloc *p;
   int i;
@@ -637,7 +655,7 @@ sink_ship(int ship) {
   int where = subloc(ship);
 
   log_write(LOG_SPECIAL, "%s has sunk in %s.", box_name(ship),
-             box_name(subloc(ship)));
+            box_name(subloc(ship)));
 
   wout(ship, "%s has sunk!", box_name(ship));
   wout(subloc(ship), "%s has sunk!", box_name(ship));
@@ -682,7 +700,8 @@ sink_ship(int ship) {
 
 
 void
-get_rid_of_collapsed_mine(int fort) {
+get_rid_of_collapsed_mine(int fort)
+{
   int who;
   int where = subloc(fort);
 
@@ -706,12 +725,13 @@ get_rid_of_collapsed_mine(int fort) {
 
 
 static void
-building_collapses(int fort) {
+building_collapses(int fort)
+{
   int who;
   int where = subloc(fort);
 
   log_write(LOG_SPECIAL, "%s collapsed in %s.", box_name(fort),
-             box_name(where));
+            box_name(where));
 
   vector_char_here(fort);
   vector_add(where);
@@ -747,7 +767,8 @@ building_collapses(int fort) {
 
 
 int
-add_structure_damage(int fort, int damage) {
+add_structure_damage(int fort, int damage)
+{
   struct entity_subloc *p;
 
   assert(damage >= 0);
@@ -782,7 +803,8 @@ add_structure_damage(int fort, int damage) {
  *
  */
 int
-count_generic(int who, int stack, int (*func) (int)) {
+count_generic(int who, int stack, int (*func) (int))
+{
   int sum = 0, i;
   struct item_ent *e;
 
@@ -804,12 +826,14 @@ count_generic(int who, int stack, int (*func) (int)) {
 };
 
 static int
-is_man_item(int item) {
+is_man_item(int item)
+{
   return man_item(item);
 };
 
 int
-count_man_items(int who) {
+count_man_items(int who)
+{
   struct item_ent *e;
   int sum = 0;
 
@@ -834,7 +858,8 @@ count_man_items(int who) {
 
 
 int
-count_stack_units(int who) {
+count_stack_units(int who)
+{
   int i;
   int sum = 1;
 
@@ -848,7 +873,8 @@ count_stack_units(int who) {
 
 
 int
-count_stack_figures(int who) {
+count_stack_figures(int who)
+{
   int i;
   int sum = 0;
 
@@ -861,7 +887,8 @@ count_stack_figures(int who) {
 }
 
 int
-count_fighters_2(int who, int attack_min) {
+count_fighters_2(int who, int attack_min)
+{
   struct item_ent *e;
   int beasts = 0, men = 0;
   int man_limit = calc_man_limit(who, FALSE);
@@ -885,7 +912,8 @@ count_fighters_2(int who, int attack_min) {
 }
 
 int
-count_fighters(int who, int attack_min) {
+count_fighters(int who, int attack_min)
+{
   int i;
   int sum = 0;
 
@@ -908,7 +936,8 @@ count_fighters(int who, int attack_min) {
  *
  */
 int
-count_any_real(int who, int ignore_ninjas, int ignore_angels) {
+count_any_real(int who, int ignore_ninjas, int ignore_angels)
+{
   struct item_ent *e;
   int sum = 1;
 
@@ -934,12 +963,14 @@ count_any_real(int who, int ignore_ninjas, int ignore_angels) {
 }
 
 int
-count_any(int who) {
+count_any(int who)
+{
   return count_any_real(who, TRUE, TRUE);
 };
 
 int
-count_stack_any_real(int who, int ignore_ninjas, int ignore_angels) {
+count_stack_any_real(int who, int ignore_ninjas, int ignore_angels)
+{
   int i;
   int sum = 0;
 
@@ -952,12 +983,14 @@ count_stack_any_real(int who, int ignore_ninjas, int ignore_angels) {
 }
 
 int
-count_stack_any(int who) {
+count_stack_any(int who)
+{
   return count_stack_any_real(who, TRUE, TRUE);
 };
 
 int
-count_loc_char_item(int where, int item) {
+count_loc_char_item(int where, int item)
+{
   int i;
   int sum = 0;
 
@@ -971,7 +1004,8 @@ count_loc_char_item(int where, int item) {
 
 
 void
-clear_temps(int kind) {
+clear_temps(int kind)
+{
   int i;
 
   loop_kind(kind, i) {
@@ -982,7 +1016,8 @@ clear_temps(int kind) {
 
 
 void
-olytime_increment(olytime * p) {
+olytime_increment(olytime * p)
+{
 
   p->days_since_epoch++;
   p->day++;
@@ -995,7 +1030,8 @@ olytime_increment(olytime * p) {
  */
 
 void
-olytime_turn_change(olytime * p) {
+olytime_turn_change(olytime * p)
+{
 
   p->day = 0;
   p->turn++;
@@ -1003,7 +1039,8 @@ olytime_turn_change(olytime * p) {
 
 
 int
-max(int a, int b) {
+max(int a, int b)
+{
 
   if (a > b)
     return a;
@@ -1012,7 +1049,8 @@ max(int a, int b) {
 
 
 int
-min(int a, int b) {
+min(int a, int b)
+{
 
   if (a < b)
     return a;
@@ -1062,7 +1100,8 @@ min(int a, int b) {
  *
  */
 int
-item_ride_cap(int who) {
+item_ride_cap(int who)
+{
   int a;
   int base = who;
   int cap = 0;
@@ -1080,7 +1119,8 @@ item_ride_cap(int who) {
 };
 
 int
-item_fly_cap(int who) {
+item_fly_cap(int who)
+{
   int a;
   int base = who;
   int cap = 0;
@@ -1098,7 +1138,8 @@ item_fly_cap(int who) {
 };
 
 int
-item_land_cap(int who) {
+item_land_cap(int who)
+{
   int a;
   int base = who;
   int cap = 0;
@@ -1116,7 +1157,8 @@ item_land_cap(int who) {
 };
 
 int
-item_weight(int who) {
+item_weight(int who)
+{
   int a;
   int base = who;
   int cap = 0;
@@ -1149,7 +1191,8 @@ item_weight(int who) {
 };
 
 static void
-add_item_weight(int item, int qty, struct weights *w, int mountains) {
+add_item_weight(int item, int qty, struct weights *w, int mountains)
+{
   int wt, lc, rc, fc;
 
   wt = item_weight(item) * qty;
@@ -1189,7 +1232,8 @@ add_item_weight(int item, int qty, struct weights *w, int mountains) {
 
 
 void
-determine_unit_weights(int who, struct weights *w, int mountains) {
+determine_unit_weights(int who, struct weights *w, int mountains)
+{
   struct item_ent *e;
   int unit_base;
 
@@ -1214,7 +1258,8 @@ determine_unit_weights(int who, struct weights *w, int mountains) {
 
 
 void
-determine_stack_weights(int who, struct weights *w, int mountains) {
+determine_stack_weights(int who, struct weights *w, int mountains)
+{
   struct weights v;
   int i;
 
@@ -1235,7 +1280,8 @@ determine_stack_weights(int who, struct weights *w, int mountains) {
 
 
 int
-ship_weight(int ship) {
+ship_weight(int ship)
+{
   int i;
   int sum = 0;
   struct weights w;
@@ -1253,7 +1299,8 @@ ship_weight(int ship) {
 
 
 int
-lookup(char *table[], char *s) {
+lookup(char *table[], char *s)
+{
   int i = 0;
 
   while (table[i] != NULL)
@@ -1267,7 +1314,8 @@ lookup(char *table[], char *s) {
 
 
 char *
-loyal_s(int who) {
+loyal_s(int who)
+{
   char *s;
 
   switch (loyal_kind(who)) {
@@ -1304,14 +1352,16 @@ loyal_s(int who) {
 
 
 char *
-gold_s(int n) {
+gold_s(int n)
+{
 
   return sout("%s~gold", comma_num(n));
 }
 
 
 char *
-weeks(int n) {
+weeks(int n)
+{
 
   if (n == 0)
     return "0~days";
@@ -1326,7 +1376,8 @@ weeks(int n) {
 
 
 char *
-more_weeks(int n) {
+more_weeks(int n)
+{
 
   if (n == 0)
     return "0~more days";
@@ -1341,7 +1392,8 @@ more_weeks(int n) {
 
 
 char *
-comma_num(int n) {
+comma_num(int n)
+{
   int ones;
   int thousands;
   int millions;
@@ -1373,7 +1425,8 @@ static char *num_s[] = { "zero", "one", "two", "three", "four", "five",
 
 
 char *
-nice_num(int n) {
+nice_num(int n)
+{
 
   if (n > 10 || n < 0)
     return sout("%s", comma_num(n));
@@ -1383,7 +1436,8 @@ nice_num(int n) {
 
 
 char *
-knum(int n, int nozero) {
+knum(int n, int nozero)
+{
 
   if (n == 0 && nozero)
     return "";
@@ -1399,7 +1453,8 @@ knum(int n, int nozero) {
 
 
 char *
-ordinal(int n) {
+ordinal(int n)
+{
 
   if (n >= 10 && n <= 19)
     return sout("%sth", comma_num(n));
@@ -1418,7 +1473,8 @@ ordinal(int n) {
 
 
 int
-mylog_write(int base, int num) {
+mylog_write(int base, int num)
+{
   int power = 1;
   int value = base;
 
@@ -1436,7 +1492,8 @@ mylog_write(int base, int num) {
 
 
 int
-my_sqrt(int n) {
+my_sqrt(int n)
+{
   int power = 1;
 
   while (power * power <= n)
@@ -1447,7 +1504,8 @@ my_sqrt(int n) {
 
 
 char *
-cap(char *s) {                  /* return a capitalized copy of s */
+cap(char *s)
+{                               /* return a capitalized copy of s */
   char *t;
 
   if (s == NULL || *s == '\0')
@@ -1461,7 +1519,8 @@ cap(char *s) {                  /* return a capitalized copy of s */
 
 
 int
-deduct_np(int pl, int num) {
+deduct_np(int pl, int num)
+{
   struct entity_player *p;
 
   assert(kind(pl) == T_player);
@@ -1478,7 +1537,8 @@ deduct_np(int pl, int num) {
 
 
 void
-add_np(int pl, int num) {
+add_np(int pl, int num)
+{
   struct entity_player *p;
 
   assert(kind(pl) == T_player);
@@ -1490,7 +1550,8 @@ add_np(int pl, int num) {
 
 
 int
-deduct_aura(int who, int amount) {
+deduct_aura(int who, int amount)
+{
   struct char_magic *p;
 
   p = rp_magic(who);
@@ -1504,7 +1565,8 @@ deduct_aura(int who, int amount) {
 
 
 int
-charge_aura(int who, int amount) {
+charge_aura(int who, int amount)
+{
 
   if (!deduct_aura(who, amount)) {
     wout(who, "%s aura or piety required, current level is %s.",
@@ -1517,7 +1579,8 @@ charge_aura(int who, int amount) {
 
 
 int
-check_aura(int who, int amount) {
+check_aura(int who, int amount)
+{
 
   if (char_cur_aura(who) < amount) {
     wout(who, "%s aura or piety required, current level is %s.",
@@ -1530,7 +1593,8 @@ check_aura(int who, int amount) {
 
 
 int
-has_item(int who, int item) {
+has_item(int who, int item)
+{
   int i;
 
   assert(valid_box(who));
@@ -1554,7 +1618,8 @@ has_item(int who, int item) {
 
 
 static void
-add_item(int who, int item, int qty) {
+add_item(int who, int item, int qty)
+{
   struct item_ent *new;
   int i;
   int old;
@@ -1598,7 +1663,8 @@ add_item(int who, int item, int qty) {
 
 
 int
-sub_item(int who, int item, int qty) {
+sub_item(int who, int item, int qty)
+{
   int i;
 
   assert(valid_box(who));
@@ -1619,7 +1685,8 @@ sub_item(int who, int item, int qty) {
 
 
 void
-gen_item(int who, int item, int qty) {
+gen_item(int who, int item, int qty)
+{
 
   assert(!item_unique(item));
   add_item(who, item, qty);
@@ -1627,7 +1694,8 @@ gen_item(int who, int item, int qty) {
 
 
 int
-consume_item(int who, int item, int qty) {
+consume_item(int who, int item, int qty)
+{
 
   if (item_unique(item)) {
     wout(gm_player, "Destroying unique item %s via consume_item.",
@@ -1646,7 +1714,8 @@ consume_item(int who, int item, int qty) {
  */
 
 int
-move_item(int from, int to, int item, int qty) {
+move_item(int from, int to, int item, int qty)
+{
 
   if (qty <= 0)
     return TRUE;
@@ -1675,7 +1744,8 @@ move_item(int from, int to, int item, int qty) {
 
 
 void
-hack_unique_item(int item, int owner) {
+hack_unique_item(int item, int owner)
+{
 
   p_item(item)->who_has = owner;
   add_item(owner, item, 1);
@@ -1683,7 +1753,8 @@ hack_unique_item(int item, int owner) {
 
 
 int
-create_unique_item(int who, int sk) {
+create_unique_item(int who, int sk)
+{
   int new;
 
   new = new_ent(T_item, sk);
@@ -1700,7 +1771,8 @@ create_unique_item(int who, int sk) {
 }
 
 void
-destroy_unique_item(int who, int item) {
+destroy_unique_item(int who, int item)
+{
   int ret;
 
   assert(kind(item) == T_item);
@@ -1713,7 +1785,8 @@ destroy_unique_item(int who, int item) {
 };
 
 int
-find_nearest_land(int where) {
+find_nearest_land(int where)
+{
   int i;
   int orig_where = where;
   int dir;
@@ -1802,7 +1875,8 @@ find_nearest_land(int where) {
  */
 
 int
-drop_item(int who, int item, int qty) {
+drop_item(int who, int item, int qty)
+{
   int who_gets;
 
   if (!item_unique(item) && item != item_peasant && item != item_gold)
@@ -1827,27 +1901,30 @@ drop_item(int who, int item, int qty) {
 
   if (item != item_gold && item != item_peasant)
     log_write(LOG_CODE, "drop_item: %s from %s to %s", box_name(item),
-               box_name(subloc(who)), box_name(who_gets));
+              box_name(subloc(who)), box_name(who_gets));
 
   return move_item(who, who_gets, item, qty);
 }
 
 
 int
-can_pay(int who, int amount) {
+can_pay(int who, int amount)
+{
 
   return has_item(who, item_gold) >= amount;
 }
 
 
 int
-charge(int who, int amount) {
+charge(int who, int amount)
+{
   return sub_item(who, item_gold, amount);
 }
 
 
 int
-stack_has_item(int who, int item) {
+stack_has_item(int who, int item)
+{
   int i;
   int sum = 0;
   int head = stack_leader(who);
@@ -1865,7 +1942,8 @@ stack_has_item(int who, int item) {
 
 
 int
-has_use_key(int who, int key) {
+has_use_key(int who, int key)
+{
   struct item_ent *e;
   int ret = 0;
   struct item_magic *p;
@@ -1886,7 +1964,8 @@ has_use_key(int who, int key) {
 
 
 int
-stack_has_use_key(int who, int key) {
+stack_has_use_key(int who, int key)
+{
   int i;
   int ret = 0;
   int head = stack_leader(who);
@@ -1914,7 +1993,8 @@ stack_has_use_key(int who, int key) {
  */
 
 int
-stack_sub_item(int who, int item, int qty) {
+stack_sub_item(int who, int item, int qty)
+{
   int n;
   int head;
   int i;
@@ -1972,14 +2052,16 @@ stack_sub_item(int who, int item, int qty) {
 
 
 int
-autocharge(int who, int amount) {
+autocharge(int who, int amount)
+{
 
   return stack_sub_item(who, item_gold, amount);
 }
 
 
 int
-test_bit(sparse kr, int i) {
+test_bit(sparse kr, int i)
+{
 
   if (ilist_lookup(kr, i) == -1)
     return FALSE;
@@ -1989,7 +2071,8 @@ test_bit(sparse kr, int i) {
 
 
 void
-set_bit(sparse * kr, int i) {
+set_bit(sparse * kr, int i)
+{
 
   if (ilist_lookup(*kr, i) == -1)
     ilist_append(kr, i);
@@ -1997,14 +2080,16 @@ set_bit(sparse * kr, int i) {
 
 
 void
-clear_know_rec(sparse * kr) {
+clear_know_rec(sparse * kr)
+{
 
   ilist_clear(kr);
 }
 
 
 int
-test_known(int who, int i) {
+test_known(int who, int i)
+{
   struct entity_player *ep;
   int pl;
 
@@ -2025,7 +2110,8 @@ test_known(int who, int i) {
 
 
 void
-set_known(int who, int i) {
+set_known(int who, int i)
+{
   int pl;
 
   assert(valid_box(who));
@@ -2042,7 +2128,8 @@ set_known(int who, int i) {
 static int dot_count = 0;
 
 void
-print_dot(int c) {
+print_dot(int c)
+{
 
   if (dot_count == 0) {
     fprintf(stderr, "   ");
@@ -2057,7 +2144,8 @@ print_dot(int c) {
 
 
 int
-first_character(int where) {
+first_character(int where)
+{
   int i;
   int first = 0;
 
@@ -2074,7 +2162,8 @@ first_character(int where) {
 
 
 char *
-entab(int pl) {
+entab(int pl)
+{
 
   if (player_notab(pl))
     return "";
@@ -2084,7 +2173,8 @@ entab(int pl) {
 
 
 int
-loc_hidden(int n) {
+loc_hidden(int n)
+{
 
 #if 0
   if (loc_depth(n) > LOC_province && weather_here(n, sub_fog))
@@ -2095,7 +2185,8 @@ loc_hidden(int n) {
 }
 
 int
-loc_contains_hidden(int n) {
+loc_contains_hidden(int n)
+{
   int enclosed;
   loop_here(n, enclosed) {
     if (loc_hidden(enclosed))
@@ -2107,7 +2198,8 @@ loc_contains_hidden(int n) {
 
 
 char *
-rest_name(struct command *c, int a) {
+rest_name(struct command *c, int a)
+{
   char *s;
   int i;
 
@@ -2125,7 +2217,8 @@ rest_name(struct command *c, int a) {
 
 
 int
-nprovinces() {
+nprovinces()
+{
   static int nprov = 0;
   int i;
 
@@ -2142,7 +2235,8 @@ nprovinces() {
 
 
 int
-my_prisoner(int who, int pris) {
+my_prisoner(int who, int pris)
+{
 
   if (kind(pris) != T_char)
     return FALSE;
@@ -2158,7 +2252,8 @@ my_prisoner(int who, int pris) {
 
 
 int
-beast_capturable(int who) {
+beast_capturable(int who)
+{
   int ni;
 
   if (subkind(who) != sub_ni)
@@ -2173,7 +2268,8 @@ beast_capturable(int who) {
 }
 
 int
-beast_wild(int who) {
+beast_wild(int who)
+{
   int ni;
 
   if (subkind(who) != sub_ni)
@@ -2188,7 +2284,8 @@ beast_wild(int who) {
 }
 
 void
-stage(char *s) {
+stage(char *s)
+{
   extern int time_self;
   static long old = 0;
   static long first = 0;
@@ -2226,7 +2323,8 @@ stage(char *s) {
  */
 
 int
-ship_cap(int ship) {
+ship_cap(int ship)
+{
   struct entity_ship *s = rp_ship(ship);
   int sc = 0;
   int dam = loc_damage(ship);
@@ -2261,7 +2359,8 @@ ship_cap(int ship) {
  *
  */
 void
-lock_tag() {
+lock_tag()
+{
   int fd;
   int val;
 

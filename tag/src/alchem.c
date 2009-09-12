@@ -5,7 +5,8 @@
 
 
 int
-new_potion(int who) {
+new_potion(int who)
+{
   char *s;
   int new;
   struct item_magic *p;
@@ -40,7 +41,8 @@ new_potion(int who) {
 
 
 int
-d_brew_slave(struct command *c) {
+d_brew_slave(struct command *c)
+{
   int new;
 
   new = new_potion(c->who);
@@ -57,7 +59,8 @@ d_brew_slave(struct command *c) {
 
 
 int
-d_brew_death(struct command *c) {
+d_brew_death(struct command *c)
+{
   int new;
 
   new = new_potion(c->who);
@@ -74,14 +77,16 @@ d_brew_death(struct command *c) {
 
 
 int
-v_brew(struct command *c) {
+v_brew(struct command *c)
+{
 
   return TRUE;
 }
 
 
 int
-d_brew_heal(struct command *c) {
+d_brew_heal(struct command *c)
+{
   int new;
 
   new = new_potion(c->who);
@@ -97,7 +102,8 @@ d_brew_heal(struct command *c) {
 }
 
 int
-d_brew_weightlessness(struct command *c) {
+d_brew_weightlessness(struct command *c)
+{
   int new;
 
   new = new_potion(c->who);
@@ -113,7 +119,8 @@ d_brew_weightlessness(struct command *c) {
 }
 
 int
-d_brew_fiery(struct command *c) {
+d_brew_fiery(struct command *c)
+{
   int new;
 
   new = new_potion(c->who);
@@ -129,7 +136,8 @@ d_brew_fiery(struct command *c) {
 }
 
 int
-v_use_heal(struct command *c) {
+v_use_heal(struct command *c)
+{
   int item = c->a;
 
   assert(kind(item) == T_item);
@@ -154,7 +162,8 @@ v_use_heal(struct command *c) {
 
 
 int
-v_use_death(struct command *c) {
+v_use_death(struct command *c)
+{
   int item = c->a;
 
   assert(kind(item) == T_item);
@@ -171,7 +180,8 @@ v_use_death(struct command *c) {
 }
 
 int
-v_use_fiery(struct command *c) {
+v_use_fiery(struct command *c)
+{
   int item = c->a;
 
   assert(kind(item) == T_item);
@@ -187,7 +197,8 @@ v_use_fiery(struct command *c) {
 }
 
 int
-v_use_slave(struct command *c) {
+v_use_slave(struct command *c)
+{
   int item = c->a;
   int creator;
 
@@ -208,7 +219,7 @@ v_use_slave(struct command *c) {
  */
 
   log_write(LOG_SPECIAL, "%s drinks a slavery potion to %s\n",
-             box_name(c->who), box_name(creator));
+            box_name(c->who), box_name(creator));
 
   wout(c->who, "%s drinks the potion...", just_name(c->who));
 
@@ -230,7 +241,8 @@ v_use_slave(struct command *c) {
 
 
 int
-v_lead_to_gold(struct command *c) {
+v_lead_to_gold(struct command *c)
+{
   int amount = c->a;
   int qty;
 
@@ -261,7 +273,8 @@ v_lead_to_gold(struct command *c) {
 
 
 int
-d_lead_to_gold(struct command *c) {
+d_lead_to_gold(struct command *c)
+{
   int qty = c->d;
   int has = has_item(c->who, item_lead);
   extern int gold_lead_to_gold;
@@ -291,7 +304,8 @@ d_lead_to_gold(struct command *c) {
 }
 
 int
-v_use_weightlessness(struct command *c) {
+v_use_weightlessness(struct command *c)
+{
   int item = c->a;
 
   assert(kind(item) == T_item);

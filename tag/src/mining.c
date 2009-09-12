@@ -13,7 +13,8 @@ int mine_products[MINE_PRODUCTS] = { item_iron, item_gold, item_mithril,
   item_gate_crystal
 };
 
-struct {
+struct
+{
   int mins[MINE_PRODUCTS];
   int maxs[MINE_PRODUCTS];
 } mine_qties[MINE_MAX + 1] = {
@@ -105,7 +106,8 @@ struct {
  *
  */
 static float
-mine_chance(int item, int who, int skill) {
+mine_chance(int item, int who, int skill)
+{
   float initial_chance = 0.0, exp_bonus = 0.0, worker_bonus = 0.0;
 
   switch (item) {
@@ -162,7 +164,8 @@ mine_chance(int item, int who, int skill) {
  *
  */
 int
-mine_depth(int where) {
+mine_depth(int where)
+{
   int depth = -1;
 
   while (where > 0 && subkind(where) == sub_mine_shaft) {
@@ -185,7 +188,8 @@ mine_depth(int where) {
  *  longer sublocs.  We need to go "up" until we find a mine_info.
  */
 struct entity_mine *
-get_mine_info(int where) {
+get_mine_info(int where)
+{
   int up;
 
   if (subkind(where) != sub_mine_shaft)
@@ -212,7 +216,8 @@ get_mine_info(int where) {
  *
  */
 void
-create_mine_info(int mine) {
+create_mine_info(int mine)
+{
   int i, j;
   ilist *el = NULL;
   struct item_ent *new;
@@ -252,7 +257,8 @@ create_mine_info(int mine) {
  *
  */
 static int
-mine_has_item(int mine, int depth, int item) {
+mine_has_item(int mine, int depth, int item)
+{
   int i;
   struct entity_mine *mi = get_mine_info(mine);
 
@@ -277,7 +283,8 @@ mine_has_item(int mine, int depth, int item) {
  *
  */
 static void
-mine_sub_item(int mine, int depth, int item, int amount) {
+mine_sub_item(int mine, int depth, int item, int amount)
+{
   int i;
   struct entity_mine *mi = get_mine_info(mine);
 
@@ -298,7 +305,8 @@ mine_sub_item(int mine, int depth, int item, int amount) {
 };
 
 int
-start_generic_mine(struct command *c, int item, int skill) {
+start_generic_mine(struct command *c, int item, int skill)
+{
   int where = subloc(c->who);
   int days = c->a ? c->a : 7;
   int nworkers;
@@ -324,7 +332,8 @@ start_generic_mine(struct command *c, int item, int skill) {
 
 
 int
-finish_generic_mine(struct command *c, int item, int skill) {
+finish_generic_mine(struct command *c, int item, int skill)
+{
   int where = subloc(c->who);
   int has;
   int nworkers;
@@ -429,55 +438,63 @@ finish_generic_mine(struct command *c, int item, int skill) {
 
 
 int
-v_mine_iron(struct command *c) {
+v_mine_iron(struct command *c)
+{
 
   return start_generic_mine(c, item_iron, sk_mine_iron);
 }
 
 
 int
-d_mine_iron(struct command *c) {
+d_mine_iron(struct command *c)
+{
 
   return finish_generic_mine(c, item_iron, sk_mine_iron);
 }
 
 
 int
-v_mine_gold(struct command *c) {
+v_mine_gold(struct command *c)
+{
 
   return start_generic_mine(c, item_gold, sk_mine_gold);
 }
 
 
 int
-d_mine_gold(struct command *c) {
+d_mine_gold(struct command *c)
+{
 
   return finish_generic_mine(c, item_gold, sk_mine_gold);
 }
 
 
 int
-v_mine_mithril(struct command *c) {
+v_mine_mithril(struct command *c)
+{
 
   return start_generic_mine(c, item_mithril, sk_mine_mithril);
 }
 
 
 int
-d_mine_mithril(struct command *c) {
+d_mine_mithril(struct command *c)
+{
 
   return finish_generic_mine(c, item_mithril, sk_mine_mithril);
 }
 
 int
-v_mine_gate_crystal(struct command *c) {
+v_mine_gate_crystal(struct command *c)
+{
 
   return start_generic_mine(c, item_gate_crystal, sk_mine_crystal);
 }
 
 
 int
-d_mine_gate_crystal(struct command *c) {
+d_mine_gate_crystal(struct command *c)
+{
 
   return finish_generic_mine(c, item_gate_crystal, sk_mine_crystal);
 }
@@ -491,7 +508,8 @@ d_mine_gate_crystal(struct command *c) {
  *
  */
 int
-d_add_wooden_shoring(struct command *c) {
+d_add_wooden_shoring(struct command *c)
+{
   int depth;
   struct entity_mine *mi;
   int where = subloc(c->who);
@@ -521,7 +539,8 @@ d_add_wooden_shoring(struct command *c) {
 }
 
 int
-v_add_wooden_shoring(struct command *c) {
+v_add_wooden_shoring(struct command *c)
+{
   int depth;
   struct entity_mine *mi;
   int where = subloc(c->who);
@@ -564,7 +583,8 @@ v_add_wooden_shoring(struct command *c) {
  *
  */
 int
-d_add_iron_shoring(struct command *c) {
+d_add_iron_shoring(struct command *c)
+{
   int depth;
   struct entity_mine *mi;
   int where = subloc(c->who);
@@ -594,7 +614,8 @@ d_add_iron_shoring(struct command *c) {
 }
 
 int
-v_add_iron_shoring(struct command *c) {
+v_add_iron_shoring(struct command *c)
+{
   int depth;
   struct entity_mine *mi;
   int where = subloc(c->who);

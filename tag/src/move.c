@@ -10,7 +10,8 @@ static ilist ocean_chars = NULL;
 
 
 void
-departure_message(int who, struct exit_view *v) {
+departure_message(int who, struct exit_view *v)
+{
   char *to = "";
   char *with;
   char *desc;
@@ -73,7 +74,8 @@ departure_message(int who, struct exit_view *v) {
 
 
 static void
-arrival_message(int who, struct exit_view *v) {
+arrival_message(int who, struct exit_view *v)
+{
   char *from = "";
   char *with;
   char *desc;
@@ -135,7 +137,8 @@ arrival_message(int who, struct exit_view *v) {
  */
 
 static void
-discover_road(int who, int where, struct exit_view *v) {
+discover_road(int who, int where, struct exit_view *v)
+{
   struct exit_view **l;
   int i;
   int j;
@@ -157,7 +160,8 @@ discover_road(int who, int where, struct exit_view *v) {
 
 
 struct exit_view *
-parse_exit_dir(struct command *c, int where, char *zero_arg) {
+parse_exit_dir(struct command *c, int where, char *zero_arg)
+{
   struct exit_view **l;
   int i;
   int dir;
@@ -260,7 +264,8 @@ parse_exit_dir(struct command *c, int where, char *zero_arg) {
 }
 
 static void
-kill_random_mount(int who) {
+kill_random_mount(int who)
+{
   struct item_ent *e;
   loop_inv(who, e) {
     if (item_ride_cap(e->item) >= 100) {
@@ -277,7 +282,8 @@ kill_random_mount(int who) {
 #define FORCED_RIDE 2
 #define FORCED_MARCH 1
 int
-move_exit_land(struct command *c, struct exit_view *v, int show) {
+move_exit_land(struct command *c, struct exit_view *v, int show)
+{
   struct weights w;
   int delay = v->distance;
   int terr;                     /* destination terrain */
@@ -461,7 +467,8 @@ move_exit_land(struct command *c, struct exit_view *v, int show) {
 
 
 static int
-move_exit_fly(struct command *c, struct exit_view *v, int show) {
+move_exit_fly(struct command *c, struct exit_view *v, int show)
+{
   struct weights w;
   int delay = v->distance;
 
@@ -487,7 +494,8 @@ move_exit_fly(struct command *c, struct exit_view *v, int show) {
 
 
 void
-save_v_array(struct command *c, struct exit_view *v) {
+save_v_array(struct command *c, struct exit_view *v)
+{
 
 #if 0
   c->v.direction = v->direction;
@@ -511,7 +519,8 @@ save_v_array(struct command *c, struct exit_view *v) {
 
 
 void
-restore_v_array(struct command *c, struct exit_view *v) {
+restore_v_array(struct command *c, struct exit_view *v)
+{
 
   bzero(v, sizeof (*v));
 
@@ -538,7 +547,8 @@ restore_v_array(struct command *c, struct exit_view *v) {
 
 
 static void
-suspend_stack_actions(int who) {
+suspend_stack_actions(int who)
+{
   int i;
 
   loop_stack(who, i) {
@@ -549,7 +559,8 @@ suspend_stack_actions(int who) {
 
 
 void
-restore_stack_actions(int who) {
+restore_stack_actions(int who)
+{
   int i;
 
   loop_stack(who, i) {
@@ -560,7 +571,8 @@ restore_stack_actions(int who) {
 
 
 void
-clear_guard_flag(int who) {
+clear_guard_flag(int who)
+{
   int i;
 
   if (kind(who) == T_char)
@@ -574,7 +586,8 @@ clear_guard_flag(int who) {
 
 
 static int
-land_check(struct command *c, struct exit_view *v, int show) {
+land_check(struct command *c, struct exit_view *v, int show)
+{
 
   if (v->water) {
     if (show)
@@ -614,7 +627,8 @@ land_check(struct command *c, struct exit_view *v, int show) {
 
 
 static int
-can_move_here(int where, struct command *c) {
+can_move_here(int where, struct command *c)
+{
   struct exit_view *v;
 
   v = parse_exit_dir(c, where, NULL);
@@ -630,7 +644,8 @@ can_move_here(int where, struct command *c) {
 
 
 static int
-can_move_at_outer_level(int where, struct command *c) {
+can_move_at_outer_level(int where, struct command *c)
+{
   int outer;
 
   outer = subloc(where);
@@ -644,13 +659,15 @@ can_move_at_outer_level(int where, struct command *c) {
 }
 
 static int
-is_smuggling(int who, int ef) {
+is_smuggling(int who, int ef)
+{
   return get_effect(who, ef, 0, 0);
 };
 
 
 static int
-check_smuggling(int who, int ef, int sk) {
+check_smuggling(int who, int ef, int sk)
+{
   /*
    *  How experienced is he?
    *
@@ -667,7 +684,8 @@ check_smuggling(int who, int ef, int sk) {
 };
 
 static int
-smuggle_savings(int who, int cost, int sk) {
+smuggle_savings(int who, int cost, int sk)
+{
   int reduce = (cost * rnd(50, 100)) / 100;
   if (reduce < 1)
     reduce = 1;
@@ -679,7 +697,8 @@ smuggle_savings(int who, int cost, int sk) {
 };
 
 static int
-smuggle_fine(int cost) {
+smuggle_fine(int cost)
+{
   int fine = (cost * rnd(5, 13)) / 8;
   if (fine < 1)
     fine = 1;
@@ -687,7 +706,8 @@ smuggle_fine(int cost) {
 };
 
 static int
-pay_fine(struct command *c, int fine, int ruler) {
+pay_fine(struct command *c, int fine, int ruler)
+{
   int total = stack_has_item(c->who, item_gold);
 
   if (total < fine) {
@@ -712,7 +732,8 @@ pay_fine(struct command *c, int fine, int ruler) {
 
 int
 calc_entrance_fee(struct loc_control_ent *control, struct command *c,
-                  int ruler) {
+                  int ruler)
+{
   int w_cost = 0, m_cost = 0, n_cost = 0;
   vector_stack(c->who, 1);
 
@@ -842,7 +863,8 @@ calc_entrance_fee(struct loc_control_ent *control, struct command *c,
 };
 
 int
-charge_entrance_fees(int who, int ruler, int cost) {
+charge_entrance_fees(int who, int ruler, int cost)
+{
   extern int gold_fees;
 
   if (!autocharge(who, cost)) {
@@ -866,7 +888,8 @@ charge_entrance_fees(int who, int ruler, int cost) {
  *
  */
 int
-controls_loc(int where) {
+controls_loc(int where)
+{
   if (!valid_box(where) || (kind(where) != T_loc && kind(where) != T_ship))
     return FALSE;
 
@@ -882,7 +905,8 @@ controls_loc(int where) {
 };
 
 int
-player_controls_loc(int where) {
+player_controls_loc(int where)
+{
   if (!valid_box(where) || (kind(where) != T_loc && kind(where) != T_ship))
     return FALSE;
 
@@ -904,7 +928,8 @@ player_controls_loc(int where) {
  *
  */
 int
-can_join_guild(int who, int g) {
+can_join_guild(int who, int g)
+{
   struct entity_skill *p;
   int i;
 
@@ -968,7 +993,8 @@ can_join_guild(int who, int g) {
  *
  */
 int
-join_guild(int who, int g) {
+join_guild(int who, int g)
+{
   if (kind(g) != T_skill || skill_school(g) != g)
     return FALSE;
   if (!can_join_guild(who, g))
@@ -979,7 +1005,8 @@ join_guild(int who, int g) {
 };
 
 static int
-check_guilds(struct command *c, struct exit_view *v) {
+check_guilds(struct command *c, struct exit_view *v)
+{
   struct entity_skill *p;
   int i;
 
@@ -1017,7 +1044,8 @@ check_guilds(struct command *c, struct exit_view *v) {
 };
 
 void
-do_actual_move(struct command *c, struct exit_view *v, int delay) {
+do_actual_move(struct command *c, struct exit_view *v, int delay)
+{
   int attack = (strcasecmp(c->parse[0], "attack") == 0);
 
   v->distance = delay;
@@ -1048,7 +1076,8 @@ do_actual_move(struct command *c, struct exit_view *v, int delay) {
  *
  */
 void
-do_move_attack(struct command *c, struct exit_view *v) {
+do_move_attack(struct command *c, struct exit_view *v)
+{
   char buf[256];
   sprintf(buf, "attack %d", v->destination);
   prepend_order(player(c->who), c->who, buf);
@@ -1064,7 +1093,8 @@ do_move_attack(struct command *c, struct exit_view *v) {
  *  Moves into sublocs now have to check their size.
  */
 int
-move_permitted(struct command *c, struct exit_view *v) {
+move_permitted(struct command *c, struct exit_view *v)
+{
   if (v->hades_cost) {
     int n = count_stack_any(c->who);
     int cost, j;
@@ -1091,7 +1121,7 @@ move_permitted(struct command *c, struct exit_view *v) {
     };
 
     log_write(LOG_SPECIAL, "%s (%s) tries to enter Hades",
-               box_name(player(c->who)), box_name(c->who));
+              box_name(player(c->who)), box_name(c->who));
   };
 
   /*
@@ -1133,7 +1163,8 @@ move_permitted(struct command *c, struct exit_view *v) {
  *  Whoops, you'd better also be hidden!
  */
 static int
-can_sneak(int who, int where) {
+can_sneak(int who, int where)
+{
   return (char_hidden(who) &&
           province(where) == where && char_alone_stealth(who));
 };
@@ -1145,7 +1176,8 @@ can_sneak(int who, int where) {
  *
  */
 int
-peaceful_enter(int who, int from, int where) {
+peaceful_enter(int who, int from, int where)
+{
   int ruler = controls_loc(where);
   int pl = player_controls_loc(where);
   struct loc_control_ent *control = NULL;
@@ -1205,7 +1237,8 @@ peaceful_enter(int who, int from, int where) {
  *
  */
 int
-check_peaceful_move(struct command *c, struct exit_view *v) {
+check_peaceful_move(struct command *c, struct exit_view *v)
+{
   int ruler = 0, pl;
   struct loc_control_ent *control = NULL;
   int cost = 0, payee = 0;
@@ -1364,7 +1397,8 @@ check_peaceful_move(struct command *c, struct exit_view *v) {
  *
  */
 int
-v_move(struct command *c) {
+v_move(struct command *c)
+{
   struct exit_view *v;
   int delay;
   int where = subloc(c->who);
@@ -1430,7 +1464,8 @@ v_move(struct command *c) {
 
 
 void
-touch_loc_after_move(int who, int where) {
+touch_loc_after_move(int who, int where)
+{
   int pl;
   int i;
 
@@ -1446,13 +1481,14 @@ touch_loc_after_move(int who, int where) {
 
 
 void
-move_stack(int who, int where) {
+move_stack(int who, int where)
+{
 
   assert(kind(who) == T_char);
 
   if (!in_faery(subloc(who)) && in_faery(where)) {
     log_write(LOG_SPECIAL, "%s enters Faery at %s.",
-               box_name(who), box_name(where));
+              box_name(who), box_name(where));
   }
 
   set_where(who, where);
@@ -1572,7 +1608,8 @@ struct trap_struct traps[] = {
  *
  */
 void
-check_arrival_effects(int who, int where, int flying) {
+check_arrival_effects(int who, int where, int flying)
+{
   int val, i, num;
   struct effect *e;
 
@@ -1649,7 +1686,8 @@ check_arrival_effects(int who, int where, int flying) {
 
 #if 0
 int
-d_move(struct command *c) {
+d_move(struct command *c)
+{
   struct exit_view vv;
   struct exit_view *v = &vv;
 
@@ -1705,7 +1743,8 @@ d_move(struct command *c) {
 #endif
 
 void
-init_ocean_chars() {
+init_ocean_chars()
+{
   int i;
   int where;
 
@@ -1720,7 +1759,8 @@ init_ocean_chars() {
 
 
 void
-check_ocean_chars() {
+check_ocean_chars()
+{
   int i;
   int where;
   struct entity_char *p;
@@ -1765,14 +1805,16 @@ check_ocean_chars() {
 
 
 static int
-fly_check(struct command *c, struct exit_view *v) {
+fly_check(struct command *c, struct exit_view *v)
+{
 
   return TRUE;
 }
 
 
 static int
-can_fly_here(int where, struct command *c) {
+can_fly_here(int where, struct command *c)
+{
   struct exit_view *v;
 
   v = parse_exit_dir(c, where, NULL);
@@ -1786,7 +1828,8 @@ can_fly_here(int where, struct command *c) {
 
 
 static int
-can_fly_at_outer_level(int where, struct command *c) {
+can_fly_at_outer_level(int where, struct command *c)
+{
   int outer;
 
   outer = subloc(where);
@@ -1806,7 +1849,8 @@ can_fly_at_outer_level(int where, struct command *c) {
  *
  */
 int
-v_fly(struct command *c) {
+v_fly(struct command *c)
+{
   struct exit_view *v;
   int delay;
   int where = subloc(c->who);
@@ -1882,7 +1926,8 @@ v_fly(struct command *c) {
 }
 
 int
-d_fly(struct command *c) {
+d_fly(struct command *c)
+{
   struct exit_view vv;
   struct exit_view *v = &vv;
   struct weights w;
@@ -1958,7 +2003,8 @@ d_fly(struct command *c) {
  */
 
 int
-v_exit(struct command *c) {
+v_exit(struct command *c)
+{
   int ret;
 
   ret = oly_parse(c, "move out");
@@ -1969,7 +2015,8 @@ v_exit(struct command *c) {
 
 
 int
-v_enter(struct command *c) {
+v_enter(struct command *c)
+{
   int ret;
 
   if (numargs(c) < 1) {
@@ -1986,7 +2033,8 @@ v_enter(struct command *c) {
 
 
 int
-v_north(struct command *c) {
+v_north(struct command *c)
+{
   int ret;
 
   ret = oly_parse(c, "move north");
@@ -1997,7 +2045,8 @@ v_north(struct command *c) {
 
 
 int
-v_south(struct command *c) {
+v_south(struct command *c)
+{
   int ret;
 
   ret = oly_parse(c, "move south");
@@ -2008,7 +2057,8 @@ v_south(struct command *c) {
 
 
 int
-v_east(struct command *c) {
+v_east(struct command *c)
+{
   int ret;
 
   ret = oly_parse(c, "move east");
@@ -2019,7 +2069,8 @@ v_east(struct command *c) {
 
 
 int
-v_west(struct command *c) {
+v_west(struct command *c)
+{
   int ret;
 
   ret = oly_parse(c, "move west");
@@ -2030,7 +2081,8 @@ v_west(struct command *c) {
 
 
 void
-check_captain_loses_sailors(int qty, int target, int inform) {
+check_captain_loses_sailors(int qty, int target, int inform)
+{
   static int cmd_sail = -1;
   int where = subloc(target);
   struct command *c;
@@ -2097,12 +2149,13 @@ check_captain_loses_sailors(int qty, int target, int inform) {
   c->wait += penalty;
 
   log_write(LOG_SPECIAL, "Loss of sailors incurs penalty for %s.",
-             box_code(player(target)));
+            box_code(player(target)));
 }
 
 
 static int
-move_exit_water(struct command *c, struct exit_view *v, int ship, int show) {
+move_exit_water(struct command *c, struct exit_view *v, int ship, int show)
+{
   int delay = v->distance;
   int hands_short = 0;          /* how many hands we are short */
   int n;
@@ -2292,7 +2345,8 @@ move_exit_water(struct command *c, struct exit_view *v, int ship, int show) {
 
 
 static void
-sail_depart_message(int ship, struct exit_view *v) {
+sail_depart_message(int ship, struct exit_view *v)
+{
   char *to = "";
   char *desc;
   char *comma = "";
@@ -2310,7 +2364,8 @@ sail_depart_message(int ship, struct exit_view *v) {
 
 
 static void
-sail_arrive_message(int ship, struct exit_view *v) {
+sail_arrive_message(int ship, struct exit_view *v)
+{
   char *from = "";
   char *desc;
   char *comma = "";
@@ -2339,7 +2394,8 @@ sail_arrive_message(int ship, struct exit_view *v) {
 
 
 static int
-sail_check(struct command *c, struct exit_view *v, int show) {
+sail_check(struct command *c, struct exit_view *v, int show)
+{
 
   if (!v->water) {
     if (show)
@@ -2358,7 +2414,8 @@ sail_check(struct command *c, struct exit_view *v, int show) {
 
 
 static int
-can_sail_here(int where, struct command *c, int ship) {
+can_sail_here(int where, struct command *c, int ship)
+{
   struct exit_view *v;
 
   v = parse_exit_dir(c, where, NULL);
@@ -2373,7 +2430,8 @@ can_sail_here(int where, struct command *c, int ship) {
 
 
 static int
-can_sail_at_outer_level(int ship, int where, struct command *c) {
+can_sail_at_outer_level(int ship, int where, struct command *c)
+{
   int outer;
 
   if (ship_cap(ship)) {
@@ -2399,7 +2457,8 @@ can_sail_at_outer_level(int ship, int where, struct command *c) {
 
 
 int
-v_sail(struct command *c) {
+v_sail(struct command *c)
+{
   struct exit_view *v;
   int delay;
   int ship = subloc(c->who);
@@ -2586,7 +2645,8 @@ v_sail(struct command *c) {
  *
  */
 int
-d_sail(struct command *c) {
+d_sail(struct command *c)
+{
   int ship = subloc(c->who);
   struct exit_view vv;
   struct exit_view *v = &vv;
@@ -2641,7 +2701,8 @@ d_sail(struct command *c) {
  *  to indicate that the ship is no longer in transit.
  */
 
-i_sail(struct command * c) {
+i_sail(struct command * c)
+{
   int ship = subloc(c->who);
 
   assert(is_ship(ship));
@@ -2661,7 +2722,8 @@ i_sail(struct command * c) {
  *
  */
 static int
-select_target_local(struct command *c) {
+select_target_local(struct command *c)
+{
   int target = c->a;
   int where = subloc(c->who);
 
@@ -2697,7 +2759,8 @@ select_target_local(struct command *c) {
 }
 
 static int
-attack_okay(struct command *c, int target) {
+attack_okay(struct command *c, int target)
+{
   int n, attacker, targ_who;
 
   if (stack_leader(c->who) != c->who) {
@@ -2835,7 +2898,8 @@ attack_okay(struct command *c, int target) {
  *
  */
 int
-v_move_attack(struct command *c) {
+v_move_attack(struct command *c)
+{
   struct exit_view *v, tmp_v;
   int delay;
   int where = subloc(c->who);
@@ -2965,7 +3029,8 @@ v_move_attack(struct command *c) {
 }
 
 int
-d_move_attack(struct command *c) {
+d_move_attack(struct command *c)
+{
   struct exit_view vv;
   struct exit_view tmp_v;
   struct exit_view *v = &vv;
@@ -3091,7 +3156,8 @@ d_move_attack(struct command *c) {
 }
 
 int
-v_maxpay(struct command *c) {
+v_maxpay(struct command *c)
+{
   int m = c->a;
 
   if (!rp_char(c->who)) {
