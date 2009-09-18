@@ -11,6 +11,8 @@ elseif (UNIX)
   add_definitions(-DLINUX)
   include_directories(../libc/glibc)
   add_subdirectory (../libc/glibc libc)
+  # hack
+  set(CMAKE_C_FLAGS "-g -Wall")
 else (WIN32)
   include_directories(../libc/default)
   add_subdirectory (../libc/default libc)

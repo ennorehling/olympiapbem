@@ -4,6 +4,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <libc/sys/stat.h>
+#include <libc/minmax.h>
 #include <fcntl.h>
 #ifdef LINUX
 #include <libc/sys/file.h>

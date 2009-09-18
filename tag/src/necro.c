@@ -1,6 +1,7 @@
 
-#include <stdio.h>
+#include <libc/minmax.h>
 #include <libc/unistd.h>
+#include <stdio.h>
 #include "z.h"
 #include "oly.h"
 

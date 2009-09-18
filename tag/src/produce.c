@@ -1,4 +1,5 @@
 
+#include <libc/minmax.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "z.h"

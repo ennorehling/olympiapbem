@@ -1,10 +1,11 @@
 
-#include <stdio.h>
-#include <string.h>
-#include <sys/types.h>
 #include <libc/dirent.h>
 #include <libc/unistd.h>
 #include <libc/sys/stat.h>
+#include <libc/minmax.h>
+#include <stdio.h>
+#include <string.h>
+#include <sys/types.h>
 #include "z.h"
 #include "oly.h"
 
