@@ -1346,7 +1346,7 @@ compute_civ_levels()
   int flag;
   int i;
   int dest_civ;
-  int crown_loc;
+  int crown_loc = -1;
 
   int flag_castle;
   int flag_tower;
@@ -1357,8 +1357,10 @@ compute_civ_levels()
 
   int prev_loc = -1;
 
-  crown_loc = province(item_unique(RELIC_CROWN));
-
+  if (bx[RELIC_CROWN]) {
+    int crown = item_unique(RELIC_CROWN);
+    crown_loc = province(crown);
+  }
   stage("compute_civ_levels()");
 
   clear_temps(T_loc);

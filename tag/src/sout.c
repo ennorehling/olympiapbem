@@ -104,7 +104,7 @@ comma_append(char *s, char *t)
  */
 
 
-#define	MAX_FP		(FOPEN_MAX - 20)
+#define	MAX_FP FOPEN_MAX
 
 struct fp_ent
 {
