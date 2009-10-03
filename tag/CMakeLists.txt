@@ -55,3 +55,9 @@ set (MAPGEN_HDRS
 )
 
 add_executable (mapgen ${MAPGEN_SRCS} ${MAPGEN_HDRS})
+
+set (ACCT_SRCS
+ cmd/newacct.c
+)
+
+add_executable (acct ${ACCT_SRCS})
