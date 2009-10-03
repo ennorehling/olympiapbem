@@ -1,0 +1,12 @@
+sysclock: 1 1 0
+game_num=4
+indep_player=100
+gm_player=200
+skill_player=202
+from_host=oly@eressea.de (Olympia PBEM)
+reply_host=oly@eressea.de
+seed0=-13693
+seed1=-10922
+seed2=3331
+accounting_dir=lib/act
+accounting_prog=bin/acct

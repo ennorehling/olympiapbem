@@ -16,8 +16,8 @@
 #include	<assert.h>
 
 
-#define		ACCT_DIR	"/u/oly/act"
-#define		OLD_ACCT_DIR	"/u/oly/old-act"
+#define		ACCT_DIR	"lib/act"
+#define		OLD_ACCT_DIR	"lib/old-act"
 #define		MAX_GAMES	100
 #define		LEN		256
 #define		TRUE		1
