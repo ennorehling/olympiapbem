@@ -1121,7 +1121,7 @@ set_html_pass(int pl)
   if (pw == NULL)
     pw = "hallieandedison";
 
-  sprintf(buf, "/usr/local/bin/htpass %s.%d %s \"%s\"",
+  sprintf(buf, "htpasswd %s.%d %s \"%s\"",
           options.html_passwords, game_number, box_code_less(pl), pw);
 
   system(buf);
