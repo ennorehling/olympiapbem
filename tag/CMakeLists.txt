@@ -44,20 +44,12 @@ elseif (UNIX)
   target_link_libraries (olympia m)
 endif (WIN32)
 
-set (MAPGEN_SRCS
- mapgen/mapgen.c
- mapgen/rnd.c
- mapgen/z.c
-)
-
-set (MAPGEN_HDRS
- mapgen/z.h
-)
-
+set (MAPGEN_SRCS mapgen/mapgen.c mapgen/rnd.c mapgen/z.c)
+set (MAPGEN_HDRS mapgen/z.h )
 add_executable (mapgen ${MAPGEN_SRCS} ${MAPGEN_HDRS})
 
-set (ACCT_SRCS
- cmd/newacct.c
-)
-
+set (ACCT_SRCS cmd/newacct.c)
 add_executable (acct ${ACCT_SRCS})
+
+set (REP_SRCS cmd/rep.c)
+add_executable (rep ${REP_SRCS})
