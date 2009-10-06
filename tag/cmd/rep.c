@@ -260,7 +260,7 @@ char *s;
 		s++;
 	if (*s == ':')
 		s++;
-
+#if 0
 /*
  *  Pull off html style tag
  */
@@ -271,7 +271,7 @@ char *s;
 		s++;
 	if (*s == ':')
 		s++;
-
+#endif
 /*
  *  Pull off unit string
  */
